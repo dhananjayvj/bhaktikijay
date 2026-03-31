@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dhananjay & Bhakti — We request the honor of your presence. February 14–16, 2027, Bengaluru." />
-  <title>Dhananjay & Bhakti | Celebration</title>
+  <meta name="description" content="Shubh Vivāha — Dhananjay & Bhakti. A South Indian Hindu Brahmin wedding. February 14–16, 2027, Bengaluru." />
+  <title>Shubh Vivāha | Dhananjay &amp; Bhakti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -30,12 +30,11 @@
   </script>
   <style>
     .glass-nav {
-      background: rgba(252, 249, 241, 0.78);
+      background: rgba(252, 249, 241, 0.88);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
-    /* Section reveal (user snippet + enhancement) */
     section.reveal {
       opacity: 0;
       transform: translateY(20px);
@@ -45,7 +44,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-    /* Hero cinematic fade-in */
     .hero-fade {
       animation: heroFadeIn 1.5s ease forwards;
     }
@@ -60,26 +58,24 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
-    /* Couple: slide from sides */
-    .couple-img-left {
+    /* South Indian hero: no stock monument photo — pattern + gradient only */
+    .hero-south-indian {
+      background-color: #1c1410;
+      background-image:
+        radial-gradient(ellipse 100% 70% at 50% 0%, rgba(226, 114, 91, 0.28), transparent 55%),
+        linear-gradient(168deg, #2a1812 0%, #1e2d24 38%, #141c18 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-opacity='0.12' stroke-width='0.6'%3E%3Cpath d='M60 10v100M10 60h100M60 20c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z'/%3E%3Ccircle cx='60' cy='60' r='48'/%3E%3Ccircle cx='60' cy='60' r='32'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: auto, auto, 120px 120px;
+    }
+    .couple-portrait {
       opacity: 0;
-      transform: translateX(-40px);
+      transform: translateY(32px) scale(0.98);
       transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .couple-img-left.visible {
+    .couple-portrait.visible {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0) scale(1);
     }
-    .couple-img-right {
-      opacity: 0;
-      transform: translateX(40px);
-      transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .couple-img-right.visible {
-      opacity: 1;
-      transform: translateX(0);
-    }
-    /* Timeline day cards */
     .day-card {
       opacity: 0;
       transform: scale(0.96) translateY(24px);
@@ -89,11 +85,16 @@
       opacity: 1;
       transform: scale(1) translateY(0);
     }
-    /* Floating labels */
+    .timeline-visual {
+      min-height: 12rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      background: linear-gradient(145deg, rgba(252, 249, 241, 0.95) 0%, rgba(255, 248, 234, 0.9) 100%);
+      box-shadow: inset 0 0 0 1px rgba(226, 114, 91, 0.08);
+    }
     .float-wrap { position: relative; }
     .float-wrap input,
-    .float-wrap textarea,
-    .float-wrap select {
+    .float-wrap textarea {
       width: 100%;
       padding: 1.35rem 0.75rem 0.5rem;
       border-radius: 0.375rem;
@@ -104,8 +105,7 @@
       font-size: 0.95rem;
     }
     .float-wrap input:focus,
-    .float-wrap textarea:focus,
-    .float-wrap select:focus {
+    .float-wrap textarea:focus {
       outline: none;
       border-color: #D4AF37;
       box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
@@ -120,12 +120,9 @@
       text-transform: uppercase;
       color: rgba(252, 249, 241, 0.65);
       pointer-events: none;
-      transition: all 0.2s ease;
     }
     .float-wrap input:not(:placeholder-shown) + label,
-    .float-wrap input:focus + label,
-    .float-wrap textarea:not(:placeholder-shown) + label,
-    .float-wrap textarea:focus + label {
+    .float-wrap input:focus + label {
       font-size: 0.6rem;
       opacity: 0.85;
     }
@@ -143,13 +140,12 @@
   </style>
 </head>
 <body class="bg-cream font-sans text-stone-800 antialiased overflow-x-hidden">
-  <!-- Sticky nav -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-8">
       <a href="#top" class="font-serif text-lg font-semibold tracking-wide text-terracotta md:text-xl">Dhananjay &amp; Bhakti</a>
-      <ul class="flex flex-wrap justify-end gap-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-600 sm:gap-6 sm:text-xs">
-        <li><a href="#couple" class="hover:text-terracotta transition-colors">Couple</a></li>
-        <li><a href="#timeline" class="hover:text-terracotta transition-colors">Celebration</a></li>
+      <ul class="flex flex-wrap justify-end gap-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-stone-600 sm:gap-5 sm:text-xs">
+        <li><a href="#couple" class="hover:text-terracotta transition-colors">The Couple</a></li>
+        <li><a href="#timeline" class="hover:text-terracotta transition-colors">Vivāha</a></li>
         <li><a href="#rsvp" class="hover:text-terracotta transition-colors">RSVP</a></li>
         <li><a href="#venue" class="hover:text-terracotta transition-colors">Venue</a></li>
       </ul>
@@ -157,34 +153,27 @@
   </header>
 
   <main id="top">
-    <!-- 1. Hero -->
-    <section class="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden">
-      <div class="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=2000&q=80"
-          alt="Sun-drenched carved stone archway at a heritage site"
-          width="2000"
-          height="1333"
-          fetchpriority="high"
-          decoding="async"
-          class="h-full w-full object-cover"
-        />
-        <div class="absolute inset-0 bg-gradient-to-b from-terracotta/75 via-terracotta/55 to-terracotta/80"></div>
-      </div>
-      <div class="relative z-10 mx-auto max-w-3xl px-6 text-center text-white">
-        <p class="hero-fade mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.35em] text-white/90 md:text-xs" style="animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards;">
+    <!-- Hero: South Indian motif — no monument stock photo -->
+    <section class="hero-south-indian relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-16">
+      <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-terracotta/50 via-transparent to-black/35"></div>
+      <div class="relative z-10 mx-auto max-w-3xl text-center text-white">
+        <p class="hero-fade mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.4em] text-gold/95 md:text-xs" style="animation-delay: 0.08s; opacity: 0; animation-fill-mode: forwards;">Shubh Vivāha · South Indian Hindu Brahmin</p>
+        <p class="hero-fade mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-white/85 md:text-xs" style="animation-delay: 0.12s; opacity: 0; animation-fill-mode: forwards;">
           February 14 – 16, 2027 · Bengaluru
         </p>
-        <h1 class="hero-fade font-display text-4xl font-medium leading-tight tracking-tight md:text-6xl md:leading-tight" style="animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards;">
+        <h1 class="hero-fade font-display text-4xl font-medium leading-tight tracking-tight text-cream md:text-6xl md:leading-tight" style="animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards;">
           Dhananjay &amp; Bhakti
         </h1>
-        <p class="hero-fade mt-6 font-serif text-lg italic text-white/95 md:text-2xl" style="animation-delay: 0.35s; opacity: 0; animation-fill-mode: forwards;">
-          We request the honor of your presence.
+        <p class="hero-fade mt-5 font-serif text-base italic text-cream/95 md:text-2xl" style="animation-delay: 0.32s; opacity: 0; animation-fill-mode: forwards;">
+          We seek your blessings as we begin our journey together.
         </p>
-        <!-- Delicate mandala line-art (slow spin) -->
-        <div class="hero-fade mx-auto mt-10 flex justify-center" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards;">
-          <div class="mandala-spin text-white/85" aria-hidden="true">
-            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="md:h-[140px] md:w-[140px]">
+        <p class="hero-fade mx-auto mt-3 max-w-md font-sans text-sm text-white/75 md:text-base" style="animation-delay: 0.4s; opacity: 0; animation-fill-mode: forwards;">
+          Traditional ceremonies with family, mantras, and the warmth of our elders — in the spirit of our smārtha heritage.
+        </p>
+
+        <div class="hero-fade mx-auto mt-10 flex justify-center" style="animation-delay: 0.48s; opacity: 0; animation-fill-mode: forwards;">
+          <div class="mandala-spin text-gold/80" aria-hidden="true">
+            <svg width="112" height="112" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="md:h-[130px] md:w-[130px]">
               <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
               <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width="0.5" opacity="0.45"/>
               <circle cx="60" cy="60" r="32" stroke="currentColor" stroke-width="0.5" opacity="0.55"/>
@@ -193,7 +182,6 @@
                 <path d="M28 28l12 12M80 80l12 12M92 28L80 40M28 92l12-12"/>
                 <path d="M60 36c8 0 14 6 14 14s-6 14-14 14-14-6-14-14 6-14 14-14Z"/>
               </g>
-              <!-- 8 petals -->
               <g stroke="currentColor" stroke-width="0.65" fill="none" opacity="0.85">
                 <path d="M60 20c4 8 4 16 0 24M100 60c-8 4-16 4-24 0M60 100c-4-8-4-16 0-24M20 60c8-4 16-4 24 0"/>
                 <path d="M82 26c-6 6-14 10-22 12M94 82c-8-2-16-6-22-12M38 94c6-6 10-14 12-22M26 38c2 8 6 16 12 22"/>
@@ -201,18 +189,16 @@
             </svg>
           </div>
         </div>
-        <!-- Decorative line icons: Kalash + Ganesha mini -->
-        <div class="hero-fade mt-8 flex flex-wrap items-center justify-center gap-10 opacity-90" style="animation-delay: 0.65s; opacity: 0; animation-fill-mode: forwards;">
-          <!-- Kalash line art -->
-          <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="text-white">
+
+        <div class="hero-fade mt-8 flex flex-wrap items-center justify-center gap-10 text-cream/90" style="animation-delay: 0.58s; opacity: 0; animation-fill-mode: forwards;" aria-hidden="true">
+          <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-cream">
             <path d="M24 4v6M18 10h12M20 10c0 4-6 6-8 10v4h24v-4c-2-4-8-6-8-10" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M14 24c0 12 4 20 10 26M34 24c0 12-4 20-10 26" stroke="currentColor" stroke-width="1"/>
             <ellipse cx="24" cy="42" rx="10" ry="6" stroke="currentColor" stroke-width="1"/>
             <path d="M12 48h24M10 52h28" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
-            <circle cx="24" cy="18" r="2" fill="currentColor" opacity="0.5"/>
+            <circle cx="24" cy="18" r="2" fill="currentColor" opacity="0.45"/>
           </svg>
-          <!-- Ganesha line art (stylized minimal) -->
-          <svg width="52" height="56" viewBox="0 0 52 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="text-white">
+          <svg width="52" height="56" viewBox="0 0 52 56" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-cream">
             <ellipse cx="26" cy="14" rx="10" ry="9" stroke="currentColor" stroke-width="1"/>
             <path d="M16 14c-2-4 2-8 8-8s10 4 8 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
             <path d="M26 23v8M18 28h16" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
@@ -225,61 +211,47 @@
       </div>
     </section>
 
-    <!-- 2. Couple -->
+    <!-- Single portrait: your Ghibli-style image (bundled in repo — always loads on Pages) -->
     <section id="couple" class="border-t border-gold/20 bg-cream px-4 py-20 md:py-28">
-      <div class="mx-auto max-w-5xl">
-        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Couple</h2>
-        <div class="mt-14 grid gap-12 md:grid-cols-2 md:gap-10">
-          <div class="couple-img-left text-center">
-            <div class="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-sm border-2 border-gold/50 shadow-md">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
-                alt="Dhananjay"
-                width="800"
-                height="1067"
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover grayscale contrast-[1.05]"
-              />
-            </div>
-            <p class="mt-4 font-serif text-xl font-medium text-terracotta">Dhananjay</p>
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Couple</h2>
+        <p class="mt-3 font-sans text-sm text-stone-600 md:text-base">Two families, one saṃskāra — with gratitude to our parents and gurus.</p>
+
+        <div class="couple-portrait mt-12">
+          <div class="relative mx-auto overflow-hidden rounded-lg border-[3px] border-gold/55 bg-stone-100 shadow-xl ring-1 ring-gold/20">
+            <img
+              src="images/bhakti-dhananjay.jpeg"
+              alt="Bhakti and Dhananjay — a joyful embrace"
+              width="900"
+              height="1200"
+              loading="lazy"
+              decoding="async"
+              class="w-full object-cover object-center"
+            />
           </div>
-          <div class="couple-img-right text-center">
-            <div class="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-sm border-2 border-gold/50 shadow-md">
-              <img
-                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
-                alt="Bhakti"
-                width="800"
-                height="1067"
-                loading="lazy"
-                decoding="async"
-                class="h-full w-full object-cover grayscale contrast-[1.05]"
-              />
-            </div>
-            <p class="mt-4 font-serif text-xl font-medium text-terracotta">Bhakti</p>
-          </div>
+          <p class="mt-6 font-serif text-lg italic text-terracotta md:text-xl">“Where the heart finds home.”</p>
         </div>
-        <p class="couple-text mx-auto mt-14 max-w-2xl text-center font-sans text-base leading-relaxed text-stone-600 md:text-lg">
-          He loves old libraries and quiet evenings. She finds joy in morning sun and traditional art. A shared love for simple moments brought them together.
+
+        <p class="mx-auto mt-10 max-w-xl font-sans text-base leading-relaxed text-stone-600 md:text-lg">
+          Rooted in śraddhā and simple joys — from śāstra and silence to shared laughter — they step into grihastha with the blessings of elders and the sacred fire as witness.
         </p>
       </div>
     </section>
 
-    <!-- 3. Timeline -->
+    <!-- Timeline: no external hotlinked images (reliable on all networks) -->
     <section id="timeline" class="timeline-section border-t border-gold/15 px-4 py-20 md:py-28">
       <div class="mx-auto max-w-3xl">
-        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Celebration</h2>
-        <p class="mx-auto mt-3 max-w-xl text-center font-sans text-sm text-stone-600 md:text-base">Three days of color, music, and blessings.</p>
+        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">Celebrations</h2>
+        <p class="mx-auto mt-3 max-w-xl text-center font-sans text-sm text-stone-600 md:text-base">Three days of nāḻangu, music, and kalyāṇa rituals — details may follow family tradition.</p>
 
         <div class="relative mt-16 space-y-16">
           <div class="absolute left-[22px] top-2 bottom-2 w-px bg-gold/35 md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
 
-          <!-- Day 1 -->
           <div class="day-card relative pl-14 md:pl-0">
             <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
               <span class="font-serif text-sm font-bold text-terracotta">1</span>
             </div>
-            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-stretch">
               <div class="md:pr-8 md:text-right">
                 <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 1 · Feb 14, 2027</p>
                 <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Mehendi</h3>
@@ -288,15 +260,17 @@
                   <span>11:00 AM</span>
                 </p>
               </div>
-              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
-                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80" alt="Intricate bangles and patterned floor" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              <div class="timeline-visual mt-6 flex flex-col items-center justify-center gap-3 p-8 md:mt-0">
+                <i data-lucide="flower-2" class="h-14 w-14 text-terracotta/70" stroke-width="1"></i>
+                <p class="text-center font-sans text-xs text-stone-500">Henna, laughter &amp; family</p>
               </div>
             </div>
-            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-start">
-              <div class="order-2 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:order-1">
-                <img src="https://images.unsplash.com/photo-1596040033229-a2821d5b9d42?auto=format&fit=crop&w=900&q=80" alt="Turmeric paste in a bowl on wood" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-stretch">
+              <div class="timeline-visual order-2 flex flex-col items-center justify-center gap-3 p-8 md:order-1">
+                <i data-lucide="sparkle" class="h-14 w-14 text-gold/80" stroke-width="1"></i>
+                <p class="text-center font-sans text-xs text-stone-500">Haldi, āśīrvāda &amp; joy</p>
               </div>
-              <div class="order-1 md:order-2 md:pl-8">
+              <div class="order-1 md:order-2 md:pl-8 md:text-left">
                 <h3 class="font-serif text-2xl font-semibold text-stone-800">Haldi</h3>
                 <p class="mt-1 flex items-center gap-2 font-sans text-stone-600">
                   <i data-lucide="droplet" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
@@ -306,27 +280,28 @@
             </div>
           </div>
 
-          <!-- Day 2 -->
           <div class="day-card relative pl-14 md:pl-0">
             <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
               <span class="font-serif text-sm font-bold text-terracotta">2</span>
             </div>
-            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-stretch">
               <div class="md:pr-8 md:text-right">
                 <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 2 · Feb 15, 2027</p>
-                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Baraat</h3>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Vara Pūjā &amp; Baraat</h3>
                 <p class="mt-1 flex items-center gap-2 font-sans text-stone-600 md:justify-end">
                   <i data-lucide="music-2" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
-                  <span>4:30 PM</span>
+                  <span>4:30 PM onward</span>
                 </p>
               </div>
-              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=900&q=80" alt="Decorative horse bridle detail" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              <div class="timeline-visual mt-6 flex flex-col items-center justify-center gap-3 p-8 md:mt-0">
+                <i data-lucide="drum" class="h-14 w-14 text-terracotta/70" stroke-width="1"></i>
+                <p class="text-center font-sans text-xs text-stone-500">Procession &amp; welcome</p>
               </div>
             </div>
-            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-start">
-              <div class="order-2 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:order-1">
-                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=80" alt="Fairy lights bokeh celebration" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-stretch">
+              <div class="timeline-visual order-2 flex flex-col items-center justify-center gap-3 p-8 md:order-1">
+                <i data-lucide="mic-2" class="h-14 w-14 text-gold/80" stroke-width="1"></i>
+                <p class="text-center font-sans text-xs text-stone-500">Song, dance &amp; blessings</p>
               </div>
               <div class="order-1 md:order-2 md:pl-8">
                 <h3 class="font-serif text-2xl font-semibold text-stone-800">Sangeet</h3>
@@ -338,22 +313,22 @@
             </div>
           </div>
 
-          <!-- Day 3 -->
           <div class="day-card relative pl-14 md:pl-0">
             <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
               <span class="font-serif text-sm font-bold text-terracotta">3</span>
             </div>
-            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-stretch">
               <div class="md:pr-8 md:text-right">
                 <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 3 · Feb 16, 2027</p>
-                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Wedding &amp; Reception</h3>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Muhūrta · Kalyāṇam · Reception</h3>
                 <p class="mt-1 flex items-center gap-2 font-sans text-stone-600 md:justify-end">
-                  <i data-lucide="heart" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
-                  <span>Evening</span>
+                  <i data-lucide="flame" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>As per śubha lagna</span>
                 </p>
               </div>
-              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
-                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Hand-woven garland close-up" width="900" height="600" loading="lazy" decoding="async" class="h-52 w-full object-cover md:h-60" />
+              <div class="timeline-visual mt-6 flex flex-col items-center justify-center gap-3 p-8 md:mt-0">
+                <i data-lucide="heart" class="h-14 w-14 text-terracotta/70" stroke-width="1"></i>
+                <p class="text-center font-sans text-xs text-stone-500">Sacred fire · saptapadi · garlands</p>
               </div>
             </div>
           </div>
@@ -361,11 +336,10 @@
       </div>
     </section>
 
-    <!-- 4. RSVP -->
     <section id="rsvp" class="border-t border-gold/20 bg-terracotta px-4 py-20 md:py-28">
       <div class="mx-auto max-w-md">
         <h2 class="text-center font-serif text-3xl font-semibold text-cream md:text-4xl">RSVP</h2>
-        <p class="mt-3 text-center font-sans text-sm text-cream/85">Kindly respond by <strong class="text-gold">January 15, 2027</strong>.</p>
+        <p class="mt-3 text-center font-sans text-sm text-cream/85">Kindly respond by <strong class="text-gold">January 15, 2027</strong> — anna saṃskāra depends on an accurate count.</p>
         <form id="rsvp-form" class="mt-10 border-2 border-gold/60 bg-terracotta p-6 shadow-xl md:p-8" style="box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.15);">
           <div class="float-wrap mb-5">
             <input type="text" id="guest-name" name="name" placeholder=" " required autocomplete="name" />
@@ -376,44 +350,39 @@
             <label for="guest-email">Email</label>
           </div>
           <div class="mb-8">
-            <label for="guest-count" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-cream/70">Party size</label>
+            <label for="guest-count" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-cream/70">Guests in your party</label>
             <select id="guest-count" name="guests" class="w-full rounded-md border border-cream/30 bg-cream/10 px-3 py-3 font-sans text-cream focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30">
-              <option value="1">1 guest</option>
-              <option value="2">2 guests</option>
-              <option value="3">3 guests</option>
-              <option value="4">4 guests</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
             </select>
           </div>
           <p id="rsvp-note" class="mb-4 hidden text-center text-sm text-cream/90"></p>
           <button type="submit" class="btn-gold w-full rounded-md bg-gold py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-stone-900">
-            Confirm attendance
+            Confirm with blessings
           </button>
         </form>
       </div>
     </section>
 
-    <!-- 5. Venue -->
     <section id="venue" class="border-t border-gold/15 bg-cream px-4 py-20 md:py-28">
       <div class="mx-auto max-w-3xl">
         <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Venue</h2>
-        <div class="mt-10 overflow-hidden rounded-lg border border-gold/25 bg-white shadow-md">
-          <img
-            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80"
-            alt="Resort facade with columns"
-            width="1400"
-            height="787"
-            loading="lazy"
-            decoding="async"
-            class="aspect-[21/9] w-full object-cover md:aspect-[2/1]"
-          />
+        <p class="mx-auto mt-3 max-w-lg text-center font-sans text-sm text-stone-600">Near the NICE Road junction — easy access for guests from across Bengaluru and beyond.</p>
+
+        <div class="mt-10 overflow-hidden rounded-lg border border-gold/30 bg-gradient-to-b from-cream-warm to-cream shadow-md">
+          <div class="flex aspect-[21/10] flex-col items-center justify-center gap-4 bg-gradient-to-br from-stone-200/80 via-cream to-amber-50/50 px-6 py-12 md:aspect-[2/1]">
+            <i data-lucide="landmark" class="h-16 w-16 text-gold md:h-20 md:w-20" stroke-width="1"></i>
+            <p class="font-serif text-lg text-stone-700 md:text-xl">Resort · Kanakapura Road</p>
+            <p class="max-w-md text-center font-sans text-sm text-stone-600">A spacious mandapa-friendly setting — final name &amp; map pin will be shared with confirmed guests.</p>
+          </div>
           <div class="px-6 py-8 text-center md:px-10">
-            <p class="font-serif text-xl font-semibold text-stone-800 md:text-2xl">Premium Resort</p>
-            <p class="mt-2 font-sans text-stone-600">Kanakapura Road, Bengaluru</p>
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort"
+              href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+NICE+junction+Bengaluru+resort"
               target="_blank"
               rel="noopener noreferrer"
-              class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-cream px-6 py-3 font-sans text-sm font-semibold text-terracotta transition hover:bg-gold/10"
+              class="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-cream px-6 py-3 font-sans text-sm font-semibold text-terracotta transition hover:bg-gold/10"
             >
               <i data-lucide="map-pin" class="h-4 w-4 text-gold" stroke-width="1.5"></i>
               View on Map
@@ -425,7 +394,8 @@
 
     <footer class="border-t border-gold/20 bg-stone-900 px-4 py-10 text-center">
       <p class="font-serif text-lg text-cream">Dhananjay &amp; Bhakti</p>
-      <p class="mt-2 font-sans text-xs text-cream/50">With gratitude · 2027</p>
+      <p class="mt-2 font-sans text-sm text-gold/90">śubhāśaya · dhanyavādāḥ</p>
+      <p class="mt-2 font-sans text-xs text-cream/45">February 2027 · Bengaluru</p>
     </footer>
   </main>
 
@@ -448,37 +418,34 @@
         obs.observe(s);
       });
 
-      var coupleL = document.querySelector('.couple-img-left');
-      var coupleR = document.querySelector('.couple-img-right');
-      var coupleObs = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) e.target.classList.add('visible');
-          });
-        },
-        { threshold: 0.2 }
-      );
-      if (coupleL) coupleObs.observe(coupleL);
-      if (coupleR) coupleObs.observe(coupleR);
+      var couple = document.querySelector('.couple-portrait');
+      if (couple) {
+        new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) e.target.classList.add('visible');
+            });
+          },
+          { threshold: 0.15 }
+        ).observe(couple);
+      }
 
-      var dayCards = document.querySelectorAll('.day-card');
-      var dayObs = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) e.target.classList.add('visible');
-          });
-        },
-        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
-      );
-      dayCards.forEach(function (d) {
-        dayObs.observe(d);
+      document.querySelectorAll('.day-card').forEach(function (d) {
+        new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) e.target.classList.add('visible');
+            });
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+        ).observe(d);
       });
 
       document.getElementById('rsvp-form').addEventListener('submit', function (e) {
         e.preventDefault();
         var note = document.getElementById('rsvp-note');
         note.classList.remove('hidden');
-        note.textContent = 'Thank you — your details are noted. (Connect a backend or Google Sheets to save responses.)';
+        note.textContent = 'Thank you — your RSVP is noted. (Wire to Google Sheets if you add a script URL.)';
       });
     });
   </script>
