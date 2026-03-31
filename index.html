@@ -1,35 +1,413 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhakti & Dhananjay | Feb 2027</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; background: #fff5f5; color: #4a4a4a; }
-        .container { padding: 50px 20px; }
-        h1 { color: #d63384; font-size: 2.5rem; }
-        #countdown { font-size: 1.5rem; font-weight: bold; margin: 20px 0; color: #333; }
-        .venue-btn { background: #d63384; color: white; padding: 15px 30px; text-decoration: none; border-radius: 25px; display: inline-block; margin-top: 20px; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bhakti & Dhananjay — Where Logic meets Life | Tech meets Tradition. February 14, 2027, Bengaluru." />
+  <title>Bhakti & Dhananjay | Feb 14, 2027</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            royal: {
+              DEFAULT: '#1a2f4a',
+              deep: '#0f1f35',
+              light: '#243a5c',
+            },
+            gold: {
+              DEFAULT: '#c9a227',
+              light: '#e4c76b',
+              dark: '#9a7b1c',
+            },
+            ivory: '#fffdfa',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+          backgroundImage: {
+            'grid-fade': 'linear-gradient(to bottom, rgba(15,31,53,0.92), rgba(26,47,74,0.88)), url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23c9a227\' fill-opacity=\'0.06\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          },
+          animation: {
+            'fade-up': 'fadeUp 0.8s ease forwards',
+          },
+          keyframes: {
+            fadeUp: {
+              '0%': { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .glass-nav {
+      background: rgba(255, 253, 250, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .hero-parallax {
+      background-attachment: fixed;
+    }
+    @media (max-width: 768px) {
+      .hero-parallax {
+        background-attachment: scroll;
+      }
+    }
+    .countdown-box {
+      background: linear-gradient(145deg, rgba(255,253,250,0.12) 0%, rgba(201,162,39,0.08) 100%);
+      border: 1px solid rgba(201, 162, 39, 0.25);
+      box-shadow: 0 8px 32px rgba(15, 31, 53, 0.25);
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <h1>Bhakti & Dhananjay</h1>
-        <p>A Merger of Tech & Tradition</p>
-        <div id="countdown">Loading Countdown...</div>
-        <p>Kanakapura Road, Bengaluru | February 2027</p>
-        <a href="https://maps.google.com" class="venue-btn">Navigate to Venue</a>
-    </div>
+<body class="bg-ivory text-royal-deep font-sans antialiased overflow-x-hidden">
+  <!-- Sticky Nav -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+    <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
+      <a href="#top" class="font-display text-lg font-semibold tracking-tight text-royal md:text-xl">
+        Bhakti <span class="text-gold">&</span> Dhananjay
+      </a>
+      <ul class="flex flex-wrap items-center justify-end gap-1 text-xs font-medium text-royal/80 sm:gap-4 sm:text-sm">
+        <li><a href="#story" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">Our Story</a></li>
+        <li><a href="#events" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">The Day</a></li>
+        <li><a href="#rsvp" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">RSVP</a></li>
+        <li><a href="#travel" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">Travel</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <script>
-        const weddingDate = new Date("Feb 14, 2027 09:00:00").getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            const diff = weddingDate - now;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            document.getElementById("countdown").innerHTML = days + " Days " + hours + " Hours to go!";
-        }, 1000);
-    </script>
+  <main id="top">
+    <!-- Hero -->
+    <section class="relative min-h-[100svh] flex flex-col justify-center bg-grid-fade hero-parallax px-4 pt-24 pb-16 md:pt-28">
+      <div class="mx-auto max-w-4xl text-center">
+        <p class="reveal mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gold-light md:text-sm">Tech meets Tradition</p>
+        <h1 class="reveal font-display text-4xl font-semibold leading-tight text-ivory md:text-6xl md:leading-tight" style="transition-delay: 80ms">
+          Bhakti <span class="text-gold">&</span> Dhananjay
+        </h1>
+        <p class="reveal mx-auto mt-5 max-w-xl text-base italic text-ivory/85 md:text-xl" style="transition-delay: 120ms">
+          Where Logic meets Life
+        </p>
+        <p class="reveal mt-2 text-sm text-ivory/70 md:text-base" style="transition-delay: 160ms">
+          Kanakapura Road, Bengaluru · February 14, 2027
+        </p>
+
+        <div id="countdown" class="reveal mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4" style="transition-delay: 200ms">
+          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
+            <span id="cd-days" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
+            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Days</p>
+          </div>
+          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
+            <span id="cd-hours" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
+            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Hours</p>
+          </div>
+          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
+            <span id="cd-mins" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
+            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Minutes</p>
+          </div>
+          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
+            <span id="cd-secs" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
+            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Seconds</p>
+          </div>
+        </div>
+
+        <div class="reveal mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center" style="transition-delay: 260ms">
+          <a href="#events" class="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-3.5 text-sm font-semibold text-royal-deep shadow-lg transition hover:bg-gold-light">
+            <i data-lucide="calendar-heart" class="h-5 w-5"></i>
+            Save the date
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-ivory/30 bg-ivory/5 px-8 py-3.5 text-sm font-semibold text-ivory backdrop-blur-sm transition hover:bg-ivory/15">
+            <i data-lucide="map-pin" class="h-5 w-5 text-gold"></i>
+            Preview area on Maps
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Our Story -->
+    <section id="story" class="relative border-t border-gold/15 bg-ivory px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-6xl">
+        <div class="reveal text-center">
+          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">The Duo</h2>
+          <p class="mx-auto mt-3 max-w-2xl text-royal/75">Senior Software Analyst meets Ayurvedic Doctor — same curiosity, different scriptures.</p>
+        </div>
+
+        <div class="mt-14 grid gap-10 md:grid-cols-2 md:gap-12">
+          <article class="reveal rounded-3xl border border-gold/20 bg-white p-8 shadow-sm md:p-10">
+            <div class="flex items-center gap-3 text-royal">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-royal/5 text-royal">
+                <i data-lucide="code-2" class="h-6 w-6"></i>
+              </span>
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/10 text-gold-dark">
+                <i data-lucide="line-chart" class="h-6 w-6"></i>
+              </span>
+            </div>
+            <h3 class="mt-6 font-display text-2xl font-semibold text-royal">Dhananjay</h3>
+            <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-gold-dark">Tech &amp; systems</p>
+            <p class="mt-4 leading-relaxed text-royal/80">
+              He lives in logs, traces, and the quiet thrill of a clean deploy. If love had a sprint board, he’d already have moved the card to <em class="text-royal">Done</em>.
+            </p>
+          </article>
+
+          <article class="reveal rounded-3xl border border-gold/20 bg-white p-8 shadow-sm md:p-10" style="transition-delay: 80ms">
+            <div class="flex items-center gap-3 text-royal">
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-800">
+                <i data-lucide="leaf" class="h-6 w-6"></i>
+              </span>
+              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-800">
+                <i data-lucide="flask-conical" class="h-6 w-6"></i>
+              </span>
+            </div>
+            <h3 class="mt-6 font-display text-2xl font-semibold text-royal">Bhakti</h3>
+            <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-gold-dark">Ayurveda &amp; healing</p>
+            <p class="mt-4 leading-relaxed text-royal/80">
+              She reads pulses and plants with the same patience others reserve for poetry. For her, balance isn’t a buzzword — it’s a way of life.
+            </p>
+          </article>
+        </div>
+
+        <blockquote class="reveal mx-auto mt-14 max-w-3xl rounded-2xl border border-gold/25 bg-gradient-to-br from-royal-deep to-royal px-8 py-10 text-center text-ivory shadow-md md:px-12">
+          <p class="font-display text-lg leading-relaxed md:text-xl">
+            “He deciphers complex logs; she decodes the secrets of life.<br class="hidden sm:block" />
+            Together, they’ve found the perfect algorithm for love.”
+          </p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- Events -->
+    <section id="events" class="border-t border-gold/15 bg-gradient-to-b from-ivory to-white px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-3xl">
+        <div class="reveal text-center">
+          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">The Day</h2>
+          <p class="mt-3 text-royal/70">One timeline. Two families. Many cups of coffee.</p>
+        </div>
+
+        <div class="relative mt-14">
+          <div class="absolute left-[22px] top-0 bottom-0 w-px bg-gradient-to-b from-gold via-gold/40 to-transparent md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
+
+          <div class="reveal relative flex gap-6 md:flex-row-reverse md:gap-0">
+            <div class="hidden w-1/2 md:block" aria-hidden="true"></div>
+            <div class="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-ivory text-gold md:left-1/2 md:-translate-x-1/2">
+              <i data-lucide="sunrise" class="h-5 w-5"></i>
+            </div>
+            <div class="ml-14 flex-1 rounded-2xl border border-gold/20 bg-white p-6 shadow-sm md:ml-0 md:w-1/2 md:pr-12 md:text-right">
+              <p class="text-xs font-bold uppercase tracking-widest text-gold-dark">Ceremony</p>
+              <h3 class="mt-2 font-display text-2xl font-semibold text-royal">The Muhurtham</h3>
+              <p class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-royal/80 md:justify-end">
+                <span class="inline-flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-gold"></i> Feb 14, 2027</span>
+                <span class="inline-flex items-center gap-1.5"><i data-lucide="clock" class="h-4 w-4 text-gold"></i> 9:00 AM</span>
+              </p>
+              <p class="mt-4 text-royal/75">
+                A premium resort along Kanakapura Road — greenery, quiet roads, and room for both <em>mantras</em> and megabytes of photos.
+              </p>
+              <a href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort+wedding+venue" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-2 rounded-full bg-royal px-5 py-2.5 text-sm font-semibold text-ivory transition hover:bg-royal-light">
+                <i data-lucide="navigation" class="h-4 w-4"></i>
+                Navigate
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp" class="border-t border-gold/15 bg-royal-deep px-4 py-20 text-ivory md:py-28">
+      <div class="mx-auto max-w-lg">
+        <div class="reveal text-center">
+          <h2 class="font-display text-3xl font-semibold md:text-4xl">RSVP</h2>
+          <p class="mt-3 text-sm text-ivory/75">Kindly let us know by <strong class="text-gold-light">January 2027</strong> — it helps us plan seating, meals, and hugs.</p>
+        </div>
+
+        <form id="rsvp-form" class="reveal mt-10 space-y-5 rounded-3xl border border-gold/20 bg-royal/40 p-6 shadow-xl backdrop-blur-sm md:p-8" style="transition-delay: 80ms">
+          <div>
+            <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-gold-light/90">Your name</label>
+            <input type="text" id="name" name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border border-gold/25 bg-ivory/95 px-4 py-3 text-royal-deep placeholder:text-royal/40 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30" placeholder="Full name" />
+          </div>
+          <div>
+            <label for="guests" class="block text-xs font-semibold uppercase tracking-wider text-gold-light/90">Number of guests</label>
+            <input type="number" id="guests" name="guests" min="1" max="20" value="1" required class="mt-2 w-full rounded-xl border border-gold/25 bg-ivory/95 px-4 py-3 text-royal-deep focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30" />
+          </div>
+          <fieldset>
+            <legend class="text-xs font-semibold uppercase tracking-wider text-gold-light/90">You’re bringing…</legend>
+            <p class="mt-2 text-sm text-ivory/70">Pick one — or honesty counts too.</p>
+            <div class="mt-4 space-y-3">
+              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
+                <input type="radio" name="bring" value="stethoscope" class="mt-1 text-gold focus:ring-gold" />
+                <span><strong class="text-ivory">1.</strong> A stethoscope <span class="text-ivory/60">(Bhakti would approve)</span></span>
+              </label>
+              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
+                <input type="radio" name="bring" value="keyboard" class="mt-1 text-gold focus:ring-gold" />
+                <span><strong class="text-ivory">2.</strong> A mechanical keyboard <span class="text-ivory/60">(clicky keys welcome)</span></span>
+              </label>
+              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
+                <input type="radio" name="bring" value="appetite" class="mt-1 text-gold focus:ring-gold" checked />
+                <span><strong class="text-ivory">3.</strong> Just your appetite <span class="text-ivory/60">(always the right answer)</span></span>
+              </label>
+            </div>
+          </fieldset>
+          <p id="rsvp-status" class="hidden text-center text-sm" role="status"></p>
+          <button type="submit" class="w-full rounded-xl bg-gold py-4 text-sm font-bold uppercase tracking-widest text-royal-deep shadow-lg transition hover:bg-gold-light">
+            Send RSVP
+          </button>
+          <p class="text-center text-[11px] leading-relaxed text-ivory/50">
+            Connects to Google Sheets after you add your Apps Script web app URL below.
+          </p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Travel -->
+    <section id="travel" class="border-t border-gold/15 bg-ivory px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-3xl">
+        <div class="reveal text-center">
+          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">Travel &amp; Stay</h2>
+          <p class="mt-3 text-royal/70">Kanakapura Road is well connected — plan a relaxed drive in.</p>
+        </div>
+
+        <div class="mt-12 grid gap-6 md:grid-cols-2">
+          <div class="reveal rounded-2xl border border-gold/20 bg-white p-6 shadow-sm">
+            <div class="flex items-center gap-2 text-gold-dark">
+              <i data-lucide="route" class="h-5 w-5"></i>
+              <h3 class="font-display text-lg font-semibold text-royal">Getting there</h3>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-royal/80">
+              The venue sits <strong class="text-royal">near the NICE Road junction</strong>, which makes it straightforward from many parts of Bengaluru — less city crawl, more open road.
+            </p>
+          </div>
+          <div class="reveal rounded-2xl border border-gold/20 bg-white p-6 shadow-sm md:mt-8" style="transition-delay: 80ms">
+            <div class="flex items-center gap-2 text-gold-dark">
+              <i data-lucide="lightbulb" class="h-5 w-5"></i>
+              <h3 class="font-display text-lg font-semibold text-royal">Pro-tip from Mysuru</h3>
+            </div>
+            <p class="mt-3 text-sm leading-relaxed text-royal/80">
+              Coming from <strong class="text-royal">Mysuru</strong>? Take the expressway stretch, aim to arrive a little early for breakfast nearby — traffic near the city edge is kinder on a full stomach.
+            </p>
+          </div>
+        </div>
+
+        <p class="reveal mt-10 text-center text-sm text-royal/60">
+          Final venue pin &amp; stay blocks will be shared closer to the date.
+        </p>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gold/15 bg-royal-deep px-4 py-10 text-center text-ivory/60">
+      <p class="font-display text-lg text-ivory">Bhakti <span class="text-gold">&</span> Dhananjay</p>
+      <p class="mt-2 text-xs">February 14, 2027 · Bengaluru</p>
+      <p class="mt-6 text-[10px] uppercase tracking-widest text-ivory/40">With love &amp; checksums</p>
+    </footer>
+  </main>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    /* ——— Countdown: Feb 14, 2027 9:00 AM IST ——— */
+    const weddingUtc = new Date('2027-02-14T03:30:00.000Z').getTime(); // 09:00 IST = UTC+5:30
+
+    function tick() {
+      const now = Date.now();
+      let diff = weddingUtc - now;
+      const el = (id) => document.getElementById(id);
+      if (diff <= 0) {
+        ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach((id) => {
+          el(id).textContent = '0';
+        });
+        return;
+      }
+      const s = Math.floor(diff / 1000) % 60;
+      const m = Math.floor(diff / (1000 * 60)) % 60;
+      const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      el('cd-days').textContent = String(d);
+      el('cd-hours').textContent = String(h).padStart(2, '0');
+      el('cd-mins').textContent = String(m).padStart(2, '0');
+      el('cd-secs').textContent = String(s).padStart(2, '0');
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    /* ——— Scroll reveal ——— */
+    var revealEls = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) e.target.classList.add('visible');
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    revealEls.forEach(function (el) {
+      io.observe(el);
+    });
+
+    /* ——— RSVP → Google Sheets (Apps Script Web App) ———
+       1. Create a Google Sheet + Extensions → Apps Script.
+       2. Deploy as Web app (Execute as: Me, Who has access: Anyone).
+       3. Paste your script URL below. */
+    var GOOGLE_SCRIPT_URL = ''; // e.g. 'https://script.google.com/macros/s/AKf.../exec'
+
+    document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var status = document.getElementById('rsvp-status');
+      var name = document.getElementById('name').value.trim();
+      var guests = document.getElementById('guests').value;
+      var bring = (document.querySelector('input[name="bring"]:checked') || {}).value || '';
+
+      var payload = {
+        name: name,
+        guests: guests,
+        bring: bring,
+        submittedAt: new Date().toISOString(),
+      };
+
+      if (!GOOGLE_SCRIPT_URL) {
+        status.className = 'text-center text-sm text-gold-light';
+        status.textContent = 'RSVP recorded locally — add GOOGLE_SCRIPT_URL in the page script to save to your Sheet.';
+        status.classList.remove('hidden');
+        console.log('RSVP payload (dev):', payload);
+        return;
+      }
+
+      status.classList.remove('hidden');
+      status.className = 'text-center text-sm text-ivory/80';
+      status.textContent = 'Sending…';
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(function () {
+          status.className = 'text-center text-sm text-emerald-300';
+          status.textContent = "Thank you — we can't wait to celebrate with you!";
+          document.getElementById('rsvp-form').reset();
+          document.querySelector('input[name="bring"][value="appetite"]').checked = true;
+        })
+        .catch(function () {
+          status.className = 'text-center text-sm text-red-300';
+          status.textContent = 'Something went wrong. Please try again or WhatsApp us.';
+        });
+    });
+  </script>
 </body>
 </html>
