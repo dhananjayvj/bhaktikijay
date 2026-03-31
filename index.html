@@ -3,44 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Bhakti & Dhananjay — Where Logic meets Life | Tech meets Tradition. February 14, 2027, Bengaluru." />
-  <title>Bhakti & Dhananjay | Feb 14, 2027</title>
+  <meta name="description" content="Dhananjay & Bhakti — We request the honor of your presence. February 14–16, 2027, Bengaluru." />
+  <title>Dhananjay & Bhakti | Celebration</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Lato:ital,wght@0,300;0,400;0,700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           colors: {
-            royal: {
-              DEFAULT: '#1a2f4a',
-              deep: '#0f1f35',
-              light: '#243a5c',
-            },
-            gold: {
-              DEFAULT: '#c9a227',
-              light: '#e4c76b',
-              dark: '#9a7b1c',
-            },
-            ivory: '#fffdfa',
+            terracotta: '#E2725B',
+            cream: '#FCF9F1',
+            'cream-warm': '#FFF8EA',
+            gold: '#D4AF37',
           },
           fontFamily: {
+            serif: ['Cormorant', 'Georgia', 'serif'],
             display: ['"Playfair Display"', 'Georgia', 'serif'],
-            sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-          },
-          backgroundImage: {
-            'grid-fade': 'linear-gradient(to bottom, rgba(15,31,53,0.92), rgba(26,47,74,0.88)), url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23c9a227\' fill-opacity=\'0.06\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          },
-          animation: {
-            'fade-up': 'fadeUp 0.8s ease forwards',
-          },
-          keyframes: {
-            fadeUp: {
-              '0%': { opacity: '0', transform: 'translateY(24px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            },
+            sans: ['Lato', 'system-ui', 'sans-serif'],
           },
         },
       },
@@ -48,284 +30,402 @@
   </script>
   <style>
     .glass-nav {
-      background: rgba(255, 253, 250, 0.72);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+      background: rgba(252, 249, 241, 0.78);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
     }
-    .reveal {
+    /* Section reveal (user snippet + enhancement) */
+    section.reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
     }
-    .reveal.visible {
+    section.reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
-    .hero-parallax {
-      background-attachment: fixed;
+    /* Hero cinematic fade-in */
+    .hero-fade {
+      animation: heroFadeIn 1.5s ease forwards;
     }
-    @media (max-width: 768px) {
-      .hero-parallax {
-        background-attachment: scroll;
-      }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .countdown-box {
-      background: linear-gradient(145deg, rgba(255,253,250,0.12) 0%, rgba(201,162,39,0.08) 100%);
-      border: 1px solid rgba(201, 162, 39, 0.25);
-      box-shadow: 0 8px 32px rgba(15, 31, 53, 0.25);
+    .mandala-spin {
+      animation: mandalaRotate 90s linear infinite;
+    }
+    @keyframes mandalaRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    /* Couple: slide from sides */
+    .couple-img-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .couple-img-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .couple-img-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 1s ease, transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .couple-img-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    /* Timeline day cards */
+    .day-card {
+      opacity: 0;
+      transform: scale(0.96) translateY(24px);
+      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .day-card.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    /* Floating labels */
+    .float-wrap { position: relative; }
+    .float-wrap input,
+    .float-wrap textarea,
+    .float-wrap select {
+      width: 100%;
+      padding: 1.35rem 0.75rem 0.5rem;
+      border-radius: 0.375rem;
+      border: 1px solid rgba(252, 249, 241, 0.35);
+      background: rgba(252, 249, 241, 0.08);
+      color: #FCF9F1;
+      font-family: Lato, sans-serif;
+      font-size: 0.95rem;
+    }
+    .float-wrap input:focus,
+    .float-wrap textarea:focus,
+    .float-wrap select:focus {
+      outline: none;
+      border-color: #D4AF37;
+      box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.25);
+    }
+    .float-wrap label {
+      position: absolute;
+      left: 0.75rem;
+      top: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(252, 249, 241, 0.65);
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+    .float-wrap input:not(:placeholder-shown) + label,
+    .float-wrap input:focus + label,
+    .float-wrap textarea:not(:placeholder-shown) + label,
+    .float-wrap textarea:focus + label {
+      font-size: 0.6rem;
+      opacity: 0.85;
+    }
+    .btn-gold {
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .btn-gold:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    }
+    .timeline-section {
+      background-color: #fff8ea;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23FFF8EA' fill-opacity='0.65'%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(0 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(45 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(90 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(135 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(180 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(225 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(270 40 40)'/%3E%3Cellipse cx='40' cy='18' rx='4' ry='9' transform='rotate(315 40 40)'/%3E%3Ccircle cx='40' cy='40' r='3' fill='%23FCF9F1' fill-opacity='0.4'/%3E%3C/g%3E%3C/svg%3E");
     }
   </style>
 </head>
-<body class="bg-ivory text-royal-deep font-sans antialiased overflow-x-hidden">
-  <!-- Sticky Nav -->
+<body class="bg-cream font-sans text-stone-800 antialiased overflow-x-hidden">
+  <!-- Sticky nav -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-      <a href="#top" class="font-display text-lg font-semibold tracking-tight text-royal md:text-xl">
-        Bhakti <span class="text-gold">&</span> Dhananjay
-      </a>
-      <ul class="flex flex-wrap items-center justify-end gap-1 text-xs font-medium text-royal/80 sm:gap-4 sm:text-sm">
-        <li><a href="#story" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">Our Story</a></li>
-        <li><a href="#events" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">The Day</a></li>
-        <li><a href="#rsvp" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">RSVP</a></li>
-        <li><a href="#travel" class="rounded-full px-2 py-1 transition hover:bg-gold/10 hover:text-royal sm:px-3">Travel</a></li>
+    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5 md:px-8">
+      <a href="#top" class="font-serif text-lg font-semibold tracking-wide text-terracotta md:text-xl">Dhananjay &amp; Bhakti</a>
+      <ul class="flex flex-wrap justify-end gap-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-stone-600 sm:gap-6 sm:text-xs">
+        <li><a href="#couple" class="hover:text-terracotta transition-colors">Couple</a></li>
+        <li><a href="#timeline" class="hover:text-terracotta transition-colors">Celebration</a></li>
+        <li><a href="#rsvp" class="hover:text-terracotta transition-colors">RSVP</a></li>
+        <li><a href="#venue" class="hover:text-terracotta transition-colors">Venue</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="top">
-    <!-- Hero -->
-    <section class="relative min-h-[100svh] flex flex-col justify-center bg-grid-fade hero-parallax px-4 pt-24 pb-16 md:pt-28">
-      <div class="mx-auto max-w-4xl text-center">
-        <p class="reveal mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-gold-light md:text-sm">Tech meets Tradition</p>
-        <h1 class="reveal font-display text-4xl font-semibold leading-tight text-ivory md:text-6xl md:leading-tight" style="transition-delay: 80ms">
-          Bhakti <span class="text-gold">&</span> Dhananjay
+    <!-- 1. Hero -->
+    <section class="relative min-h-[100svh] flex flex-col items-center justify-center overflow-hidden">
+      <div class="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=2000&q=80"
+          alt="Sun-drenched carved stone archway at a heritage site"
+          width="2000"
+          height="1333"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-terracotta/75 via-terracotta/55 to-terracotta/80"></div>
+      </div>
+      <div class="relative z-10 mx-auto max-w-3xl px-6 text-center text-white">
+        <p class="hero-fade mb-4 font-sans text-[11px] font-semibold uppercase tracking-[0.35em] text-white/90 md:text-xs" style="animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards;">
+          February 14 – 16, 2027 · Bengaluru
+        </p>
+        <h1 class="hero-fade font-display text-4xl font-medium leading-tight tracking-tight md:text-6xl md:leading-tight" style="animation-delay: 0.2s; opacity: 0; animation-fill-mode: forwards;">
+          Dhananjay &amp; Bhakti
         </h1>
-        <p class="reveal mx-auto mt-5 max-w-xl text-base italic text-ivory/85 md:text-xl" style="transition-delay: 120ms">
-          Where Logic meets Life
+        <p class="hero-fade mt-6 font-serif text-lg italic text-white/95 md:text-2xl" style="animation-delay: 0.35s; opacity: 0; animation-fill-mode: forwards;">
+          We request the honor of your presence.
         </p>
-        <p class="reveal mx-auto mt-6 max-w-2xl text-sm leading-relaxed text-ivory/90 md:text-base" style="transition-delay: 140ms">
-          Together with our families, we invite you to our wedding — a celebration of roots and rituals, and of everyone who helped us get here.
-          <span class="mt-2 block text-ivory/75">Your presence would mean the world to us.</span>
-        </p>
-
-        <div class="reveal mx-auto mt-8 max-w-lg rounded-2xl border border-gold/25 bg-ivory/10 px-5 py-4 text-left text-sm text-ivory backdrop-blur-sm md:text-center" style="transition-delay: 160ms">
-          <p class="font-semibold text-gold-light">At a glance</p>
-          <ul class="mt-3 space-y-2 text-ivory/90">
-            <li><span class="text-gold/90">When:</span> Saturday, 14 February 2027 · 9:00 AM (IST)</li>
-            <li><span class="text-gold/90">Where:</span> A resort on Kanakapura Road, Bengaluru <span class="text-ivory/65">(exact pin shared before the day)</span></li>
-            <li><span class="text-gold/90">Wear:</span> Elegant Indian or smart festive — be comfortable, be you.</li>
-          </ul>
-        </div>
-
-        <div id="countdown" class="reveal mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4" style="transition-delay: 200ms">
-          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
-            <span id="cd-days" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
-            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Days</p>
-          </div>
-          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
-            <span id="cd-hours" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
-            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Hours</p>
-          </div>
-          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
-            <span id="cd-mins" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
-            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Minutes</p>
-          </div>
-          <div class="countdown-box rounded-2xl px-4 py-5 text-center">
-            <span id="cd-secs" class="font-display text-3xl font-bold tabular-nums text-gold md:text-4xl">—</span>
-            <p class="mt-1 text-[10px] font-semibold uppercase tracking-wider text-ivory/70 md:text-xs">Seconds</p>
+        <!-- Delicate mandala line-art (slow spin) -->
+        <div class="hero-fade mx-auto mt-10 flex justify-center" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards;">
+          <div class="mandala-spin text-white/85" aria-hidden="true">
+            <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="md:h-[140px] md:w-[140px]">
+              <circle cx="60" cy="60" r="56" stroke="currentColor" stroke-width="0.5" opacity="0.35"/>
+              <circle cx="60" cy="60" r="44" stroke="currentColor" stroke-width="0.5" opacity="0.45"/>
+              <circle cx="60" cy="60" r="32" stroke="currentColor" stroke-width="0.5" opacity="0.55"/>
+              <g stroke="currentColor" stroke-width="0.75" stroke-linecap="round" opacity="0.9">
+                <path d="M60 8v16M60 96v16M8 60h16M96 60h16"/>
+                <path d="M28 28l12 12M80 80l12 12M92 28L80 40M28 92l12-12"/>
+                <path d="M60 36c8 0 14 6 14 14s-6 14-14 14-14-6-14-14 6-14 14-14Z"/>
+              </g>
+              <!-- 8 petals -->
+              <g stroke="currentColor" stroke-width="0.65" fill="none" opacity="0.85">
+                <path d="M60 20c4 8 4 16 0 24M100 60c-8 4-16 4-24 0M60 100c-4-8-4-16 0-24M20 60c8-4 16-4 24 0"/>
+                <path d="M82 26c-6 6-14 10-22 12M94 82c-8-2-16-6-22-12M38 94c6-6 10-14 12-22M26 38c2 8 6 16 12 22"/>
+              </g>
+            </svg>
           </div>
         </div>
-
-        <div class="reveal mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center" style="transition-delay: 260ms">
-          <a href="#events" class="inline-flex items-center gap-2 rounded-full bg-gold px-8 py-3.5 text-sm font-semibold text-royal-deep shadow-lg transition hover:bg-gold-light">
-            <i data-lucide="calendar-heart" class="h-5 w-5"></i>
-            Save the date
-          </a>
-          <a href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 rounded-full border border-ivory/30 bg-ivory/5 px-8 py-3.5 text-sm font-semibold text-ivory backdrop-blur-sm transition hover:bg-ivory/15">
-            <i data-lucide="map-pin" class="h-5 w-5 text-gold"></i>
-            Preview area on Maps
-          </a>
+        <!-- Decorative line icons: Kalash + Ganesha mini -->
+        <div class="hero-fade mt-8 flex flex-wrap items-center justify-center gap-10 opacity-90" style="animation-delay: 0.65s; opacity: 0; animation-fill-mode: forwards;">
+          <!-- Kalash line art -->
+          <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="text-white">
+            <path d="M24 4v6M18 10h12M20 10c0 4-6 6-8 10v4h24v-4c-2-4-8-6-8-10" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M14 24c0 12 4 20 10 26M34 24c0 12-4 20-10 26" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="24" cy="42" rx="10" ry="6" stroke="currentColor" stroke-width="1"/>
+            <path d="M12 48h24M10 52h28" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="24" cy="18" r="2" fill="currentColor" opacity="0.5"/>
+          </svg>
+          <!-- Ganesha line art (stylized minimal) -->
+          <svg width="52" height="56" viewBox="0 0 52 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="text-white">
+            <ellipse cx="26" cy="14" rx="10" ry="9" stroke="currentColor" stroke-width="1"/>
+            <path d="M16 14c-2-4 2-8 8-8s10 4 8 8" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M26 23v8M18 28h16" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <path d="M26 31c-6 4-10 12-10 20M26 31c6 4 10 12 10 20" stroke="currentColor" stroke-width="1"/>
+            <ellipse cx="26" cy="48" rx="12" ry="4" stroke="currentColor" stroke-width="1"/>
+            <circle cx="22" cy="12" r="1.5" fill="currentColor"/><circle cx="30" cy="12" r="1.5" fill="currentColor"/>
+            <path d="M24 18h4" stroke="currentColor" stroke-width="0.75" stroke-linecap="round"/>
+          </svg>
         </div>
       </div>
     </section>
 
-    <!-- Our Story -->
-    <section id="story" class="relative border-t border-gold/15 bg-ivory px-4 py-20 md:py-28">
-      <div class="mx-auto max-w-6xl">
-        <div class="reveal text-center">
-          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">The Duo</h2>
-          <p class="mx-auto mt-3 max-w-2xl text-royal/75">She heals with Ayurveda. He builds with code. Same curiosity — different books.</p>
-        </div>
-
-        <div class="mt-14 grid gap-10 md:grid-cols-2 md:gap-12">
-          <article class="reveal rounded-3xl border border-gold/20 bg-white p-8 shadow-sm md:p-10">
-            <div class="flex items-center gap-3 text-royal">
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-royal/5 text-royal">
-                <i data-lucide="code-2" class="h-6 w-6"></i>
-              </span>
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gold/10 text-gold-dark">
-                <i data-lucide="line-chart" class="h-6 w-6"></i>
-              </span>
+    <!-- 2. Couple -->
+    <section id="couple" class="border-t border-gold/20 bg-cream px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Couple</h2>
+        <div class="mt-14 grid gap-12 md:grid-cols-2 md:gap-10">
+          <div class="couple-img-left text-center">
+            <div class="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-sm border-2 border-gold/50 shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80"
+                alt="Dhananjay"
+                width="800"
+                height="1067"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover grayscale contrast-[1.05]"
+              />
             </div>
-            <h3 class="mt-6 font-display text-2xl font-semibold text-royal">Dhananjay</h3>
-            <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-gold-dark">Tech &amp; systems</p>
-            <p class="mt-4 leading-relaxed text-royal/80">
-              Dhananjay works with systems and data — calm under load, happiest when something finally “just works.”
-            </p>
-          </article>
-
-          <article class="reveal rounded-3xl border border-gold/20 bg-white p-8 shadow-sm md:p-10" style="transition-delay: 80ms">
-            <div class="flex items-center gap-3 text-royal">
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-emerald-800">
-                <i data-lucide="leaf" class="h-6 w-6"></i>
-              </span>
-              <span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-amber-800">
-                <i data-lucide="flask-conical" class="h-6 w-6"></i>
-              </span>
+            <p class="mt-4 font-serif text-xl font-medium text-terracotta">Dhananjay</p>
+          </div>
+          <div class="couple-img-right text-center">
+            <div class="relative mx-auto aspect-[3/4] max-w-sm overflow-hidden rounded-sm border-2 border-gold/50 shadow-md">
+              <img
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80"
+                alt="Bhakti"
+                width="800"
+                height="1067"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover grayscale contrast-[1.05]"
+              />
             </div>
-            <h3 class="mt-6 font-display text-2xl font-semibold text-royal">Bhakti</h3>
-            <p class="mt-2 text-sm font-semibold uppercase tracking-wider text-gold-dark">Ayurveda &amp; healing</p>
-            <p class="mt-4 leading-relaxed text-royal/80">
-              Bhakti cares for people through Ayurveda — gentle, thorough, and rooted in balance.
-            </p>
-          </article>
+            <p class="mt-4 font-serif text-xl font-medium text-terracotta">Bhakti</p>
+          </div>
         </div>
-
-        <blockquote class="reveal mx-auto mt-14 max-w-3xl rounded-2xl border border-gold/25 bg-gradient-to-br from-royal-deep to-royal px-8 py-10 text-center text-ivory shadow-md md:px-12">
-          <p class="font-display text-lg leading-relaxed md:text-xl">
-            “He deciphers complex logs; she decodes the secrets of life.<br class="hidden sm:block" />
-            Together, they’ve found the perfect algorithm for love.”
-          </p>
-        </blockquote>
+        <p class="couple-text mx-auto mt-14 max-w-2xl text-center font-sans text-base leading-relaxed text-stone-600 md:text-lg">
+          He loves old libraries and quiet evenings. She finds joy in morning sun and traditional art. A shared love for simple moments brought them together.
+        </p>
       </div>
     </section>
 
-    <!-- Events -->
-    <section id="events" class="border-t border-gold/15 bg-gradient-to-b from-ivory to-white px-4 py-20 md:py-28">
+    <!-- 3. Timeline -->
+    <section id="timeline" class="timeline-section border-t border-gold/15 px-4 py-20 md:py-28">
       <div class="mx-auto max-w-3xl">
-        <div class="reveal text-center">
-          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">The Day</h2>
-          <p class="mt-3 text-royal/70">Please arrive on time for the muhurtham — details below.</p>
-        </div>
+        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Celebration</h2>
+        <p class="mx-auto mt-3 max-w-xl text-center font-sans text-sm text-stone-600 md:text-base">Three days of color, music, and blessings.</p>
 
-        <div class="relative mt-14">
-          <div class="absolute left-[22px] top-0 bottom-0 w-px bg-gradient-to-b from-gold via-gold/40 to-transparent md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
+        <div class="relative mt-16 space-y-16">
+          <div class="absolute left-[22px] top-2 bottom-2 w-px bg-gold/35 md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
 
-          <div class="reveal relative flex gap-6 md:flex-row-reverse md:gap-0">
-            <div class="hidden w-1/2 md:block" aria-hidden="true"></div>
-            <div class="absolute left-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-ivory text-gold md:left-1/2 md:-translate-x-1/2">
-              <i data-lucide="sunrise" class="h-5 w-5"></i>
+          <!-- Day 1 -->
+          <div class="day-card relative pl-14 md:pl-0">
+            <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
+              <span class="font-serif text-sm font-bold text-terracotta">1</span>
             </div>
-            <div class="ml-14 flex-1 rounded-2xl border border-gold/20 bg-white p-6 shadow-sm md:ml-0 md:w-1/2 md:pr-12 md:text-right">
-              <p class="text-xs font-bold uppercase tracking-widest text-gold-dark">Ceremony</p>
-              <h3 class="mt-2 font-display text-2xl font-semibold text-royal">The Muhurtham</h3>
-              <p class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-royal/80 md:justify-end">
-                <span class="inline-flex items-center gap-1.5"><i data-lucide="calendar" class="h-4 w-4 text-gold"></i> Saturday, 14 Feb 2027</span>
-                <span class="inline-flex items-center gap-1.5"><i data-lucide="clock" class="h-4 w-4 text-gold"></i> 9:00 AM IST</span>
-              </p>
-              <p class="mt-4 text-royal/75">
-                <strong class="text-royal">Venue:</strong> a premium resort on Kanakapura Road, Bengaluru — near the NICE Road junction. Final name and map pin will be messaged to guests.
-              </p>
-              <a href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort+wedding+venue" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center gap-2 rounded-full bg-royal px-5 py-2.5 text-sm font-semibold text-ivory transition hover:bg-royal-light">
-                <i data-lucide="navigation" class="h-4 w-4"></i>
-                Navigate
-              </a>
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+              <div class="md:pr-8 md:text-right">
+                <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 1 · Feb 14, 2027</p>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Mehendi</h3>
+                <p class="mt-1 flex items-center gap-2 font-sans text-stone-600 md:justify-end">
+                  <i data-lucide="sun" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>11:00 AM</span>
+                </p>
+              </div>
+              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
+                <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80" alt="Intricate bangles and patterned floor" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              </div>
+            </div>
+            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-start">
+              <div class="order-2 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:order-1">
+                <img src="https://images.unsplash.com/photo-1596040033229-a2821d5b9d42?auto=format&fit=crop&w=900&q=80" alt="Turmeric paste in a bowl on wood" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              </div>
+              <div class="order-1 md:order-2 md:pl-8">
+                <h3 class="font-serif text-2xl font-semibold text-stone-800">Haldi</h3>
+                <p class="mt-1 flex items-center gap-2 font-sans text-stone-600">
+                  <i data-lucide="droplet" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>3:00 PM</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 2 -->
+          <div class="day-card relative pl-14 md:pl-0">
+            <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
+              <span class="font-serif text-sm font-bold text-terracotta">2</span>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+              <div class="md:pr-8 md:text-right">
+                <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 2 · Feb 15, 2027</p>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Baraat</h3>
+                <p class="mt-1 flex items-center gap-2 font-sans text-stone-600 md:justify-end">
+                  <i data-lucide="music-2" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>4:30 PM</span>
+                </p>
+              </div>
+              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=900&q=80" alt="Decorative horse bridle detail" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              </div>
+            </div>
+            <div class="mt-12 md:grid md:grid-cols-2 md:gap-10 md:items-start">
+              <div class="order-2 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:order-1">
+                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=900&q=80" alt="Fairy lights bokeh celebration" width="900" height="600" loading="lazy" decoding="async" class="h-48 w-full object-cover md:h-56" />
+              </div>
+              <div class="order-1 md:order-2 md:pl-8">
+                <h3 class="font-serif text-2xl font-semibold text-stone-800">Sangeet</h3>
+                <p class="mt-1 flex items-center gap-2 font-sans text-stone-600">
+                  <i data-lucide="sparkles" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>7:00 PM</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Day 3 -->
+          <div class="day-card relative pl-14 md:pl-0">
+            <div class="absolute left-0 top-0 flex h-11 w-11 items-center justify-center rounded-full border-2 border-gold bg-cream-warm shadow-sm md:left-1/2 md:-translate-x-1/2">
+              <span class="font-serif text-sm font-bold text-terracotta">3</span>
+            </div>
+            <div class="md:grid md:grid-cols-2 md:gap-10 md:items-start">
+              <div class="md:pr-8 md:text-right">
+                <p class="font-sans text-xs font-bold uppercase tracking-widest text-gold">Day 3 · Feb 16, 2027</p>
+                <h3 class="mt-2 font-serif text-2xl font-semibold text-stone-800">Wedding &amp; Reception</h3>
+                <p class="mt-1 flex items-center gap-2 font-sans text-stone-600 md:justify-end">
+                  <i data-lucide="heart" class="h-5 w-5 text-gold" stroke-width="1.25"></i>
+                  <span>Evening</span>
+                </p>
+              </div>
+              <div class="mt-6 overflow-hidden rounded-lg border border-gold/25 shadow-sm md:mt-0">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Hand-woven garland close-up" width="900" height="600" loading="lazy" decoding="async" class="h-52 w-full object-cover md:h-60" />
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RSVP -->
-    <section id="rsvp" class="border-t border-gold/15 bg-royal-deep px-4 py-20 text-ivory md:py-28">
-      <div class="mx-auto max-w-lg">
-        <div class="reveal text-center">
-          <h2 class="font-display text-3xl font-semibold md:text-4xl">RSVP</h2>
-          <p class="mt-3 text-sm leading-relaxed text-ivory/80">
-            We truly hope you can join us. Please respond by <strong class="text-gold-light">31 January 2027</strong> so we can plan seating, meals, and a warm welcome for you.
-          </p>
-        </div>
-
-        <form id="rsvp-form" class="reveal mt-10 space-y-5 rounded-3xl border border-gold/20 bg-royal/40 p-6 shadow-xl backdrop-blur-sm md:p-8" style="transition-delay: 80ms">
-          <div>
-            <label for="name" class="block text-xs font-semibold uppercase tracking-wider text-gold-light/90">Guest name(s) as on the invite</label>
-            <input type="text" id="name" name="name" required autocomplete="name" class="mt-2 w-full rounded-xl border border-gold/25 bg-ivory/95 px-4 py-3 text-royal-deep placeholder:text-royal/40 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30" placeholder="e.g. Priya Sharma (or family name)" />
+    <!-- 4. RSVP -->
+    <section id="rsvp" class="border-t border-gold/20 bg-terracotta px-4 py-20 md:py-28">
+      <div class="mx-auto max-w-md">
+        <h2 class="text-center font-serif text-3xl font-semibold text-cream md:text-4xl">RSVP</h2>
+        <p class="mt-3 text-center font-sans text-sm text-cream/85">Kindly respond by <strong class="text-gold">January 15, 2027</strong>.</p>
+        <form id="rsvp-form" class="mt-10 border-2 border-gold/60 bg-terracotta p-6 shadow-xl md:p-8" style="box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.15);">
+          <div class="float-wrap mb-5">
+            <input type="text" id="guest-name" name="name" placeholder=" " required autocomplete="name" />
+            <label for="guest-name">Full name</label>
           </div>
-          <div>
-            <label for="guests" class="block text-xs font-semibold uppercase tracking-wider text-gold-light/90">Number of guests</label>
-            <input type="number" id="guests" name="guests" min="1" max="20" value="1" required class="mt-2 w-full rounded-xl border border-gold/25 bg-ivory/95 px-4 py-3 text-royal-deep focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30" />
+          <div class="float-wrap mb-5">
+            <input type="email" id="guest-email" name="email" placeholder=" " required autocomplete="email" />
+            <label for="guest-email">Email</label>
           </div>
-          <fieldset>
-            <legend class="text-xs font-semibold uppercase tracking-wider text-gold-light/90">You’re bringing…</legend>
-            <p class="mt-2 text-sm text-ivory/70">Pick one — or honesty counts too.</p>
-            <div class="mt-4 space-y-3">
-              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
-                <input type="radio" name="bring" value="stethoscope" class="mt-1 text-gold focus:ring-gold" />
-                <span><strong class="text-ivory">1.</strong> A stethoscope <span class="text-ivory/60">(Bhakti would approve)</span></span>
-              </label>
-              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
-                <input type="radio" name="bring" value="keyboard" class="mt-1 text-gold focus:ring-gold" />
-                <span><strong class="text-ivory">2.</strong> A mechanical keyboard <span class="text-ivory/60">(clicky keys welcome)</span></span>
-              </label>
-              <label class="flex cursor-pointer items-start gap-3 rounded-xl border border-gold/15 bg-ivory/5 p-4 transition hover:border-gold/40">
-                <input type="radio" name="bring" value="appetite" class="mt-1 text-gold focus:ring-gold" checked />
-                <span><strong class="text-ivory">3.</strong> Just your appetite <span class="text-ivory/60">(always the right answer)</span></span>
-              </label>
-            </div>
-          </fieldset>
-          <p id="rsvp-status" class="hidden text-center text-sm" role="status"></p>
-          <button type="submit" class="w-full rounded-xl bg-gold py-4 text-sm font-bold uppercase tracking-widest text-royal-deep shadow-lg transition hover:bg-gold-light">
-            Send RSVP
+          <div class="mb-8">
+            <label for="guest-count" class="mb-2 block text-[10px] font-bold uppercase tracking-[0.15em] text-cream/70">Party size</label>
+            <select id="guest-count" name="guests" class="w-full rounded-md border border-cream/30 bg-cream/10 px-3 py-3 font-sans text-cream focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/30">
+              <option value="1">1 guest</option>
+              <option value="2">2 guests</option>
+              <option value="3">3 guests</option>
+              <option value="4">4 guests</option>
+            </select>
+          </div>
+          <p id="rsvp-note" class="mb-4 hidden text-center text-sm text-cream/90"></p>
+          <button type="submit" class="btn-gold w-full rounded-md bg-gold py-4 font-sans text-sm font-bold uppercase tracking-[0.2em] text-stone-900">
+            Confirm attendance
           </button>
-          <p class="text-center text-[11px] leading-relaxed text-ivory/50">
-            Connects to Google Sheets after you add your Apps Script web app URL below.
-          </p>
         </form>
       </div>
     </section>
 
-    <!-- Travel -->
-    <section id="travel" class="border-t border-gold/15 bg-ivory px-4 py-20 md:py-28">
+    <!-- 5. Venue -->
+    <section id="venue" class="border-t border-gold/15 bg-cream px-4 py-20 md:py-28">
       <div class="mx-auto max-w-3xl">
-        <div class="reveal text-center">
-          <h2 class="font-display text-3xl font-semibold text-royal md:text-4xl">Travel &amp; Stay</h2>
-          <p class="mt-3 text-royal/70">Kanakapura Road is well connected — plan a relaxed drive in.</p>
-        </div>
-
-        <div class="mt-12 grid gap-6 md:grid-cols-2">
-          <div class="reveal rounded-2xl border border-gold/20 bg-white p-6 shadow-sm">
-            <div class="flex items-center gap-2 text-gold-dark">
-              <i data-lucide="route" class="h-5 w-5"></i>
-              <h3 class="font-display text-lg font-semibold text-royal">Getting there</h3>
-            </div>
-            <p class="mt-3 text-sm leading-relaxed text-royal/80">
-              The venue sits <strong class="text-royal">near the NICE Road junction</strong>, which makes it straightforward from many parts of Bengaluru — less city crawl, more open road.
-            </p>
+        <h2 class="text-center font-serif text-3xl font-semibold text-stone-800 md:text-4xl">The Venue</h2>
+        <div class="mt-10 overflow-hidden rounded-lg border border-gold/25 bg-white shadow-md">
+          <img
+            src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1400&q=80"
+            alt="Resort facade with columns"
+            width="1400"
+            height="787"
+            loading="lazy"
+            decoding="async"
+            class="aspect-[21/9] w-full object-cover md:aspect-[2/1]"
+          />
+          <div class="px-6 py-8 text-center md:px-10">
+            <p class="font-serif text-xl font-semibold text-stone-800 md:text-2xl">Premium Resort</p>
+            <p class="mt-2 font-sans text-stone-600">Kanakapura Road, Bengaluru</p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Kanakapura+Road+Bengaluru+resort"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-cream px-6 py-3 font-sans text-sm font-semibold text-terracotta transition hover:bg-gold/10"
+            >
+              <i data-lucide="map-pin" class="h-4 w-4 text-gold" stroke-width="1.5"></i>
+              View on Map
+            </a>
           </div>
-          <div class="reveal rounded-2xl border border-gold/20 bg-white p-6 shadow-sm md:mt-8" style="transition-delay: 80ms">
-            <div class="flex items-center gap-2 text-gold-dark">
-              <i data-lucide="lightbulb" class="h-5 w-5"></i>
-              <h3 class="font-display text-lg font-semibold text-royal">Pro-tip from Mysuru</h3>
-            </div>
-            <p class="mt-3 text-sm leading-relaxed text-royal/80">
-              Coming from <strong class="text-royal">Mysuru</strong>? Take the expressway stretch, aim to arrive a little early for breakfast nearby — traffic near the city edge is kinder on a full stomach.
-            </p>
-          </div>
         </div>
-
-        <p class="reveal mt-10 text-center text-sm text-royal/60">
-          Final venue pin &amp; stay blocks will be shared closer to the date.
-        </p>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="border-t border-gold/15 bg-royal-deep px-4 py-10 text-center text-ivory/60">
-      <p class="font-display text-lg text-ivory">With love,</p>
-      <p class="mt-2 font-display text-xl text-ivory">Bhakti <span class="text-gold">&</span> Dhananjay</p>
-      <p class="mt-3 max-w-md mx-auto text-sm text-ivory/70">Saturday, 14 February 2027 · Kanakapura Road, Bengaluru</p>
-      <p class="mt-6 text-[10px] uppercase tracking-widest text-ivory/40">Tech meets Tradition</p>
+    <footer class="border-t border-gold/20 bg-stone-900 px-4 py-10 text-center">
+      <p class="font-serif text-lg text-cream">Dhananjay &amp; Bhakti</p>
+      <p class="mt-2 font-sans text-xs text-cream/50">With gratitude · 2027</p>
     </footer>
   </main>
 
@@ -333,93 +433,53 @@
   <script>
     lucide.createIcons();
 
-    /* ——— Countdown: Feb 14, 2027 9:00 AM IST ——— */
-    const weddingUtc = new Date('2027-02-14T03:30:00.000Z').getTime(); // 09:00 IST = UTC+5:30
+    document.addEventListener('DOMContentLoaded', function () {
+      var sections = document.querySelectorAll('main > section:not(:first-of-type)');
+      var obs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.1 }
+      );
+      sections.forEach(function (s) {
+        s.classList.add('reveal');
+        obs.observe(s);
+      });
 
-    function tick() {
-      const now = Date.now();
-      let diff = weddingUtc - now;
-      const el = (id) => document.getElementById(id);
-      if (diff <= 0) {
-        ['cd-days', 'cd-hours', 'cd-mins', 'cd-secs'].forEach((id) => {
-          el(id).textContent = '0';
-        });
-        return;
-      }
-      const s = Math.floor(diff / 1000) % 60;
-      const m = Math.floor(diff / (1000 * 60)) % 60;
-      const h = Math.floor(diff / (1000 * 60 * 60)) % 24;
-      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-      el('cd-days').textContent = String(d);
-      el('cd-hours').textContent = String(h).padStart(2, '0');
-      el('cd-mins').textContent = String(m).padStart(2, '0');
-      el('cd-secs').textContent = String(s).padStart(2, '0');
-    }
-    tick();
-    setInterval(tick, 1000);
+      var coupleL = document.querySelector('.couple-img-left');
+      var coupleR = document.querySelector('.couple-img-right');
+      var coupleObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.2 }
+      );
+      if (coupleL) coupleObs.observe(coupleL);
+      if (coupleR) coupleObs.observe(coupleR);
 
-    /* ——— Scroll reveal ——— */
-    var revealEls = document.querySelectorAll('.reveal');
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) e.target.classList.add('visible');
-        });
-      },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-    );
-    revealEls.forEach(function (el) {
-      io.observe(el);
-    });
+      var dayCards = document.querySelectorAll('.day-card');
+      var dayObs = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        },
+        { threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+      );
+      dayCards.forEach(function (d) {
+        dayObs.observe(d);
+      });
 
-    /* ——— RSVP → Google Sheets (Apps Script Web App) ———
-       1. Create a Google Sheet + Extensions → Apps Script.
-       2. Deploy as Web app (Execute as: Me, Who has access: Anyone).
-       3. Paste your script URL below. */
-    var GOOGLE_SCRIPT_URL = ''; // e.g. 'https://script.google.com/macros/s/AKf.../exec'
-
-    document.getElementById('rsvp-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var status = document.getElementById('rsvp-status');
-      var name = document.getElementById('name').value.trim();
-      var guests = document.getElementById('guests').value;
-      var bring = (document.querySelector('input[name="bring"]:checked') || {}).value || '';
-
-      var payload = {
-        name: name,
-        guests: guests,
-        bring: bring,
-        submittedAt: new Date().toISOString(),
-      };
-
-      if (!GOOGLE_SCRIPT_URL) {
-        status.className = 'text-center text-sm text-gold-light';
-        status.textContent = 'RSVP recorded locally — add GOOGLE_SCRIPT_URL in the page script to save to your Sheet.';
-        status.classList.remove('hidden');
-        console.log('RSVP payload (dev):', payload);
-        return;
-      }
-
-      status.classList.remove('hidden');
-      status.className = 'text-center text-sm text-ivory/80';
-      status.textContent = 'Sending…';
-
-      fetch(GOOGLE_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      })
-        .then(function () {
-          status.className = 'text-center text-sm text-emerald-300';
-          status.textContent = "Thank you — we can't wait to celebrate with you!";
-          document.getElementById('rsvp-form').reset();
-          document.querySelector('input[name="bring"][value="appetite"]').checked = true;
-        })
-        .catch(function () {
-          status.className = 'text-center text-sm text-red-300';
-          status.textContent = 'Something went wrong. Please try again or WhatsApp us.';
-        });
+      document.getElementById('rsvp-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var note = document.getElementById('rsvp-note');
+        note.classList.remove('hidden');
+        note.textContent = 'Thank you — your details are noted. (Connect a backend or Google Sheets to save responses.)';
+      });
     });
   </script>
 </body>
