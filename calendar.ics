@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Bhakti & Dhananjay//Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Bhakti & Dhananjay — Wedding
+BEGIN:VEVENT
+UID:bhakti-dhananjay-wedding-2027@bhaktikijay.fyi
+DTSTAMP:20260401T120000Z
+DTSTART;VALUE=DATE:20270214
+DTEND;VALUE=DATE:20270217
+SUMMARY:Bhakti & Dhananjay — Wedding celebrations
+DESCRIPTION:Three days of celebrations — Kanakapura Road\, Bengaluru.\n\nDetails: https://bhaktikijay.fyi
+LOCATION:A premium resort on Kanakapura Road\, Bengaluru\, India
+URL:https://bhaktikijay.fyi
+END:VEVENT
+END:VCALENDAR
