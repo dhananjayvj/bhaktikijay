@@ -4,22 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Bhakti & Dhananjay — With the blessings of our elders, join us Feb 14–16, 2027 in Bengaluru." />
-  <title>Bhakti &amp; Dhananjay | Feb 2027</title>
+  <title>Bhakti &amp; Dhananjay — We&apos;re Tying the Knot! | Feb 2027</title>
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bhaktikijay.fyi/" />
   <meta property="og:title" content="Bhakti &amp; Dhananjay | Feb 2027" />
   <meta property="og:description" content="With blessings — join us for Mehendi, Haldi, Baraat, Sangeet, Muhurtham &amp; Reception. Kanakapura Road, Bengaluru." />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80" />
   <meta property="og:locale" content="en_IN" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Bhakti &amp; Dhananjay | Feb 2027" />
   <meta name="twitter:description" content="Wedding celebrations — Feb 14–16, 2027 · Bengaluru" />
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80" />
+  <meta name="twitter:image" content="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80" />
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,6 +33,7 @@
           },
           fontFamily: {
             display: ['"Playfair Display"', 'Georgia', 'serif'],
+            script: ['"Great Vibes"', 'cursive'],
             sans: ['Inter', 'system-ui', 'sans-serif'],
           },
         },
@@ -163,9 +164,44 @@
     .invite-closing {
       color: rgba(252, 249, 241, 0.9);
     }
+    .name-script {
+      font-family: 'Great Vibes', cursive;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .name-drop {
+      font-size: 3.35rem;
+      line-height: 0.85;
+      vertical-align: baseline;
+      margin-right: 0.02em;
+    }
+    @media (min-width: 640px) {
+      .name-drop { font-size: 4rem; }
+    }
+    @media (min-width: 768px) {
+      .name-drop { font-size: 4.5rem; }
+    }
+    .name-tail {
+      font-size: 2.35rem;
+      line-height: 1;
+    }
+    @media (min-width: 640px) {
+      .name-tail { font-size: 2.85rem; }
+    }
+    @media (min-width: 768px) {
+      .name-tail { font-size: 3.25rem; }
+    }
     .timeline-section {
       background-color: #FCF9F1;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 5 L33 12 L40 13 L35 18 L36 25 L30 22 L24 25 L25 18 L20 13 L27 12 Z' fill='%23E2725B' fill-opacity='0.04'/%3E%3C/svg%3E");
+      background-image: url("doodle-pattern-light.svg");
+      background-size: 280px 280px;
+      background-repeat: repeat;
+    }
+    .rsvp-doodle-section {
+      background-color: #E2725B;
+      background-image: url("doodle-pattern-rsvp.svg");
+      background-size: 280px 280px;
+      background-repeat: repeat;
     }
   </style>
 </head>
@@ -195,7 +231,10 @@
 
       <div class="relative z-10 mx-auto flex w-full max-w-lg flex-col items-center px-1 sm:max-w-2xl md:max-w-3xl">
         <div class="hero-fade invite-card w-full rounded-sm px-6 py-10 text-center sm:px-10 sm:py-12 md:px-14 md:py-14" style="animation-delay: 0.08s; opacity: 0; animation-fill-mode: forwards;">
-          <p class="invite-blessing font-display text-[15px] font-normal italic leading-[1.65] sm:text-base md:text-[17px]">
+          <h1 class="font-display text-xl font-semibold tracking-[0.12em] text-gold sm:text-2xl md:text-[1.65rem]">We&apos;re Tying the Knot!</h1>
+          <div class="mx-auto mt-6 h-px max-w-[10rem] bg-gradient-to-r from-transparent via-gold/60 to-transparent" aria-hidden="true"></div>
+
+          <p class="invite-blessing mt-10 font-display text-[15px] font-normal italic leading-[1.65] sm:text-base md:text-[17px]">
             With the blessings of our elders and the grace of the Almighty,
           </p>
           <p class="invite-bridge mx-auto mt-6 max-w-md font-sans text-[13px] font-light leading-[1.75] sm:text-[15px] md:leading-[1.85]">
@@ -205,14 +244,18 @@
           <div class="mx-auto mt-10 max-w-md border-y border-gold/30 py-10">
             <div class="space-y-10">
               <div>
-                <p class="invite-names font-display text-[2rem] font-medium leading-tight tracking-[0.03em] text-gold sm:text-[2.35rem] md:text-[2.75rem]">Bhakti</p>
+                <p class="name-script invite-names text-gold">
+                  <span class="name-drop">B</span><span class="name-tail">hakti</span>
+                </p>
                 <p class="invite-lineage mx-auto mt-3 max-w-[20rem] font-sans text-[12px] font-normal leading-snug sm:text-[13px] md:max-w-none">
                   Daughter of Medini and Manoj Tolmatti
                 </p>
               </div>
-              <p class="font-display text-[2rem] font-light leading-none text-gold/75 sm:text-[2.25rem]" aria-hidden="true">&amp;</p>
+              <p class="name-script text-[2.5rem] leading-none text-gold/80 sm:text-[2.85rem]" aria-hidden="true">&amp;</p>
               <div>
-                <p class="invite-names font-display text-[2rem] font-medium leading-tight tracking-[0.03em] text-gold sm:text-[2.35rem] md:text-[2.75rem]">Dhananjay</p>
+                <p class="name-script invite-names text-gold">
+                  <span class="name-drop">D</span><span class="name-tail">hananjay</span>
+                </p>
                 <p class="invite-lineage mx-auto mt-3 max-w-[20rem] font-sans text-[12px] font-normal leading-snug sm:text-[13px] md:max-w-none">
                   Son of Pratibha and Vinod Jahagirdar
                 </p>
@@ -232,19 +275,6 @@
             </div>
             <p class="font-sans text-[10px] font-semibold uppercase tracking-[0.26em] text-cream/70 sm:text-[11px]">Bengaluru</p>
           </div>
-        </div>
-
-        <div class="hero-fade relative mt-12 w-full max-w-2xl overflow-hidden rounded-sm border border-gold/35 shadow-2xl shadow-black/50" style="animation-delay: 0.42s; opacity: 0; animation-fill-mode: forwards;">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
-          <img
-            src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=85"
-            alt="Traditional stone temple entrance — warm South Indian architecture"
-            width="1600"
-            height="900"
-            class="aspect-[16/10] w-full object-cover object-center md:aspect-[21/9]"
-            fetchpriority="high"
-          />
-          <p class="absolute bottom-4 left-0 right-0 text-center font-sans text-[10px] text-white/70 md:text-xs">A quiet moment of stone, sky, and devotion</p>
         </div>
 
         <!-- Subtle kolam ornament -->
@@ -287,8 +317,8 @@
     </section>
 
     <!-- Celebration timeline -->
-    <section id="timeline" class="timeline-section border-t border-gold/15 px-4 py-16 md:py-24">
-      <div class="mx-auto max-w-2xl">
+    <section id="timeline" class="timeline-section relative overflow-hidden border-t border-gold/15 px-4 py-16 md:py-24">
+      <div class="relative z-[1] mx-auto max-w-2xl">
         <h2 class="text-center font-display text-2xl font-semibold text-stone-800 md:text-3xl">Celebration timeline</h2>
         <p class="mx-auto mt-3 max-w-lg text-center font-sans text-sm leading-relaxed text-stone-600 md:text-base">Each day unfolds in its own rhythm — scroll to reveal the moments we hold dear.</p>
 
@@ -303,14 +333,14 @@
             </div>
             <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 1 · Feb 14, 2027</p>
             <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Mehendi</h3>
                   <span class="font-sans text-sm font-semibold text-terracotta">11:00 AM</span>
                 </div>
                 <p class="mt-2 font-sans text-sm leading-relaxed text-stone-600">A celebration of color and henna.</p>
               </article>
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Haldi</h3>
                   <span class="font-sans text-sm font-semibold text-terracotta">3:00 PM</span>
@@ -327,14 +357,14 @@
             </div>
             <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 2 · Feb 15, 2027</p>
             <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Baraat</h3>
                   <span class="font-sans text-sm font-semibold text-terracotta">4:30 PM</span>
                 </div>
                 <p class="mt-2 font-sans text-sm leading-relaxed text-stone-600">Join the groom&apos;s procession.</p>
               </article>
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Sangeet</h3>
                   <span class="inline-flex items-center gap-1.5 font-sans text-sm font-semibold text-terracotta">
@@ -354,14 +384,14 @@
             </div>
             <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 3 · Feb 16, 2027</p>
             <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">The Muhurtham</h3>
                   <span class="font-sans text-sm font-semibold text-terracotta">9:30 AM</span>
                 </div>
                 <p class="mt-2 font-sans text-sm leading-relaxed text-stone-600">The auspicious ceremony.</p>
               </article>
-              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
+              <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream/95 p-5 shadow-sm backdrop-blur-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">The Reception</h3>
                   <span class="font-sans text-sm font-semibold text-terracotta">7:00 PM onwards</span>
@@ -400,13 +430,6 @@
             <svg class="h-5 w-5 shrink-0 text-gold" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M3 9h18M8 5V3M16 5V3" stroke="currentColor" stroke-width="1.4"/></svg>
             Add to Google Calendar
           </a>
-          <a
-            href="calendar.ics"
-            download="bhakti-dhananjay-wedding.ics"
-            class="btn-gold inline-flex items-center justify-center gap-2 rounded-full border border-gold/50 bg-cream-warm px-8 py-4 font-sans text-sm font-semibold text-stone-800"
-          >
-            Download iCal (.ics)
-          </a>
         </div>
         <p class="mx-auto mt-10 max-w-xl rounded-lg border border-gold/20 bg-cream-warm/60 px-4 py-3 font-sans text-xs leading-relaxed text-stone-600 md:text-sm">
           <strong class="text-stone-800">Travel tip:</strong> Use the NICE Road junction to bypass city traffic if traveling from North/West Bangalore or Mysuru.
@@ -415,11 +438,11 @@
     </section>
 
     <!-- RSVP -->
-    <section id="rsvp" class="border-t border-gold/20 bg-terracotta px-4 py-16 md:py-24">
-      <div class="mx-auto max-w-md">
+    <section id="rsvp" class="rsvp-doodle-section relative overflow-hidden border-t border-gold/20 px-4 py-16 md:py-24">
+      <div class="relative z-[1] mx-auto max-w-md">
         <h2 class="text-center font-display text-2xl font-semibold text-cream md:text-3xl">RSVP</h2>
         <p class="mt-3 text-center font-sans text-sm leading-relaxed text-cream/90">Kindly respond by <strong class="text-gold">January 15, 2027</strong> so we can plan with care.</p>
-        <form id="rsvp-form" class="mt-10 border-2 border-gold/55 p-6 shadow-xl md:p-8" style="box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.15);">
+        <form id="rsvp-form" class="mt-10 border-2 border-gold/55 bg-terracotta/90 p-6 shadow-xl backdrop-blur-sm md:p-8" style="box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.15);">
           <div class="float-wrap mb-5">
             <input type="text" id="guest-name" name="name" placeholder=" " required autocomplete="name" />
             <label for="guest-name">Name</label>
