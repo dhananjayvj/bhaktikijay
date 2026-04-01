@@ -15,6 +15,8 @@
   <meta name="twitter:title" content="Bhakti &amp; Dhananjay | Feb 2027" />
   <meta name="twitter:description" content="Wedding celebrations — Feb 14–16, 2027 · Bengaluru" />
   <meta name="twitter:image" content="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=80" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
@@ -135,7 +137,18 @@
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
     }
     .timeline-rail {
-      background: linear-gradient(180deg, rgba(212, 175, 55, 0.15) 0%, #D4AF37 12%, #D4AF37 88%, rgba(212, 175, 55, 0.15) 100%);
+      background: linear-gradient(180deg, rgba(212, 175, 55, 0.2) 0%, #c9a227 8%, #D4AF37 50%, #c9a227 92%, rgba(212, 175, 55, 0.2) 100%);
+    }
+    .invite-card {
+      background: linear-gradient(165deg, rgba(28, 24, 20, 0.75) 0%, rgba(18, 16, 14, 0.82) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      box-shadow:
+        0 0 0 1px rgba(212, 175, 55, 0.12),
+        0 0 60px -10px rgba(226, 114, 91, 0.15),
+        inset 0 1px 0 rgba(252, 249, 241, 0.06);
+    }
+    .invite-names {
+      text-shadow: 0 2px 24px rgba(212, 175, 55, 0.12);
     }
     .timeline-section {
       background-color: #FCF9F1;
@@ -167,29 +180,35 @@
       </div>
       <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-transparent to-black/45"></div>
 
-      <div class="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-        <p class="hero-fade mb-3 font-sans text-[10px] font-semibold uppercase tracking-[0.35em] text-gold/95 md:text-xs" style="animation-delay: 0.06s; opacity: 0; animation-fill-mode: forwards;">South Indian heritage · Minimal</p>
-        <h1 class="hero-fade font-display text-[2rem] font-medium leading-[1.15] tracking-tight text-cream sm:text-5xl md:text-6xl md:leading-tight" style="animation-delay: 0.14s; opacity: 0; animation-fill-mode: forwards;">
-          Bhakti &amp; Dhananjay
-        </h1>
-        <p class="hero-fade mx-auto mt-6 max-w-xl font-sans text-sm leading-relaxed text-cream/95 md:text-lg" style="animation-delay: 0.22s; opacity: 0; animation-fill-mode: forwards;">
-          With the blessings of our elders and the grace of the Almighty, we invite you to celebrate the union of our families and the beginning of our journey together.
-        </p>
-
-        <div class="hero-fade mt-10 w-full max-w-lg space-y-4 border-y border-gold/25 py-8 text-left md:text-center" style="animation-delay: 0.3s; opacity: 0; animation-fill-mode: forwards;">
-          <p class="font-sans text-sm leading-relaxed text-cream/90 md:text-base">
-            <span class="font-semibold text-gold">Bhakti</span> — Daughter of Medini and Manoj Tolmatti
+      <div class="relative z-10 mx-auto flex w-full max-w-lg flex-col items-center px-1 sm:max-w-2xl md:max-w-3xl">
+        <div class="hero-fade invite-card w-full rounded-sm px-6 py-10 text-center sm:px-10 sm:py-12 md:px-14 md:py-14" style="animation-delay: 0.08s; opacity: 0; animation-fill-mode: forwards;">
+          <p class="font-display text-[11px] font-normal italic tracking-[0.02em] text-gold/90 sm:text-xs">Together with our families</p>
+          <div class="mx-auto mt-5 flex max-w-xs items-center justify-center gap-3 text-gold/70" aria-hidden="true">
+            <svg width="48" height="10" viewBox="0 0 48 10" fill="none" class="opacity-80"><path d="M0 5h18M30 5h18" stroke="currentColor" stroke-width="0.6"/><circle cx="24" cy="5" r="2.5" stroke="currentColor" stroke-width="0.6"/></svg>
+          </div>
+          <h1 class="invite-names mt-6 font-display text-[2.15rem] font-medium leading-[1.12] tracking-[0.02em] text-cream sm:text-5xl md:text-[3.25rem]">
+            Bhakti <span class="mx-1 font-normal text-gold/95">&amp;</span> Dhananjay
+          </h1>
+          <p class="mx-auto mt-8 max-w-md font-sans text-[13px] font-light leading-[1.75] text-cream/92 sm:text-[15px] md:leading-[1.85]">
+            With the blessings of our elders and the grace of the Almighty, we invite you to celebrate the union of our families and the beginning of our journey together.
           </p>
-          <p class="font-sans text-sm leading-relaxed text-cream/90 md:text-base">
-            <span class="font-semibold text-gold">Dhananjay</span> — Son of Pratibha and Vinod Jahagirdar
-          </p>
+          <div class="mx-auto mt-10 max-w-md space-y-5 border-t border-gold/25 pt-10 text-left">
+            <p class="font-sans text-[13px] leading-relaxed text-cream/88 sm:text-sm md:text-[15px]">
+              <span class="font-semibold text-gold">Bhakti</span><span class="text-cream/50"> — </span>Daughter of Medini and Manoj Tolmatti
+            </p>
+            <p class="font-sans text-[13px] leading-relaxed text-cream/88 sm:text-sm md:text-[15px]">
+              <span class="font-semibold text-gold">Dhananjay</span><span class="text-cream/50"> — </span>Son of Pratibha and Vinod Jahagirdar
+            </p>
+          </div>
+          <div class="mx-auto mt-10 inline-flex items-center gap-3 border border-gold/35 bg-black/25 px-5 py-2.5 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-gold/95 sm:text-[11px]">
+            <span class="h-px w-6 bg-gold/50" aria-hidden="true"></span>
+            February 14 – 16, 2027
+            <span class="h-px w-6 bg-gold/50" aria-hidden="true"></span>
+          </div>
+          <p class="mt-3 font-sans text-[10px] font-medium uppercase tracking-[0.22em] text-white/55 sm:text-[11px]">Bengaluru</p>
         </div>
 
-        <p class="hero-fade mt-2 font-sans text-[11px] font-medium uppercase tracking-[0.2em] text-white/75 md:text-xs" style="animation-delay: 0.36s; opacity: 0; animation-fill-mode: forwards;">
-          February 14 – 16, 2027 · Bengaluru
-        </p>
-
-        <div class="hero-fade relative mt-12 w-full max-w-2xl overflow-hidden rounded-lg border border-gold/30 shadow-2xl shadow-black/40" style="animation-delay: 0.42s; opacity: 0; animation-fill-mode: forwards;">
+        <div class="hero-fade relative mt-12 w-full max-w-2xl overflow-hidden rounded-sm border border-gold/35 shadow-2xl shadow-black/50" style="animation-delay: 0.42s; opacity: 0; animation-fill-mode: forwards;">
           <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
           <img
             src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=1600&q=85"
@@ -203,7 +222,7 @@
         </div>
 
         <!-- Subtle kolam ornament -->
-        <div class="hero-fade mt-10 text-gold/70" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards;" aria-hidden="true">
+        <div class="hero-fade mt-12 text-gold/70" style="animation-delay: 0.5s; opacity: 0; animation-fill-mode: forwards;" aria-hidden="true">
           <svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" class="mx-auto md:h-[110px] md:w-[110px]">
             <circle cx="48" cy="48" r="44" stroke="currentColor" stroke-width="0.4" opacity="0.35"/>
             <circle cx="48" cy="48" r="32" stroke="currentColor" stroke-width="0.4" opacity="0.5"/>
@@ -245,18 +264,19 @@
     <section id="timeline" class="timeline-section border-t border-gold/15 px-4 py-16 md:py-24">
       <div class="mx-auto max-w-2xl">
         <h2 class="text-center font-display text-2xl font-semibold text-stone-800 md:text-3xl">Celebration timeline</h2>
-        <p class="mx-auto mt-3 max-w-lg text-center font-sans text-sm leading-relaxed text-stone-600 md:text-base">A vertical thread of gold — each moment revealed as you scroll.</p>
+        <p class="mx-auto mt-3 max-w-lg text-center font-sans text-sm leading-relaxed text-stone-600 md:text-base">Each day unfolds in its own rhythm — scroll to reveal the moments we hold dear.</p>
 
-        <div class="relative mt-14 md:mt-16">
-          <div class="absolute left-[18px] top-3 bottom-3 w-[2px] timeline-rail md:left-1/2 md:-translate-x-px" aria-hidden="true"></div>
+        <!-- Rail stays in a fixed left column so it never crosses copy -->
+        <div class="relative mx-auto mt-14 max-w-xl md:mt-16">
+          <div class="pointer-events-none absolute left-[19px] top-4 bottom-4 z-0 w-[2px] timeline-rail md:left-[21px]" aria-hidden="true"></div>
 
           <!-- Day 1 + Lotus icon -->
-          <div class="timeline-reveal relative mb-12 pl-12 md:pl-0">
-            <div class="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-sm md:left-1/2 md:-translate-x-1/2" title="Day 1">
-              <svg class="h-4 w-4 text-terracotta" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-2 2-3 5-2 8 1 3 4 5 7 4 2-1 3-3 3-5-3-4-5-6-8-7z" stroke="currentColor" stroke-width="1.2"/><path d="M12 21c2-2 3-5 2-8-1-3-4-5-7-4-2 1-3 3-3 5 3 4 5 6 8 7z" stroke="currentColor" stroke-width="1.2"/></svg>
+          <div class="timeline-reveal relative z-[1] mb-14 pl-[3.25rem] md:mb-16 md:pl-[4rem]">
+            <div class="absolute left-0 top-0 z-[2] flex h-10 w-10 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-md md:h-11 md:w-11" title="Day 1">
+              <svg class="h-4 w-4 text-terracotta md:h-[18px] md:w-[18px]" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3c-2 2-3 5-2 8 1 3 4 5 7 4 2-1 3-3 3-5-3-4-5-6-8-7z" stroke="currentColor" stroke-width="1.2"/><path d="M12 21c2-2 3-5 2-8-1-3-4-5-7-4-2 1-3 3-3 5 3 4 5 6 8 7z" stroke="currentColor" stroke-width="1.2"/></svg>
             </div>
-            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold md:text-center">Day 1 · Feb 14, 2027</p>
-            <div class="mt-6 space-y-8 md:mt-8">
+            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 1 · Feb 14, 2027</p>
+            <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
               <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Mehendi</h3>
@@ -275,12 +295,12 @@
           </div>
 
           <!-- Day 2 + Sun icon -->
-          <div class="timeline-reveal relative mb-12 pl-12 md:pl-0">
-            <div class="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-sm md:left-1/2 md:-translate-x-1/2">
-              <svg class="h-4 w-4 text-terracotta" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5" stroke="currentColor" stroke-width="1.3"/></svg>
+          <div class="timeline-reveal relative z-[1] mb-14 pl-[3.25rem] md:mb-16 md:pl-[4rem]">
+            <div class="absolute left-0 top-0 z-[2] flex h-10 w-10 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-md md:h-11 md:w-11">
+              <svg class="h-4 w-4 text-terracotta md:h-[18px] md:w-[18px]" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5" stroke="currentColor" stroke-width="1.3"/></svg>
             </div>
-            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold md:text-center">Day 2 · Feb 15, 2027</p>
-            <div class="mt-6 space-y-8 md:mt-8">
+            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 2 · Feb 15, 2027</p>
+            <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
               <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">Baraat</h3>
@@ -302,12 +322,12 @@
           </div>
 
           <!-- Day 3 + Music icon -->
-          <div class="timeline-reveal relative pl-12 md:pl-0">
-            <div class="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-sm md:left-1/2 md:-translate-x-1/2">
-              <svg class="h-4 w-4 text-terracotta" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 18a3 3 0 106 0 3 3 0 00-6 0zm12-13a3 3 0 10-6 0 3 3 0 006 0z" stroke="currentColor" stroke-width="1.3"/></svg>
+          <div class="timeline-reveal relative z-[1] pl-[3.25rem] md:pl-[4rem]">
+            <div class="absolute left-0 top-0 z-[2] flex h-10 w-10 items-center justify-center rounded-full border-2 border-gold bg-cream shadow-md md:h-11 md:w-11">
+              <svg class="h-4 w-4 text-terracotta md:h-[18px] md:w-[18px]" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18V5l12-2v13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 18a3 3 0 106 0 3 3 0 00-6 0zm12-13a3 3 0 10-6 0 3 3 0 006 0z" stroke="currentColor" stroke-width="1.3"/></svg>
             </div>
-            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold md:text-center">Day 3 · Feb 16, 2027</p>
-            <div class="mt-6 space-y-8 md:mt-8">
+            <p class="font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-gold">Day 3 · Feb 16, 2027</p>
+            <div class="mt-5 space-y-6 md:mt-6 md:space-y-8">
               <article class="timeline-reveal rounded-lg border border-gold/20 bg-cream-warm/80 p-5 shadow-sm md:p-6">
                 <div class="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 class="font-display text-xl text-stone-900">The Muhurtham</h3>
