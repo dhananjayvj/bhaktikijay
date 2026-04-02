@@ -20,14 +20,10 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    # Use Node 24 for JS-based actions (checkout, setup-node, peaceiris) — Node 20 runner deprecation.
-    # https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: '24'
           cache: npm
@@ -35,9 +31,10 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      # Uses Node 24 runtime (peaceiris v4 still targets Node 20 and triggers deprecation warnings.)
       - name: Publish to gh-pages branch
-        uses: peaceiris/actions-gh-pages@v4
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
+          folder: dist
+          branch: gh-pages
+          single-commit: true
