@@ -1,24 +1,27 @@
-# Pushes the Vite build to the orphan branch `gh-pages`.
+# Official GitHub Pages flow: build → upload artifact → deploy-pages (Node 24 in v5).
 #
-# GitHub: Settings → Pages → Build and deployment → Source:
-#   "Deploy from a branch" → Branch: gh-pages → folder: / (root)
+# Settings → Pages → Source: GitHub Actions (not "Deploy from a branch").
+# If you previously used the gh-pages branch + James Ives, switch Pages source
+# to GitHub Actions only — one publishing method avoids duplicate/confusing runs.
 #
-# (Do NOT use "main" / repo root — that serves unbuilt index.html + /src/main.jsx, which stays blank.)
-name: Deploy site to gh-pages
+# https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
+name: Deploy site to GitHub Pages
 
 on:
   push:
     branches: [main]
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: gh-pages-deploy
-  cancel-in-progress: true
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
@@ -31,10 +34,18 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-      # Uses Node 24 runtime (peaceiris v4 still targets Node 20 and triggers deprecation warnings.)
-      - name: Publish to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
+      # v4: include dotfiles so dist/.nojekyll is published (Jekyll bypass on Pages).
+      - uses: actions/upload-pages-artifact@v4
         with:
-          folder: dist
-          branch: gh-pages
-          single-commit: true
+          path: dist
+          include-hidden-files: true
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
