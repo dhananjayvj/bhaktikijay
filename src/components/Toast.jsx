@@ -16,7 +16,7 @@ export default function Toast({ message, open, onClose, durationMs = 2400 }) {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 28, opacity: 0 }}
           transition={{ duration: 0.25, ease: [0.77, 0, 0.175, 1] }}
-          className="fixed bottom-5 left-1/2 z-[80] w-[min(92vw,520px)] -translate-x-1/2"
+          className="fixed left-1/2 z-[80] w-[min(92vw,520px)] -translate-x-1/2 bottom-[max(1.25rem,env(safe-area-inset-bottom,0px))]"
           role="status"
           aria-live="polite"
         >

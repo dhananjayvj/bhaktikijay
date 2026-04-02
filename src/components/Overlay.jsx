@@ -75,15 +75,17 @@ function LetterClosedFront({ phase, onIntroReady }) {
             'linear-gradient(168deg, rgba(252,249,241,1) 0%, rgba(245,241,234,1) 45%, rgba(233,216,221,0.45) 100%)',
         }}
       />
-      <div className="relative z-[1] flex min-h-0 flex-1 flex-col items-center justify-center px-6 py-10 text-center md:px-8">
-        <div className="flex w-full max-w-[19rem] flex-col items-center gap-5 md:max-w-[21rem] md:gap-6">
+      <div className="relative z-[1] flex min-h-0 w-full flex-1 flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10 md:px-8">
+        <div className="flex w-full max-w-[min(100%,18.5rem)] flex-col items-center gap-4 sm:max-w-[19rem] sm:gap-5 md:max-w-[21rem] md:gap-6">
           <motion.div
             initial={false}
             animate={{ opacity: step >= 1 ? 1 : 0, y: step >= 1 ? 0 : 8 }}
             transition={{ duration: 0.5, ease: easeSmooth }}
-            className="shrink-0"
+            className="w-full shrink-0 px-1"
           >
-            <p className="font-lato text-invite-wine text-[11px] font-bold tracking-[0.35em] md:text-xs">SAVE THE DATE</p>
+            <p className="font-lato text-invite-wine text-[0.65rem] font-bold uppercase leading-tight tracking-[0.28em] sm:text-[0.7rem] sm:tracking-[0.32em] md:text-xs">
+              SAVE THE DATE
+            </p>
           </motion.div>
 
           {step >= 2 && (
@@ -93,68 +95,100 @@ function LetterClosedFront({ phase, onIntroReady }) {
               transition={{ duration: 0.5, ease: easeSmooth }}
               className="flex w-full flex-col items-center gap-3"
             >
-              <div className="flex min-h-[4rem] w-full items-center justify-center md:min-h-[4.25rem]">
-                <AnimatePresence mode="wait">
-                    {step < 3 ? (
-                      <motion.div
-                        key="card-initials"
-                        className="flex flex-nowrap items-baseline justify-center gap-[0.35em] px-1"
-                        initial={{ opacity: 0, y: 6 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, filter: 'blur(6px)' }}
-                        transition={{ duration: 0.28, ease: easeSmooth }}
-                      >
-                        <span
-                          className="font-script shrink-0 text-invite-wine"
-                          style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)', lineHeight: 1 }}
+              {/*
+                3-column grid: & stays centered; left/right cells reserve max name width so B→Bhakti
+                doesn’t re-center the whole row (fixes card jumping sideways on mobile).
+              */}
+              <div className="grid w-full min-w-0 grid-cols-[1fr_auto_1fr] items-baseline gap-x-1.5 sm:gap-x-2">
+                <div className="relative min-h-[3.75rem] min-w-0">
+                  <span
+                    className="font-script pointer-events-none block text-right text-invite-wine opacity-0"
+                    style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                    aria-hidden="true"
+                  >
+                    Bhakti
+                  </span>
+                  <div className="absolute inset-0 flex items-center justify-end">
+                    <AnimatePresence mode="wait">
+                      {step < 3 ? (
+                        <motion.span
+                          key="card-L-init"
+                          className="font-script text-invite-wine"
+                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, filter: 'blur(6px)' }}
+                          transition={{ duration: 0.28, ease: easeSmooth }}
                         >
                           B
-                        </span>
-                        <span
-                          className="font-script shrink-0 italic text-invite-mauve"
-                          style={{ fontSize: 'clamp(1.15rem, 4.5vw, 2rem)', lineHeight: 1, paddingBottom: '0.15em' }}
-                        >
-                          &amp;
-                        </span>
-                        <span
-                          className="font-script shrink-0 text-invite-wine"
-                          style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)', lineHeight: 1 }}
-                        >
-                          D
-                        </span>
-                      </motion.div>
-                    ) : (
-                      <motion.div
-                        key="card-fullnames"
-                        className="flex flex-nowrap items-baseline justify-center gap-[0.35em] px-1"
-                        initial={{ opacity: 0, filter: 'blur(8px)' }}
-                        animate={{ opacity: 1, filter: 'blur(0px)' }}
-                        transition={{ duration: 0.5, ease: easeSmooth }}
-                      >
-                        <span
-                          className="font-script shrink-0 text-invite-wine"
-                          style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)', lineHeight: 1 }}
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="card-L-full"
+                          className="font-script text-invite-wine"
+                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                          initial={{ opacity: 0, filter: 'blur(6px)' }}
+                          animate={{ opacity: 1, filter: 'blur(0px)' }}
+                          transition={{ duration: 0.45, ease: easeSmooth }}
                         >
                           Bhakti
-                        </span>
-                        <span
-                          className="font-script shrink-0 italic text-invite-mauve"
-                          style={{ fontSize: 'clamp(1.15rem, 4.5vw, 2rem)', lineHeight: 1, paddingBottom: '0.15em' }}
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                <span
+                  className="font-script shrink-0 italic text-invite-mauve px-0.5"
+                  style={{
+                    fontSize: 'clamp(0.95rem, 3.8vw, 1.65rem)',
+                    lineHeight: 1,
+                    paddingBottom: '0.12em',
+                  }}
+                >
+                  &amp;
+                </span>
+
+                <div className="relative min-h-[3.75rem] min-w-0">
+                  <span
+                    className="font-script pointer-events-none block text-left text-invite-wine opacity-0"
+                    style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                    aria-hidden="true"
+                  >
+                    Dhananjay
+                  </span>
+                  <div className="absolute inset-0 flex items-center justify-start">
+                    <AnimatePresence mode="wait">
+                      {step < 3 ? (
+                        <motion.span
+                          key="card-R-init"
+                          className="font-script text-invite-wine"
+                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                          initial={{ opacity: 0, y: 4 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, filter: 'blur(6px)' }}
+                          transition={{ duration: 0.28, ease: easeSmooth }}
                         >
-                          &amp;
-                        </span>
-                        <span
-                          className="font-script shrink-0 text-invite-wine"
-                          style={{ fontSize: 'clamp(2rem, 8vw, 3.75rem)', lineHeight: 1 }}
+                          D
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="card-R-full"
+                          className="font-script text-invite-wine"
+                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
+                          initial={{ opacity: 0, filter: 'blur(6px)' }}
+                          animate={{ opacity: 1, filter: 'blur(0px)' }}
+                          transition={{ duration: 0.45, ease: easeSmooth }}
                         >
                           Dhananjay
-                        </span>
-                      </motion.div>
-                    )}
-                </AnimatePresence>
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
               </div>
 
-              <p className="font-cormorant max-w-[18ch] text-invite-ink-soft text-sm italic leading-snug md:text-base">
+              <p className="font-cormorant max-w-[20ch] px-1 text-invite-ink-soft text-sm italic leading-snug md:text-base">
                 are getting married
               </p>
             </motion.div>
@@ -284,10 +318,15 @@ export default function Overlay({ onClose, onExpandingStart }) {
   const overlayOwnsLayoutIds = phase === 'opening'
 
   useEffect(() => {
-    const prev = document.body.style.overflow || ''
+    const prevBody = document.body.style.overflow || ''
+    const prevHtml = document.documentElement.style.overflow || ''
     document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    document.body.style.overscrollBehavior = 'none'
     return () => {
-      document.body.style.overflow = prev || 'auto'
+      document.body.style.overflow = prevBody || 'auto'
+      document.documentElement.style.overflow = prevHtml || ''
+      document.body.style.overscrollBehavior = ''
     }
   }, [])
 
@@ -323,6 +362,8 @@ export default function Overlay({ onClose, onExpandingStart }) {
     if (notified) return
     setNotified(true)
     document.body.style.overflow = 'auto'
+    document.documentElement.style.overflow = ''
+    document.body.style.overscrollBehavior = ''
     onClose()
   }
 
@@ -332,7 +373,7 @@ export default function Overlay({ onClose, onExpandingStart }) {
 
   return (
     <motion.div
-      className={`fixed inset-0 z-50 overflow-hidden ${
+      className={`viewport-fill fixed inset-0 z-50 touch-manipulation overflow-hidden ${
         tapTarget && (phase !== 'closed' || introReady) ? 'cursor-pointer' : 'cursor-default'
       }`}
       aria-label="Open the invitation"
@@ -362,10 +403,10 @@ export default function Overlay({ onClose, onExpandingStart }) {
         <motion.div
           key={p.id}
           className="pointer-events-none absolute z-[1]"
-          style={{ left: `${p.left}%`, top: '-10vh', opacity: p.opacity }}
+          style={{ left: `${p.left}%`, top: '-10dvh', opacity: p.opacity }}
           initial={{ y: -40, x: 0, rotate: 0 }}
           animate={{
-            y: ['-20vh', '120vh'],
+            y: ['-18dvh', '118dvh'],
             x: [0, p.xDrift],
             rotate: [0, p.rotate],
             opacity: ambientHidden ? 0 : [0, p.opacity, 0],
@@ -387,9 +428,12 @@ export default function Overlay({ onClose, onExpandingStart }) {
         </motion.div>
       ))}
 
-      <div className="absolute inset-0 z-[2] flex items-center justify-center p-4">
-        <div className="relative w-[min(88vw,380px)] max-h-[min(78vh,560px)] min-h-[320px]">
-          <div className="relative mx-auto h-[min(72vh,520px)] w-full" style={{ perspective: 1400 }}>
+      <div className="absolute inset-0 z-[2] flex items-center justify-center p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4">
+        <div className="relative w-[min(92vw,380px)] max-h-[min(78dvh,560px)] min-h-[280px] sm:min-h-[320px]">
+          <div
+            className="relative mx-auto h-[min(68dvh,500px)] w-full sm:h-[min(72dvh,520px)]"
+            style={{ perspective: 1400 }}
+          >
             <motion.div
               className="relative h-full w-full"
               style={{ transformStyle: 'preserve-3d' }}

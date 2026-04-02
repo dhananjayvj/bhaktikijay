@@ -87,7 +87,7 @@ export default function App() {
 
   return (
     <LayoutGroup id="invite">
-      <div className="relative min-h-screen bg-cream">
+      <div className="relative min-h-dvh min-h-[100svh] w-full bg-cream">
         <AnimatePresence>
           {overlayOpen && (
             <Overlay

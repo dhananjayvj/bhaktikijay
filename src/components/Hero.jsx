@@ -126,12 +126,12 @@ export default function Hero({ inviteRevealed = false }) {
   }
 
   return (
-    <section id="invitation" className="relative min-h-[100svh] overflow-hidden">
+    <section id="invitation" className="relative min-h-dvh min-h-[100svh] overflow-hidden">
       <div className="absolute inset-0 bg-invite-paper" style={bgStyle} />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
 
       {!inviteRevealed ? (
-        <div className="relative min-h-[100svh]" aria-hidden="true" />
+        <div className="relative min-h-dvh min-h-[100svh]" aria-hidden="true" />
       ) : (
         <div className="relative mx-auto max-w-5xl px-4 pb-16 pt-24 md:px-10 md:pb-20 md:pt-28">
           <motion.div
