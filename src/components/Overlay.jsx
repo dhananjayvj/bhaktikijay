@@ -1,13 +1,44 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+import React, { useCallback, useEffect, useState } from 'react'
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useTransform,
+} from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
-import KolamWaveDivider from './KolamWaveDivider.jsx'
-import { WEDDING_DATE_LINE } from '../constants/wedding.js'
+import HeroInvitationMirror from './HeroInvitationMirror.jsx'
 
-const layoutSpring = { type: 'spring', stiffness: 360, damping: 32, mass: 0.9 }
-const easeSmooth = [0.77, 0, 0.175, 1]
+/** Premium curtain motion (Material-style) */
+const curtainEase = [0.4, 0, 0.2, 1]
+const CURTAIN_DURATION = 1.15
+const EXPAND_AFTER_MS = 1400
 
-/** Imported tile patterns (see /public/*.svg) + corner ornaments — outside the letter only */
+/** Matches Hero section paper lighting */
+const invitePaperBg = {
+  backgroundImage:
+    'radial-gradient(circle at 12% 20%, rgba(122,46,63,0.08) 0%, rgba(122,46,63,0) 52%), radial-gradient(circle at 88% 16%, rgba(139,107,122,0.10) 0%, rgba(139,107,122,0) 50%), radial-gradient(circle at 50% 100%, rgba(233,216,221,0.35) 0%, rgba(250,247,242,0) 45%)',
+}
+
+const waxOrganicRadius = '48% 52% 47% 53% / 52% 48% 51% 49%'
+
+const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
+
+function buildCurtainPaperShadow(side, t) {
+  const blur = 20 + t * 28
+  const spread = -8 + t * 14
+  const alpha = 0.19 * (1 - t * 0.52)
+  const edge =
+    side === 'left'
+      ? `inset -${14 + t * 5}px 0 ${blur}px ${spread}px rgba(0,0,0,${alpha})`
+      : `inset ${14 + t * 5}px 0 ${blur}px ${spread}px rgba(0,0,0,${alpha})`
+  return [
+    edge,
+    '0 22px 48px rgba(0, 0, 0, 0.14)',
+    '0 8px 20px rgba(0, 0, 0, 0.08)',
+    'inset 0 1px 0 rgba(255, 255, 255, 0.45)',
+  ].join(', ')
+}
+
 function OutsideAreaDoodles({ hidden }) {
   return (
     <motion.div
@@ -43,266 +74,246 @@ function OutsideAreaDoodles({ hidden }) {
   )
 }
 
-/** Animated front: SAVE THE DATE → B&D → full names → date → tap */
-function LetterClosedFront({ phase, onIntroReady }) {
-  const [step, setStep] = useState(1)
-  /** Inline parent callbacks change every render — must not live in effect deps or the intro restarts in a loop. */
-  const onIntroReadyRef = useRef(onIntroReady)
-  onIntroReadyRef.current = onIntroReady
-
-  useEffect(() => {
-    if (phase !== 'closed') return
-    setStep(1)
-    const ids = [
-      setTimeout(() => setStep(2), 850),
-      setTimeout(() => setStep(3), 1950),
-      setTimeout(() => setStep(4), 3100),
-      setTimeout(() => setStep(5), 4200),
-      setTimeout(() => onIntroReadyRef.current?.(), 4350),
-    ]
-    return () => ids.forEach(clearTimeout)
-  }, [phase])
-
-  const showTap = step >= 5 && phase === 'closed'
-  const opening = phase === 'opening'
-
+/** Beveled wax: layered inset highlights + deep shadow */
+function WaxBlobHalf({ side, size }) {
+  const halfW = size * 0.5
   return (
-    <div className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-invite-wine/30 bg-invite-ivory shadow-[0_28px_90px_rgba(0,0,0,0.38)]">
+    <div
+      className="relative h-full overflow-hidden"
+      style={{
+        width: halfW,
+        height: size * 0.88,
+      }}
+      aria-hidden="true"
+    >
       <div
-        className="absolute inset-0 rounded-2xl"
+        className="absolute top-0 h-full"
         style={{
-          background:
-            'linear-gradient(168deg, rgba(252,249,241,1) 0%, rgba(245,241,234,1) 45%, rgba(233,216,221,0.45) 100%)',
+          width: size,
+          [side === 'left' ? 'left' : 'right']: 0,
+          borderRadius: waxOrganicRadius,
+          background: `
+            radial-gradient(ellipse 72% 62% at 38% 26%, rgba(200, 115, 130, 0.55) 0%, transparent 50%),
+            radial-gradient(ellipse 88% 82% at 50% 100%, rgba(35, 6, 12, 0.5) 0%, transparent 46%),
+            linear-gradient(158deg, #9b3348 0%, #6e1f30 36%, #4a1520 70%, #2c0a10 100%)
+          `,
+          boxShadow: `
+            inset 3px 3px 8px rgba(255, 248, 235, 0.2),
+            inset -4px -5px 12px rgba(0, 0, 0, 0.42),
+            inset -2px -10px 18px rgba(0, 0, 0, 0.38),
+            inset 0 2px 10px rgba(255, 230, 220, 0.08),
+            inset 0 -12px 22px rgba(0, 0, 0, 0.45),
+            ${side === 'left' ? '6px' : '-6px'} 0 14px rgba(0, 0, 0, 0.32)
+          `,
         }}
       />
-      <div className="relative z-[1] flex min-h-0 w-full flex-1 flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10 md:px-8">
-        <div className="flex w-full max-w-[min(100%,18.5rem)] flex-col items-center gap-4 sm:max-w-[19rem] sm:gap-5 md:max-w-[21rem] md:gap-6">
-          <motion.div
-            initial={false}
-            animate={{ opacity: step >= 1 ? 1 : 0, y: step >= 1 ? 0 : 8 }}
-            transition={{ duration: 0.5, ease: easeSmooth }}
-            className="w-full shrink-0 px-1"
-          >
-            <p className="font-lato text-invite-wine text-[0.65rem] font-bold uppercase leading-tight tracking-[0.28em] sm:text-[0.7rem] sm:tracking-[0.32em] md:text-xs">
-              SAVE THE DATE
-            </p>
-          </motion.div>
+    </div>
+  )
+}
 
-          {step >= 2 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: easeSmooth }}
-              className="flex w-full flex-col items-center gap-3"
-            >
-              {/*
-                3-column grid: & stays centered; left/right cells reserve max name width so B→Bhakti
-                doesn’t re-center the whole row (fixes card jumping sideways on mobile).
-              */}
-              <div className="grid w-full min-w-0 grid-cols-[1fr_auto_1fr] items-baseline gap-x-1.5 sm:gap-x-2">
-                <div className="relative min-h-[3.75rem] min-w-0">
-                  <span
-                    className="font-script pointer-events-none block text-right text-invite-wine opacity-0"
-                    style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                    aria-hidden="true"
-                  >
-                    Bhakti
-                  </span>
-                  <div className="absolute inset-0 flex items-center justify-end">
-                    <AnimatePresence mode="wait">
-                      {step < 3 ? (
-                        <motion.span
-                          key="card-L-init"
-                          className="font-script text-invite-wine"
-                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                          initial={{ opacity: 0, y: 4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, filter: 'blur(6px)' }}
-                          transition={{ duration: 0.28, ease: easeSmooth }}
-                        >
-                          B
-                        </motion.span>
-                      ) : (
-                        <motion.span
-                          key="card-L-full"
-                          className="font-script text-invite-wine"
-                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                          initial={{ opacity: 0, filter: 'blur(6px)' }}
-                          animate={{ opacity: 1, filter: 'blur(0px)' }}
-                          transition={{ duration: 0.45, ease: easeSmooth }}
-                        >
-                          Bhakti
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-
-                <span
-                  className="font-script shrink-0 italic text-invite-mauve px-0.5"
-                  style={{
-                    fontSize: 'clamp(0.95rem, 3.8vw, 1.65rem)',
-                    lineHeight: 1,
-                    paddingBottom: '0.12em',
-                  }}
-                >
-                  &amp;
-                </span>
-
-                <div className="relative min-h-[3.75rem] min-w-0">
-                  <span
-                    className="font-script pointer-events-none block text-left text-invite-wine opacity-0"
-                    style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                    aria-hidden="true"
-                  >
-                    Dhananjay
-                  </span>
-                  <div className="absolute inset-0 flex items-center justify-start">
-                    <AnimatePresence mode="wait">
-                      {step < 3 ? (
-                        <motion.span
-                          key="card-R-init"
-                          className="font-script text-invite-wine"
-                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                          initial={{ opacity: 0, y: 4 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, filter: 'blur(6px)' }}
-                          transition={{ duration: 0.28, ease: easeSmooth }}
-                        >
-                          D
-                        </motion.span>
-                      ) : (
-                        <motion.span
-                          key="card-R-full"
-                          className="font-script text-invite-wine"
-                          style={{ fontSize: 'clamp(1.4rem, 5.5vw, 2.65rem)', lineHeight: 1.05 }}
-                          initial={{ opacity: 0, filter: 'blur(6px)' }}
-                          animate={{ opacity: 1, filter: 'blur(0px)' }}
-                          transition={{ duration: 0.45, ease: easeSmooth }}
-                        >
-                          Dhananjay
-                        </motion.span>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              </div>
-
-              <p className="font-cormorant max-w-[20ch] px-1 text-invite-ink-soft text-sm italic leading-snug md:text-base">
-                are getting married
-              </p>
-            </motion.div>
-          )}
-
-          {step >= 4 && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, ease: easeSmooth }}
-              className="font-cinzel shrink-0 font-bold tracking-[0.12em] text-invite-wine"
-              style={{ fontSize: 'clamp(0.88rem, 3vw, 1.2rem)' }}
-            >
-              {WEDDING_DATE_LINE}
-            </motion.div>
-          )}
-
-          {(showTap || opening) && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: easeSmooth }}
-              className="shrink-0"
-            >
-              <div className="rounded-full border border-invite-wine/45 bg-invite-wine px-5 py-2.5 shadow-md">
-                <div className="font-lato text-invite-paper text-[10px] font-bold tracking-widest md:text-xs">
-                  {opening ? 'Opening…' : 'Tap to open invite'}
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </div>
+function WaxOnCurtain({ side, size, letter, monoFilter }) {
+  return (
+    <div
+      className={`pointer-events-none absolute top-1/2 z-[14] flex -translate-y-1/2 items-center ${
+        side === 'left' ? 'right-0' : 'left-0'
+      }`}
+    >
+      <div className="relative flex" style={{ width: size * 0.5, height: size * 0.88 }}>
+        <WaxBlobHalf side={side} size={size} />
+        <motion.span
+          className="pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.75rem,6vw,2.2rem)] leading-none text-[#efd9d2]"
+          style={{
+            fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
+            paddingLeft: side === 'left' ? '0.12em' : 0,
+            paddingRight: side === 'right' ? '0.1em' : 0,
+            textShadow: `
+              0 1px 0 rgba(255, 255, 255, 0.1),
+              0 -2px 3px rgba(0, 0, 0, 0.55),
+              0 4px 8px rgba(0, 0, 0, 0.4)
+            `,
+            filter: monoFilter,
+          }}
+        >
+          {letter}
+        </motion.span>
       </div>
     </div>
   )
 }
 
-/** Open letter: same narrative as Hero (kolam → names → date) for seamless handoff */
-function LetterOpenFace({ overlayOwnsLayoutIds }) {
-  const nameBlock = (layoutIdKey) =>
-    overlayOwnsLayoutIds ? (
-      <motion.div
-        layoutId={layoutIdKey}
-        className="font-script font-normal text-invite-wine"
-        transition={layoutSpring}
-        style={{ fontSize: 'clamp(1.85rem, 7vw, 3rem)', lineHeight: 0.95 }}
-      >
-        {layoutIdKey === 'invite-line-bhakti' ? 'Bhakti' : 'Dhananjay'}
-      </motion.div>
-    ) : (
-      <div className="font-script font-normal text-invite-wine" style={{ fontSize: 'clamp(1.85rem, 7vw, 3rem)', lineHeight: 0.95 }}>
-        {layoutIdKey === 'invite-line-bhakti' ? 'Bhakti' : 'Dhananjay'}
-      </div>
-    )
-
-  const ampBlock = overlayOwnsLayoutIds ? (
+function CurtainPaper({ side, boxShadowStyle, children }) {
+  return (
     <motion.div
-      layoutId="invite-line-amp"
-      className="font-script italic font-normal text-invite-mauve"
-      transition={layoutSpring}
-      style={{ fontSize: 'clamp(1.25rem, 5vw, 2.4rem)', lineHeight: 1 }}
+      className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border border-invite-wine/15 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
+        side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
+      }`}
+      style={{ boxShadow: boxShadowStyle }}
     >
-      &amp;
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
+        style={{
+          backgroundImage: noiseSvg,
+          backgroundSize: '140px 140px',
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.2]"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(122,46,63,0.02) 3px, rgba(122,46,63,0.02) 4px)',
+        }}
+      />
+      {children}
     </motion.div>
-  ) : (
-    <div className="font-script italic font-normal text-invite-mauve" style={{ fontSize: 'clamp(1.25rem, 5vw, 2.4rem)', lineHeight: 1 }}>
-      &amp;
-    </div>
   )
+}
 
-  const dateBlock = overlayOwnsLayoutIds ? (
-    <motion.div
-      layoutId="invite-line-date"
-      className="font-cinzel font-bold tracking-wide text-invite-wine"
-      transition={layoutSpring}
-      style={{ fontSize: 'clamp(0.88rem, 2.8vw, 1.2rem)' }}
-    >
-      {WEDDING_DATE_LINE}
-    </motion.div>
-  ) : (
-    <div className="font-cinzel font-bold tracking-wide text-invite-wine" style={{ fontSize: 'clamp(0.88rem, 2.8vw, 1.2rem)' }}>{WEDDING_DATE_LINE}</div>
-  )
+function CurtainReveal({ phase, onSealPress, curtainProgress }) {
+  const idle = phase === 'closed'
+
+  const waxSize = 108
+
+  const shadowLeft = useTransform(curtainProgress, (t) => buildCurtainPaperShadow('left', t))
+  const shadowRight = useTransform(curtainProgress, (t) => buildCurtainPaperShadow('right', t))
+
+  const xLeft = useTransform(curtainProgress, [0, 1], ['0%', '-100%'])
+  const xRight = useTransform(curtainProgress, [0, 1], ['0%', '100%'])
+  const rotLeft = useTransform(curtainProgress, [0, 1], [0, -5])
+  const rotRight = useTransform(curtainProgress, [0, 1], [0, 5])
+  const zLift = useTransform(curtainProgress, [0, 1], [0, 22])
+
+  const filterB = useTransform(curtainProgress, [0, 1], [
+    'drop-shadow(-2px 3px 2px rgba(0,0,0,0.5))',
+    'drop-shadow(6px 4px 3px rgba(0,0,0,0.38))',
+  ])
+  const filterD = useTransform(curtainProgress, [0, 1], [
+    'drop-shadow(2px 3px 2px rgba(0,0,0,0.5))',
+    'drop-shadow(-6px 4px 3px rgba(0,0,0,0.38))',
+  ])
+
+  const innerScale = useTransform(curtainProgress, [0, 1], [0.98, 1])
+  const innerBright = useTransform(curtainProgress, [0, 0.5, 1], [1, 1.04, 1.1])
+  const innerFilter = useTransform(innerBright, (b) => `brightness(${b})`)
 
   return (
-    <div className="flex w-full min-h-0 flex-1 flex-col items-center justify-center gap-4 overflow-y-auto px-4 py-3 text-center sm:gap-5 sm:px-6">
-      <motion.div
-        initial={{ opacity: 0, y: -6 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45, ease: easeSmooth }}
-        className="w-full max-w-[min(100%,20rem)] shrink-0 opacity-90"
+    <div className="relative mx-auto w-full max-w-[min(96vw,28rem)] px-1">
+      <div
+        className="pointer-events-none absolute -inset-[min(10%,80px)] z-0 rounded-[1.5rem] opacity-[0.95]"
+        style={{
+          background:
+            'radial-gradient(ellipse 90% 75% at 50% 38%, rgba(255, 250, 242, 0.2) 0%, rgba(255, 245, 236, 0.06) 45%, transparent 70%)',
+          mixBlendMode: 'soft-light',
+        }}
+        aria-hidden="true"
+      />
+
+      <div
+        className="relative z-[1] mx-auto flex min-h-0 w-full flex-col overflow-visible rounded-xl"
+        style={{
+          height: 'min(88svh, 44rem)',
+          maxHeight: 'calc(100svh - 2.5rem)',
+          boxShadow: '0 4px 0 rgba(0,0,0,0.03)',
+          perspective: '1400px',
+          perspectiveOrigin: '50% 50%',
+        }}
       >
-        <KolamWaveDivider compact />
-      </motion.div>
+        <motion.div
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border border-invite-wine/12 bg-invite-paper"
+          style={{
+            scale: innerScale,
+            filter: innerFilter,
+          }}
+        >
+          <div className="absolute inset-0" style={invitePaperBg} />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
+          <div
+            className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
+            style={{
+              backgroundImage: noiseSvg,
+              backgroundSize: '160px 160px',
+            }}
+          />
+          <div className="relative z-[2] flex h-full min-h-0 flex-col items-stretch overflow-y-auto overflow-x-hidden px-1 py-2 sm:px-2 sm:py-3">
+            <HeroInvitationMirror />
+          </div>
+        </motion.div>
 
-      <div className="grid w-full max-w-[22rem] grid-cols-1 items-start gap-3 sm:grid-cols-[1fr_auto_1fr] sm:items-center sm:gap-2">
-        <div className="flex flex-col items-center gap-1.5 text-center">
-          {nameBlock('invite-line-bhakti')}
-          <p className="font-cormorant max-w-[14rem] text-invite-ink-soft text-[clamp(0.72rem,2.6vw,0.82rem)] leading-snug">
-            Daughter of Medini and Manoj Tolmatti
-          </p>
-        </div>
+        <motion.div
+          className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"
+          style={{
+            x: xLeft,
+            rotateY: rotLeft,
+            z: zLift,
+            transformOrigin: 'right center',
+          }}
+        >
+          <CurtainPaper side="left" boxShadowStyle={shadowLeft}>
+            <WaxOnCurtain side="left" size={waxSize} letter="B" monoFilter={filterB} />
+          </CurtainPaper>
+        </motion.div>
 
-        <div className="flex justify-center py-0.5 sm:pt-2">{ampBlock}</div>
+        <motion.div
+          className="curtain-3d-panel absolute inset-y-0 right-0 z-[4] w-1/2"
+          style={{
+            x: xRight,
+            rotateY: rotRight,
+            z: zLift,
+            transformOrigin: 'left center',
+          }}
+        >
+          <CurtainPaper side="right" boxShadowStyle={shadowRight}>
+            <WaxOnCurtain side="right" size={waxSize} letter="D" monoFilter={filterD} />
+          </CurtainPaper>
+        </motion.div>
 
-        <div className="flex flex-col items-center gap-1.5 text-center">
-          {nameBlock('invite-line-dhananjay')}
-          <p className="font-cormorant max-w-[14rem] text-invite-ink-soft text-[clamp(0.72rem,2.6vw,0.82rem)] leading-snug">
-            Son of Pratibha and Vinod Jahagirdar
-          </p>
-        </div>
+        {idle && (
+          <button
+            type="button"
+            data-no-sparkle="true"
+            onClick={(e) => {
+              e.stopPropagation()
+              onSealPress()
+            }}
+            className="absolute left-1/2 top-1/2 z-[20] min-h-[112px] min-w-[min(72%,200px)] -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation rounded-full border-0 bg-transparent p-0 outline-none transition-transform hover:scale-[0.96] active:scale-[0.92]"
+            style={{ borderRadius: waxOrganicRadius, WebkitTapHighlightColor: 'transparent' }}
+            aria-label="Break the wax seal to open the invitation"
+          />
+        )}
       </div>
 
-      <div className="mt-1 shrink-0">{dateBlock}</div>
+      <p
+        className={`relative z-[4] mt-10 text-center font-cormorant text-sm italic text-invite-ink-soft/90 ${
+          idle ? 'opacity-100' : 'pointer-events-none opacity-0'
+        } transition-opacity duration-[400ms]`}
+      >
+        Tap the seal to part the curtains
+      </p>
     </div>
+  )
+}
+
+function SpotlightVignette({ hidden, curtainProgress }) {
+  const edgeDim = useTransform(curtainProgress, [0, 0.5, 1], [0.38, 0.28, 0.22])
+  const spotBright = useTransform(curtainProgress, [0, 0.5, 1], [1, 1.06, 1.1])
+  const bg = useTransform(
+    edgeDim,
+    (d) =>
+      `radial-gradient(ellipse 75% 65% at 50% 42%, transparent 0%, transparent 38%, rgba(12, 10, 18, ${d}) 100%)`,
+  )
+  const spotFilter = useTransform(spotBright, (b) => `brightness(${b})`)
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none fixed inset-0 z-[5] mix-blend-multiply"
+      initial={false}
+      animate={{ opacity: hidden ? 0 : 1 }}
+      transition={{ duration: 0.45, ease: curtainEase }}
+      style={{
+        background: bg,
+        filter: spotFilter,
+      }}
+    />
   )
 }
 
@@ -310,12 +321,8 @@ export default function Overlay({ onClose, onExpandingStart }) {
   const [phase, setPhase] = useState('closed')
   const [petals, setPetals] = useState([])
   const [notified, setNotified] = useState(false)
-  const [introReady, setIntroReady] = useState(false)
-  const handleIntroReady = useCallback(() => {
-    setIntroReady(true)
-  }, [])
 
-  const overlayOwnsLayoutIds = phase === 'opening'
+  const curtainProgress = useMotionValue(0)
 
   useEffect(() => {
     const prevBody = document.body.style.overflow || ''
@@ -331,13 +338,30 @@ export default function Overlay({ onClose, onExpandingStart }) {
   }, [])
 
   useEffect(() => {
+    if (phase === 'closed') {
+      curtainProgress.set(0)
+      return undefined
+    }
+    if (phase === 'opening') {
+      curtainProgress.set(0)
+      const ctrl = animate(curtainProgress, 1, {
+        duration: CURTAIN_DURATION,
+        ease: curtainEase,
+      })
+      return () => ctrl.stop()
+    }
+    return undefined
+  }, [phase, curtainProgress])
+
+  useEffect(() => {
     if (phase !== 'opening') return
-    const id = window.setTimeout(() => {
-      onExpandingStart?.()
+    const expandT = window.setTimeout(() => {
       setPhase('expanding')
-    }, 1080)
-    return () => window.clearTimeout(id)
-  }, [phase, onExpandingStart])
+    }, EXPAND_AFTER_MS)
+    return () => {
+      window.clearTimeout(expandT)
+    }
+  }, [phase])
 
   useEffect(() => {
     const next = Array.from({ length: 14 }).map((_, i) => {
@@ -353,10 +377,11 @@ export default function Overlay({ onClose, onExpandingStart }) {
     setPetals(next)
   }, [])
 
-  const handleOpen = () => {
-    if (phase !== 'closed' || !introReady) return
+  const handleSealPress = useCallback(() => {
+    if (phase !== 'closed') return
+    onExpandingStart?.()
     setPhase('opening')
-  }
+  }, [phase, onExpandingStart])
 
   const finishAndClose = () => {
     if (notified) return
@@ -367,34 +392,34 @@ export default function Overlay({ onClose, onExpandingStart }) {
     onClose()
   }
 
-  const flipOpen = phase !== 'closed'
   const ambientHidden = phase === 'expanding' || phase === 'exiting'
   const tapTarget = phase === 'closed' || phase === 'opening'
 
   return (
     <motion.div
-      className={`viewport-fill fixed inset-0 z-50 touch-manipulation overflow-hidden ${
-        tapTarget && (phase !== 'closed' || introReady) ? 'cursor-pointer' : 'cursor-default'
+      className={`viewport-fill fixed inset-0 z-50 touch-manipulation overflow-x-hidden overflow-y-hidden ${
+        tapTarget ? 'cursor-default' : 'pointer-events-none'
       }`}
-      aria-label="Open the invitation"
+      aria-label="Invitation"
       initial={{ opacity: 1 }}
       animate={{ opacity: phase === 'exiting' ? 0 : 1 }}
       transition={{ duration: phase === 'exiting' ? 0.5 : 0.2 }}
-      onClick={tapTarget ? handleOpen : undefined}
       onAnimationComplete={() => {
         if (phase === 'exiting') finishAndClose()
       }}
     >
+      <SpotlightVignette hidden={ambientHidden} curtainProgress={curtainProgress} />
+
       <motion.div
         aria-hidden="true"
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
             'radial-gradient(ellipse 120% 80% at 50% -20%, rgba(122, 46, 63, 0.22), transparent 55%), linear-gradient(165deg, #0c0e14 0%, #141822 45%, #0a0c10 100%)',
         }}
         initial={false}
         animate={{ opacity: ambientHidden ? 0 : 1 }}
-        transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+        transition={{ duration: 0.55, ease: curtainEase }}
       />
 
       <OutsideAreaDoodles hidden={ambientHidden} />
@@ -428,72 +453,28 @@ export default function Overlay({ onClose, onExpandingStart }) {
         </motion.div>
       ))}
 
-      <div className="absolute inset-0 z-[2] flex items-center justify-center p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4">
-        <div className="relative w-[min(92vw,380px)] max-h-[min(78dvh,560px)] min-h-[280px] sm:min-h-[320px]">
-          <div
-            className="relative mx-auto h-[min(68dvh,500px)] w-full sm:h-[min(72dvh,520px)]"
-            style={{ perspective: 1400 }}
-          >
-            <motion.div
-              className="relative h-full w-full"
-              style={{ transformStyle: 'preserve-3d' }}
-              initial={false}
-              animate={{ rotateY: flipOpen ? 180 : 0 }}
-              transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
-            >
-              <div
-                className="absolute inset-0"
-                style={{
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'translateZ(1px)',
-                }}
-              >
-                <LetterClosedFront phase={phase} onIntroReady={handleIntroReady} />
-              </div>
-
-              <div
-                className="absolute inset-0"
-                style={{
-                  backfaceVisibility: 'hidden',
-                  WebkitBackfaceVisibility: 'hidden',
-                  transform: 'rotateY(180deg) translateZ(1px)',
-                }}
-              >
-                <motion.div
-                  className="relative flex h-full w-full flex-col overflow-hidden rounded-2xl border border-invite-wine/25 bg-invite-paper shadow-[0_28px_90px_rgba(0,0,0,0.35)]"
-                  style={{
-                    boxShadow:
-                      'inset 0 0 0 1px rgba(122, 46, 63, 0.1), 0 28px 90px rgba(0,0,0,0.35)',
-                    transformOrigin: 'center center',
-                  }}
-                  initial={false}
-                  animate={{
-                    scale: phase === 'expanding' || phase === 'exiting' ? 1.02 : 1,
-                    opacity: phase === 'exiting' ? 0 : 1,
-                  }}
-                  transition={{
-                    duration: phase === 'expanding' ? 0.85 : 0.4,
-                    ease: [0.77, 0, 0.175, 1],
-                  }}
-                  onAnimationComplete={() => {
-                    if (phase === 'expanding') setPhase('exiting')
-                  }}
-                >
-                  <div
-                    className="relative flex min-h-0 flex-1 flex-col items-center justify-center px-4 py-8 sm:px-6 sm:py-9"
-                    style={{
-                      background:
-                        'linear-gradient(175deg, rgba(252,249,241,1) 0%, rgba(250,247,242,1) 55%, rgba(245,241,234,1) 100%)',
-                    }}
-                  >
-                    <LetterOpenFace overlayOwnsLayoutIds={overlayOwnsLayoutIds} />
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
+      <div className="pointer-events-auto absolute inset-0 z-[30] flex items-center justify-center overflow-x-hidden p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4">
+        <motion.div
+          className="relative flex w-[min(94vw,400px)] max-w-full flex-col items-center justify-center"
+          initial={false}
+          animate={{
+            scale: phase === 'expanding' || phase === 'exiting' ? 1.04 : 1,
+            opacity: phase === 'exiting' || phase === 'expanding' ? 0 : 1,
+          }}
+          transition={{
+            duration: phase === 'expanding' ? 0.88 : 0.42,
+            ease: curtainEase,
+          }}
+          onAnimationComplete={() => {
+            if (phase === 'expanding') setPhase('exiting')
+          }}
+        >
+          <CurtainReveal
+            phase={phase}
+            onSealPress={handleSealPress}
+            curtainProgress={curtainProgress}
+          />
+        </motion.div>
       </div>
     </motion.div>
   )

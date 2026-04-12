@@ -1,7 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
+import Countdown from './Countdown.jsx'
+import { BHAKTI_PARENT_LINE, DHANANJAY_PARENT_LINE, INVITE_BLESSING } from '../constants/inviteCopy.js'
 import { WEDDING_DATE_LINE } from '../constants/wedding.js'
 
 const easeSmooth = [0.77, 0, 0.175, 1]
@@ -35,72 +37,6 @@ const countdownReveal = {
 }
 
 const layoutSpring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.85 }
-
-function AnimatedDigit({ value, className, digitKey }) {
-  return (
-    <motion.span
-      key={digitKey}
-      className={className}
-      initial={{ y: -10, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.35, ease: easeSmooth }}
-    >
-      {value}
-    </motion.span>
-  )
-}
-
-function Countdown({ targetIso }) {
-  const target = useMemo(() => new Date(targetIso), [targetIso])
-  const [now, setNow] = useState(() => Date.now())
-
-  useEffect(() => {
-    const id = window.setInterval(() => setNow(Date.now()), 1000)
-    return () => window.clearInterval(id)
-  }, [])
-
-  const { days, hours, minutes, seconds } = useMemo(() => {
-    const diffMs = Math.max(0, target.getTime() - now)
-    const totalSeconds = Math.floor(diffMs / 1000)
-    const days = Math.floor(totalSeconds / 86400)
-    const hours = Math.floor((totalSeconds % 86400) / 3600)
-    const minutes = Math.floor((totalSeconds % 3600) / 60)
-    const seconds = totalSeconds % 60
-    return { days, hours, minutes, seconds }
-  }, [now, target])
-
-  const daysStr = String(days).padStart(2, '0')
-  const hoursStr = String(hours).padStart(2, '0')
-  const minutesStr = String(minutes).padStart(2, '0')
-  const secondsStr = String(seconds).padStart(2, '0')
-
-  return (
-    <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-4">
-      {[
-        { label: 'Days', str: daysStr },
-        { label: 'Hours', str: hoursStr },
-        { label: 'Minutes', str: minutesStr },
-        { label: 'Seconds', str: secondsStr },
-      ].map((part, idx) => (
-        <div key={part.label} className="text-center">
-          <div className="flex items-baseline justify-center gap-0.5">
-            {part.str.split('').map((d, digitIdx) => (
-              <AnimatedDigit
-                key={`${part.label}-${d}-${digitIdx}`}
-                value={d}
-                digitKey={`${idx}-${digitIdx}-${d}`}
-                className="font-playfair font-black text-invite-wine tabular-nums text-[clamp(1.2rem,4vw,2.2rem)] leading-none"
-              />
-            ))}
-          </div>
-          <div className="mt-1 font-lato text-invite-ink-soft/85 text-xs font-semibold tracking-widest uppercase">
-            {part.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 export default function Hero({ inviteRevealed = false }) {
   const [toastOpen, setToastOpen] = useState(false)
@@ -169,8 +105,7 @@ export default function Hero({ inviteRevealed = false }) {
 
             <motion.div variants={fadeLine(0.14)} className="mt-5 max-w-2xl">
               <p className="font-cormorant italic text-invite-ink-soft text-[clamp(1rem,2.3vw,1.15rem)] leading-relaxed">
-                With the blessings of our elders and the grace of the Almighty, we invite you to witness the union of
-                hearts.
+                {INVITE_BLESSING}
               </p>
             </motion.div>
 
@@ -188,7 +123,7 @@ export default function Hero({ inviteRevealed = false }) {
                 </motion.div>
                 <motion.div variants={fadeLine(0.42)} className="mt-3 max-w-[26rem]">
                   <p className="font-cormorant text-invite-ink-soft text-[clamp(0.98rem,2vw,1.08rem)] leading-relaxed">
-                    Daughter of Medini and Manoj Tolmatti
+                    {BHAKTI_PARENT_LINE}
                   </p>
                 </motion.div>
               </div>
@@ -219,7 +154,7 @@ export default function Hero({ inviteRevealed = false }) {
                 </motion.div>
                 <motion.div variants={fadeLine(0.52)} className="mt-3 max-w-[26rem]">
                   <p className="font-cormorant text-invite-ink-soft text-[clamp(0.98rem,2vw,1.08rem)] leading-relaxed">
-                    Son of Pratibha and Vinod Jahagirdar
+                    {DHANANJAY_PARENT_LINE}
                   </p>
                 </motion.div>
               </div>
