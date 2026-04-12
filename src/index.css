@@ -37,6 +37,7 @@
   /* Subtle linen / parchment grain (no external asset) */
   /* 3D curtain panels — pairs with perspective parent + preserve-3d children */
   .curtain-3d-panel {
+    transform: translateZ(0);
     transform-style: preserve-3d;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;

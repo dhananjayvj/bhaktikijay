@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import {
   animate,
   motion,
@@ -23,14 +23,12 @@ const waxOrganicRadius = '48% 52% 47% 53% / 52% 48% 51% 49%'
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
 
-function buildCurtainPaperShadow(side, t) {
-  const blur = 20 + t * 28
-  const spread = -8 + t * 14
-  const alpha = 0.19 * (1 - t * 0.52)
+/** Static shadows only — animating box-shadow every frame causes layout/paint jank on mobile. */
+function curtainPaperShadowStatic(side) {
   const edge =
     side === 'left'
-      ? `inset -${14 + t * 5}px 0 ${blur}px ${spread}px rgba(0,0,0,${alpha})`
-      : `inset ${14 + t * 5}px 0 ${blur}px ${spread}px rgba(0,0,0,${alpha})`
+      ? 'inset -12px 0 32px 2px rgba(0,0,0,0.1)'
+      : 'inset 12px 0 32px 2px rgba(0,0,0,0.1)'
   return [
     edge,
     '0 22px 48px rgba(0, 0, 0, 0.14)',
@@ -111,7 +109,11 @@ function WaxBlobHalf({ side, size }) {
   )
 }
 
-function WaxOnCurtain({ side, size, letter, monoFilter }) {
+function WaxOnCurtain({ side, size, letter }) {
+  const engraved =
+    side === 'left'
+      ? '0 1px 0 rgba(255,255,255,0.12), 0 -1px 2px rgba(0,0,0,0.5), 2px 3px 4px rgba(0,0,0,0.35)'
+      : '0 1px 0 rgba(255,255,255,0.12), 0 -1px 2px rgba(0,0,0,0.5), -2px 3px 4px rgba(0,0,0,0.35)'
   return (
     <div
       className={`pointer-events-none absolute top-1/2 z-[14] flex -translate-y-1/2 items-center ${
@@ -120,34 +122,29 @@ function WaxOnCurtain({ side, size, letter, monoFilter }) {
     >
       <div className="relative flex" style={{ width: size * 0.5, height: size * 0.88 }}>
         <WaxBlobHalf side={side} size={size} />
-        <motion.span
+        <span
           className="pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.75rem,6vw,2.2rem)] leading-none text-[#efd9d2]"
           style={{
             fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
             paddingLeft: side === 'left' ? '0.12em' : 0,
             paddingRight: side === 'right' ? '0.1em' : 0,
-            textShadow: `
-              0 1px 0 rgba(255, 255, 255, 0.1),
-              0 -2px 3px rgba(0, 0, 0, 0.55),
-              0 4px 8px rgba(0, 0, 0, 0.4)
-            `,
-            filter: monoFilter,
+            textShadow: engraved,
           }}
         >
           {letter}
-        </motion.span>
+        </span>
       </div>
     </div>
   )
 }
 
-function CurtainPaper({ side, boxShadowStyle, children }) {
+function CurtainPaper({ side, children }) {
   return (
-    <motion.div
+    <div
       className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border border-invite-wine/15 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
         side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
       }`}
-      style={{ boxShadow: boxShadowStyle }}
+      style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
@@ -164,7 +161,7 @@ function CurtainPaper({ side, boxShadowStyle, children }) {
         }}
       />
       {children}
-    </motion.div>
+    </div>
   )
 }
 
@@ -173,27 +170,15 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
 
   const waxSize = 108
 
-  const shadowLeft = useTransform(curtainProgress, (t) => buildCurtainPaperShadow('left', t))
-  const shadowRight = useTransform(curtainProgress, (t) => buildCurtainPaperShadow('right', t))
-
   const xLeft = useTransform(curtainProgress, [0, 1], ['0%', '-100%'])
   const xRight = useTransform(curtainProgress, [0, 1], ['0%', '100%'])
-  const rotLeft = useTransform(curtainProgress, [0, 1], [0, -5])
-  const rotRight = useTransform(curtainProgress, [0, 1], [0, 5])
-  const zLift = useTransform(curtainProgress, [0, 1], [0, 22])
+  const rotLeft = useTransform(curtainProgress, [0, 1], [0, -4])
+  const rotRight = useTransform(curtainProgress, [0, 1], [0, 4])
+  const zLift = useTransform(curtainProgress, [0, 1], [0, 18])
 
-  const filterB = useTransform(curtainProgress, [0, 1], [
-    'drop-shadow(-2px 3px 2px rgba(0,0,0,0.5))',
-    'drop-shadow(6px 4px 3px rgba(0,0,0,0.38))',
-  ])
-  const filterD = useTransform(curtainProgress, [0, 1], [
-    'drop-shadow(2px 3px 2px rgba(0,0,0,0.5))',
-    'drop-shadow(-6px 4px 3px rgba(0,0,0,0.38))',
-  ])
-
-  const innerScale = useTransform(curtainProgress, [0, 1], [0.98, 1])
-  const innerBright = useTransform(curtainProgress, [0, 0.5, 1], [1, 1.04, 1.1])
-  const innerFilter = useTransform(innerBright, (b) => `brightness(${b})`)
+  const innerScale = useTransform(curtainProgress, [0, 1], [0.985, 1])
+  /** Cheap “brightening”: opacity on a white wash — avoids filter: brightness() repaints */
+  const innerGlowOpacity = useTransform(curtainProgress, [0, 0.45, 1], [0, 0.06, 0.1])
 
   return (
     <div className="relative mx-auto w-full max-w-[min(96vw,28rem)] px-1">
@@ -221,10 +206,14 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border border-invite-wine/12 bg-invite-paper"
           style={{
             scale: innerScale,
-            filter: innerFilter,
           }}
         >
           <div className="absolute inset-0" style={invitePaperBg} />
+          <motion.div
+            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-invite-blush/20"
+            style={{ opacity: innerGlowOpacity }}
+            aria-hidden="true"
+          />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
           <div
             className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
@@ -245,10 +234,11 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             rotateY: rotLeft,
             z: zLift,
             transformOrigin: 'right center',
+            transformPerspective: 1400,
           }}
         >
-          <CurtainPaper side="left" boxShadowStyle={shadowLeft}>
-            <WaxOnCurtain side="left" size={waxSize} letter="B" monoFilter={filterB} />
+          <CurtainPaper side="left">
+            <WaxOnCurtain side="left" size={waxSize} letter="B" />
           </CurtainPaper>
         </motion.div>
 
@@ -259,10 +249,11 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             rotateY: rotRight,
             z: zLift,
             transformOrigin: 'left center',
+            transformPerspective: 1400,
           }}
         >
-          <CurtainPaper side="right" boxShadowStyle={shadowRight}>
-            <WaxOnCurtain side="right" size={waxSize} letter="D" monoFilter={filterD} />
+          <CurtainPaper side="right">
+            <WaxOnCurtain side="right" size={waxSize} letter="D" />
           </CurtainPaper>
         </motion.div>
 
@@ -293,14 +284,12 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
 }
 
 function SpotlightVignette({ hidden, curtainProgress }) {
-  const edgeDim = useTransform(curtainProgress, [0, 0.5, 1], [0.38, 0.28, 0.22])
-  const spotBright = useTransform(curtainProgress, [0, 0.5, 1], [1, 1.06, 1.1])
+  const edgeDim = useTransform(curtainProgress, [0, 0.5, 1], [0.38, 0.28, 0.2])
   const bg = useTransform(
     edgeDim,
     (d) =>
       `radial-gradient(ellipse 75% 65% at 50% 42%, transparent 0%, transparent 38%, rgba(12, 10, 18, ${d}) 100%)`,
   )
-  const spotFilter = useTransform(spotBright, (b) => `brightness(${b})`)
 
   return (
     <motion.div
@@ -311,7 +300,6 @@ function SpotlightVignette({ hidden, curtainProgress }) {
       transition={{ duration: 0.45, ease: curtainEase }}
       style={{
         background: bg,
-        filter: spotFilter,
       }}
     />
   )
@@ -323,6 +311,7 @@ export default function Overlay({ onClose, onExpandingStart }) {
   const [notified, setNotified] = useState(false)
 
   const curtainProgress = useMotionValue(0)
+  const curtainAnimRef = useRef(null)
 
   useEffect(() => {
     const prevBody = document.body.style.overflow || ''
@@ -338,20 +327,8 @@ export default function Overlay({ onClose, onExpandingStart }) {
   }, [])
 
   useEffect(() => {
-    if (phase === 'closed') {
-      curtainProgress.set(0)
-      return undefined
-    }
-    if (phase === 'opening') {
-      curtainProgress.set(0)
-      const ctrl = animate(curtainProgress, 1, {
-        duration: CURTAIN_DURATION,
-        ease: curtainEase,
-      })
-      return () => ctrl.stop()
-    }
-    return undefined
-  }, [phase, curtainProgress])
+    return () => curtainAnimRef.current?.stop()
+  }, [])
 
   useEffect(() => {
     if (phase !== 'opening') return
@@ -379,8 +356,16 @@ export default function Overlay({ onClose, onExpandingStart }) {
 
   const handleSealPress = useCallback(() => {
     if (phase !== 'closed') return
-    onExpandingStart?.()
+    curtainAnimRef.current?.stop()
+    curtainProgress.set(0)
+    curtainAnimRef.current = animate(curtainProgress, 1, {
+      duration: CURTAIN_DURATION,
+      ease: curtainEase,
+    })
     setPhase('opening')
+    requestAnimationFrame(() => {
+      onExpandingStart?.()
+    })
   }, [phase, onExpandingStart])
 
   const finishAndClose = () => {
