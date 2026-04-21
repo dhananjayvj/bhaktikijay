@@ -32,6 +32,14 @@ Use this as the value for `VITE_RSVP_ENDPOINT`:
 Google Apps Script Web Apps usually don’t include CORS headers, so browsers will block normal cross-site `fetch()` requests.
 This site sends the RSVP using `mode: "no-cors"` with a simple `Content-Type` so the request still reaches your script and can append to the sheet.
 
+### Important (testing in Apps Script)
+
+Don’t use the “Run” button on `doPost()` to test submissions — `doPost(e)` requires an HTTP request event.
+To test:
+
+- Open your deployed URL in a browser to confirm `doGet()` works
+- Submit via the website RSVP form
+
 ### Apps Script (`Code.gs`)
 
 ```javascript

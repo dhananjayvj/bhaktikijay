@@ -109,13 +109,19 @@ export default function RSVP() {
       userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
     }
 
-    if (endpoint) {
-      try {
-        const body = JSON.stringify(payload)
-        /**
-         * Google Apps Script Web Apps typically don't return CORS headers.
-         * Use `no-cors` + a "simple" Content-Type so the browser can still send the request.
-         */
+    try {
+      const body = JSON.stringify(payload)
+
+      /**
+       * Apps Script Web Apps usually don't return CORS headers.
+       * `sendBeacon` is the most reliable way to POST cross-origin without CORS.
+       */
+      const sent =
+        typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function'
+          ? navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=utf-8' }))
+          : false
+
+      if (!sent) {
         const res = await fetch(endpoint, {
           method: 'POST',
           mode: 'no-cors',
@@ -123,14 +129,12 @@ export default function RSVP() {
           body,
         })
         if (res.type !== 'opaque' && !res.ok) throw new Error(`Request failed (${res.status})`)
-        setSubmitState('success')
-      } catch (err) {
-        setSubmitState('error')
-        setSubmitError('Could not submit right now. Please try again in a moment.')
       }
-    } else {
+
+      setSubmitState('success')
+    } catch (err) {
       setSubmitState('error')
-      setSubmitError('RSVP collection is not configured yet.')
+      setSubmitError('Could not submit right now. Please try again in a moment.')
     }
 
     setSubmitted(true)
@@ -298,7 +302,7 @@ export default function RSVP() {
                 </p>
                 {submitState === 'success' ? (
                   <p className="mt-3 font-lato text-cream/75 text-xs">
-                    Saved.
+                    Submitted.
                   </p>
                 ) : submitState === 'error' ? (
                   <p className="mt-3 font-lato text-cream/85 text-xs">
