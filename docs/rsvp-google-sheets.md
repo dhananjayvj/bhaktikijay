@@ -21,6 +21,12 @@ This project already supports posting RSVPs to an endpoint via `VITE_RSVP_ENDPOI
    - Who has access: **Anyone**
 5. Copy the Web App URL and set it as `VITE_RSVP_ENDPOINT`.
 
+### Your deployed Web App URL
+
+Use this as the value for `VITE_RSVP_ENDPOINT`:
+
+`https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec`
+
 ### Apps Script (`Code.gs`)
 
 ```javascript
@@ -48,6 +54,10 @@ function json_(obj) {
   return ContentService.createTextOutput(JSON.stringify(obj)).setMimeType(
     ContentService.MimeType.JSON,
   )
+}
+
+function doGet() {
+  return json_({ ok: true, message: 'RSVP endpoint is running. Use POST to submit.' })
 }
 
 function doPost(e) {
@@ -84,7 +94,7 @@ function doPost(e) {
 Create `.env.local` (do **not** commit it) with:
 
 ```bash
-VITE_RSVP_ENDPOINT="PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE"
+VITE_RSVP_ENDPOINT="https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec"
 ```
 
 Then run:

@@ -113,7 +113,7 @@ export default function RSVP() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload),
         })
-        if (!res.ok) throw new Error(`Request failed (${res.status})`)
+        if (res.type !== 'opaque' && !res.ok) throw new Error(`Request failed (${res.status})`)
         setSubmitState('success')
       } catch (err) {
         setSubmitState('error')

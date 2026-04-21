@@ -135,7 +135,7 @@ export default function Timeline() {
         title: 'Haldi',
         emoji: '☀️',
         burst: ['☀️', '💛', '✨', '☀️'],
-        time: 'Morning',
+        time: '11:00 AM',
         subtitle: 'Turmeric, tradition, and laughter.',
       },
       {
@@ -144,7 +144,7 @@ export default function Timeline() {
         title: 'Mehendi',
         emoji: '🎨',
         burst: ['🎨', '✨', '♡', '🎨'],
-        time: 'Evening',
+        time: '5:00 PM',
         subtitle: 'A celebration of color and henna.',
       },
       {
@@ -154,7 +154,7 @@ export default function Timeline() {
         emoji: '💃',
         /** Music-note only — restrained “digital blessing”, not confetti */
         burst: ['🎵', '♪', '🎶', '♫'],
-        time: 'Evening',
+        time: '3:00 PM',
         subtitle: 'An evening of music and dance.',
       },
       {
@@ -163,7 +163,7 @@ export default function Timeline() {
         title: 'Baraat',
         emoji: '🐎',
         burst: ['🐎', '✨', '🐎', '✨'],
-        time: 'Evening',
+        time: '5:30 PM',
         subtitle: "Join the groom's procession.",
       },
       {
