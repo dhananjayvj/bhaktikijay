@@ -27,14 +27,13 @@ function VenueCTA({ href, children, variant }) {
 
 export default function Venue() {
   const mapsHref = useMemo(
-    () =>
-      'https://www.google.com/maps/search/?api=1&query=Premium+resort+Kanakapura+Road+Bengaluru',
+    () => 'https://maps.app.goo.gl/TZJres781iqyqLfEA',
     [],
   )
 
   const calendarHref = useMemo(
     () =>
-      'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti%20%26%20Dhananjay%20%E2%80%94%20Wedding&dates=20270214/20270217&details=Celebrations%20on%20Kanakapura%20Road%2C%20Bengaluru.%20https%3A%2F%2Fbhaktikijay.fyi&location=A%20premium%20resort%20on%20Kanakapura%20Road%2C%20Bengaluru',
+      'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti%20%26%20Dhananjay%20%E2%80%94%20Wedding&dates=20270224/20270227&details=Celebrations%20at%20Sri%20Vittala%20Rukmini%20Convention%20Hall%2C%20Mysuru.%20https%3A%2F%2Fbhaktikijay.fyi&location=Sri%20Vittala%20Rukmini%20Convention%20Hall%2C%20Mysuru',
     [],
   )
 
@@ -53,8 +52,7 @@ export default function Venue() {
             Venue &amp; logistics
           </div>
           <p className="mx-auto mt-4 max-w-2xl font-cormorant text-stone-800/75 text-base leading-relaxed">
-            A Premium Resort, Kanakapura Road, Bengaluru — we’ll share the full address details with your
-            RSVP confirmation.
+            Sri Vittala Rukmini Convention Hall, Mysuru.
           </p>
         </div>
 
@@ -77,25 +75,10 @@ export default function Venue() {
             <div className="flex flex-col gap-6">
               <div className="text-center">
                 <div className="font-playfair text-stone-900 text-xl font-black tracking-wide md:text-2xl">
-                  A Premium Resort, Kanakapura Road, Bengaluru
+                  Sri Vittala Rukmini Convention Hall
                 </div>
                 <div className="mt-2 font-lato text-stone-800/70 text-sm">
-                  Full address shared on RSVP confirmation.
-                </div>
-              </div>
-
-              <div className="rounded-xl border border-gold/25 bg-cream/80 px-4 py-4">
-                <div className="flex items-start gap-3">
-                  <div className="h-full w-1 rounded-full bg-terra" aria-hidden="true" />
-                  <div>
-                    <div className="font-lato text-terra font-bold uppercase tracking-widest text-xs">
-                      NICE Road pro-tip
-                    </div>
-                    <div className="mt-1 font-cormorant text-stone-800/75 text-sm leading-relaxed">
-                      Use the NICE Road junction to bypass city traffic if traveling from North/West Bangalore or
-                      Mysuru.
-                    </div>
-                  </div>
+                  Mysuru
                 </div>
               </div>
 

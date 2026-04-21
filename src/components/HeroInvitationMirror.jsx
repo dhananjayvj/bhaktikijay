@@ -20,7 +20,7 @@ import { WEDDING_DATE_HEADLINE } from '../constants/wedding.js'
 export default function HeroInvitationMirror() {
   return (
     <div
-      className="pointer-events-none mx-auto grid h-full min-h-0 w-full max-w-5xl grid-rows-[auto_1fr_auto] select-none gap-y-4 px-3 pb-2 pt-0 text-center sm:gap-y-5 sm:px-4 sm:pb-3 sm:pt-0 md:gap-y-6 md:px-10 md:pb-4"
+      className="pointer-events-none mx-auto grid h-full min-h-0 w-full max-w-5xl grid-rows-[auto_auto_auto] select-none gap-y-3 px-3 pb-2 pt-0 text-center sm:gap-y-4 sm:px-4 sm:pb-3 sm:pt-0 md:gap-y-5 md:px-10 md:pb-4"
       aria-hidden="true"
     >
       <div className="flex flex-col items-center gap-4 sm:gap-5">
@@ -47,7 +47,7 @@ export default function HeroInvitationMirror() {
         <SubtleGoldDivider className="opacity-80" />
       </div>
 
-      <div className="flex min-h-0 w-full flex-col items-center justify-center py-1 sm:py-3">
+      <div className="flex min-h-0 w-full flex-col items-center justify-center py-0.5 sm:py-2">
         <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
           <div className="flex flex-col items-center text-center">
             <div
@@ -56,7 +56,7 @@ export default function HeroInvitationMirror() {
             >
               Bhakti
             </div>
-            <p className="font-cormorant mt-3 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-4">
+            <p className="font-cormorant mt-2 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
               {BHAKTI_PARENT_LINE}
             </p>
           </div>
@@ -77,14 +77,14 @@ export default function HeroInvitationMirror() {
             >
               Dhananjay
             </div>
-            <p className="font-cormorant mt-3 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-4">
+            <p className="font-cormorant mt-2 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
               {DHANANJAY_PARENT_LINE}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-3 sm:gap-4">
+      <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
         <p className="font-cormorant max-w-md px-0.5 text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_CELEBRATION}
         </p>
@@ -98,7 +98,7 @@ export default function HeroInvitationMirror() {
           </div>
         </div>
 
-        <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-14T09:30:00+05:30" />
+        <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-26T08:50:00+05:30" />
       </div>
     </div>
   )

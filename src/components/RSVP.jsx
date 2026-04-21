@@ -65,6 +65,8 @@ export default function RSVP() {
   const [submitted, setSubmitted] = useState(false)
   const [particleTriggerId, setParticleTriggerId] = useState(0)
   const [eventTags, setEventTags] = useState('')
+  const [submitState, setSubmitState] = useState('idle') // idle | submitting | success | error
+  const [submitError, setSubmitError] = useState('')
 
   const selectedSet = useMemo(() => new Set(selected), [selected])
   const showGuestNames = guests !== '1'
@@ -82,11 +84,46 @@ export default function RSVP() {
     })
   }
 
-  const onSubmit = (e) => {
+  const endpoint = useMemo(() => import.meta.env?.VITE_RSVP_ENDPOINT || '', [])
+
+  const onSubmit = async (e) => {
     e.preventDefault()
     if (!name.trim()) return
+    setSubmitError('')
+    setSubmitState('submitting')
     setParticleTriggerId((v) => v + 1)
-    setEventTags(selected.length ? selected.join(', ') : '')
+    const tags = selected.length ? selected.join(', ') : ''
+    setEventTags(tags)
+
+    const payload = {
+      submittedAt: new Date().toISOString(),
+      name: name.trim(),
+      guests,
+      guestNames: guestNames.trim(),
+      events: selected,
+      eventTags: tags,
+      message: message.trim(),
+      userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+    }
+
+    if (endpoint) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        if (!res.ok) throw new Error(`Request failed (${res.status})`)
+        setSubmitState('success')
+      } catch (err) {
+        setSubmitState('error')
+        setSubmitError('Could not submit right now. Please try again in a moment.')
+      }
+    } else {
+      setSubmitState('error')
+      setSubmitError('RSVP collection is not configured yet.')
+    }
+
     setSubmitted(true)
   }
 
@@ -106,6 +143,17 @@ export default function RSVP() {
         <div className="mt-3 font-lato text-cream/95 text-sm">
           Kindly respond by <span className="font-bold text-gold">January 15, 2027</span> so we can plan with care.
         </div>
+
+        {!endpoint ? (
+          <div className="mx-auto mt-4 max-w-xl rounded-xl border border-gold/35 bg-cream/10 px-4 py-3 text-left">
+            <div className="font-lato text-cream/90 text-xs font-bold uppercase tracking-widest">
+              RSVP saving not set up yet
+            </div>
+            <div className="mt-1 font-cormorant text-cream/90 text-sm leading-relaxed">
+              Once we connect a Google Sheet, your responses will be saved automatically.
+            </div>
+          </div>
+        ) : null}
 
         <div className="relative mt-10 rounded-2xl border border-gold/45 bg-terra/95 p-5 shadow-xl backdrop-blur md:p-8">
           <ParticleCanvas
@@ -221,9 +269,13 @@ export default function RSVP() {
                     type="submit"
                     whileHover={{ y: -3, scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
-                    className="w-full rounded-xl border border-gold bg-gold py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-md"
+                    disabled={submitState === 'submitting'}
+                    className={[
+                      'w-full rounded-xl border border-gold bg-gold py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-md',
+                      submitState === 'submitting' ? 'opacity-75' : '',
+                    ].join(' ')}
                   >
-                    Submit RSVP
+                    {submitState === 'submitting' ? 'Submitting…' : 'Submit RSVP'}
                   </motion.button>
                 </div>
               </motion.form>
@@ -246,9 +298,15 @@ export default function RSVP() {
                 <p className="mt-6 font-cormorant text-cream/95 text-base leading-relaxed">
                   Thank you, {name.trim()} — we can’t wait to celebrate with you.
                 </p>
-                <p className="mt-3 font-lato text-cream/65 text-xs">
-                  (This demo doesn’t submit to a backend yet.)
-                </p>
+                {submitState === 'success' ? (
+                  <p className="mt-3 font-lato text-cream/75 text-xs">
+                    Saved.
+                  </p>
+                ) : submitState === 'error' ? (
+                  <p className="mt-3 font-lato text-cream/85 text-xs">
+                    {submitError}
+                  </p>
+                ) : null}
               </motion.div>
             )}
           </AnimatePresence>

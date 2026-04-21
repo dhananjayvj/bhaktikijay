@@ -71,7 +71,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
         <div className="relative min-h-dvh min-h-[100svh]" aria-hidden="true" />
       ) : (
         <motion.div
-          className="relative mx-auto grid min-h-[100svh] w-full max-w-5xl grid-rows-[auto_1fr_auto] gap-y-4 px-3 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:gap-y-5 sm:px-4 sm:pb-16 sm:pt-10 md:gap-y-6 md:px-10 md:pb-20 md:pt-14"
+          className="relative mx-auto grid min-h-[100svh] w-full max-w-5xl grid-rows-[auto_auto_auto] gap-y-3 px-3 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-[max(0.25rem,env(safe-area-inset-top))] text-center sm:gap-y-4 sm:px-4 sm:pb-14 sm:pt-8 md:gap-y-5 md:px-10 md:pb-20 md:pt-12"
           initial={skipIntro ? 'show' : 'hidden'}
           animate="show"
           variants={{
@@ -118,7 +118,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
           </div>
 
-          <div className="flex min-h-0 w-full flex-col items-center justify-center py-1 sm:py-3">
+          <div className="flex min-h-0 w-full flex-col items-center justify-center py-0.5 sm:py-2">
             <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
               <div className="flex flex-col items-center text-center">
                 <motion.div variants={instant}>
@@ -131,7 +131,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                     Bhakti
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine(0.42)} className="mt-3 max-w-[26rem] sm:mt-4">
+                <motion.div variants={fadeLine(0.42)} className="mt-2 max-w-[26rem] sm:mt-3">
                   <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {BHAKTI_PARENT_LINE}
                   </p>
@@ -162,7 +162,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                     Dhananjay
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine(0.52)} className="mt-3 max-w-[26rem] sm:mt-4">
+                <motion.div variants={fadeLine(0.52)} className="mt-2 max-w-[26rem] sm:mt-3">
                   <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {DHANANJAY_PARENT_LINE}
                   </p>
@@ -171,7 +171,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 sm:gap-4">
+          <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
             <motion.div variants={fadeLine(0.58)} className="max-w-2xl px-0.5">
               <p className="mx-auto max-w-md font-cormorant text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_CELEBRATION}
@@ -194,7 +194,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
 
             <motion.div variants={countdownReveal} className="w-full">
-              <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-14T09:30:00+05:30" />
+              <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-26T08:50:00+05:30" />
             </motion.div>
           </div>
         </motion.div>
