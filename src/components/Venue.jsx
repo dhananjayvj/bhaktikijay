@@ -41,7 +41,7 @@ export default function Venue() {
   return (
     <motion.section
       id="venue"
-      className="reveal border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
+      className="defer-heavy-section reveal border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}

@@ -17,7 +17,7 @@ function AnimatedDigit({ value, className, digitKey }) {
   )
 }
 
-export default function Countdown({ targetIso, className = '' }) {
+export default function Countdown({ targetIso, className = '', dense = false, intro = null }) {
   const target = useMemo(() => new Date(targetIso), [targetIso])
   const [now, setNow] = useState(() => Date.now())
 
@@ -41,8 +41,36 @@ export default function Countdown({ targetIso, className = '' }) {
   const minutesStr = String(minutes).padStart(2, '0')
   const secondsStr = String(seconds).padStart(2, '0')
 
+  const stackClass = dense
+    ? 'mt-0 w-full flex flex-col items-center'
+    : 'mt-6 w-full flex flex-col items-center sm:mt-8'
+
+  const digitsRowClass = dense
+    ? 'flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3 md:gap-x-5'
+    : 'flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-5'
+
+  const digitClass = dense
+    ? 'font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]'
+    : 'font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]'
+
+  const labelClass = dense
+    ? 'mt-0 font-lato text-[0.6rem] font-semibold uppercase tracking-widest text-invite-ink-soft/85 sm:mt-0.5 sm:text-[0.65rem] md:mt-1 md:text-xs'
+    : 'mt-0.5 font-lato text-[0.65rem] font-semibold uppercase tracking-widest text-invite-ink-soft/85 sm:mt-1 sm:text-xs'
+
   return (
-    <div className={`mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:mt-8 sm:gap-x-5 ${className}`}>
+    <div className={`${stackClass} ${className}`.trim()}>
+      {intro ? (
+        <p
+          className={`mb-3 w-full max-w-xl text-center font-lato font-semibold uppercase tracking-[0.16em] text-invite-ink-soft/90 ${
+            dense
+              ? 'text-[0.65rem] leading-snug sm:mb-3.5 sm:text-[0.7rem]'
+              : 'mb-4 text-xs tracking-[0.18em] sm:text-sm'
+          }`}
+        >
+          {intro}
+        </p>
+      ) : null}
+      <div className={digitsRowClass}>
       {[
         { label: 'Days', str: daysStr },
         { label: 'Hours', str: hoursStr },
@@ -56,15 +84,14 @@ export default function Countdown({ targetIso, className = '' }) {
                 key={`${part.label}-${d}-${digitIdx}`}
                 value={d}
                 digitKey={`${idx}-${digitIdx}-${d}`}
-                className="font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]"
+                className={digitClass}
               />
             ))}
           </div>
-          <div className="mt-0.5 font-lato text-[0.65rem] font-semibold uppercase tracking-widest text-invite-ink-soft/85 sm:mt-1 sm:text-xs">
-            {part.label}
-          </div>
+          <div className={labelClass}>{part.label}</div>
         </div>
       ))}
+      </div>
     </div>
   )
 }

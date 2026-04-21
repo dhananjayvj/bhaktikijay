@@ -1,6 +1,7 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
+import { WEDDING_DATE_LINE } from '../constants/wedding.js'
 
 const EVENTS = [
   { key: 'Mehendi', label: 'Mehendi' },
@@ -11,17 +12,66 @@ const EVENTS = [
   { key: 'Reception', label: 'Reception' },
 ]
 
+function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
+  const eventsDisplay =
+    eventTags.trim() || 'We’ll share the full schedule with you closer to the date.'
+  return (
+    <motion.div
+      className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border-2 border-gold/80 bg-gradient-to-b from-cream via-cream to-invite-blush/40 px-6 py-8 text-center shadow-[0_20px_50px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.85)]"
+      initial={{ opacity: 0, y: 16, rotateX: -8 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ duration: 0.55, ease: [0.33, 1, 0.24, 1] }}
+      style={{ transformPerspective: 900 }}
+    >
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 h-2 opacity-60"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            'repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(59,31,10,0.12) 6px, rgba(59,31,10,0.12) 8px)',
+        }}
+      />
+      <p className="font-lato text-[0.65rem] font-bold uppercase tracking-[0.35em] text-terra/90">Admitted</p>
+      <p className="mt-2 font-cinzel text-2xl font-bold tracking-wide text-brown md:text-3xl">BhaktiKiJay</p>
+      <p className="mt-1 font-cormorant text-lg italic text-stone-700">Celebration of love</p>
+      <div className="mx-auto my-5 h-px max-w-[12rem] bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
+      <p className="font-playfair text-2xl font-semibold text-invite-wine md:text-3xl">{name}</p>
+      <p className="mt-2 font-lato text-sm text-stone-700/90">
+        {guests === '1' ? '1 guest' : `${guests} guests`}
+        {guestNames.trim() && guests !== '1' ? ` · ${guestNames.trim()}` : ''}
+      </p>
+      <p className="mt-4 font-cinzel text-sm font-semibold tracking-wider text-terra">{WEDDING_DATE_LINE}</p>
+      <p className="mt-3 font-cormorant text-sm italic leading-relaxed text-stone-700/85">{eventsDisplay}</p>
+      {message.trim() ? (
+        <p className="mt-4 rounded-xl border border-gold/30 bg-cream/40 px-3 py-2 font-lato text-xs text-stone-700/90">
+          “{message.trim()}”
+        </p>
+      ) : null}
+      <p className="mt-6 font-script text-3xl text-gold-dark md:text-4xl">See you in Feb!</p>
+      <p className="mt-2 font-lato text-[0.65rem] uppercase tracking-widest text-stone-600/70">
+        Screenshot to save this card
+      </p>
+    </motion.div>
+  )
+}
+
 export default function RSVP() {
   const [name, setName] = useState('')
   const [guests, setGuests] = useState('2')
+  const [guestNames, setGuestNames] = useState('')
   const [message, setMessage] = useState('')
   const [selected, setSelected] = useState([])
 
   const [submitted, setSubmitted] = useState(false)
   const [particleTriggerId, setParticleTriggerId] = useState(0)
-  const [successNote, setSuccessNote] = useState('')
+  const [eventTags, setEventTags] = useState('')
 
   const selectedSet = useMemo(() => new Set(selected), [selected])
+  const showGuestNames = guests !== '1'
+
+  useEffect(() => {
+    if (guests === '1') setGuestNames('')
+  }, [guests])
 
   const toggleEvent = (key) => {
     setSelected((prev) => {
@@ -36,15 +86,14 @@ export default function RSVP() {
     e.preventDefault()
     if (!name.trim()) return
     setParticleTriggerId((v) => v + 1)
-    const eventsText = selected.length ? selected.join(', ') : 'your presence'
-    setSuccessNote(`Thank you, ${name.trim()}! We’re delighted you’ll join for ${eventsText}.`)
+    setEventTags(selected.length ? selected.join(', ') : '')
     setSubmitted(true)
   }
 
   return (
     <motion.section
       id="rsvp"
-      className="reveal relative overflow-hidden border-t border-gold/20 bg-terra px-4 py-16 md:px-10 md:py-20"
+      className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-terra px-4 py-16 md:px-10 md:py-20"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
@@ -109,6 +158,22 @@ export default function RSVP() {
                   </div>
                 </div>
 
+                {showGuestNames ? (
+                  <div className="mt-4">
+                    <label className="mb-1.5 block text-left font-lato text-cream/90 text-xs font-semibold uppercase tracking-widest">
+                      Guest names <span className="font-normal normal-case text-cream/60">(optional)</span>
+                    </label>
+                    <textarea
+                      id="rsvp-guest-names"
+                      value={guestNames}
+                      onChange={(e) => setGuestNames(e.target.value)}
+                      placeholder="Who’s coming with you?"
+                      rows={2}
+                      className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
+                    />
+                  </div>
+                ) : null}
+
                 <div className="mt-5">
                   <label className="sr-only" htmlFor="rsvp-message">
                     Message
@@ -165,37 +230,25 @@ export default function RSVP() {
             ) : (
               <motion.div
                 key="success"
-                className="relative px-2"
+                className="relative px-1 sm:px-2"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.3 }}
               >
-                <motion.div
-                  className="mx-auto flex w-full max-w-sm flex-col items-center gap-2 text-center"
-                  initial={{ scale: 0, rotate: -180 }}
-                  animate={{ scale: 1, rotate: 0 }}
-                  transition={{ duration: 0.65, ease: [0.77, 0, 0.175, 1] }}
-                  style={{ willChange: 'transform' }}
-                >
-                  <div className="text-5xl" aria-hidden="true">
-                    🎉
-                  </div>
-                  <div className="font-playfair text-cream text-2xl font-black leading-tight">
-                    RSVP received
-                  </div>
-                  <div className="font-cormorant text-cream/95 text-base leading-relaxed">
-                    {successNote}
-                  </div>
-                  {message.trim() ? (
-                    <div className="mt-3 rounded-xl border border-gold/35 bg-cream/10 px-4 py-3 font-lato text-cream/90 text-sm">
-                      Message: “{message.trim()}”
-                    </div>
-                  ) : null}
-                  <div className="mt-4 font-lato text-cream/70 text-xs">
-                    (This demo doesn’t submit to a backend yet.)
-                  </div>
-                </motion.div>
+                <AdmissionCard
+                  name={name.trim()}
+                  guests={guests}
+                  guestNames={guestNames}
+                  eventTags={eventTags}
+                  message={message}
+                />
+                <p className="mt-6 font-cormorant text-cream/95 text-base leading-relaxed">
+                  Thank you, {name.trim()} — we can’t wait to celebrate with you.
+                </p>
+                <p className="mt-3 font-lato text-cream/65 text-xs">
+                  (This demo doesn’t submit to a backend yet.)
+                </p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -204,4 +257,3 @@ export default function RSVP() {
     </motion.section>
   )
 }
-

@@ -1,5 +1,5 @@
 import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, LayoutGroup, motion, useScroll } from 'framer-motion'
+import { AnimatePresence, LayoutGroup, motion, useScroll, useTransform } from 'framer-motion'
 import Overlay from './components/Overlay.jsx'
 import Hero from './components/Hero.jsx'
 import CouplePortrait from './components/CouplePortrait.jsx'
@@ -27,6 +27,7 @@ export default function App() {
   const mainCardRef = useRef(null)
 
   const { scrollYProgress } = useScroll()
+  const scrollHintOpacity = useTransform(scrollYProgress, [0, 0.04, 0.08], [1, 0.6, 0])
 
   const progressBarStyle = useMemo(
     () => ({
@@ -99,12 +100,15 @@ export default function App() {
 
         <motion.div
           aria-hidden="true"
-          className="fixed top-0 left-0 right-0 z-[60] h-1 origin-left"
+          title="Scroll progress"
+          className="fixed top-0 left-0 right-0 z-[60] h-[2px] origin-left shadow-[0_1px_6px_rgba(212,175,55,0.35)]"
           style={{ ...progressBarStyle, scaleX: scrollYProgress }}
         />
 
+        {null}
+
         <div ref={mainCardRef} className="relative z-[2]">
-          <Hero inviteRevealed={heroReveal || !overlayOpen} />
+          <Hero inviteRevealed={heroReveal || !overlayOpen} skipIntro={heroReveal} />
           <CouplePortrait />
 
           <Suspense fallback={null}>

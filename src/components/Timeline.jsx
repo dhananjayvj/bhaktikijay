@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
+import MandapArchIcon from './MandapArchIcon.jsx'
 
 function useIsMdUp() {
   const [mdUp, setMdUp] = useState(false)
@@ -31,15 +32,21 @@ function EventCard({ event, side, index }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.12 })
 
-  const [notesOpen, setNotesOpen] = useState(false)
+  const [burstOpen, setBurstOpen] = useState(false)
   const [burstId, setBurstId] = useState(0)
 
   const xOffset = side === 'left' ? -60 : 60
-  const isSangeet = event.title.toLowerCase() === 'sangeet'
+
+  const triggerBurst = () => {
+    setBurstId((v) => v + 1)
+    setBurstOpen(true)
+    window.setTimeout(() => setBurstOpen(false), 900)
+  }
 
   return (
     <div ref={ref} className="relative">
       <div
+        data-no-sparkle="true"
         className={[
           'rounded-2xl border border-gold/25 bg-cream/90 backdrop-blur-sm shadow-sm',
           'p-5 md:p-6',
@@ -51,6 +58,10 @@ function EventCard({ event, side, index }) {
           animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : xOffset }}
           transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           className="relative"
+          onPointerEnter={(e) => {
+            if (e.pointerType === 'mouse') triggerBurst()
+          }}
+          onClick={() => triggerBurst()}
         >
           {/* Day badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-cream/80 px-3 py-1">
@@ -65,7 +76,13 @@ function EventCard({ event, side, index }) {
                 <h3 className="font-playfair text-stone-900 text-xl font-black tracking-tight">
                   {event.title}
                 </h3>
-                {event.emoji && <span className="text-xl" aria-hidden="true">{event.emoji}</span>}
+                {event.icon === 'mandap' ? (
+                  <MandapArchIcon className="shrink-0" size={28} />
+                ) : event.emoji ? (
+                  <span className="text-xl" aria-hidden="true">
+                    {event.emoji}
+                  </span>
+                ) : null}
               </div>
               <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
                 {event.subtitle}
@@ -79,21 +96,20 @@ function EventCard({ event, side, index }) {
             </div>
           </div>
 
-          {/* Sangeet hover emoji float */}
           <div className="relative mt-3 h-0">
             <AnimatePresence>
-              {isSangeet && notesOpen && (
+              {burstOpen && (
                 <div className="pointer-events-none absolute right-2 top-0 flex">
-                  {Array.from({ length: 5 }).map((_, i) => (
+                  {event.burst.map((sym, i) => (
                     <motion.span
                       key={`${burstId}-${i}`}
                       initial={{ y: 0, opacity: 1, x: i % 2 === 0 ? -8 : 8 }}
                       animate={{ y: -42 - i * 6, opacity: 0 }}
                       exit={{ opacity: 0 }}
                       transition={{ duration: 0.75, delay: i * 0.06, ease: 'easeOut' }}
-                      className="absolute text-[18px]"
+                      className="absolute text-[18px] leading-none"
                     >
-                      {['🎵', '🎶', '♪', '♫', '🎵'][i]}
+                      {sym}
                     </motion.span>
                   ))}
                 </div>
@@ -102,18 +118,6 @@ function EventCard({ event, side, index }) {
           </div>
         </motion.div>
 
-        {isSangeet && (
-          <div
-            className="absolute inset-0"
-            onMouseEnter={() => {
-              setBurstId((v) => v + 1)
-              setNotesOpen(true)
-              window.setTimeout(() => setNotesOpen(false), 900)
-            }}
-          />
-        )}
-
-        {/* Hidden marker for click/hover layering */}
         <span className="sr-only">{`Timeline event ${index + 1}`}</span>
       </div>
     </div>
@@ -129,7 +133,8 @@ export default function Timeline() {
         dayPill: 'Day 1 · Feb 14',
         day: 1,
         title: 'Mehendi',
-        emoji: '🌿',
+        emoji: '🎨',
+        burst: ['🎨', '✨', '♡', '🎨'],
         time: '11:00 AM',
         subtitle: 'A celebration of color and henna.',
       },
@@ -137,7 +142,8 @@ export default function Timeline() {
         dayPill: 'Day 1 · Feb 14',
         day: 1,
         title: 'Haldi',
-        emoji: '💛',
+        emoji: '☀️',
+        burst: ['☀️', '💛', '✨', '☀️'],
         time: '3:00 PM',
         subtitle: 'Turmeric, tradition, and laughter.',
       },
@@ -146,6 +152,7 @@ export default function Timeline() {
         day: 2,
         title: 'Baraat',
         emoji: '🐎',
+        burst: ['🐎', '✨', '🐎', '✨'],
         time: '4:30 PM',
         subtitle: "Join the groom's procession.",
       },
@@ -153,7 +160,9 @@ export default function Timeline() {
         dayPill: 'Day 2 · Feb 15',
         day: 2,
         title: 'Sangeet',
-        emoji: '🎵',
+        emoji: '💃',
+        /** Music-note only — restrained “digital blessing”, not confetti */
+        burst: ['🎵', '♪', '🎶', '♫'],
         time: '7:00 PM',
         subtitle: 'An evening of music and dance.',
       },
@@ -161,7 +170,8 @@ export default function Timeline() {
         dayPill: 'Day 3 · Feb 16',
         day: 3,
         title: 'Muhurtham',
-        emoji: '🕯️',
+        icon: 'mandap',
+        burst: ['✦', '✧', '✦', '✧'],
         time: '9:30 AM',
         subtitle: 'The auspicious ceremony.',
       },
@@ -170,6 +180,7 @@ export default function Timeline() {
         day: 3,
         title: 'Reception',
         emoji: '🥂',
+        burst: ['🥂', '✨', '🥂', '✨'],
         time: '7:00 PM onwards',
         subtitle: 'A celebratory evening to follow.',
       },
@@ -183,12 +194,11 @@ export default function Timeline() {
   return (
     <motion.section
       id="timeline"
-      className="reveal relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
+      className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
     >
-      {/* Subtle doodle accent (timeline only) */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <svg
           viewBox="0 0 260 260"
@@ -227,7 +237,6 @@ export default function Timeline() {
         </div>
 
         <div className="relative mt-14">
-          {/* Vertical line: centered on desktop, left-aligned on mobile */}
           <div
             aria-hidden="true"
             className="absolute left-5 top-2 bottom-2 w-[2px] md:left-1/2 md:-translate-x-1/2"
@@ -247,7 +256,6 @@ export default function Timeline() {
 
               return (
                 <div key={`${event.title}-${event.time}-${i}`} className="relative">
-                  {/* Dot on the timeline line */}
                   <div
                     className={[
                       'absolute top-6 z-[2]',
@@ -269,4 +277,3 @@ export default function Timeline() {
     </motion.section>
   )
 }
-

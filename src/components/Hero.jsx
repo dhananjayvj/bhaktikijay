@@ -2,9 +2,18 @@ import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
+import GaneshMark from './GaneshMark.jsx'
+import SubtleGoldDivider from './SubtleGoldDivider.jsx'
 import Countdown from './Countdown.jsx'
-import { BHAKTI_PARENT_LINE, DHANANJAY_PARENT_LINE, INVITE_BLESSING } from '../constants/inviteCopy.js'
-import { WEDDING_DATE_LINE } from '../constants/wedding.js'
+import {
+  BHAKTI_PARENT_LINE,
+  COUNTDOWN_INTRO,
+  DHANANJAY_PARENT_LINE,
+  INVITE_CELEBRATION,
+  INVITE_HEADER,
+  INVITE_OPENING_VERSE,
+} from '../constants/inviteCopy.js'
+import { WEDDING_DATE_HEADLINE } from '../constants/wedding.js'
 
 const easeSmooth = [0.77, 0, 0.175, 1]
 
@@ -38,7 +47,7 @@ const countdownReveal = {
 
 const layoutSpring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.85 }
 
-export default function Hero({ inviteRevealed = false }) {
+export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
 
@@ -50,90 +59,91 @@ export default function Hero({ inviteRevealed = false }) {
     [],
   )
 
-  const onCopyHashtag = async () => {
-    try {
-      await navigator.clipboard.writeText('#BhaktiKiJay')
-      setToastMsg('Copied #BhaktiKiJay')
-      setToastOpen(true)
-    } catch {
-      setToastMsg('Copy failed — please copy manually')
-      setToastOpen(true)
-    }
-  }
-
   return (
-    <section id="invitation" className="relative min-h-dvh min-h-[100svh] overflow-hidden">
+    <section
+      id="invitation"
+      className="relative min-h-[100svh] overflow-x-hidden overflow-y-visible"
+    >
       <div className="absolute inset-0 bg-invite-paper" style={bgStyle} />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
 
       {!inviteRevealed ? (
         <div className="relative min-h-dvh min-h-[100svh]" aria-hidden="true" />
       ) : (
-        <div className="relative mx-auto max-w-5xl px-4 pb-16 pt-24 md:px-10 md:pb-20 md:pt-28">
-          <motion.div
-            className="mx-auto flex w-full flex-col items-center text-center"
-            initial="hidden"
-            animate="show"
-            variants={{
-              hidden: {},
-              show: {
-                transition: { staggerChildren: 0, delayChildren: 0 },
-              },
-            }}
-          >
-            <motion.div variants={kolamReveal} className="w-full">
-              <div className="mt-8">
-                <KolamWaveDivider />
-              </div>
+        <motion.div
+          className="relative mx-auto grid min-h-[100svh] w-full max-w-5xl grid-rows-[auto_1fr_auto] gap-y-4 px-3 pb-[max(2.5rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:gap-y-5 sm:px-4 sm:pb-16 sm:pt-10 md:gap-y-6 md:px-10 md:pb-20 md:pt-14"
+          initial={skipIntro ? 'show' : 'hidden'}
+          animate="show"
+          variants={{
+            hidden: {},
+            show: {
+              transition: { staggerChildren: 0, delayChildren: 0 },
+            },
+          }}
+        >
+          <div className="flex flex-col items-center gap-4 sm:gap-5">
+            <motion.div variants={fadeLine(0.02)} className="w-full">
+              <GaneshMark className="opacity-85" />
             </motion.div>
 
-            <motion.div variants={fadeLine(0.06)} className="mt-8 flex justify-center">
-              <motion.button
-                data-no-sparkle="true"
-                onClick={onCopyHashtag}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-full border-2 border-invite-wine/50 bg-white/60 px-5 py-2.5 font-lato text-sm font-semibold tracking-wider text-invite-wine shadow-sm backdrop-blur-sm transition-colors hover:bg-invite-wine hover:text-invite-paper"
-                aria-label="Copy BhaktiKiJay hashtag"
-              >
-                <span aria-hidden="true">#</span>
-                <span>BhaktiKiJay</span>
-              </motion.button>
+            <motion.div variants={kolamReveal} className="w-full">
+              <div className="mt-0 md:mt-1">
+                <KolamWaveDivider compact />
+              </div>
             </motion.div>
 
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
 
-            <motion.div variants={fadeLine(0.14)} className="mt-5 max-w-2xl">
-              <p className="font-cormorant italic text-invite-ink-soft text-[clamp(1rem,2.3vw,1.15rem)] leading-relaxed">
-                {INVITE_BLESSING}
+            <motion.div
+              variants={fadeLine(0.12)}
+              className="font-cinzel text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine"
+            >
+              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+                ||
+              </span>
+              <span className="px-1.5 sm:px-2.5">{INVITE_HEADER}</span>
+              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+                ||
+              </span>
+            </motion.div>
+
+            <motion.div variants={fadeLine(0.18)} className="max-w-2xl px-0.5">
+              <p className="mx-auto max-w-md font-cormorant text-[clamp(0.88rem,2vw,1.08rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+                {INVITE_OPENING_VERSE}
               </p>
             </motion.div>
 
-            <div className="mt-6 grid w-full grid-cols-1 items-center justify-center gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
+            <motion.div variants={fadeLine(0.26)} className="w-full">
+              <SubtleGoldDivider className="opacity-80" />
+            </motion.div>
+          </div>
+
+          <div className="flex min-h-0 w-full flex-col items-center justify-center py-1 sm:py-3">
+            <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
               <div className="flex flex-col items-center text-center">
                 <motion.div variants={instant}>
                   <motion.div
                     layoutId="invite-line-bhakti"
                     className="font-script font-normal text-invite-wine"
-                    style={{ fontSize: 'clamp(3rem, 10vw, 7.2rem)', lineHeight: 0.95 }}
+                    style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95 }}
                     transition={layoutSpring}
                   >
                     Bhakti
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine(0.42)} className="mt-3 max-w-[26rem]">
-                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.98rem,2vw,1.08rem)] leading-relaxed">
+                <motion.div variants={fadeLine(0.42)} className="mt-3 max-w-[26rem] sm:mt-4">
+                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {BHAKTI_PARENT_LINE}
                   </p>
                 </motion.div>
               </div>
 
-              <div className="flex items-center justify-center md:pt-3">
+              <div className="flex items-center justify-center py-0.5 md:pt-3">
                 <motion.div variants={instant}>
                   <motion.div
                     layoutId="invite-line-amp"
                     className="font-script italic font-normal text-invite-mauve"
-                    style={{ fontSize: 'clamp(2.0rem, 6vw, 3.8rem)', lineHeight: 1 }}
+                    style={{ fontSize: 'clamp(1.65rem, 5.5vw, 3.8rem)', lineHeight: 1 }}
                     transition={layoutSpring}
                   >
                     &amp;
@@ -146,36 +156,48 @@ export default function Hero({ inviteRevealed = false }) {
                   <motion.div
                     layoutId="invite-line-dhananjay"
                     className="font-script font-normal text-invite-wine"
-                    style={{ fontSize: 'clamp(3rem, 10vw, 7.2rem)', lineHeight: 0.95 }}
+                    style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95 }}
                     transition={layoutSpring}
                   >
                     Dhananjay
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine(0.52)} className="mt-3 max-w-[26rem]">
-                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.98rem,2vw,1.08rem)] leading-relaxed">
+                <motion.div variants={fadeLine(0.52)} className="mt-3 max-w-[26rem] sm:mt-4">
+                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {DHANANJAY_PARENT_LINE}
                   </p>
                 </motion.div>
               </div>
             </div>
+          </div>
 
-            <motion.div variants={instant} className="mt-8 flex flex-col items-center gap-2">
+          <div className="flex flex-col items-center gap-3 sm:gap-4">
+            <motion.div variants={fadeLine(0.58)} className="max-w-2xl px-0.5">
+              <p className="mx-auto max-w-md font-cormorant text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+                {INVITE_CELEBRATION}
+              </p>
+            </motion.div>
+
+            <motion.div variants={instant} className="flex flex-col items-center gap-1.5">
               <motion.div
                 layoutId="invite-line-date"
-                className="font-cinzel font-bold tracking-wide text-invite-wine"
-                style={{ fontSize: 'clamp(1.05rem, 2.6vw, 1.6rem)' }}
+                className="flex flex-col items-center gap-1.5 text-invite-wine"
                 transition={layoutSpring}
               >
-                {WEDDING_DATE_LINE}
+                <div
+                  className="font-cinzel font-bold uppercase tracking-[0.14em] text-invite-wine"
+                  style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.45rem)' }}
+                >
+                  {WEDDING_DATE_HEADLINE}
+                </div>
               </motion.div>
             </motion.div>
 
             <motion.div variants={countdownReveal} className="w-full">
-              <Countdown targetIso="2027-02-14T09:30:00+05:30" />
+              <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-14T09:30:00+05:30" />
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       )}
     </section>
   )

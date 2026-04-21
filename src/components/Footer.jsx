@@ -41,7 +41,7 @@ function KolamFooterMark() {
 export default function Footer() {
   return (
     <motion.footer
-      className="reveal bg-brown px-4 py-16 text-center md:px-10 md:py-20"
+      className="defer-heavy-section reveal bg-brown px-4 py-16 text-center md:px-10 md:py-20"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
@@ -71,9 +71,7 @@ export default function Footer() {
 
         <GearJoke />
 
-        <div className="mt-8 font-lato text-xs text-cream/55">
-          bhaktikijay.fyi · Made with ♥️ in Bengaluru
-        </div>
+        <div className="mt-8 font-lato text-xs text-cream/55">Made with ♥️</div>
       </div>
     </motion.footer>
   )

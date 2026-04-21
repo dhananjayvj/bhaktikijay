@@ -1,9 +1,11 @@
 import React from 'react'
-import { WEDDING_DATE_LINE } from '../constants/wedding.js'
+import { WEDDING_DATE_HEADLINE } from '../constants/wedding.js'
 import {
   BHAKTI_PARENT_LINE,
   DHANANJAY_PARENT_LINE,
-  INVITE_BLESSING,
+  INVITE_CELEBRATION,
+  INVITE_HEADER,
+  INVITE_OPENING_VERSE,
 } from '../constants/inviteCopy.js'
 
 /**
@@ -18,6 +20,14 @@ export default function InviteNarrative({ compact = false }) {
     ? 'clamp(1.65rem, 6.5vw, 2.85rem)'
     : 'clamp(3rem, 10vw, 7.2rem)'
   const scriptAmp = compact ? 'clamp(1.35rem, 5vw, 2.2rem)' : 'clamp(2.0rem, 6vw, 3.8rem)'
+
+  const headerCls = compact
+    ? 'text-[clamp(0.78rem,2.4vw,0.95rem)]'
+    : 'text-[clamp(0.92rem,2.2vw,1.18rem)]'
+
+  const verseCls = compact
+    ? 'max-w-[36ch] text-[clamp(0.72rem,2.4vw,0.92rem)]'
+    : 'mt-4 max-w-2xl text-[clamp(0.88rem,2vw,1.08rem)]'
 
   return (
     <div
@@ -36,14 +46,20 @@ export default function InviteNarrative({ compact = false }) {
         <span>BhaktiKiJay</span>
       </div>
 
+      <div className={`font-cormorant italic leading-snug tracking-wide text-invite-wine ${headerCls}`}>
+        <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+          ||
+        </span>
+        <span className="px-1 sm:px-1.5">{INVITE_HEADER}</span>
+        <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+          ||
+        </span>
+      </div>
+
       <p
-        className={`font-cormorant italic leading-relaxed text-invite-ink-soft ${
-          compact
-            ? 'max-w-[34ch] text-[clamp(0.78rem,2.6vw,0.95rem)]'
-            : 'mt-5 max-w-2xl text-[clamp(1rem,2.3vw,1.15rem)]'
-        }`}
+        className={`font-cormorant italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D'] ${verseCls}`}
       >
-        {INVITE_BLESSING}
+        {INVITE_OPENING_VERSE}
       </p>
 
       <div
@@ -97,9 +113,22 @@ export default function InviteNarrative({ compact = false }) {
         </div>
       </div>
 
-      <div className={`font-cinzel font-bold tracking-wide text-invite-wine ${compact ? 'mt-2' : 'mt-8'}`}>
-        <span style={{ fontSize: compact ? 'clamp(0.82rem, 2.4vw, 1.05rem)' : 'clamp(1.05rem, 2.6vw, 1.6rem)' }}>
-          {WEDDING_DATE_LINE}
+      <p
+        className={`font-cormorant italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D'] ${
+          compact
+            ? 'mt-2 max-w-[34ch] text-[clamp(0.72rem,2.3vw,0.9rem)]'
+            : 'mt-6 max-w-2xl text-[clamp(0.88rem,2vw,1.06rem)]'
+        }`}
+      >
+        {INVITE_CELEBRATION}
+      </p>
+
+      <div className={`flex flex-col items-center gap-1 text-invite-wine ${compact ? 'mt-2' : 'mt-8'}`}>
+        <span
+          className="font-cinzel font-bold uppercase tracking-[0.14em]"
+          style={{ fontSize: compact ? 'clamp(0.78rem, 2.3vw, 1rem)' : 'clamp(0.95rem, 2.4vw, 1.45rem)' }}
+        >
+          {WEDDING_DATE_HEADLINE}
         </span>
       </div>
     </div>

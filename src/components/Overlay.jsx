@@ -7,6 +7,7 @@ import {
 } from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
 import HeroInvitationMirror from './HeroInvitationMirror.jsx'
+import { playSealBreakFeedback } from '../utils/sealFeedback.js'
 
 /** Premium curtain motion (Material-style) */
 const curtainEase = [0.4, 0, 0.2, 1]
@@ -109,7 +110,7 @@ function WaxBlobHalf({ side, size }) {
   )
 }
 
-function WaxOnCurtain({ side, size, letter }) {
+function WaxOnCurtain({ side, size, letter, shimmer }) {
   const engraved =
     side === 'left'
       ? '0 1px 0 rgba(255,255,255,0.12), 0 -1px 2px rgba(0,0,0,0.5), 2px 3px 4px rgba(0,0,0,0.35)'
@@ -123,12 +124,14 @@ function WaxOnCurtain({ side, size, letter }) {
       <div className="relative flex" style={{ width: size * 0.5, height: size * 0.88 }}>
         <WaxBlobHalf side={side} size={size} />
         <span
-          className="pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.75rem,6vw,2.2rem)] leading-none text-[#efd9d2]"
+          className={`pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.75rem,6vw,2.2rem)] leading-none ${
+            shimmer ? 'wax-monogram-shimmer' : 'text-[#efd9d2]'
+          }`}
           style={{
             fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
             paddingLeft: side === 'left' ? '0.12em' : 0,
             paddingRight: side === 'right' ? '0.1em' : 0,
-            textShadow: engraved,
+            ...(shimmer ? {} : { textShadow: engraved }),
           }}
         >
           {letter}
@@ -238,7 +241,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="left">
-            <WaxOnCurtain side="left" size={waxSize} letter="B" />
+            <WaxOnCurtain side="left" size={waxSize} letter="B" shimmer={idle} />
           </CurtainPaper>
         </motion.div>
 
@@ -253,7 +256,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="right">
-            <WaxOnCurtain side="right" size={waxSize} letter="D" />
+            <WaxOnCurtain side="right" size={waxSize} letter="D" shimmer={idle} />
           </CurtainPaper>
         </motion.div>
 
@@ -356,6 +359,7 @@ export default function Overlay({ onClose, onExpandingStart }) {
 
   const handleSealPress = useCallback(() => {
     if (phase !== 'closed') return
+    playSealBreakFeedback()
     curtainAnimRef.current?.stop()
     curtainProgress.set(0)
     curtainAnimRef.current = animate(curtainProgress, 1, {

@@ -44,6 +44,44 @@
     will-change: transform;
   }
 
+  /* Skip layout/paint for off-screen long-scroll sections (older iPhones) */
+  .defer-heavy-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
+
+  @supports not (contain-intrinsic-size: auto 1px) {
+    .defer-heavy-section {
+      contain-intrinsic-size: 720px;
+    }
+  }
+
+  /* Gold shimmer on wax monogram — idle cue every ~5s */
+  @keyframes wax-monogram-shimmer {
+    0%,
+    88%,
+    100% {
+      color: #efd9d2;
+      text-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.1),
+        0 -1px 2px rgba(0, 0, 0, 0.45),
+        0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    92%,
+    96% {
+      color: #f8ecc8;
+      text-shadow:
+        0 0 12px rgba(212, 175, 55, 0.55),
+        0 1px 0 rgba(255, 255, 255, 0.35),
+        0 -1px 2px rgba(0, 0, 0, 0.4),
+        0 2px 6px rgba(212, 175, 55, 0.35);
+    }
+  }
+
+  .wax-monogram-shimmer {
+    animation: wax-monogram-shimmer 5s ease-in-out infinite;
+  }
+
   .paper-parchment {
     background-image:
       radial-gradient(ellipse 120% 80% at 50% 0%, rgba(255, 252, 248, 0.65), transparent 45%),
