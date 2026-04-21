@@ -11,7 +11,7 @@ import {
   INVITE_HEADER,
   INVITE_OPENING_VERSE,
 } from '../constants/inviteCopy.js'
-import { WEDDING_DATE_HEADLINE } from '../constants/wedding.js'
+import { CEREMONY_DATE_HEADLINE } from '../constants/wedding.js'
 
 /**
  * Static mirror of the Hero invitation behind curtains — spacing matches {@link Hero}
@@ -94,7 +94,7 @@ export default function HeroInvitationMirror() {
             className="font-cinzel font-bold uppercase tracking-[0.14em] text-invite-wine"
             style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.45rem)' }}
           >
-            {WEDDING_DATE_HEADLINE}
+            {CEREMONY_DATE_HEADLINE}
           </div>
         </div>
 

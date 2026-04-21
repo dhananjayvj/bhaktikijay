@@ -163,7 +163,7 @@ export default function Timeline() {
         title: 'Baraat',
         emoji: '🐎',
         burst: ['🐎', '✨', '🐎', '✨'],
-        time: '—',
+        time: 'Evening',
         subtitle: "Join the groom's procession.",
       },
       {
