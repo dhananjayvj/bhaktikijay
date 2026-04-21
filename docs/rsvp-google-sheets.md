@@ -27,6 +27,11 @@ Use this as the value for `VITE_RSVP_ENDPOINT`:
 
 `https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec`
 
+### Important (CORS)
+
+Google Apps Script Web Apps usually don’t include CORS headers, so browsers will block normal cross-site `fetch()` requests.
+This site sends the RSVP using `mode: "no-cors"` with a simple `Content-Type` so the request still reaches your script and can append to the sheet.
+
 ### Apps Script (`Code.gs`)
 
 ```javascript

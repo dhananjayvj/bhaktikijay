@@ -12,6 +12,9 @@ const EVENTS = [
   { key: 'Reception', label: 'Reception' },
 ]
 
+const DEFAULT_RSVP_ENDPOINT =
+  'https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec'
+
 function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
   const eventsDisplay =
     eventTags.trim() || 'We’ll share the full schedule with you closer to the date.'
@@ -84,7 +87,7 @@ export default function RSVP() {
     })
   }
 
-  const endpoint = useMemo(() => import.meta.env?.VITE_RSVP_ENDPOINT || '', [])
+  const endpoint = useMemo(() => import.meta.env?.VITE_RSVP_ENDPOINT || DEFAULT_RSVP_ENDPOINT, [])
 
   const onSubmit = async (e) => {
     e.preventDefault()
@@ -108,10 +111,16 @@ export default function RSVP() {
 
     if (endpoint) {
       try {
+        const body = JSON.stringify(payload)
+        /**
+         * Google Apps Script Web Apps typically don't return CORS headers.
+         * Use `no-cors` + a "simple" Content-Type so the browser can still send the request.
+         */
         const res = await fetch(endpoint, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body,
         })
         if (res.type !== 'opaque' && !res.ok) throw new Error(`Request failed (${res.status})`)
         setSubmitState('success')
@@ -143,17 +152,6 @@ export default function RSVP() {
         <div className="mt-3 font-lato text-cream/95 text-sm">
           Kindly respond by <span className="font-bold text-gold">January 15, 2027</span> so we can plan with care.
         </div>
-
-        {!endpoint ? (
-          <div className="mx-auto mt-4 max-w-xl rounded-xl border border-gold/35 bg-cream/10 px-4 py-3 text-left">
-            <div className="font-lato text-cream/90 text-xs font-bold uppercase tracking-widest">
-              RSVP saving not set up yet
-            </div>
-            <div className="mt-1 font-cormorant text-cream/90 text-sm leading-relaxed">
-              Once we connect a Google Sheet, your responses will be saved automatically.
-            </div>
-          </div>
-        ) : null}
 
         <div className="relative mt-10 rounded-2xl border border-gold/45 bg-terra/95 p-5 shadow-xl backdrop-blur md:p-8">
           <ParticleCanvas
