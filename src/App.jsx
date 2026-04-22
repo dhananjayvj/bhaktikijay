@@ -4,6 +4,7 @@ import Overlay from './components/Overlay.jsx'
 import Hero from './components/Hero.jsx'
 import CouplePortrait from './components/CouplePortrait.jsx'
 import fluteTrack from '../images/flute.mp3'
+import heroBackdrop from '../images/backdrop.jpeg'
 
 const Timeline = React.lazy(() => import('./components/Timeline.jsx'))
 const Venue = React.lazy(() => import('./components/Venue.jsx'))
@@ -24,6 +25,7 @@ export default function App() {
   const [overlayOpen, setOverlayOpen] = useState(true)
   /** True once the letter zoom starts so Hero can render under the fading backdrop (avoids blank gap). */
   const [heroReveal, setHeroReveal] = useState(false)
+  const [backdropOn, setBackdropOn] = useState(false)
   const [sparkles, setSparkles] = useState([])
   const mainCardRef = useRef(null)
   const audioRef = useRef(null)
@@ -111,6 +113,12 @@ export default function App() {
     }
   }, [heroReveal])
 
+  useEffect(() => {
+    if (!heroReveal) return
+    const t = window.setTimeout(() => setBackdropOn(true), 900)
+    return () => window.clearTimeout(t)
+  }, [heroReveal])
+
   return (
     <LayoutGroup id="invite">
       <div className="relative min-h-dvh min-h-[100svh] w-full bg-cream">
@@ -131,6 +139,31 @@ export default function App() {
         />
 
         <div ref={mainCardRef} className="relative z-[2]">
+          <AnimatePresence>
+            {backdropOn ? (
+              <motion.div
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 2.2, ease: [0.33, 1, 0.24, 1] }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    backgroundImage: `url(${heroBackdrop})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    opacity: 0.12,
+                    filter: 'saturate(1.08) contrast(1.02)',
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-cream/35 via-transparent to-cream/70" />
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+
           <Hero inviteRevealed={heroReveal || !overlayOpen} skipIntro={heroReveal} />
           <CouplePortrait />
 

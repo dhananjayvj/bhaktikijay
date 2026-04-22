@@ -1,6 +1,6 @@
 /** Shared invitation copy — keep Hero, mirror, and InviteNarrative in sync */
 
-export const INVITE_HEADER = 'Sri Neera Narasimha Prasanna'
+export const INVITE_HEADER = 'Shri Neera Narasimha Prasanna'
 
 export const INVITE_OPENING_VERSE = `With the grace of the Almighty and the love of our families, we celebrate a union that was always meant to be.
 
