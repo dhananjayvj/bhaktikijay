@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
+import heroBackdrop from '../../images/backdrop.jpeg'
 import {
   BHAKTI_PARENT_LINE,
   COUNTDOWN_INTRO,
@@ -48,6 +49,7 @@ const layoutSpring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.85 }
 export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
+  const [backdropOn, setBackdropOn] = useState(false)
 
   const bgStyle = useMemo(
     () => ({
@@ -56,6 +58,12 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
     }),
     [],
   )
+
+  useEffect(() => {
+    if (!inviteRevealed) return
+    const t = window.setTimeout(() => setBackdropOn(true), 700)
+    return () => window.clearTimeout(t)
+  }, [inviteRevealed])
 
   return (
     <section
@@ -79,11 +87,34 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             },
           }}
         >
-          {/* Opaque invite panel (no transparency) */}
+          {/* Solid invite panel (opaque) */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 rounded-3xl bg-invite-paper shadow-[0_24px_70px_rgba(0,0,0,0.12)] ring-1 ring-[#D4AF37]/12"
+            className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 rounded-3xl bg-invite-paper shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/12"
           />
+
+          {/* Transparent backdrop that fades in behind the text */}
+          {backdropOn ? (
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2.8, ease: [0.33, 1, 0.24, 1] }}
+            >
+              <div
+                className="absolute inset-0"
+                style={{
+                  backgroundImage: `url(${heroBackdrop})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  opacity: 0.34,
+                  filter: 'saturate(1.15) contrast(1.08)',
+                }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-invite-paper/68 via-invite-paper/20 to-invite-paper/78" />
+            </motion.div>
+          ) : null}
 
           <div className="flex flex-col items-center gap-3.5 sm:gap-5">
             <motion.div variants={kolamReveal} className="w-full">
@@ -98,11 +129,11 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
               variants={fadeLine(0.12)}
               className="font-cinzel font-semibold text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine"
             >
-              <span className="select-none not-italic text-invite-wine" aria-hidden="true">
+              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
               </span>
               <span className="px-1.5 sm:px-2.5">{INVITE_HEADER}</span>
-              <span className="select-none not-italic text-invite-wine" aria-hidden="true">
+              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
               </span>
             </motion.div>
