@@ -22,9 +22,12 @@ export default function CouplePortrait() {
       />
 
       <div className="relative mx-auto max-w-5xl text-center">
-        <h2 className="font-playfair text-2xl font-semibold text-stone-800 md:text-3xl">Together</h2>
-        <p className="mx-auto mt-3 max-w-2xl font-cormorant text-sm leading-relaxed text-stone-600 md:text-base">
-          Grateful for family, friends, and the path that brought us here.
+        <h2 className="font-playfair text-2xl font-semibold text-stone-800 md:text-3xl">A message from the couple</h2>
+        <p className="mx-auto mt-4 max-w-3xl font-cormorant text-sm leading-relaxed text-stone-600 md:text-base">
+          We are truly overjoyed to share this milestone with the people who have shaped our lives. The warmth and
+          blessings we have received from each of you have been deeply moving and have touched us both beyond words. As
+          we prepare for this new beginning, we want to thank you most sincerely for your kindness and support. We are
+          so looking forward to celebrating this day with you
         </p>
 
         <motion.figure
@@ -51,10 +54,6 @@ export default function CouplePortrait() {
               className="w-full object-cover object-center"
             />
           </div>
-
-          <figcaption className="px-5 py-4 text-center font-cormorant italic text-gold-dark/90">
-            Bhakti &amp; Dhananjay
-          </figcaption>
         </motion.figure>
       </div>
     </motion.section>
