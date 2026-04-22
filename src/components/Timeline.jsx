@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
+import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
 
 function useIsMdUp() {
   const [mdUp, setMdUp] = useState(false)
@@ -70,30 +71,39 @@ function EventCard({ event, side, index }) {
             </span>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-start justify-between gap-3">
-            <div className="min-w-[10rem]">
-              <div className="flex items-center gap-2">
-                <h3 className="font-playfair text-stone-900 text-xl font-black tracking-tight">
-                  {event.title}
-                </h3>
-                {event.icon === 'mandap' ? (
-                  <MandapArchIcon className="shrink-0" size={28} />
-                ) : event.emoji ? (
-                  <span className="text-xl" aria-hidden="true">
-                    {event.emoji}
-                  </span>
-                ) : null}
+          <div className="mt-4">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <div className="flex items-center gap-2">
+                  <h3 className="min-w-0 font-playfair text-stone-900 text-xl font-black tracking-tight">
+                    {event.title}
+                  </h3>
+                  {event.icon === 'mandap' ? (
+                    <MandapArchIcon className="shrink-0" size={28} />
+                  ) : event.icon === 'haldi' ? (
+                    <HaldiIcon className="shrink-0 opacity-85" size={28} />
+                  ) : event.icon === 'mehendi' ? (
+                    <MehendiIcon className="shrink-0 opacity-85" size={28} />
+                  ) : event.icon === 'sangeet' ? (
+                    <SangeetIcon className="shrink-0 opacity-85" size={28} />
+                  ) : event.icon === 'baraat' ? (
+                    <BaraatIcon className="shrink-0 opacity-85" size={28} />
+                  ) : event.icon === 'reception' ? (
+                    <ReceptionIcon className="shrink-0 opacity-85" size={28} />
+                  ) : null}
+                </div>
               </div>
-              <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
-                {event.subtitle}
-              </p>
+
+              <div className="shrink-0 text-right">
+                <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
+                  {event.time}
+                </div>
+              </div>
             </div>
 
-            <div className="text-right">
-              <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
-                {event.time}
-              </div>
-            </div>
+            <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
+              {event.subtitle}
+            </p>
           </div>
 
           <div className="relative mt-3 h-0">
@@ -130,20 +140,20 @@ export default function Timeline() {
   const events = useMemo(
     () => [
       {
-        dayPill: 'Feb 24',
+        dayPill: 'Feb 23',
         day: 1,
         title: 'Haldi',
-        emoji: '☀️',
-        burst: ['☀️', '💛', '✨', '☀️'],
+        icon: 'haldi',
+        burst: ['✦', '✧', '✦', '✧'],
         time: '11:00 AM',
         subtitle: 'Turmeric, tradition, and laughter.',
       },
       {
-        dayPill: 'Feb 24',
+        dayPill: 'Feb 23',
         day: 1,
         title: 'Mehendi',
-        emoji: '🎨',
-        burst: ['🎨', '✨', '♡', '🎨'],
+        icon: 'mehendi',
+        burst: ['✦', '✧', '✦', '✧'],
         time: '5:00 PM',
         subtitle: 'A celebration of color and henna.',
       },
@@ -151,9 +161,9 @@ export default function Timeline() {
         dayPill: 'Feb 25',
         day: 2,
         title: 'Sangeet',
-        emoji: '💃',
+        icon: 'sangeet',
         /** Music-note only — restrained “digital blessing”, not confetti */
-        burst: ['🎵', '♪', '🎶', '♫'],
+        burst: ['✦', '✧', '✦', '✧'],
         time: '3:00 PM',
         subtitle: 'An evening of music and dance.',
       },
@@ -161,8 +171,8 @@ export default function Timeline() {
         dayPill: 'Feb 25',
         day: 2,
         title: 'Baraat',
-        emoji: '🐎',
-        burst: ['🐎', '✨', '🐎', '✨'],
+        icon: 'baraat',
+        burst: ['✦', '✧', '✦', '✧'],
         time: '5:30 PM',
         subtitle: "Join the groom's procession.",
       },
@@ -179,8 +189,8 @@ export default function Timeline() {
         dayPill: 'Feb 26',
         day: 3,
         title: 'Reception',
-        emoji: '🥂',
-        burst: ['🥂', '✨', '🥂', '✨'],
+        icon: 'reception',
+        burst: ['✦', '✧', '✦', '✧'],
         time: '12:30 PM',
         subtitle: 'A celebratory evening to follow.',
       },

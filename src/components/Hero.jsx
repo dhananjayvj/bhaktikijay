@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
-import GaneshMark from './GaneshMark.jsx'
 import SubtleGoldDivider from './SubtleGoldDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -81,11 +80,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             },
           }}
         >
-          <div className="flex flex-col items-center gap-4 sm:gap-5">
-            <motion.div variants={fadeLine(0.02)} className="w-full">
-              <GaneshMark className="opacity-85" />
-            </motion.div>
-
+          <div className="flex flex-col items-center gap-3.5 sm:gap-5">
             <motion.div variants={kolamReveal} className="w-full">
               <div className="mt-0 md:mt-1">
                 <KolamWaveDivider compact />

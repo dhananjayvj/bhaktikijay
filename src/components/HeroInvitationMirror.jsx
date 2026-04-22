@@ -1,6 +1,5 @@
 import React from 'react'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
-import GaneshMark from './GaneshMark.jsx'
 import SubtleGoldDivider from './SubtleGoldDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -23,9 +22,7 @@ export default function HeroInvitationMirror() {
       className="pointer-events-none mx-auto grid h-full min-h-0 w-full max-w-5xl grid-rows-[auto_auto_auto] select-none gap-y-3 px-3 pb-2 pt-0 text-center sm:gap-y-4 sm:px-4 sm:pb-3 sm:pt-0 md:gap-y-5 md:px-10 md:pb-4"
       aria-hidden="true"
     >
-      <div className="flex flex-col items-center gap-4 sm:gap-5">
-        <GaneshMark className="opacity-85" />
-
+      <div className="flex flex-col items-center gap-3.5 sm:gap-5">
         <div className="mt-0 w-full md:mt-1">
           <KolamWaveDivider compact />
         </div>
