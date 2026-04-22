@@ -61,7 +61,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
 
   useEffect(() => {
     if (!inviteRevealed) return
-    const t = window.setTimeout(() => setBackdropOn(true), 700)
+    const t = window.setTimeout(() => setBackdropOn(true), 2600)
     return () => window.clearTimeout(t)
   }, [inviteRevealed])
 
@@ -98,17 +98,19 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             <motion.div
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl"
-              initial={{ opacity: 0 }}
+              initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 2.8, ease: [0.33, 1, 0.24, 1] }}
+              transition={{ duration: 0 }}
             >
-              <div
+              <motion.div
                 className="absolute inset-0"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.34 }}
+                transition={{ duration: 3.2, ease: [0.33, 1, 0.24, 1] }}
                 style={{
                   backgroundImage: `url(${heroBackdrop})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  opacity: 0.34,
                   filter: 'saturate(1.15) contrast(1.08)',
                 }}
               />
@@ -127,12 +129,12 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
 
             <motion.div
               variants={fadeLine(0.12)}
-              className="font-cinzel font-semibold text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine"
+              className="font-cinzel font-semibold text-center text-[clamp(0.82rem,2.05vw,1.18rem)] italic leading-snug tracking-[0.06em] text-invite-wine whitespace-nowrap"
             >
               <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
               </span>
-              <span className="px-1.5 sm:px-2.5">{INVITE_HEADER}</span>
+              <span className="px-1 sm:px-2.5">{INVITE_HEADER}</span>
               <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
               </span>

@@ -26,11 +26,11 @@ export default function HeroInvitationMirror() {
           <KolamWaveDivider compact />
         </div>
 
-        <div className="font-cinzel text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine">
+        <div className="font-cinzel font-semibold text-center text-[clamp(0.82rem,2.05vw,1.18rem)] italic leading-snug tracking-[0.06em] text-invite-wine whitespace-nowrap">
           <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
             ||
           </span>
-          <span className="px-1.5 sm:px-2.5">{INVITE_HEADER}</span>
+          <span className="px-1 sm:px-2.5">{INVITE_HEADER}</span>
           <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
             ||
           </span>
