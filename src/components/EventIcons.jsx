@@ -102,28 +102,24 @@ export function SangeetIcon(props) {
 export function BaraatIcon(props) {
   return (
     <BaseIcon title="Baraat" {...props}>
-      {/* loudspeaker + sound waves */}
+      {/* front-facing sound system */}
       <path
-        d="M11.5 22.5v-5h6l7-5v20l-7-5h-6Z"
+        d="M13 11h14c1.7 0 3 1.3 3 3v16c0 1.7-1.3 3-3 3H13c-1.7 0-3-1.3-3-3V14c0-1.7 1.3-3 3-3Z"
         fill={stroke}
-        fillOpacity="0.14"
+        fillOpacity="0.16"
         stroke={stroke}
         strokeWidth="1.9"
         strokeLinejoin="round"
       />
+      <circle cx="20" cy="18" r="2.2" stroke={stroke} strokeWidth="1.6" strokeOpacity="0.95" />
+      <circle cx="20" cy="26.2" r="4.4" stroke={stroke} strokeWidth="1.9" strokeOpacity="0.95" />
+      <circle cx="20" cy="26.2" r="1.4" fill={stroke} fillOpacity="0.35" />
       <path
-        d="M28 16.5c1.5 1.6 2.4 3.6 2.4 5.9 0 2.3-0.9 4.3-2.4 5.9"
+        d="M14.2 14.4h11.6"
         stroke={stroke}
-        strokeWidth="1.7"
+        strokeWidth="1.2"
         strokeLinecap="round"
-        strokeOpacity="0.95"
-      />
-      <path
-        d="M31.5 14.2c2.2 2.4 3.5 5.1 3.5 8.2 0 3.1-1.3 5.8-3.5 8.2"
-        stroke={stroke}
-        strokeWidth="1.3"
-        strokeLinecap="round"
-        strokeOpacity="0.85"
+        strokeOpacity="0.55"
       />
     </BaseIcon>
   )

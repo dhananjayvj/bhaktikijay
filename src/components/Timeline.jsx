@@ -87,7 +87,7 @@ function EventCard({ event, side, index }) {
                   ) : event.icon === 'sangeet' ? (
                     <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={28} />
                   ) : event.icon === 'baraat' ? (
-                    <BaraatIcon className="shrink-0 text-[#E2725B]" size={28} />
+                    <BaraatIcon className="shrink-0 text-[#111827]" size={28} />
                   ) : event.icon === 'reception' ? (
                     <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={28} />
                   ) : null}

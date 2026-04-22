@@ -142,7 +142,6 @@ function WaxBlobHalf({ side, size }) {
       style={{
         width: halfW,
         height: size * 0.88,
-        borderRadius: waxOrganicRadius,
       }}
       aria-hidden="true"
     >
