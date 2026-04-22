@@ -337,11 +337,11 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] mt-10 text-center font-cormorant text-sm italic text-invite-ink-soft/90 ${
+        className={`relative z-[4] mt-10 text-center font-cormorant text-sm italic text-white/90 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
-        Tap the seal to part the curtains
+        Tap the seal
       </p>
     </div>
   )

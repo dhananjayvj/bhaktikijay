@@ -2,7 +2,6 @@ import React, { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
-import SubtleGoldDivider from './SubtleGoldDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
   BHAKTI_PARENT_LINE,
@@ -107,13 +106,9 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                 {INVITE_OPENING_VERSE}
               </p>
             </motion.div>
-
-            <motion.div variants={fadeLine(0.26)} className="w-full">
-              <SubtleGoldDivider className="opacity-80" />
-            </motion.div>
           </div>
 
-          <div className="flex min-h-0 w-full flex-col items-center justify-center py-0.5 sm:py-2">
+          <div className="flex min-h-0 w-full flex-col items-center justify-center pt-1 sm:pt-2">
             <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
               <div className="flex flex-col items-center text-center">
                 <motion.div variants={instant}>
