@@ -116,7 +116,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
           ) : null}
 
-          <div className="flex flex-col items-center gap-3.5 sm:gap-5">
+          <div className="relative z-[2] flex flex-col items-center gap-3.5 sm:gap-5">
             <motion.div variants={kolamReveal} className="w-full">
               <div className="mt-0 md:mt-1">
                 <KolamWaveDivider compact />
@@ -145,7 +145,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
           </div>
 
-          <div className="flex min-h-0 w-full flex-col items-center justify-center pt-1 sm:pt-2">
+          <div className="relative z-[2] flex min-h-0 w-full flex-col items-center justify-center pt-1 sm:pt-2">
             <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
               <div className="flex flex-col items-center text-center">
                 <motion.div variants={instant}>
@@ -198,7 +198,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
+          <div className="relative z-[2] flex flex-col items-center gap-2.5 sm:gap-3.5">
             <motion.div variants={fadeLine(0.58)} className="max-w-2xl px-0.5">
               <p className="mx-auto max-w-md font-cormorant font-semibold text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_CELEBRATION}
