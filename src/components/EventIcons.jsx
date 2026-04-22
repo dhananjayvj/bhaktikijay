@@ -102,28 +102,28 @@ export function SangeetIcon(props) {
 export function BaraatIcon(props) {
   return (
     <BaseIcon title="Baraat" {...props}>
-      {/* horse head + sehra plume (abstract) */}
+      {/* chess knight silhouette (reads as "baraat" / horse) */}
       <path
-        d="M14 28c0-7 2.5-12 7.5-15 2.2-1.3 4.8-1.8 7.5-1.5-1.2 1.5-1.7 3.2-1.4 5.1 0.3 2-0.2 3.7-1.6 5.2-1.6 1.7-3.8 2.6-6.5 2.7H14Z"
+        d="M28.5 28H13.5c0-5.7 2.1-8.9 5.1-11.3 2.2-1.8 3.3-3.7 3.3-6.7 2.1 0 4.2 0.9 5.5 2.4-0.7 1.5-0.8 2.9-0.2 4.4 0.6 1.6 0.4 3.2-0.5 4.7-0.8 1.4-2.3 2.6-4.4 3.4h6.2V28Z"
+        fill={stroke}
+        fillOpacity="0.18"
         stroke={stroke}
-        strokeWidth="1.9"
+        strokeWidth="1.8"
         strokeLinejoin="round"
+      />
+      <path
+        d="M12 30h18"
+        stroke={stroke}
+        strokeWidth="2"
         strokeLinecap="round"
       />
       <path
-        d="M23 13l-1.2-3.2M26 13.3l0.6-3.6M28.7 14.4l2-3"
+        d="M18 16c1.6 0.6 3.2 0.4 4.5-0.6"
         stroke={stroke}
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeOpacity="0.9"
       />
-      <path
-        d="M16 30h14"
-        stroke={stroke}
-        strokeWidth="1.9"
-        strokeLinecap="round"
-      />
-      <circle cx="25.5" cy="18.5" r="1.2" fill={stroke} fillOpacity="0.45" />
     </BaseIcon>
   )
 }

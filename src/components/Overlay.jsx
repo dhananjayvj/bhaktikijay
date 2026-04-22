@@ -24,6 +24,66 @@ const waxOrganicRadius = '48% 52% 47% 53% / 52% 48% 51% 49%'
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
 
+function CurtainOrnament({ side }) {
+  const flip = side === 'right'
+  return (
+    <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      {/* inner gold border */}
+      <div className="absolute inset-3 rounded-[0.9rem] border border-[#D4AF37]/35" />
+      <div className="absolute inset-[18px] rounded-[0.85rem] border border-[#7A2E3F]/10" />
+
+      {/* corner filigree */}
+      <svg
+        viewBox="0 0 200 200"
+        className={`absolute top-3 ${flip ? 'right-3' : 'left-3'} h-24 w-24 opacity-[0.32]`}
+        style={{ transform: flip ? 'scaleX(-1)' : undefined }}
+      >
+        <path
+          d="M20 40c26-14 54-16 76 2 10 8 16 18 18 31-15-12-32-18-50-17 16 10 28 24 33 44-16-10-33-14-52-11 10 8 18 18 22 32-22-18-44-22-71-15 6-18 11-33 24-46-18 0-34 6-50 18 4-20 12-36 26-48 6-6 14-11 24-15Z"
+          fill="none"
+          stroke="#D4AF37"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M35 58c22-10 44-10 61 4"
+          fill="none"
+          stroke="#E2725B"
+          strokeOpacity="0.55"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+
+      <svg
+        viewBox="0 0 200 200"
+        className={`absolute bottom-3 ${flip ? 'left-3' : 'right-3'} h-24 w-24 opacity-[0.28]`}
+        style={{ transform: flip ? 'scaleX(-1) rotate(180deg)' : 'rotate(180deg)' }}
+      >
+        <path
+          d="M20 40c26-14 54-16 76 2 10 8 16 18 18 31-15-12-32-18-50-17 16 10 28 24 33 44-16-10-33-14-52-11 10 8 18 18 22 32-22-18-44-22-71-15 6-18 11-33 24-46-18 0-34 6-50 18 4-20 12-36 26-48 6-6 14-11 24-15Z"
+          fill="none"
+          stroke="#D4AF37"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+
+      {/* side watermark */}
+      <div
+        className={`absolute top-1/2 ${side === 'left' ? 'left-3' : 'right-3'} h-[70%] w-[42%] -translate-y-1/2 opacity-[0.16]`}
+        style={{
+          backgroundImage:
+            'radial-gradient(circle at 30% 30%, rgba(212,175,55,0.28), transparent 55%), radial-gradient(circle at 70% 65%, rgba(226,114,91,0.22), transparent 58%)',
+          filter: 'blur(0.2px)',
+        }}
+      />
+    </div>
+  )
+}
+
 /** Static shadows only — animating box-shadow every frame causes layout/paint jank on mobile. */
 function curtainPaperShadowStatic(side) {
   const edge =
@@ -149,6 +209,7 @@ function CurtainPaper({ side, children }) {
       }`}
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
+      <CurtainOrnament side={side} />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
         style={{
