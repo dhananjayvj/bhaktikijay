@@ -79,17 +79,17 @@ function EventCard({ event, side, index }) {
                     {event.title}
                   </h3>
                   {event.icon === 'mandap' ? (
-                    <MandapArchIcon className="shrink-0" size={28} />
+                    <MandapArchIcon className="shrink-0 text-[#D4AF37]" size={28} />
                   ) : event.icon === 'haldi' ? (
-                    <HaldiIcon className="shrink-0 opacity-85" size={28} />
+                    <HaldiIcon className="shrink-0 text-[#D4AF37]" size={28} />
                   ) : event.icon === 'mehendi' ? (
-                    <MehendiIcon className="shrink-0 opacity-85" size={28} />
+                    <MehendiIcon className="shrink-0 text-[#2F6F3E]" size={28} />
                   ) : event.icon === 'sangeet' ? (
-                    <SangeetIcon className="shrink-0 opacity-85" size={28} />
+                    <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={28} />
                   ) : event.icon === 'baraat' ? (
-                    <BaraatIcon className="shrink-0 opacity-85" size={28} />
+                    <BaraatIcon className="shrink-0 text-[#E2725B]" size={28} />
                   ) : event.icon === 'reception' ? (
-                    <ReceptionIcon className="shrink-0 opacity-85" size={28} />
+                    <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={28} />
                   ) : null}
                 </div>
               </div>

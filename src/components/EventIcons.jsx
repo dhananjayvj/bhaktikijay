@@ -18,7 +18,7 @@ function BaseIcon({ children, className = '', size = 28, title }) {
   )
 }
 
-const stroke = '#D4AF37'
+const stroke = 'currentColor'
 
 export function HaldiIcon(props) {
   return (
@@ -27,16 +27,16 @@ export function HaldiIcon(props) {
         d="M20 8c6.5 0 11.5 5 11.5 11.5S26.5 31 20 31 8.5 26 8.5 19.5 13.5 8 20 8Z"
         stroke={stroke}
         strokeWidth="1.8"
-        strokeOpacity="0.6"
+        strokeOpacity="0.95"
       />
       <path
         d="M20 12v16M12 20h16M14.3 14.3l11.4 11.4M25.7 14.3 14.3 25.7"
         stroke={stroke}
         strokeWidth="1.6"
         strokeLinecap="round"
-        strokeOpacity="0.85"
+        strokeOpacity="1"
       />
-      <circle cx="20" cy="20" r="2.2" fill={stroke} fillOpacity="0.28" />
+      <circle cx="20" cy="20" r="2.2" fill={stroke} fillOpacity="0.38" />
     </BaseIcon>
   )
 }
@@ -55,17 +55,17 @@ export function MehendiIcon(props) {
         stroke={stroke}
         strokeWidth="1.6"
         strokeLinecap="round"
-        strokeOpacity="0.85"
+        strokeOpacity="1"
       />
       <path
         d="M13.5 26.5c4.5 2 9 2 13.5 0"
         stroke={stroke}
         strokeWidth="1.2"
-        strokeOpacity="0.5"
+        strokeOpacity="0.85"
         strokeLinecap="round"
       />
-      <circle cx="16" cy="22" r="1.1" fill={stroke} fillOpacity="0.25" />
-      <circle cx="24" cy="18" r="1.1" fill={stroke} fillOpacity="0.25" />
+      <circle cx="16" cy="22" r="1.1" fill={stroke} fillOpacity="0.35" />
+      <circle cx="24" cy="18" r="1.1" fill={stroke} fillOpacity="0.35" />
     </BaseIcon>
   )
 }
@@ -90,14 +90,14 @@ export function SangeetIcon(props) {
         stroke={stroke}
         strokeWidth="1.5"
         strokeLinecap="round"
-        strokeOpacity="0.75"
+        strokeOpacity="0.95"
       />
       <path
         d="M11 10c1.5 1.2 2.8 1.8 4 2M29 10c-1.5 1.2-2.8 1.8-4 2"
         stroke={stroke}
         strokeWidth="1.2"
         strokeLinecap="round"
-        strokeOpacity="0.55"
+        strokeOpacity="0.85"
       />
     </BaseIcon>
   )
@@ -117,14 +117,14 @@ export function BaraatIcon(props) {
         stroke={stroke}
         strokeWidth="1.5"
         strokeLinecap="round"
-        strokeOpacity="0.8"
+        strokeOpacity="0.95"
       />
       <path
         d="M13 26c4 2.2 8.5 2.2 14 0"
         stroke={stroke}
         strokeWidth="1.4"
         strokeLinecap="round"
-        strokeOpacity="0.7"
+        strokeOpacity="0.9"
       />
       <path
         d="M28 17l3-1-1 3"
@@ -133,8 +133,8 @@ export function BaraatIcon(props) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <circle cx="17" cy="22.5" r="1.1" fill={stroke} fillOpacity="0.25" />
-      <circle cx="26" cy="21" r="1.1" fill={stroke} fillOpacity="0.25" />
+      <circle cx="17" cy="22.5" r="1.1" fill={stroke} fillOpacity="0.35" />
+      <circle cx="26" cy="21" r="1.1" fill={stroke} fillOpacity="0.35" />
     </BaseIcon>
   )
 }
@@ -147,14 +147,14 @@ export function ReceptionIcon(props) {
         stroke={stroke}
         strokeWidth="1.6"
         strokeLinecap="round"
-        strokeOpacity="0.7"
+        strokeOpacity="0.95"
       />
       <path
         d="M16 12c0 9 2 15 4 16h0c2-1 4-7 4-16"
         stroke={stroke}
         strokeWidth="1.8"
         strokeLinejoin="round"
-        strokeOpacity="0.85"
+        strokeOpacity="1"
       />
       <path
         d="M20 28v4"
@@ -173,7 +173,7 @@ export function ReceptionIcon(props) {
         stroke={stroke}
         strokeWidth="1.2"
         strokeLinecap="round"
-        strokeOpacity="0.55"
+        strokeOpacity="0.85"
       />
     </BaseIcon>
   )
