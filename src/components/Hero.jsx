@@ -51,6 +51,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
 
+  // Keep paper lighting identical to the curtain preview.
   const bgStyle = useMemo(
     () => ({
       backgroundImage:
