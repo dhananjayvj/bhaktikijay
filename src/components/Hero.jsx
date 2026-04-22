@@ -51,7 +51,6 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
 
-  // Keep paper lighting identical to the curtain preview.
   const bgStyle = useMemo(
     () => ({
       backgroundImage:
@@ -91,7 +90,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
           {/* Solid invite panel (opaque) */}
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 rounded-3xl bg-invite-paper shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/12"
+            className="paper-parchment pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10"
           />
 
           {/* Transparent backdrop that fades in behind the text */}
@@ -115,7 +114,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                   filter: 'saturate(1.15) contrast(1.08)',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-invite-paper/68 via-invite-paper/20 to-invite-paper/78" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ef]/78 via-[#f0e9dc]/22 to-[#e8dfd2]/82" />
             </motion.div>
           ) : null}
 
