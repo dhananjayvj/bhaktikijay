@@ -3,6 +3,7 @@ import { AnimatePresence, LayoutGroup, motion, useScroll } from 'framer-motion'
 import Overlay from './components/Overlay.jsx'
 import Hero from './components/Hero.jsx'
 import CouplePortrait from './components/CouplePortrait.jsx'
+import fluteTrack from '../images/flute.mp3'
 
 const Timeline = React.lazy(() => import('./components/Timeline.jsx'))
 const Venue = React.lazy(() => import('./components/Venue.jsx'))
@@ -25,6 +26,8 @@ export default function App() {
   const [heroReveal, setHeroReveal] = useState(false)
   const [sparkles, setSparkles] = useState([])
   const mainCardRef = useRef(null)
+  const audioRef = useRef(null)
+  const startedAudioRef = useRef(false)
 
   const { scrollYProgress } = useScroll()
 
@@ -84,6 +87,29 @@ export default function App() {
       el.removeEventListener('click', handler)
     }
   }, [onMainCardClick])
+
+  useEffect(() => {
+    if (startedAudioRef.current) return
+    if (!heroReveal) return
+
+    startedAudioRef.current = true
+    const audio = new Audio(fluteTrack)
+    audio.loop = true
+    audio.volume = 0.28
+    audio.preload = 'auto'
+    audioRef.current = audio
+
+    const p = audio.play()
+    if (p && typeof p.catch === 'function') p.catch(() => {})
+
+    return () => {
+      try {
+        audio.pause()
+      } catch {
+        // ignore
+      }
+    }
+  }, [heroReveal])
 
   return (
     <LayoutGroup id="invite">

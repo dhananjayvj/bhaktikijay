@@ -73,29 +73,25 @@ export function MehendiIcon(props) {
 export function SangeetIcon(props) {
   return (
     <BaseIcon title="Sangeet" {...props}>
+      {/* musical note */}
       <path
-        d="M14 29c2.5-8 2.5-16 0-24"
+        d="M24 10v14.5"
+        stroke={stroke}
+        strokeWidth="2.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M24 10c3 1.6 5 2.3 7.5 2.6"
         stroke={stroke}
         strokeWidth="1.8"
         strokeLinecap="round"
+        strokeLinejoin="round"
       />
+      <circle cx="19" cy="27.5" r="3.2" stroke={stroke} strokeWidth="2" />
       <path
-        d="M26 29c-2.5-8-2.5-16 0-24"
+        d="M24 21c-1.7-0.6-3.2-0.4-4.6 0.2"
         stroke={stroke}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-      />
-      <path
-        d="M16 13h8M15.5 19h9M16 25h8"
-        stroke={stroke}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeOpacity="0.95"
-      />
-      <path
-        d="M11 10c1.5 1.2 2.8 1.8 4 2M29 10c-1.5 1.2-2.8 1.8-4 2"
-        stroke={stroke}
-        strokeWidth="1.2"
+        strokeWidth="1.6"
         strokeLinecap="round"
         strokeOpacity="0.85"
       />
@@ -106,35 +102,28 @@ export function SangeetIcon(props) {
 export function BaraatIcon(props) {
   return (
     <BaseIcon title="Baraat" {...props}>
+      {/* horse head + sehra plume (abstract) */}
       <path
-        d="M11 24c3.5-6 8-10 13-13"
+        d="M14 28c0-7 2.5-12 7.5-15 2.2-1.3 4.8-1.8 7.5-1.5-1.2 1.5-1.7 3.2-1.4 5.1 0.3 2-0.2 3.7-1.6 5.2-1.6 1.7-3.8 2.6-6.5 2.7H14Z"
         stroke={stroke}
-        strokeWidth="1.7"
+        strokeWidth="1.9"
+        strokeLinejoin="round"
         strokeLinecap="round"
       />
       <path
-        d="M23 11c2.8 0.4 4.8 2 6 4.5"
-        stroke={stroke}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeOpacity="0.95"
-      />
-      <path
-        d="M13 26c4 2.2 8.5 2.2 14 0"
+        d="M23 13l-1.2-3.2M26 13.3l0.6-3.6M28.7 14.4l2-3"
         stroke={stroke}
         strokeWidth="1.4"
         strokeLinecap="round"
         strokeOpacity="0.9"
       />
       <path
-        d="M28 17l3-1-1 3"
+        d="M16 30h14"
         stroke={stroke}
-        strokeWidth="1.4"
+        strokeWidth="1.9"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
-      <circle cx="17" cy="22.5" r="1.1" fill={stroke} fillOpacity="0.35" />
-      <circle cx="26" cy="21" r="1.1" fill={stroke} fillOpacity="0.35" />
+      <circle cx="25.5" cy="18.5" r="1.2" fill={stroke} fillOpacity="0.45" />
     </BaseIcon>
   )
 }
