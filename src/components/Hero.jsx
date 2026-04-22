@@ -1,8 +1,9 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
+import heroBackdrop from '../../images/backdrop.jpeg'
 import {
   BHAKTI_PARENT_LINE,
   COUNTDOWN_INTRO,
@@ -48,6 +49,7 @@ const layoutSpring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.85 }
 export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
+  const [backdropOn, setBackdropOn] = useState(false)
 
   const bgStyle = useMemo(
     () => ({
@@ -56,6 +58,12 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
     }),
     [],
   )
+
+  useEffect(() => {
+    if (!inviteRevealed) return
+    const t = window.setTimeout(() => setBackdropOn(true), 700)
+    return () => window.clearTimeout(t)
+  }, [inviteRevealed])
 
   return (
     <section
@@ -79,6 +87,29 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             },
           }}
         >
+          {backdropOn ? (
+            <motion.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 rounded-3xl"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2.4, ease: [0.33, 1, 0.24, 1] }}
+            >
+              <div
+                className="absolute inset-0 rounded-3xl"
+                style={{
+                  backgroundImage: `url(${heroBackdrop})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  opacity: 0.16,
+                  filter: 'saturate(1.06) contrast(1.02)',
+                }}
+              />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-invite-paper/65 via-invite-paper/25 to-invite-paper/75" />
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-[#D4AF37]/10" />
+            </motion.div>
+          ) : null}
+
           <div className="flex flex-col items-center gap-3.5 sm:gap-5">
             <motion.div variants={kolamReveal} className="w-full">
               <div className="mt-0 md:mt-1">
