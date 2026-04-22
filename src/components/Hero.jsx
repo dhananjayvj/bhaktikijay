@@ -101,12 +101,12 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                   backgroundImage: `url(${heroBackdrop})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  opacity: 0.16,
-                  filter: 'saturate(1.06) contrast(1.02)',
+                  opacity: 0.28,
+                  filter: 'saturate(1.12) contrast(1.06)',
                 }}
               />
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-invite-paper/65 via-invite-paper/25 to-invite-paper/75" />
-              <div className="absolute inset-0 rounded-3xl ring-1 ring-[#D4AF37]/10" />
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-invite-paper/55 via-invite-paper/18 to-invite-paper/68" />
+              <div className="absolute inset-0 rounded-3xl ring-1 ring-[#D4AF37]/14" />
             </motion.div>
           ) : null}
 
@@ -121,7 +121,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
 
             <motion.div
               variants={fadeLine(0.12)}
-              className="font-cinzel text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine"
+              className="font-cinzel font-semibold text-center text-[clamp(0.92rem,2.2vw,1.18rem)] italic leading-snug tracking-[0.08em] text-invite-wine"
             >
               <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
@@ -133,7 +133,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
 
             <motion.div variants={fadeLine(0.18)} className="max-w-2xl px-0.5">
-              <p className="mx-auto max-w-md font-cormorant text-[clamp(0.88rem,2vw,1.08rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+              <p className="mx-auto max-w-md font-cormorant font-semibold text-[clamp(0.88rem,2vw,1.08rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_OPENING_VERSE}
               </p>
             </motion.div>
@@ -153,7 +153,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                   </motion.div>
                 </motion.div>
                 <motion.div variants={fadeLine(0.42)} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
+                  <p className="font-cormorant font-semibold text-invite-ink text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {BHAKTI_PARENT_LINE}
                   </p>
                 </motion.div>
@@ -184,7 +184,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                   </motion.div>
                 </motion.div>
                 <motion.div variants={fadeLine(0.52)} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
+                  <p className="font-cormorant font-semibold text-invite-ink text-[clamp(0.88rem,1.9vw,1.08rem)] leading-relaxed">
                     {DHANANJAY_PARENT_LINE}
                   </p>
                 </motion.div>
@@ -194,7 +194,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
 
           <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
             <motion.div variants={fadeLine(0.58)} className="max-w-2xl px-0.5">
-              <p className="mx-auto max-w-md font-cormorant text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+              <p className="mx-auto max-w-md font-cormorant font-semibold text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_CELEBRATION}
               </p>
             </motion.div>
