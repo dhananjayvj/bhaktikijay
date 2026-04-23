@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="280" viewBox="0 0 280 280">
+  <defs>
+    <style>.a{fill:none;stroke:#FCF9F1;stroke-width:1;opacity:.14}.b{fill:#FCF9F1;opacity:.1}.c{fill:none;stroke:#FCF9F1;stroke-width:.85;opacity:.12}</style>
+  </defs>
+  <g class="a"><circle cx="32" cy="40" r="5"/><circle cx="40" cy="36" r="5"/><circle cx="48" cy="40" r="5"/><circle cx="40" cy="46" r="5"/></g>
+  <g class="a" transform="translate(190 20)"><circle cx="0" cy="0" r="4"/><circle cx="8" cy="-3" r="4"/><circle cx="8" cy="5" r="4"/><circle cx="16" cy="0" r="4"/></g>
+  <ellipse class="b" cx="120" cy="28" rx="14" ry="6" transform="rotate(-15 120 28)"/>
+  <ellipse class="b" cx="240" cy="200" rx="12" ry="5" transform="rotate(20 240 200)"/>
+  <path class="c" d="M200 120c18-8 38-6 52 4l8 6-4 8c-12-8-28-10-42-4-8 4-14 12-16 22"/>
+  <ellipse class="c" cx="258" cy="138" rx="6" ry="10"/>
+  <path class="c" d="M48 180c10-20 28-32 48-36"/>
+  <path class="a" d="M150 200c-8-8-8-20 0-28s20-8 28 0 8 20 0 28-20 8-28 0zm28-28c8 8 20 8 28 0s8-20 0-28-20-8-28 0"/>
+  <rect class="b" x="70" y="95" width="4" height="7" transform="rotate(25 72 98)" rx="1"/>
+  <rect class="b" x="220" y="70" width="3" height="6" transform="rotate(-12 222 73)" rx="0.5"/>
+  <circle class="b" cx="95" cy="230" r="2.5"/>
+  <circle class="b" cx="175" cy="110" r="2"/>
+  <path class="a" d="M22 100l6 3-2 7-6-3z"/>
+  <g class="a" transform="translate(130 150)"><circle cx="0" cy="0" r="6"/><circle cx="10" cy="0" r="6"/><circle cx="5" cy="9" r="6"/></g>
+</svg>
