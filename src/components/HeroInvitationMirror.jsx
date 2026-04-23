@@ -36,7 +36,7 @@ export default function HeroInvitationMirror() {
           </span>
         </div>
 
-        <p className="font-cormorant mx-auto max-w-md px-0.5 text-[clamp(0.88rem,2vw,1.08rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="font-cormorant font-semibold mx-auto max-w-md px-0.5 text-[clamp(0.88rem,2vw,1.08rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_OPENING_VERSE}
         </p>
       </div>
@@ -50,7 +50,7 @@ export default function HeroInvitationMirror() {
             >
               Bhakti
             </div>
-            <p className="font-cormorant mt-2 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
+            <p className="font-cormorant font-semibold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
               {BHAKTI_PARENT_LINE}
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function HeroInvitationMirror() {
             >
               Dhananjay
             </div>
-            <p className="font-cormorant mt-2 max-w-[26rem] leading-relaxed text-invite-ink-soft text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
+            <p className="font-cormorant font-semibold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(0.88rem,1.9vw,1.08rem)] sm:mt-3">
               {DHANANJAY_PARENT_LINE}
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function HeroInvitationMirror() {
       </div>
 
       <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
-        <p className="font-cormorant max-w-md px-0.5 text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink-soft whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="font-cormorant font-semibold max-w-md px-0.5 text-[clamp(0.88rem,2vw,1.06rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_CELEBRATION}
         </p>
 

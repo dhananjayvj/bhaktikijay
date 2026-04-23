@@ -114,7 +114,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                   filter: 'saturate(1.15) contrast(1.08)',
                 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ef]/78 via-[#f0e9dc]/22 to-[#e8dfd2]/82" />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ef]/92 via-[#f0e9dc]/44 to-[#e8dfd2]/94" />
             </motion.div>
           ) : null}
 

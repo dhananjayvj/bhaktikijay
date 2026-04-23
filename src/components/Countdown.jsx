@@ -61,7 +61,7 @@ export default function Countdown({ targetIso, className = '', dense = false, in
     <div className={`${stackClass} ${className}`.trim()}>
       {intro ? (
         <p
-          className={`mb-3 w-full max-w-xl text-center font-lato font-semibold uppercase tracking-[0.16em] text-invite-ink-soft/90 ${
+          className={`mb-3 w-full max-w-xl text-center font-lato font-bold uppercase tracking-[0.16em] text-invite-ink ${
             dense
               ? 'text-[0.65rem] leading-snug sm:mb-3.5 sm:text-[0.7rem]'
               : 'mb-4 text-xs tracking-[0.18em] sm:text-sm'
