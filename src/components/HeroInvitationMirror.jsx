@@ -36,7 +36,7 @@ export default function HeroInvitationMirror() {
           </span>
         </div>
 
-        <p className="font-cormorant font-bold mx-auto max-w-2xl px-0.5 text-[clamp(1.0rem,2.35vw,1.26rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="font-cormorant font-extrabold mx-auto max-w-2xl px-0.5 text-[clamp(1.08rem,3.6vw,1.26rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.9)] sm:font-bold sm:text-[clamp(1.0rem,2.35vw,1.26rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_OPENING_VERSE}
         </p>
       </div>
@@ -50,7 +50,7 @@ export default function HeroInvitationMirror() {
             >
               Bhakti
             </div>
-            <p className="font-cormorant font-bold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
+            <p className="font-cormorant font-extrabold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
               {BHAKTI_PARENT_LINE}
             </p>
           </div>
@@ -71,7 +71,7 @@ export default function HeroInvitationMirror() {
             >
               Dhananjay
             </div>
-            <p className="font-cormorant font-bold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
+            <p className="font-cormorant font-extrabold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
               {DHANANJAY_PARENT_LINE}
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function HeroInvitationMirror() {
       </div>
 
       <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
-        <p className="font-cormorant font-bold max-w-md px-0.5 text-[clamp(1.0rem,2.3vw,1.22rem)] italic leading-relaxed text-invite-ink whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="font-cormorant font-extrabold max-w-md px-0.5 text-[clamp(1.06rem,3.4vw,1.22rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.3vw,1.22rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_CELEBRATION}
         </p>
 
