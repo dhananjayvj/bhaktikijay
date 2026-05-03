@@ -4,6 +4,7 @@ import MandapArchIcon from './MandapArchIcon.jsx'
 import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
 
 const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
+const MAPS_SDM_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
 
 function useIsMdUp() {
   const [mdUp, setMdUp] = useState(false)
@@ -96,29 +97,31 @@ function EventCard({ event, side, index }) {
                 </div>
               </div>
 
-              <div className="shrink-0 text-right">
+              <div className="flex shrink-0 flex-col items-end gap-1 text-right">
                 <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
                   {event.time}
                 </div>
+                <a
+                  data-no-sparkle="true"
+                  href={event.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`Open directions in maps (${event.pinLabel})`}
+                  className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
+                >
+                  📍
+                </a>
+                <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
+                  {event.pinLabel}
+                </span>
               </div>
             </div>
 
             <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
               {event.subtitle}
             </p>
-            {event.mapsHref ? (
-              <a
-                data-no-sparkle="true"
-                href={event.mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onPointerDown={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
-                className="mt-3 inline-flex items-center gap-1.5 font-lato text-sm font-semibold text-terra underline decoration-gold/60 underline-offset-2 hover:text-gold-dark"
-              >
-                Prestige Lake Ridge clubhouse — Google Maps
-              </a>
-            ) : null}
           </div>
 
           <div className="relative mt-3 h-0">
@@ -163,6 +166,7 @@ export default function Timeline() {
         time: '3:30 PM',
         subtitle: 'Turmeric, tradition, and laughter.',
         mapsHref: MAPS_PRESTIGE_LAKE_RIDGE,
+        pinLabel: 'PLR Clubhouse',
       },
       {
         dayPill: 'Mar 11 · Thursday',
@@ -173,6 +177,7 @@ export default function Timeline() {
         time: '5:30 PM',
         subtitle: 'A celebration of color and henna.',
         mapsHref: MAPS_PRESTIGE_LAKE_RIDGE,
+        pinLabel: 'PLR Clubhouse',
       },
       {
         dayPill: 'Mar 13 · Saturday',
@@ -182,8 +187,9 @@ export default function Timeline() {
         /** Music-note only — restrained “digital blessing”, not confetti */
         burst: ['✦', '✧', '✦', '✧'],
         time: '2:00 PM',
-        subtitle:
-          'An afternoon of music and dance — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
+        subtitle: 'An afternoon of music and dance.',
+        mapsHref: MAPS_SDM_KALYANA,
+        pinLabel: 'SDM convention hall',
       },
       {
         dayPill: 'Mar 13 · Saturday',
@@ -192,8 +198,9 @@ export default function Timeline() {
         icon: 'baraat',
         burst: ['✦', '✧', '✦', '✧'],
         time: '5:00 PM',
-        subtitle:
-          "Join the groom's procession — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.",
+        subtitle: "Join the groom's procession.",
+        mapsHref: MAPS_SDM_KALYANA,
+        pinLabel: 'SDM convention hall',
       },
       {
         dayPill: 'Mar 14 · Sunday',
@@ -202,8 +209,9 @@ export default function Timeline() {
         icon: 'mandap',
         burst: ['✦', '✧', '✦', '✧'],
         time: '8:48 AM',
-        subtitle:
-          'The auspicious ceremony — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
+        subtitle: 'The auspicious ceremony.',
+        mapsHref: MAPS_SDM_KALYANA,
+        pinLabel: 'SDM convention hall',
       },
       {
         dayPill: 'Mar 14 · Sunday',
@@ -212,8 +220,9 @@ export default function Timeline() {
         icon: 'reception',
         burst: ['✦', '✧', '✦', '✧'],
         time: '12:30 PM',
-        subtitle:
-          'A celebratory evening to follow — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
+        subtitle: 'A celebratory afternoon to follow.',
+        mapsHref: MAPS_SDM_KALYANA,
+        pinLabel: 'SDM convention hall',
       },
     ],
     [],

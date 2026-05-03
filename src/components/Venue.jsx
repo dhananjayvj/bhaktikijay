@@ -61,12 +61,25 @@ export default function Venue() {
           <div className="font-cinzel text-terra text-3xl font-bold tracking-wide md:text-4xl">
             Venue &amp; logistics
           </div>
-          <p className="mx-auto mt-4 max-w-2xl font-cormorant text-stone-800/75 text-base leading-relaxed">
-            Sri Dharmastala Manjunatha Swamy Kalyana Mantapa — Bull Temple Road, Basavanagudi, Bengaluru.
+        </div>
+
+        <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-gold/35 bg-invite-paper/80 px-5 py-5 text-left shadow-sm md:px-8 md:py-6">
+          <p className="font-lato text-[0.7rem] font-bold uppercase tracking-[0.2em] text-terra/90">Pro-tip</p>
+          <p className="mt-3 font-cormorant text-stone-800/90 text-[0.98rem] leading-relaxed">
+            <strong className="font-semibold text-stone-900">Getting there:</strong> Bull Temple Road is straightforward by auto,
+            ride-hailing, or your own vehicle. The nearest Namma Metro stop is{' '}
+            <strong className="font-semibold text-stone-900">National College</strong> (Green Line)—about{' '}
+            <strong className="font-semibold text-stone-900">2–3 km</strong> from the hall, or roughly{' '}
+            <strong className="font-semibold text-stone-900">15–20 minutes</strong> by road in usual traffic;{' '}
+            <strong className="font-semibold text-stone-900">Lalbagh</strong> on the same line can work depending on where you’re coming from.
+            Sundays and wedding-season evenings get busy—leave a buffer. On-site parking is limited; arrive a little early if you’re driving.
+          </p>
+          <p className="mt-4 font-cormorant text-stone-800/85 text-[0.95rem] leading-relaxed italic">
+            Haldi &amp; mehendi use the Prestige Lake Ridge clubhouse—tap the 📍 on those timeline cards for directions.
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col items-center gap-8 md:mt-12 md:flex-row md:justify-center">
+        <div className="mt-10 flex flex-col items-center md:mt-12">
           <motion.div
             className="relative w-full max-w-xl rounded-2xl border border-gold/35 bg-cream/70 p-6 shadow-lg md:p-8"
             style={{ willChange: 'transform' }}
@@ -82,13 +95,9 @@ export default function Venue() {
             />
 
             <div className="flex flex-col gap-6">
-              <div className="text-center">
-                <div className="font-playfair text-stone-900 text-xl font-black tracking-wide md:text-2xl">
-                  Sri Dharmastala Manjunatha Swamy Kalyana Mantapa
-                </div>
-                <div className="mt-2 font-lato text-stone-800/70 text-sm">Bull Temple Road, Basavanagudi</div>
-                <div className="mt-1 font-lato text-stone-800/70 text-sm">Bengaluru</div>
-              </div>
+              <p className="text-center font-cormorant text-stone-800/90 text-[1.05rem] leading-snug md:text-[1.12rem]">
+                Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru
+              </p>
 
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
                 <VenueCTA href={MAPS_KALYANA} variant="filled">
