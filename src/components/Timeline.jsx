@@ -74,54 +74,51 @@ function EventCard({ event, side, index }) {
             </span>
           </div>
 
-          <div className="mt-4">
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0">
-                <div className="flex items-center gap-2">
-                  <h3 className="min-w-0 font-playfair text-stone-900 text-xl font-black tracking-tight">
-                    {event.title}
-                  </h3>
-                  {event.icon === 'mandap' ? (
-                    <MandapArchIcon className="shrink-0 text-[#D4AF37]" size={28} />
-                  ) : event.icon === 'haldi' ? (
-                    <HaldiIcon className="shrink-0 text-[#D4AF37]" size={28} />
-                  ) : event.icon === 'mehendi' ? (
-                    <MehendiIcon className="shrink-0 text-[#2F6F3E]" size={28} />
-                  ) : event.icon === 'sangeet' ? (
-                    <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={28} />
-                  ) : event.icon === 'baraat' ? (
-                    <BaraatIcon className="shrink-0 text-[#111827]" size={28} />
-                  ) : event.icon === 'reception' ? (
-                    <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={28} />
-                  ) : null}
-                </div>
+          <div className="mt-3 flex items-start justify-between gap-3">
+            <div className="min-w-0 flex-1 pr-1">
+              <div className="flex items-center gap-2">
+                <h3 className="min-w-0 font-playfair text-stone-900 text-xl font-black tracking-tight">
+                  {event.title}
+                </h3>
+                {event.icon === 'mandap' ? (
+                  <MandapArchIcon className="shrink-0 text-[#D4AF37]" size={28} />
+                ) : event.icon === 'haldi' ? (
+                  <HaldiIcon className="shrink-0 text-[#D4AF37]" size={28} />
+                ) : event.icon === 'mehendi' ? (
+                  <MehendiIcon className="shrink-0 text-[#2F6F3E]" size={28} />
+                ) : event.icon === 'sangeet' ? (
+                  <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={28} />
+                ) : event.icon === 'baraat' ? (
+                  <BaraatIcon className="shrink-0 text-[#111827]" size={28} />
+                ) : event.icon === 'reception' ? (
+                  <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={28} />
+                ) : null}
               </div>
-
-              <div className="flex shrink-0 flex-col items-end gap-1 text-right">
-                <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
-                  {event.time}
-                </div>
-                <a
-                  data-no-sparkle="true"
-                  href={event.mapsHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onPointerDown={(e) => e.stopPropagation()}
-                  onClick={(e) => e.stopPropagation()}
-                  aria-label={`Open directions in maps (${event.pinLabel})`}
-                  className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
-                >
-                  📍
-                </a>
-                <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
-                  {event.pinLabel}
-                </span>
-              </div>
+              <p className="mt-1.5 font-cormorant text-stone-800/70 text-sm leading-snug">
+                {event.subtitle}
+              </p>
             </div>
 
-            <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
-              {event.subtitle}
-            </p>
+            <div className="flex shrink-0 flex-col items-end gap-0.5 text-right">
+              <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
+                {event.time}
+              </div>
+              <a
+                data-no-sparkle="true"
+                href={event.mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+                aria-label={`Open directions in maps (${event.pinLabel})`}
+                className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
+              >
+                📍
+              </a>
+              <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
+                {event.pinLabel}
+              </span>
+            </div>
           </div>
 
           <div className="relative mt-3 h-0">

@@ -66,12 +66,9 @@ export default function Venue() {
         <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-gold/35 bg-invite-paper/80 px-5 py-5 text-left shadow-sm md:px-8 md:py-6">
           <p className="font-lato text-[0.7rem] font-bold uppercase tracking-[0.2em] text-terra/90">Pro-tip</p>
           <p className="mt-3 font-cormorant text-stone-800/90 text-[0.98rem] leading-relaxed">
-            Bull Temple Road is easy by auto, app cab, or private car. Nearest metro is{' '}
-            <strong className="font-semibold text-stone-900">National College</strong> on the Green Line, about{' '}
-            <strong className="font-semibold text-stone-900">2 km</strong> from the hall and roughly{' '}
-            <strong className="font-semibold text-stone-900">15 to 20 minutes</strong> by road in normal traffic.{' '}
-            <strong className="font-semibold text-stone-900">Lalbagh</strong> on the same line may work better from some parts of town.
-            Sundays and peak evenings need extra time. Parking is tight, so come a bit early if you drive.
+            Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the
+            Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and
+            peak evenings need extra time. Parking is limited, so come a bit early if you drive.
           </p>
         </div>
 
