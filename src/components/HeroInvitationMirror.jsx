@@ -92,7 +92,7 @@ export default function HeroInvitationMirror() {
           </div>
         </div>
 
-        <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-26T08:50:00+05:30" />
+        <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
       </div>
     </div>
   )

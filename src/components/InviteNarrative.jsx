@@ -43,7 +43,7 @@ export default function InviteNarrative({ compact = false }) {
         }`}
       >
         <span aria-hidden="true">#</span>
-        <span>BhaktiKiJay</span>
+        <span>JayKiBhakti</span>
       </div>
 
       <div className={`font-cormorant italic leading-snug tracking-wide text-invite-wine ${headerCls}`}>

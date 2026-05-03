@@ -35,7 +35,7 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
         }}
       />
       <p className="font-lato text-[0.65rem] font-bold uppercase tracking-[0.35em] text-terra/90">Admitted</p>
-      <p className="mt-2 font-cinzel text-2xl font-bold tracking-wide text-brown md:text-3xl">BhaktiKiJay</p>
+      <p className="mt-2 font-cinzel text-2xl font-bold tracking-wide text-brown md:text-3xl">JayKiBhakti</p>
       <p className="mt-1 font-cormorant text-lg italic text-stone-700">Celebration of love</p>
       <div className="mx-auto my-5 h-px max-w-[12rem] bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
       <p className="font-playfair text-2xl font-semibold text-invite-wine md:text-3xl">{name}</p>
@@ -50,7 +50,7 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
           “{message.trim()}”
         </p>
       ) : null}
-      <p className="mt-6 font-script text-3xl text-gold-dark md:text-4xl">See you in Feb!</p>
+      <p className="mt-6 font-script text-3xl text-gold-dark md:text-4xl">See you soon!</p>
       <p className="mt-2 font-lato text-[0.65rem] uppercase tracking-widest text-stone-600/70">
         Screenshot to save this card
       </p>

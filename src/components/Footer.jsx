@@ -65,7 +65,7 @@ export default function Footer() {
         <div className="mt-4">
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-brown/50 px-5 py-2 font-lato text-sm font-semibold tracking-widest text-gold">
             <span aria-hidden="true">#</span>
-            BhaktiKiJay
+            JayKiBhakti
           </div>
         </div>
 

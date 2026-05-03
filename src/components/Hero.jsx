@@ -225,7 +225,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
 
             <motion.div variants={countdownReveal} className="w-full">
-              <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-02-26T08:50:00+05:30" />
+              <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
             </motion.div>
           </div>
         </motion.div>
