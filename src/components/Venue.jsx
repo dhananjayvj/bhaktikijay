@@ -1,6 +1,9 @@
 import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
 
+const MAPS_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
+const SITE_URL = 'https://bhakti-dhananjay.life/'
+
 function VenueCTA({ href, children, variant }) {
   const className =
     variant === 'filled'
@@ -25,15 +28,24 @@ function VenueCTA({ href, children, variant }) {
   )
 }
 
-const MAPS_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
-const MAPS_CLUBHOUSE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
-
 export default function Venue() {
-  const calendarHref = useMemo(
-    () =>
-      'https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti%20%26%20Dhananjay%20%E2%80%94%20Wedding&dates=20270225/20270315&details=Celebrations%20Feb%2025%E2%80%93Mar%2014%2C%202027.%20Haldi%20%26%20Mehendi%3A%20Prestige%20Lake%20Ridge%20clubhouse.%20Sangeet%2C%20Baraat%2C%20Muhurtham%20%26%20Reception%3A%20Sri%20Dharmastala%20Manjunatha%20Swamy%20Kalyana%20Mantapa%2C%20Basavanagudi.%20https%3A%2F%2Fbhaktikijay.fyi&location=Sri%20Dharmastala%20Manjunatha%20Swamy%20Kalyana%20Mantapa%2C%20Bull%20Temple%20Rd%2C%20Basavanagudi%2C%20Bengaluru',
-    [],
-  )
+  const calendarHref = useMemo(() => {
+    const details = [
+      'Celebrations Mar 11–14, 2027.',
+      'Haldi & Mehendi: Prestige Lake Ridge clubhouse (map on site timeline).',
+      'Sangeet, Baraat, Muhurtham & Reception: Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
+      SITE_URL.trim(),
+    ].join(' ')
+    const location = 'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Bull Temple Rd, Basavanagudi, Bengaluru'
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: 'Bhakti & Dhananjay — Wedding',
+      dates: '20270311/20270315',
+      details,
+      location,
+    })
+    return `https://calendar.google.com/calendar/render?${params.toString()}`
+  }, [])
 
   return (
     <motion.section
@@ -50,87 +62,62 @@ export default function Venue() {
             Venue &amp; logistics
           </div>
           <p className="mx-auto mt-4 max-w-2xl font-cormorant text-stone-800/75 text-base leading-relaxed">
-            Sangeet, baraat, muhurtham, and reception at Sri Dharmastala Manjunatha Swamy Kalyana Mantapa,
-            Basavanagudi. Haldi and mehendi at the Prestige Lake Ridge clubhouse.
+            Sri Dharmastala Manjunatha Swamy Kalyana Mantapa — Bull Temple Road, Basavanagudi, Bengaluru.
           </p>
         </div>
 
-        <div className="mt-10 flex flex-col items-stretch gap-8 md:mt-12 md:flex-row md:items-stretch md:justify-center">
-          {[
-            {
-              title: 'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa',
-              lines: ['Bull Temple Road, Basavanagudi', 'Bengaluru'],
-              mapsHref: MAPS_KALYANA,
-              note: 'Sangeet · Baraat · Muhurtham · Reception',
-            },
-            {
-              title: 'Prestige Lake Ridge — clubhouse',
-              lines: ['Haldi · Mehendi'],
-              mapsHref: MAPS_CLUBHOUSE,
-              note: null,
-            },
-          ].map((block) => (
+        <div className="mt-10 flex flex-col items-center gap-8 md:mt-12 md:flex-row md:justify-center">
+          <motion.div
+            className="relative w-full max-w-xl rounded-2xl border border-gold/35 bg-cream/70 p-6 shadow-lg md:p-8"
+            style={{ willChange: 'transform' }}
+          >
             <motion.div
-              key={block.title}
-              className="relative w-full max-w-xl rounded-2xl border border-gold/35 bg-cream/70 p-6 shadow-lg md:p-8"
-              style={{ willChange: 'transform' }}
-            >
-              <motion.div
-                className="absolute -inset-2 z-[-1] rounded-[1.25rem] opacity-70 blur-md"
-                style={{
-                  background:
-                    'conic-gradient(from 90deg, rgba(240,208,96,0.55), rgba(226,114,91,0.45), rgba(212,175,55,0.55), rgba(240,208,96,0.55))',
-                }}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
-              />
+              className="absolute -inset-2 z-[-1] rounded-[1.25rem] opacity-70 blur-md"
+              style={{
+                background:
+                  'conic-gradient(from 90deg, rgba(240,208,96,0.55), rgba(226,114,91,0.45), rgba(212,175,55,0.55), rgba(240,208,96,0.55))',
+              }}
+              animate={{ rotate: 360 }}
+              transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+            />
 
-              <div className="flex flex-col gap-6">
-                <div className="text-center">
-                  <div className="font-playfair text-stone-900 text-xl font-black tracking-wide md:text-2xl">
-                    {block.title}
-                  </div>
-                  {block.lines.map((line) => (
-                    <div key={line} className="mt-2 font-lato text-stone-800/70 text-sm">
-                      {line}
-                    </div>
-                  ))}
-                  {block.note ? (
-                    <div className="mt-3 font-cormorant text-stone-800/80 text-sm italic">{block.note}</div>
-                  ) : null}
+            <div className="flex flex-col gap-6">
+              <div className="text-center">
+                <div className="font-playfair text-stone-900 text-xl font-black tracking-wide md:text-2xl">
+                  Sri Dharmastala Manjunatha Swamy Kalyana Mantapa
                 </div>
-
-                <div className="flex justify-center">
-                  <VenueCTA href={block.mapsHref} variant="filled">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                      />
-                      <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
-                    </svg>
-                    Open in Maps
-                  </VenueCTA>
-                </div>
+                <div className="mt-2 font-lato text-stone-800/70 text-sm">Bull Temple Road, Basavanagudi</div>
+                <div className="mt-1 font-lato text-stone-800/70 text-sm">Bengaluru</div>
               </div>
-            </motion.div>
-          ))}
-        </div>
 
-        <div className="mt-10 flex justify-center">
-          <VenueCTA href={calendarHref} variant="outline">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
-              <path
-                d="M3 9h18M8 5V3M16 5V3"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                strokeLinecap="round"
-              />
-            </svg>
-            Add to Calendar
-          </VenueCTA>
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
+                <VenueCTA href={MAPS_KALYANA} variant="filled">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                    <circle cx="12" cy="10" r="3" stroke="currentColor" strokeWidth="1.5" />
+                  </svg>
+                  Navigate to Venue
+                </VenueCTA>
+
+                <VenueCTA href={calendarHref} variant="outline">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" strokeWidth="1.4" />
+                    <path
+                      d="M3 9h18M8 5V3M16 5V3"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                    />
+                  </svg>
+                  Add to Calendar
+                </VenueCTA>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

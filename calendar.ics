@@ -5,13 +5,13 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Bhakti & Dhananjay — Wedding
 BEGIN:VEVENT
-UID:bhakti-dhananjay-wedding-2027@bhaktikijay.fyi
+UID:bhakti-dhananjay-wedding-2027@bhakti-dhananjay.life
 DTSTAMP:20260401T120000Z
-DTSTART;VALUE=DATE:20270225
+DTSTART;VALUE=DATE:20270311
 DTEND;VALUE=DATE:20270315
 SUMMARY:Bhakti & Dhananjay — Wedding celebrations
-DESCRIPTION:Feb 25–Mar 14\, 2027. Haldi & Mehendi: Prestige Lake Ridge clubhouse. Sangeet\, Baraat\, Muhurtham & Reception: Sri Dharmastala Manjunatha Swamy Kalyana Mantapa\, Basavanagudi.\n\nDetails: https://bhaktikijay.fyi
+DESCRIPTION:Mar 11–14\, 2027. Haldi & Mehendi: Prestige Lake Ridge clubhouse. Sangeet\, Baraat\, Muhurtham & Reception: Sri Dharmastala Manjunatha Swamy Kalyana Mantapa\, Basavanagudi.\n\nDetails: https://bhakti-dhananjay.life/
 LOCATION:Sri Dharmastala Manjunatha Swamy Kalyana Mantapa\, Bull Temple Rd\, Basavanagudi\, Bengaluru\, India
-URL:https://bhaktikijay.fyi
+URL:https://bhakti-dhananjay.life/
 END:VEVENT
 END:VCALENDAR

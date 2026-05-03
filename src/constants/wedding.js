@@ -1,6 +1,6 @@
 /** Sentence case — RSVP, calendar copy, secondary UI */
 export const WEDDING_DATE_LINE =
-  'Celebrations Feb 25–Mar 14, 2027 · Muhurtham Sunday, March 14, 8:48 AM'
+  'Celebrations Mar 11–14, 2027 · Muhurtham Sunday, March 14, 8:48 AM'
 
 /** Multi-day headline — all caps */
 export const WEDDING_DATE_HEADLINE = 'SUNDAY, MARCH 14, 2027 — 8:48 AM'

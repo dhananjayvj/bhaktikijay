@@ -3,6 +3,8 @@ import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
 import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
 
+const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
+
 function useIsMdUp() {
   const [mdUp, setMdUp] = useState(false)
   useEffect(() => {
@@ -104,6 +106,19 @@ function EventCard({ event, side, index }) {
             <p className="mt-2 font-cormorant text-stone-800/70 text-sm leading-relaxed">
               {event.subtitle}
             </p>
+            {event.mapsHref ? (
+              <a
+                data-no-sparkle="true"
+                href={event.mapsHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                onPointerDown={(e) => e.stopPropagation()}
+                onClick={(e) => e.stopPropagation()}
+                className="mt-3 inline-flex items-center gap-1.5 font-lato text-sm font-semibold text-terra underline decoration-gold/60 underline-offset-2 hover:text-gold-dark"
+              >
+                Prestige Lake Ridge clubhouse — Google Maps
+              </a>
+            ) : null}
           </div>
 
           <div className="relative mt-3 h-0">
@@ -140,38 +155,39 @@ export default function Timeline() {
   const events = useMemo(
     () => [
       {
-        dayPill: 'Feb 25 · Thursday',
-        day: 1,
-        title: 'Sangeet',
-        icon: 'sangeet',
-        /** Music-note only — restrained “digital blessing”, not confetti */
-        burst: ['✦', '✧', '✦', '✧'],
-        time: '7:00 PM',
-        subtitle:
-          'An evening of music and dance — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
-      },
-      {
         dayPill: 'Mar 11 · Thursday',
-        day: 2,
+        day: 1,
         title: 'Haldi',
         icon: 'haldi',
         burst: ['✦', '✧', '✦', '✧'],
         time: '3:30 PM',
-        subtitle:
-          'Turmeric, tradition, and laughter — Prestige Lake Ridge clubhouse.',
+        subtitle: 'Turmeric, tradition, and laughter.',
+        mapsHref: MAPS_PRESTIGE_LAKE_RIDGE,
       },
       {
         dayPill: 'Mar 11 · Thursday',
-        day: 2,
+        day: 1,
         title: 'Mehendi',
         icon: 'mehendi',
         burst: ['✦', '✧', '✦', '✧'],
         time: '5:30 PM',
-        subtitle: 'A celebration of color and henna — Prestige Lake Ridge clubhouse.',
+        subtitle: 'A celebration of color and henna.',
+        mapsHref: MAPS_PRESTIGE_LAKE_RIDGE,
       },
       {
         dayPill: 'Mar 13 · Saturday',
-        day: 3,
+        day: 2,
+        title: 'Sangeet',
+        icon: 'sangeet',
+        /** Music-note only — restrained “digital blessing”, not confetti */
+        burst: ['✦', '✧', '✦', '✧'],
+        time: '2:00 PM',
+        subtitle:
+          'An afternoon of music and dance — Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
+      },
+      {
+        dayPill: 'Mar 13 · Saturday',
+        day: 2,
         title: 'Baraat',
         icon: 'baraat',
         burst: ['✦', '✧', '✦', '✧'],
@@ -181,7 +197,7 @@ export default function Timeline() {
       },
       {
         dayPill: 'Mar 14 · Sunday',
-        day: 4,
+        day: 3,
         title: 'Muhurtham',
         icon: 'mandap',
         burst: ['✦', '✧', '✦', '✧'],
@@ -191,7 +207,7 @@ export default function Timeline() {
       },
       {
         dayPill: 'Mar 14 · Sunday',
-        day: 4,
+        day: 3,
         title: 'Reception',
         icon: 'reception',
         burst: ['✦', '✧', '✦', '✧'],
