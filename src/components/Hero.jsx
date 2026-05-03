@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Toast from './Toast.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
@@ -46,9 +46,14 @@ const countdownReveal = {
 
 const layoutSpring = { type: 'spring', stiffness: 380, damping: 34, mass: 0.85 }
 
+/** Wait after curtain reveal before mounting backdrop; photo then fades in over {@link BACKDROP_FADE_SEC}s. */
+const BACKDROP_MOUNT_DELAY_MS = 2600
+const BACKDROP_FADE_SEC = 3
+
 export default function Hero({ inviteRevealed = false, skipIntro = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
+  const [backdropOn, setBackdropOn] = useState(false)
 
   const bgStyle = useMemo(
     () => ({
@@ -57,6 +62,15 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
     }),
     [],
   )
+
+  useEffect(() => {
+    if (!inviteRevealed) {
+      setBackdropOn(false)
+      return
+    }
+    const t = window.setTimeout(() => setBackdropOn(true), BACKDROP_MOUNT_DELAY_MS)
+    return () => window.clearTimeout(t)
+  }, [inviteRevealed])
 
   return (
     <section
@@ -86,8 +100,8 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
             className="paper-parchment pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10"
           />
 
-          {/* Backdrop photo: invisible load, then 3s ease to final wash strength */}
-          {inviteRevealed ? (
+          {/* Backdrop: mounts after curtain delay, then opacity 0 → final over BACKDROP_FADE_SEC */}
+          {backdropOn ? (
             <motion.div
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl"
@@ -96,7 +110,7 @@ export default function Hero({ inviteRevealed = false, skipIntro = false }) {
                 className="absolute inset-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.34 }}
-                transition={{ delay: 0.75, duration: 3, ease: [0.33, 1, 0.24, 1] }}
+                transition={{ duration: BACKDROP_FADE_SEC, ease: [0.33, 1, 0.24, 1] }}
                 style={{
                   backgroundImage: `url(${heroBackdrop})`,
                   backgroundSize: 'cover',
