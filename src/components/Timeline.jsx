@@ -74,24 +74,24 @@ function EventCard({ event, side, index }) {
             </span>
           </div>
 
-          <div className="mt-3 flex items-start justify-between gap-3">
-            <div className="min-w-0 flex-1 pr-1">
-              <div className="flex items-center gap-2">
-                <h3 className="min-w-0 font-playfair text-stone-900 text-xl font-black tracking-tight">
+          <div className="mt-3 flex flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
+            <div className="min-w-0 w-full flex-1 sm:pr-1">
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <h3 className="min-w-0 max-w-full font-playfair text-stone-900 text-lg font-black tracking-tight sm:text-xl">
                   {event.title}
                 </h3>
                 {event.icon === 'mandap' ? (
-                  <MandapArchIcon className="shrink-0 text-[#D4AF37]" size={28} />
+                  <MandapArchIcon className="shrink-0 text-[#D4AF37]" size={26} />
                 ) : event.icon === 'haldi' ? (
-                  <HaldiIcon className="shrink-0 text-[#D4AF37]" size={28} />
+                  <HaldiIcon className="shrink-0 text-[#D4AF37]" size={26} />
                 ) : event.icon === 'mehendi' ? (
-                  <MehendiIcon className="shrink-0 text-[#2F6F3E]" size={28} />
+                  <MehendiIcon className="shrink-0 text-[#2F6F3E]" size={26} />
                 ) : event.icon === 'sangeet' ? (
-                  <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={28} />
+                  <SangeetIcon className="shrink-0 text-[#7A2E3F]" size={26} />
                 ) : event.icon === 'baraat' ? (
-                  <BaraatIcon className="shrink-0 text-[#111827]" size={28} />
+                  <BaraatIcon className="shrink-0 text-[#111827]" size={26} />
                 ) : event.icon === 'reception' ? (
-                  <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={28} />
+                  <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={26} />
                 ) : null}
               </div>
               <p className="mt-1.5 font-cormorant text-stone-800/70 text-sm leading-snug">
@@ -99,25 +99,27 @@ function EventCard({ event, side, index }) {
               </p>
             </div>
 
-            <div className="flex shrink-0 flex-col items-end gap-0.5 text-right">
+            <div className="flex shrink-0 flex-row items-center justify-between gap-3 border-t border-gold/15 pt-2.5 sm:flex-col sm:items-end sm:justify-start sm:gap-0.5 sm:border-t-0 sm:pt-0 sm:text-right">
               <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
                 {event.time}
               </div>
-              <a
-                data-no-sparkle="true"
-                href={event.mapsHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onPointerDown={(e) => e.stopPropagation()}
-                onClick={(e) => e.stopPropagation()}
-                aria-label={`Open directions in maps (${event.pinLabel})`}
-                className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
-              >
-                📍
-              </a>
-              <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
-                {event.pinLabel}
-              </span>
+              <div className="flex flex-col items-end gap-0.5 text-right">
+                <a
+                  data-no-sparkle="true"
+                  href={event.mapsHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onPointerDown={(e) => e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
+                  aria-label={`Open directions in maps (${event.pinLabel})`}
+                  className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
+                >
+                  📍
+                </a>
+                <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
+                  {event.pinLabel}
+                </span>
+              </div>
             </div>
           </div>
 

@@ -2,7 +2,6 @@ import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
 
 const MAPS_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
-const SITE_URL = 'https://bhakti-dhananjay.life/'
 
 function VenueCTA({ href, children, variant }) {
   const className =
@@ -30,19 +29,12 @@ function VenueCTA({ href, children, variant }) {
 
 export default function Venue() {
   const calendarHref = useMemo(() => {
-    const details = [
-      'Celebrations Mar 11–14, 2027.',
-      'Haldi & Mehendi: Prestige Lake Ridge clubhouse (map on site timeline).',
-      'Sangeet, Baraat, Muhurtham & Reception: Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Basavanagudi.',
-      SITE_URL.trim(),
-    ].join(' ')
-    const location = 'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Bull Temple Rd, Basavanagudi, Bengaluru'
     const params = new URLSearchParams({
       action: 'TEMPLATE',
-      text: 'Bhakti & Dhananjay — Wedding',
-      dates: '20270311/20270315',
-      details,
-      location,
+      text: 'Bhakti & Dhananjay — Wedding, March 14, 2027',
+      dates: '20270314/20270315',
+      details: MAPS_KALYANA,
+      location: MAPS_KALYANA,
     })
     return `https://calendar.google.com/calendar/render?${params.toString()}`
   }, [])
