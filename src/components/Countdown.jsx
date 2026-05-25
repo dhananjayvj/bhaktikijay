@@ -17,7 +17,13 @@ function AnimatedDigit({ value, className, digitKey }) {
   )
 }
 
-export default function Countdown({ targetIso, className = '', dense = false, intro = null }) {
+export default function Countdown({
+  targetIso,
+  className = '',
+  dense = false,
+  intro = null,
+  heroReadable = false,
+}) {
   const target = useMemo(() => new Date(targetIso), [targetIso])
   const [now, setNow] = useState(() => Date.now())
 
@@ -50,16 +56,18 @@ export default function Countdown({ targetIso, className = '', dense = false, in
     : 'flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-5'
 
   const digitClass = dense
-    ? 'letterpress-ink font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]'
-    : 'letterpress-ink font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]'
+    ? `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]`
+    : `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]`
 
-  const labelClass = dense ? 'meta-stationery letterpress-ink mt-1' : 'meta-stationery letterpress-ink mt-1.5'
+  const labelClass = dense
+    ? `${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mt-1`
+    : `${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mt-1.5`
 
   return (
     <div className={`${stackClass} ${className}`.trim()}>
       {intro ? (
         <p
-          className={`meta-stationery letterpress-ink mb-4 w-full max-w-xl text-center ${
+          className={`${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mb-4 w-full max-w-xl text-center ${
             dense ? 'sm:mb-5' : 'mb-5'
           }`}
         >

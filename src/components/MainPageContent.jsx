@@ -8,12 +8,24 @@ const Venue = React.lazy(() => import('./Venue.jsx'))
 const RSVP = React.lazy(() => import('./RSVP.jsx'))
 const Footer = React.lazy(() => import('./Footer.jsx'))
 
-function MainPageContent({ inviteRevealed, skipIntro, sparklesDisabled }) {
+function MainPageContent({
+  inviteRevealed,
+  skipIntro,
+  sparklesDisabled,
+  curtainProgress,
+  overlayOpen,
+}) {
   const mainCardRef = useRef(null)
+  const syncReveal = inviteRevealed && overlayOpen
 
   return (
     <div ref={mainCardRef} className="relative z-[2]">
-      <Hero inviteRevealed={inviteRevealed} skipIntro={skipIntro} />
+      <Hero
+        inviteRevealed={inviteRevealed}
+        skipIntro={skipIntro}
+        syncReveal={syncReveal}
+        curtainProgress={curtainProgress}
+      />
       <CouplePortrait />
 
       <Suspense fallback={null}>

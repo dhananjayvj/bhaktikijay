@@ -68,7 +68,10 @@ bhaktikijay/
     ├── index.css              # Tailwind + custom layers
     ├── constants/
     │   ├── inviteCopy.js      # invitation text
-    │   └── wedding.js         # date headlines / RSVP line
+    │   ├── wedding.js         # date headlines / RSVP line
+    │   └── revealMotion.js    # curtain duration, zoom scale/y ranges
+    ├── hooks/
+    │   └── useInviteRevealTransform.js  # shared scale+lift from curtainProgress
     ├── utils/
     │   └── sealFeedback.js    # haptic/audio on wax seal break
     └── components/            # see §6
@@ -266,14 +269,14 @@ Submission uses `navigator.sendBeacon` when available, else `fetch` with `mode: 
 ### 6.1 Page flow (mounted in `App.jsx`)
 
 ```
-LayoutGroup "invite"
+App (curtainProgress MotionValue in App.jsx)
 ├── Overlay (until dismissed)
 │   ├── WeddingDoodles
-│   ├── HeroInvitationMirror (static preview behind curtains)
-│   └── Curtains + wax seal → onExpandingStart → heroReveal
+│   ├── HeroInvitationMirror → InviteHeroCopy variant="envelope"
+│   └── Curtains + wax seal; preview zooms (no fade) with curtainProgress
 ├── Scroll progress bar (Framer useScroll)
 └── mainCardRef
-    ├── Hero (#invitation)
+    ├── Hero (#invitation) — syncReveal: fixed layer zooms with same curtainProgress
     ├── CouplePortrait (#couple)
     ├── Timeline (#timeline)        [lazy]
     ├── Venue (#venue)              [lazy]
@@ -286,10 +289,11 @@ LayoutGroup "invite"
 
 | File | Role | Key dependencies |
 |------|------|------------------|
-| **App.jsx** | Root state: overlay, hero reveal, sparkles, flute audio, lazy load below fold | Overlay, Hero, CouplePortrait, framer-motion |
-| **Overlay.jsx** | Full-screen curtain intro; wax seal break; zoom/expansion; calls `onClose` / `onExpandingStart` | WeddingDoodles, HeroInvitationMirror, sealFeedback |
-| **Hero.jsx** | Main invitation after reveal; names, verse, countdown; backdrop fade | Toast, KolamWaveDivider, Countdown, backdrop.jpeg, constants |
-| **HeroInvitationMirror.jsx** | Pixel-matched static invite under curtains (no layoutId) | KolamWaveDivider, Countdown, constants |
+| **App.jsx** | `curtainProgress`, overlay, hero reveal, sparkles, flute; passes progress to Overlay + Hero | Overlay, Hero, framer-motion |
+| **Overlay.jsx** | Curtain intro; wax seal; preview zoom via `useInviteRevealTransform`; hint “Tap to open” | revealMotion, HeroInvitationMirror, sealFeedback |
+| **Hero.jsx** | Invitation after reveal; `syncReveal` fixed layer shares zoom with preview; backdrop fade | InviteHeroCopy, Countdown, backdrop.jpeg |
+| **InviteHeroCopy.jsx** | Shared invite markup (`full` \| `envelope` variants) | inviteCopy, Countdown |
+| **HeroInvitationMirror.jsx** | Envelope preview wrapper (`variant="envelope"`) | InviteHeroCopy |
 | **CouplePortrait.jsx** | Message + couple photo | bhakti-dhananjay.jpeg |
 | **Timeline.jsx** | Vertical timeline, alternating cards on md+, event icons, map pins | EventIcons, MandapArchIcon, framer-motion |
 | **Venue.jsx** | Pro-tip, address card, Maps + Google Calendar CTAs | framer-motion |
@@ -317,15 +321,25 @@ These exist for reuse or earlier layouts; sync copy via `inviteCopy.js` if you w
 
 ## 7. Key behaviors & timings
 
-### 7.1 Overlay (`Overlay.jsx`)
+### 7.1 Overlay & reveal zoom (`revealMotion.js`, `Overlay.jsx`, `Hero.jsx`)
 
-| Constant | Value |
-|----------|--------|
-| `CURTAIN_DURATION` | 1.15s |
-| `EXPAND_AFTER_MS` | 1400ms after seal break |
-| Curtain easing | `[0.4, 0, 0.2, 1]` |
+| Constant | Location | Value |
+|----------|----------|--------|
+| `CURTAIN_DURATION` | `revealMotion.js` | 1.15s |
+| `EXPAND_AFTER_MS` | `revealMotion.js` | 1400ms after seal break |
+| `REVEAL_SCALE_RANGE` | `revealMotion.js` | `[0.56, 1]` |
+| `REVEAL_Y_RANGE` | `revealMotion.js` | `[18, 0]` px lift |
+| `REVEAL_ORIGIN` | `revealMotion.js` | `50% 42%` |
+| Curtain easing | `revealMotion.js` | `[0.4, 0, 0.2, 1]` |
 
-Flow: user breaks wax seal → curtains animate open → `onExpandingStart` sets `heroReveal` → Hero mounts under transition → `onClose` removes overlay.
+**Flow (smooth zoom, no preview fade):**
+
+1. User taps seal (“Tap to open”).
+2. `onExpandingStart` runs immediately → `heroReveal` true; Hero mounts as `syncReveal` fixed layer (`z-[45]`).
+3. `curtainProgress` animates `0 → 1` in App; **same** `contentScale` + `contentY` applied to overlay preview and Hero.
+4. Preview stays visible and zooms with curtains (GPU `transform` only).
+5. After `EXPAND_AFTER_MS`, overlay enters `expanding` → fades; `onClose` unmounts overlay.
+6. Hero becomes in-flow; parchment + backdrop fade run on the main hero.
 
 ### 7.2 Hero backdrop (`Hero.jsx`)
 
@@ -341,16 +355,7 @@ Flow: user breaks wax seal → curtains animate open → `onExpandingStart` sets
 - File: `images/flute.mp3`, loop, volume `0.28`
 - Autoplay may be blocked until user interaction (seal break counts)
 
-### 7.4 Framer Motion layout IDs (Hero handoff)
-
-Shared between overlay transition and Hero for smooth morph:
-
-- `invite-line-bhakti`
-- `invite-line-amp`
-- `invite-line-dhananjay`
-- `invite-line-date`
-
-### 7.5 Timeline UX
+### 7.4 Timeline UX
 
 - **Mobile:** Title + subtitle stack; time + pin + label in row below with top border
 - **md+:** Side-by-side columns; timeline rail centered; cards alternate left/right
@@ -380,11 +385,13 @@ npm run build
 
 ### 8.3 GitHub Pages
 
-1. Push to `main` triggers `.github/workflows/deploy-pages.yml`
-2. Workflow runs `npm ci` + `npm run build`
-3. Deploys `dist/` to orphan branch **`gh-pages`** (single commit)
-4. **Pages settings:** Deploy from branch **`gh-pages`**, folder **`/` (root)** — not `main`
-5. Custom domain: `bhakti-dhananjay.life` via `public/CNAME` → `dist/CNAME`
+Every **push to `main`** runs `.github/workflows/deploy-pages.yml` and republishes the live site (no manual deploy step).
+
+1. Workflow: `npm ci` → `npm run build` → verify `dist/index.html` loads hashed `/assets/*.js`
+2. `JamesIves/github-pages-deploy-action` pushes `dist/` to orphan branch **`gh-pages`** (single commit)
+3. **Pages settings (one-time):** Deploy from branch **`gh-pages`**, folder **`/` (root)** — not `main` (serving `main` shows blank dev `index.html`)
+4. Custom domain: `bhakti-dhananjay.life` via `public/CNAME` → `dist/CNAME`
+5. Check **Actions** tab for `Deploy site to gh-pages` after each merge to `main`
 
 ### 8.4 Optional: RSVP endpoint at build time
 

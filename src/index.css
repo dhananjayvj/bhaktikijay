@@ -56,20 +56,29 @@
     }
   }
 
-  /* Hand-poured wax seal */
-  .wax-blob-surface {
+  /* Hand-poured wax seal — drop-shadow follows organic shape (no square clips) */
+  .wax-seal-wrap {
+    filter: drop-shadow(0 5px 14px rgba(0, 0, 0, 0.42)) drop-shadow(0 2px 6px rgba(0, 0, 0, 0.28));
+    transition: filter 0.12s ease-out;
+  }
+
+  .wax-seal-wrap--pressed {
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.55)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.35));
+  }
+
+  .wax-seal-face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.08em;
+    width: 100%;
+    height: 100%;
     border-radius: 48% 52% 54% 46% / 51% 47% 53% 49%;
     background: radial-gradient(circle at 30% 30%, #9e2a2a 0%, #7a1a1a 70%, #5d1515 100%);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.1);
-    transition: box-shadow 0.12s ease-out;
-  }
-
-  .wax-blob-surface--pressed {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), inset 0 3px 6px rgba(255, 255, 255, 0.06);
-  }
-
-  .wax-seal-organic {
-    border-radius: 48% 52% 54% 46% / 51% 47% 53% 49%;
+    box-shadow:
+      inset 0 2px 5px rgba(255, 255, 255, 0.12),
+      inset 0 -4px 10px rgba(0, 0, 0, 0.38);
+    pointer-events: none;
   }
 
   .wax-monogram-deboss {
@@ -110,6 +119,60 @@
   /* Letterpress on parchment */
   .letterpress-ink {
     text-shadow: 0.5px 0.5px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  /* Hero invitation — readable on photo backdrop */
+  .invite-hero-meta {
+    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.3em] text-invite-wine;
+    text-shadow:
+      0 0 1px rgba(255, 252, 248, 1),
+      0 1px 3px rgba(250, 247, 242, 0.95),
+      0 2px 10px rgba(250, 247, 242, 0.85),
+      0 0 28px rgba(252, 249, 241, 0.65);
+  }
+
+  .invite-hero-body {
+    @apply font-cormorant text-lg font-semibold leading-loose text-invite-ink;
+    text-shadow:
+      0 0 1px rgba(255, 252, 248, 1),
+      0 1px 3px rgba(250, 247, 242, 0.92),
+      0 2px 12px rgba(250, 247, 242, 0.8),
+      0 0 32px rgba(252, 249, 241, 0.55),
+      1px 2px 4px rgba(61, 25, 38, 0.18);
+  }
+
+  .invite-hero-parent {
+    @apply font-cormorant text-base font-semibold leading-relaxed tracking-wide text-invite-ink sm:text-lg;
+    text-shadow:
+      0 0 1px rgba(255, 252, 248, 0.98),
+      0 1px 4px rgba(250, 247, 242, 0.88),
+      0 2px 10px rgba(250, 247, 242, 0.72);
+  }
+
+  .invite-couple-name {
+    @apply font-script font-normal text-invite-wine;
+    line-height: 0.92;
+    text-shadow:
+      0 0 2px rgba(255, 252, 248, 0.95),
+      0 2px 14px rgba(250, 247, 242, 0.9),
+      0 4px 22px rgba(252, 249, 241, 0.7),
+      2px 4px 8px rgba(61, 25, 38, 0.28);
+  }
+
+  .invite-couple-amp {
+    @apply font-script font-normal italic text-invite-mauve;
+    text-shadow:
+      0 0 2px rgba(255, 252, 248, 0.95),
+      0 2px 12px rgba(250, 247, 242, 0.85),
+      1px 3px 6px rgba(61, 25, 38, 0.2);
+  }
+
+  .invite-countdown-digit {
+    @apply font-playfair font-black tabular-nums text-invite-wine;
+    text-shadow:
+      0 0 1px rgba(255, 252, 248, 1),
+      0 1px 4px rgba(250, 247, 242, 0.9),
+      0 2px 14px rgba(250, 247, 242, 0.75);
   }
 
   .paper-parchment {
