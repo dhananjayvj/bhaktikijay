@@ -276,7 +276,7 @@ App (curtainProgress MotionValue in App.jsx)
 │   └── Curtains + wax seal; preview zooms (no fade) with curtainProgress
 ├── Scroll progress bar (Framer useScroll)
 └── mainCardRef
-    ├── Hero (#invitation) — syncReveal: fixed layer zooms with same curtainProgress
+    ├── Hero (#invitation) — same layout throughout; zoom transform only while overlay open
     ├── CouplePortrait (#couple)
     ├── Timeline (#timeline)        [lazy]
     ├── Venue (#venue)              [lazy]
@@ -291,7 +291,7 @@ App (curtainProgress MotionValue in App.jsx)
 |------|------|------------------|
 | **App.jsx** | `curtainProgress`, overlay, hero reveal, sparkles, flute; passes progress to Overlay + Hero | Overlay, Hero, framer-motion |
 | **Overlay.jsx** | Curtain intro; wax seal; preview zoom via `useInviteRevealTransform`; hint “Tap to open” | revealMotion, HeroInvitationMirror, sealFeedback |
-| **Hero.jsx** | Invitation after reveal; `syncReveal` fixed layer shares zoom with preview; backdrop fade | InviteHeroCopy, Countdown, backdrop.jpeg |
+| **Hero.jsx** | Invitation after reveal; centered layout; GPU zoom while overlay open; backdrop 50ms | InviteHeroCopy, Countdown, backdrop.jpeg |
 | **InviteHeroCopy.jsx** | Shared invite markup (`full` \| `envelope` variants) | inviteCopy, Countdown |
 | **HeroInvitationMirror.jsx** | Envelope preview wrapper (`variant="envelope"`) | InviteHeroCopy |
 | **CouplePortrait.jsx** | Message + couple photo | bhakti-dhananjay.jpeg |
@@ -335,17 +335,17 @@ These exist for reuse or earlier layouts; sync copy via `inviteCopy.js` if you w
 **Flow (smooth zoom, no preview fade):**
 
 1. User taps seal (“Tap to open”).
-2. `onExpandingStart` runs immediately → `heroReveal` true; Hero mounts as `syncReveal` fixed layer (`z-[45]`).
-3. `curtainProgress` animates `0 → 1` in App; **same** `contentScale` + `contentY` applied to overlay preview and Hero.
+2. `onExpandingStart` runs immediately → `heroReveal` true; Hero mounts in its **final** centered layout (no fixed/handoff swap).
+3. `curtainProgress` animates `0 → 1`; **same** `contentScale` + `contentY` on overlay preview and Hero while `overlayOpen`.
 4. Preview stays visible and zooms with curtains (GPU `transform` only).
 5. After `EXPAND_AFTER_MS`, overlay enters `expanding` → fades; `onClose` unmounts overlay.
-6. Hero becomes in-flow; parchment + backdrop fade run on the main hero.
+6. Hero keeps the same DOM/layout; zoom transform is removed at progress `1` (no page readjustment). Parchment + backdrop (50ms delay) were present throughout.
 
 ### 7.2 Hero backdrop (`Hero.jsx`)
 
 | Constant | Value |
 |----------|--------|
-| `BACKDROP_MOUNT_DELAY_MS` | 2600ms after `inviteRevealed` |
+| `BACKDROP_MOUNT_DELAY_MS` | 50ms after `inviteRevealed` |
 | `BACKDROP_FADE_SEC` | 3s opacity 0 → 0.34 |
 | Image | `images/backdrop.jpeg` |
 

@@ -5,40 +5,13 @@ import InviteHeroCopy from './InviteHeroCopy.jsx'
 import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
 import { REVEAL_ORIGIN } from '../constants/revealMotion.js'
 import { useInviteRevealTransform } from '../hooks/useInviteRevealTransform.js'
-import {
-  easeOutCubic,
-  gpuLayerStyle,
-  heroLineRevealDuration,
-  heroLineRisePx,
-  staggerChildren,
-} from '../constants/motion.js'
+import { easeOutCubic, gpuLayerStyle } from '../constants/motion.js'
 
-const lineReveal = {
-  hidden: { opacity: 0, y: heroLineRisePx },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: heroLineRevealDuration, ease: easeOutCubic },
-  },
-}
-
-const kolamReveal = {
-  hidden: { opacity: 0, y: heroLineRisePx },
-  show: { opacity: 1, y: 0, transition: { duration: heroLineRevealDuration, ease: easeOutCubic } },
-}
-
-const heroStagger = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren, delayChildren: 0.15 },
-  },
-}
-
-const BACKDROP_MOUNT_DELAY_MS = 2600
+const BACKDROP_MOUNT_DELAY_MS = 50
 const BACKDROP_FADE_SEC = 3
 
 const gridClass =
-  'relative mx-auto w-full max-w-5xl px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:px-6 sm:pb-16 sm:pt-10 md:px-12 md:pb-24 md:pt-14'
+  'relative z-[2] mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] gap-y-5 px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:gap-y-6 sm:px-6 sm:pb-16 sm:pt-10 md:gap-y-8 md:px-12 md:pb-24 md:pt-14'
 
 function HeroParchmentLayers({ backdropOn }) {
   return (
@@ -74,12 +47,7 @@ function HeroParchmentLayers({ backdropOn }) {
   )
 }
 
-function Hero({
-  inviteRevealed = false,
-  skipIntro = false,
-  syncReveal = false,
-  curtainProgress,
-}) {
+function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
@@ -94,74 +62,43 @@ function Hero({
   )
 
   useEffect(() => {
-    if (!inviteRevealed || syncReveal) {
-      if (!inviteRevealed) setBackdropOn(false)
+    if (!inviteRevealed) {
+      setBackdropOn(false)
       return
     }
     const t = window.setTimeout(() => setBackdropOn(true), BACKDROP_MOUNT_DELAY_MS)
     return () => window.clearTimeout(t)
-  }, [inviteRevealed, syncReveal])
+  }, [inviteRevealed])
 
-  const revealLayerStyle = syncReveal
-    ? {
-        scale: contentScale,
-        y: contentY,
-        transformOrigin: REVEAL_ORIGIN,
-        ...gpuLayerStyle,
-      }
-    : undefined
-
-  const inviteBody = (
-    <>
-      {!syncReveal ? <HeroParchmentLayers backdropOn={backdropOn} /> : null}
-      <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
-      <InviteHeroCopy variant="full" />
-    </>
-  )
+  const zoomStyle =
+    overlayOpen && inviteRevealed
+      ? {
+          scale: contentScale,
+          y: contentY,
+          transformOrigin: REVEAL_ORIGIN,
+          ...gpuLayerStyle,
+        }
+      : undefined
 
   return (
-    <>
-      {syncReveal ? <div className="min-h-[100svh] w-full" aria-hidden="true" /> : null}
-      <section
-        id="invitation"
-        className={`overflow-x-hidden overflow-y-visible ${
-          syncReveal ? 'pointer-events-none fixed inset-0 z-[45] flex min-h-0 items-center justify-center' : 'relative min-h-[100svh]'
-        }`}
-      >
-      {!syncReveal ? (
+    <section
+      id="invitation"
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-x-hidden overflow-y-visible"
+    >
+      {!inviteRevealed ? (
+        <div className="min-h-[100svh] w-full" aria-hidden="true" />
+      ) : (
         <>
           <div className="absolute inset-0 bg-invite-paper" style={bgStyle} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
+          <HeroParchmentLayers backdropOn={backdropOn} />
+          <motion.div className={gridClass} style={zoomStyle}>
+            <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
+            <InviteHeroCopy variant="full" />
+          </motion.div>
         </>
-      ) : null}
-
-      {!inviteRevealed ? (
-        <div className="relative min-h-dvh min-h-[100svh] w-full" aria-hidden="true" />
-      ) : syncReveal ? (
-        <motion.div className={`${gridClass} w-full`} style={revealLayerStyle}>
-          {inviteBody}
-        </motion.div>
-      ) : skipIntro ? (
-        <motion.div
-          className={`${gridClass} grid min-h-[100svh] grid-rows-[auto_auto_auto] gap-y-5 sm:gap-y-6 md:gap-y-8`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, ease: easeOutCubic }}
-        >
-          {inviteBody}
-        </motion.div>
-      ) : (
-        <motion.div
-          className={`${gridClass} grid min-h-[100svh] grid-rows-[auto_auto_auto] gap-y-5 sm:gap-y-6 md:gap-y-8`}
-          initial="hidden"
-          animate="show"
-          variants={heroStagger}
-        >
-          {inviteBody}
-        </motion.div>
       )}
-      </section>
-    </>
+    </section>
   )
 }
 

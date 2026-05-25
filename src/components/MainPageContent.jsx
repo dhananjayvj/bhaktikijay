@@ -10,20 +10,17 @@ const Footer = React.lazy(() => import('./Footer.jsx'))
 
 function MainPageContent({
   inviteRevealed,
-  skipIntro,
   sparklesDisabled,
   curtainProgress,
   overlayOpen,
 }) {
   const mainCardRef = useRef(null)
-  const syncReveal = inviteRevealed && overlayOpen
 
   return (
     <div ref={mainCardRef} className="relative z-[2]">
       <Hero
         inviteRevealed={inviteRevealed}
-        skipIntro={skipIntro}
-        syncReveal={syncReveal}
+        overlayOpen={overlayOpen}
         curtainProgress={curtainProgress}
       />
       <CouplePortrait />

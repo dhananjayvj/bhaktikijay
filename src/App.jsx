@@ -40,7 +40,6 @@ export default function App() {
           curtainProgress={curtainProgress}
           inviteRevealed={inviteRevealed}
           overlayOpen={overlayOpen}
-          skipIntro={heroReveal}
           sparklesDisabled={overlayOpen}
         />
       </div>
