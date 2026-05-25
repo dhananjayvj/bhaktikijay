@@ -3,13 +3,8 @@
 # GitHub Pages must publish THAT branch — not `main`.
 #   Settings → Pages → Build and deployment → Deploy from a branch
 #   → Branch: gh-pages → Folder: / (root)
-#
-# If Pages is set to "main" / (root), the live site will serve the Vite *source*
-# index.html (<script src="/src/main.jsx">) and the app will be blank — built
-# assets live under /assets/ only after `vite build` in dist/.
 name: Deploy site to gh-pages
 
-# Runs on every commit pushed to main → rebuilds dist/ and updates gh-pages.
 on:
   push:
     branches: [main]
@@ -49,22 +44,12 @@ jobs:
           fi
 
       - name: Publish dist to gh-pages branch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-          short_sha="$(printf '%s' "$GITHUB_SHA" | cut -c1-7)"
-
-          worktree="$(mktemp -d)"
-          cp -a dist/. "$worktree/"
-          cd "$worktree"
-
-          git init
-          git checkout -B gh-pages
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git commit -m "Deploy ${short_sha} from ${GITHUB_REF_NAME}"
-
-          git remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push --force origin gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          commit_message: Deploy ${{ github.sha }}
