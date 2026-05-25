@@ -6,8 +6,9 @@ import Countdown from './Countdown.jsx'
 import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
 import {
   easeOutCubic,
-  fadeUpDuration,
   gpuLayerStyle,
+  heroLineRevealDuration,
+  heroLineRisePx,
   layoutHandoff,
   staggerChildren,
 } from '../constants/motion.js'
@@ -21,40 +22,32 @@ import {
 } from '../constants/inviteCopy.js'
 import { CEREMONY_DATE_HEADLINE } from '../constants/wedding.js'
 
-/** Opacity + soft rise — staggered via parent staggerChildren */
-const fadeLine = {
-  hidden: { opacity: 0, y: 14 },
+const lineReveal = {
+  hidden: { opacity: 0, y: heroLineRisePx },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: fadeUpDuration, ease: easeOutCubic },
+    transition: { duration: heroLineRevealDuration, ease: easeOutCubic },
   },
 }
 
 const kolamReveal = {
-  hidden: { opacity: 0, y: -14 },
-  show: { opacity: 1, y: 0, transition: { duration: fadeUpDuration, ease: easeOutCubic } },
+  hidden: { opacity: 0, y: heroLineRisePx },
+  show: { opacity: 1, y: 0, transition: { duration: heroLineRevealDuration, ease: easeOutCubic } },
 }
 
-/** Instantly “on” so layoutId names don’t wait on stagger */
 const instant = {
   hidden: { opacity: 1, y: 0 },
   show: { opacity: 1, y: 0, transition: { duration: 0 } },
 }
 
-const countdownReveal = {
-  hidden: { opacity: 0, y: 14 },
-  show: { opacity: 1, y: 0, transition: { duration: fadeUpDuration, ease: easeOutCubic } },
-}
-
 const heroStagger = {
   hidden: {},
   show: {
-    transition: { staggerChildren, delayChildren: 0.12 },
+    transition: { staggerChildren, delayChildren: 0.15 },
   },
 }
 
-/** Wait after curtain reveal before mounting backdrop; photo then fades in over {@link BACKDROP_FADE_SEC}s. */
 const BACKDROP_MOUNT_DELAY_MS = 2600
 const BACKDROP_FADE_SEC = 3
 
@@ -92,22 +85,20 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
         <div className="relative min-h-dvh min-h-[100svh]" aria-hidden="true" />
       ) : (
         <motion.div
-          className="relative mx-auto grid min-h-[100svh] w-full max-w-5xl grid-rows-[auto_auto_auto] gap-y-3 px-3 pb-[max(1.75rem,env(safe-area-inset-bottom))] pt-[max(0.25rem,env(safe-area-inset-top))] text-center sm:gap-y-4 sm:px-4 sm:pb-14 sm:pt-8 md:gap-y-5 md:px-10 md:pb-20 md:pt-12"
+          className="relative mx-auto grid min-h-[100svh] w-full max-w-5xl grid-rows-[auto_auto_auto] gap-y-5 px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:gap-y-6 sm:px-6 sm:pb-16 sm:pt-10 md:gap-y-8 md:px-12 md:pb-24 md:pt-14"
           initial={skipIntro ? 'show' : 'hidden'}
           animate="show"
           variants={heroStagger}
         >
-          {/* Solid invite panel (opaque) */}
           <div
             aria-hidden="true"
-            className="paper-parchment pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10"
+            className="paper-parchment pointer-events-none absolute inset-x-3 top-8 bottom-8 z-0 overflow-hidden rounded-3xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10 sm:inset-x-4"
           />
 
-          {/* Backdrop: mounts after curtain delay, then opacity 0 → final over BACKDROP_FADE_SEC */}
           {backdropOn ? (
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute inset-x-2 top-6 bottom-6 z-0 overflow-hidden rounded-3xl"
+              className="pointer-events-none absolute inset-x-3 top-8 bottom-8 z-0 overflow-hidden rounded-3xl sm:inset-x-4"
               style={gpuLayerStyle}
             >
               <motion.div
@@ -123,13 +114,12 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
                   willChange: 'opacity',
                 }}
               />
-              {/* Stronger wash on mobile so text stays punchy */}
               <div className="absolute inset-0 bg-[#faf6ef]/40 sm:bg-transparent" />
               <div className="absolute inset-0 bg-gradient-to-b from-[#faf6ef]/97 via-[#f0e9dc]/60 to-[#e8dfd2]/98 sm:from-[#faf6ef]/92 sm:via-[#f0e9dc]/44 sm:to-[#e8dfd2]/94" />
             </motion.div>
           ) : null}
 
-          <div className="relative z-[2] flex flex-col items-center gap-3.5 sm:gap-5">
+          <div className="relative z-[2] flex flex-col items-center gap-5 sm:gap-6">
             <motion.div variants={kolamReveal} className="w-full">
               <div className="mt-0 md:mt-1">
                 <KolamWaveDivider compact />
@@ -138,75 +128,69 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
 
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
 
-            <motion.div
-              variants={fadeLine}
-              className="meta-stationery text-center text-[clamp(0.78rem,2vw,0.92rem)] tracking-[0.22em] whitespace-nowrap"
-            >
-              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+            <motion.div variants={lineReveal} className="meta-stationery letterpress-ink px-2">
+              <span className="select-none not-italic text-invite-wine/35" aria-hidden="true">
                 ||
               </span>
-              <span className="px-1 sm:px-2.5">{INVITE_HEADER}</span>
-              <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+              <span className="px-2">{INVITE_HEADER}</span>
+              <span className="select-none not-italic text-invite-wine/35" aria-hidden="true">
                 ||
               </span>
             </motion.div>
 
-            <motion.div variants={fadeLine} className="max-w-3xl px-0.5">
-              <p className="mx-auto max-w-2xl font-cormorant text-[clamp(1.1rem,3.5vw,1.28rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+            <motion.div variants={lineReveal} className="w-full px-2">
+              <p className="letterpress-ink mx-auto max-w-xl font-cormorant text-lg italic leading-loose text-invite-wine/90 whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_OPENING_VERSE}
               </p>
             </motion.div>
           </div>
 
           <motion.div
-            variants={fadeLine}
-            className="relative z-[2] flex min-h-0 w-full flex-col items-center justify-center pt-1 sm:pt-2"
+            variants={lineReveal}
+            className="relative z-[2] flex min-h-0 w-full flex-col items-center justify-center px-2 pt-2 sm:pt-4"
           >
-            <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
-              <div className="flex flex-col items-center text-center">
+            <div className="grid w-full max-w-4xl grid-cols-1 items-center justify-center gap-4 sm:gap-5 md:grid-cols-[1fr_auto_1fr] md:gap-x-10">
+              <div className="flex flex-col items-center gap-2 text-center sm:gap-3">
                 <motion.div variants={instant}>
                   <motion.div
                     layoutId="invite-line-bhakti"
-                    className="font-script font-normal text-invite-wine"
-                    style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95, ...gpuLayerStyle }}
+                    className="letterpress-ink font-playfair font-semibold text-invite-wine"
+                    style={{ fontSize: 'clamp(2.5rem, 9vw, 6.5rem)', lineHeight: 0.95, ...gpuLayerStyle }}
                     transition={layoutHandoff}
                   >
                     Bhakti
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve">
+                <motion.div variants={lineReveal}>
+                  <p className="letterpress-ink max-w-[26rem] font-cormorant text-base italic leading-relaxed tracking-wide text-invite-mauve sm:text-lg">
                     {BHAKTI_PARENT_LINE}
                   </p>
                 </motion.div>
               </div>
 
-              <div className="flex items-center justify-center py-0.5 md:pt-3">
+              <div className="flex items-center justify-center py-1 md:pt-4">
                 <motion.div variants={instant}>
-                  <motion.div
-                    layoutId="invite-line-amp"
-                    className="font-script font-normal text-invite-mauve"
-                    style={{ fontSize: 'clamp(3rem, 11vw, 5.75rem)', lineHeight: 0.9, ...gpuLayerStyle }}
-                    transition={layoutHandoff}
-                  >
-                    <span className="inline-block italic">&amp;</span>
+                  <motion.div layoutId="invite-line-amp" transition={layoutHandoff} style={gpuLayerStyle}>
+                    <span className="letterpress-ink inline-block translate-y-2 font-script text-6xl text-invite-mauve md:mx-2">
+                      &amp;
+                    </span>
                   </motion.div>
                 </motion.div>
               </div>
 
-              <div className="flex flex-col items-center text-center">
+              <div className="flex flex-col items-center gap-2 text-center sm:gap-3">
                 <motion.div variants={instant}>
                   <motion.div
                     layoutId="invite-line-dhananjay"
-                    className="font-script font-normal text-invite-wine"
-                    style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95, ...gpuLayerStyle }}
+                    className="letterpress-ink font-playfair font-semibold text-invite-wine"
+                    style={{ fontSize: 'clamp(2.5rem, 9vw, 6.5rem)', lineHeight: 0.95, ...gpuLayerStyle }}
                     transition={layoutHandoff}
                   >
                     Dhananjay
                   </motion.div>
                 </motion.div>
-                <motion.div variants={fadeLine} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve">
+                <motion.div variants={lineReveal}>
+                  <p className="letterpress-ink max-w-[26rem] font-cormorant text-base italic leading-relaxed tracking-wide text-invite-mauve sm:text-lg">
                     {DHANANJAY_PARENT_LINE}
                   </p>
                 </motion.div>
@@ -215,29 +199,27 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
           </motion.div>
 
           <motion.div
-            variants={fadeLine}
-            className="relative z-[2] flex flex-col items-center gap-2.5 sm:gap-3.5"
+            variants={lineReveal}
+            className="relative z-[2] flex flex-col items-center gap-4 px-3 sm:gap-5 sm:px-4"
           >
-            <motion.div variants={fadeLine} className="max-w-2xl px-0.5">
-              <p className="mx-auto max-w-md font-cormorant text-[clamp(1.05rem,3.2vw,1.2rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+            <motion.div variants={lineReveal} className="w-full">
+              <p className="letterpress-ink mx-auto max-w-lg font-cormorant text-lg italic leading-loose tracking-wide text-invite-wine/90 whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_CELEBRATION}
               </p>
             </motion.div>
 
-            <motion.div variants={instant} className="flex flex-col items-center gap-1.5">
+            <motion.div variants={instant} className="flex flex-col items-center gap-2 pt-1">
               <motion.div
                 layoutId="invite-line-date"
-                className="flex flex-col items-center gap-1.5 text-invite-wine"
+                className="meta-stationery letterpress-ink px-2"
                 style={gpuLayerStyle}
                 transition={layoutHandoff}
               >
-                <div className="meta-stationery text-[clamp(0.8rem,2.2vw,1rem)] tracking-[0.28em]">
-                  {CEREMONY_DATE_HEADLINE}
-                </div>
+                {CEREMONY_DATE_HEADLINE}
               </motion.div>
             </motion.div>
 
-            <motion.div variants={countdownReveal} className="w-full">
+            <motion.div variants={lineReveal} className="w-full pt-1">
               <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
             </motion.div>
           </motion.div>

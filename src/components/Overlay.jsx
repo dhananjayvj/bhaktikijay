@@ -21,9 +21,9 @@ const invitePaperBg = {
     'radial-gradient(circle at 12% 20%, rgba(122,46,63,0.08) 0%, rgba(122,46,63,0) 52%), radial-gradient(circle at 88% 16%, rgba(139,107,122,0.10) 0%, rgba(139,107,122,0) 50%), radial-gradient(circle at 50% 100%, rgba(233,216,221,0.35) 0%, rgba(250,247,242,0) 45%)',
 }
 
-const waxOrganicRadius = '48% 52% 51% 49% / 50% 48% 52% 50%'
+const waxOrganicRadius = '48% 52% 54% 46% / 51% 47% 53% 49%'
 
-const sealTapSpring = { type: 'spring', stiffness: 680, damping: 22, mass: 0.55 }
+const sealTapSpring = { type: 'spring', stiffness: 720, damping: 20, mass: 0.5 }
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
 
@@ -137,7 +137,7 @@ function OutsideAreaDoodles({ hidden }) {
 }
 
 /** Beveled wax: layered inset highlights + deep shadow */
-function WaxBlobHalf({ side, size }) {
+function WaxBlobHalf({ side, size, pressed }) {
   const halfW = size * 0.5
   return (
     <div
@@ -149,9 +149,7 @@ function WaxBlobHalf({ side, size }) {
       aria-hidden="true"
     >
       <div
-        className={`wax-blob-surface absolute top-0 h-full ${
-          side === 'left' ? 'wax-blob-surface--left' : 'wax-blob-surface--right'
-        }`}
+        className={`wax-blob-surface absolute top-0 h-full ${pressed ? 'wax-blob-surface--pressed' : ''}`}
         style={{
           width: size,
           [side === 'left' ? 'left' : 'right']: 0,
@@ -161,7 +159,7 @@ function WaxBlobHalf({ side, size }) {
   )
 }
 
-function WaxOnCurtain({ side, size, letter, shimmer }) {
+function WaxOnCurtain({ side, size, letter, shimmer, pressed }) {
   return (
     <div
       className={`pointer-events-none absolute top-1/2 z-[14] flex -translate-y-1/2 items-center ${
@@ -169,9 +167,9 @@ function WaxOnCurtain({ side, size, letter, shimmer }) {
       }`}
     >
       <div className="relative flex" style={{ width: size * 0.5, height: size * 0.88 }}>
-        <WaxBlobHalf side={side} size={size} />
+        <WaxBlobHalf side={side} size={size} pressed={pressed} />
         <span
-          className={`wax-monogram-deboss pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.5rem,5.5vw,2rem)] leading-none ${
+          className={`wax-monogram-deboss font-cinzel pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.5rem,5.5vw,2rem)] leading-none ${
             shimmer ? 'wax-monogram-shimmer' : ''
           }`}
           style={{
@@ -216,6 +214,7 @@ function CurtainPaper({ side, children }) {
 
 function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const idle = phase === 'closed'
+  const [sealPressed, setSealPressed] = useState(false)
 
   const waxSize = 108
 
@@ -289,7 +288,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="left">
-            <WaxOnCurtain side="left" size={waxSize} letter="B" shimmer={idle} />
+            <WaxOnCurtain side="left" size={waxSize} letter="B" shimmer={idle} pressed={sealPressed} />
           </CurtainPaper>
         </motion.div>
 
@@ -305,7 +304,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="right">
-            <WaxOnCurtain side="right" size={waxSize} letter="D" shimmer={idle} />
+            <WaxOnCurtain side="right" size={waxSize} letter="D" shimmer={idle} pressed={sealPressed} />
           </CurtainPaper>
         </motion.div>
 
@@ -317,10 +316,14 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
               e.stopPropagation()
               onSealPress()
             }}
+            onPointerDown={() => setSealPressed(true)}
+            onPointerUp={() => setSealPressed(false)}
+            onPointerLeave={() => setSealPressed(false)}
+            onPointerCancel={() => setSealPressed(false)}
             className="wax-seal-organic absolute left-1/2 top-1/2 z-[20] min-h-[112px] min-w-[min(72%,200px)] -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation border-0 bg-transparent p-0 outline-none"
             style={{ WebkitTapHighlightColor: 'transparent', willChange: 'transform' }}
             whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.92 }}
             transition={sealTapSpring}
             aria-label="Break the wax seal to open the invitation"
           />
@@ -328,7 +331,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] mt-10 text-center font-cormorant text-sm italic text-white/90 ${
+        className={`relative z-[4] mt-14 pb-2 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/60 sm:mt-16 md:mt-20 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >

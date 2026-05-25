@@ -18,74 +18,69 @@ import { CEREMONY_DATE_HEADLINE } from '../constants/wedding.js'
 export default function HeroInvitationMirror() {
   return (
     <div
-      className="pointer-events-none mx-auto grid h-full min-h-0 w-full max-w-5xl grid-rows-[auto_auto_auto] select-none gap-y-3 px-3 pb-2 pt-0 text-center sm:gap-y-4 sm:px-4 sm:pb-3 sm:pt-0 md:gap-y-5 md:px-10 md:pb-4"
+      className="pointer-events-none mx-auto grid h-full min-h-0 w-full max-w-5xl grid-rows-[auto_auto_auto] select-none gap-y-5 px-4 pb-3 pt-1 text-center sm:gap-y-6 sm:px-6 sm:pb-4 md:gap-y-8 md:px-10"
       aria-hidden="true"
     >
-      <div className="flex flex-col items-center gap-3.5 sm:gap-5">
+      <div className="flex flex-col items-center gap-5 sm:gap-6">
         <div className="mt-0 w-full md:mt-1">
           <KolamWaveDivider compact />
         </div>
 
-        <div className="meta-stationery text-center text-[clamp(0.78rem,2vw,0.92rem)] tracking-[0.22em] whitespace-nowrap">
-          <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+        <div className="meta-stationery letterpress-ink px-2">
+          <span className="select-none not-italic text-invite-wine/35" aria-hidden="true">
             ||
           </span>
-          <span className="px-1 sm:px-2.5">{INVITE_HEADER}</span>
-          <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
+          <span className="px-2">{INVITE_HEADER}</span>
+          <span className="select-none not-italic text-invite-wine/35" aria-hidden="true">
             ||
           </span>
         </div>
 
-        <p className="mx-auto max-w-2xl px-0.5 font-cormorant text-[clamp(1.1rem,3.5vw,1.28rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="letterpress-ink mx-auto max-w-xl px-2 font-cormorant text-lg italic leading-loose text-invite-wine/90 whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_OPENING_VERSE}
         </p>
       </div>
 
-      <div className="flex min-h-0 w-full flex-col items-center justify-center pt-1 sm:pt-2">
-        <div className="grid w-full grid-cols-1 items-center justify-center gap-2 sm:gap-3 md:grid-cols-[1fr_auto_1fr] md:gap-x-8">
-          <div className="flex flex-col items-center text-center">
+      <div className="flex min-h-0 w-full flex-col items-center justify-center px-2 pt-2 sm:pt-4">
+        <div className="grid w-full max-w-4xl grid-cols-1 items-center justify-center gap-4 sm:gap-5 md:grid-cols-[1fr_auto_1fr] md:gap-x-10">
+          <div className="flex flex-col items-center gap-2 text-center sm:gap-3">
             <div
-              className="font-script font-normal text-invite-wine"
-              style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95 }}
+              className="letterpress-ink font-playfair font-semibold text-invite-wine"
+              style={{ fontSize: 'clamp(2.5rem, 9vw, 6.5rem)', lineHeight: 0.95 }}
             >
               Bhakti
             </div>
-            <p className="mt-2 max-w-[26rem] font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve sm:mt-3">
+            <p className="letterpress-ink max-w-[26rem] font-cormorant text-base italic leading-relaxed tracking-wide text-invite-mauve sm:text-lg">
               {BHAKTI_PARENT_LINE}
             </p>
           </div>
 
-          <div className="flex items-center justify-center py-0.5 md:pt-3">
-            <span
-              className="inline-block font-script font-normal italic text-invite-mauve"
-              style={{ fontSize: 'clamp(3rem, 11vw, 5.75rem)', lineHeight: 0.9 }}
-            >
+          <div className="flex items-center justify-center py-1 md:pt-4">
+            <span className="letterpress-ink inline-block translate-y-2 font-script text-6xl text-invite-mauve md:mx-2">
               &amp;
             </span>
           </div>
 
-          <div className="flex flex-col items-center text-center">
+          <div className="flex flex-col items-center gap-2 text-center sm:gap-3">
             <div
-              className="font-script font-normal text-invite-wine"
-              style={{ fontSize: 'clamp(2.35rem, 9vw, 7.2rem)', lineHeight: 0.95 }}
+              className="letterpress-ink font-playfair font-semibold text-invite-wine"
+              style={{ fontSize: 'clamp(2.5rem, 9vw, 6.5rem)', lineHeight: 0.95 }}
             >
               Dhananjay
             </div>
-            <p className="mt-2 max-w-[26rem] font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve sm:mt-3">
+            <p className="letterpress-ink max-w-[26rem] font-cormorant text-base italic leading-relaxed tracking-wide text-invite-mauve sm:text-lg">
               {DHANANJAY_PARENT_LINE}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
-        <p className="max-w-md px-0.5 font-cormorant text-[clamp(1.05rem,3.2vw,1.2rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+      <div className="flex flex-col items-center gap-4 px-3 sm:gap-5">
+        <p className="letterpress-ink mx-auto max-w-lg font-cormorant text-lg italic leading-loose tracking-wide text-invite-wine/90 whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_CELEBRATION}
         </p>
 
-        <div className="meta-stationery text-[clamp(0.8rem,2.2vw,1rem)] tracking-[0.28em]">
-          {CEREMONY_DATE_HEADLINE}
-        </div>
+        <div className="meta-stationery letterpress-ink px-2 pt-1">{CEREMONY_DATE_HEADLINE}</div>
 
         <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
       </div>

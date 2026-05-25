@@ -56,84 +56,45 @@
     }
   }
 
-  /* Organic wax seal — pooled edges, specular sheen, debossed monogram */
+  /* Hand-poured wax seal */
   .wax-blob-surface {
-    border-radius: 48% 52% 51% 49% / 50% 48% 52% 50%;
-    background:
-      radial-gradient(ellipse 58% 48% at 34% 26%, rgba(255, 228, 218, 0.42) 0%, transparent 52%),
-      radial-gradient(ellipse 72% 62% at 38% 26%, rgba(200, 115, 130, 0.5) 0%, transparent 50%),
-      radial-gradient(ellipse 88% 82% at 50% 100%, rgba(35, 6, 12, 0.48) 0%, transparent 46%),
-      linear-gradient(158deg, #9b3348 0%, #6e1f30 36%, #4a1520 70%, #2c0a10 100%);
-    box-shadow:
-      inset 0 0 0 2px rgba(0, 0, 0, 0.28),
-      inset 0 0 0 5px rgba(255, 248, 242, 0.07),
-      inset 3px 3px 9px rgba(255, 248, 235, 0.16),
-      inset -5px -7px 14px rgba(0, 0, 0, 0.5),
-      inset -2px -11px 18px rgba(0, 0, 0, 0.42),
-      0 3px 6px rgba(0, 0, 0, 0.32),
-      0 9px 20px rgba(0, 0, 0, 0.26);
+    border-radius: 48% 52% 54% 46% / 51% 47% 53% 49%;
+    background: radial-gradient(circle at 30% 30%, #9e2a2a 0%, #7a1a1a 70%, #5d1515 100%);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.1);
+    transition: box-shadow 0.12s ease-out;
   }
 
-  .wax-blob-surface--left {
-    box-shadow:
-      inset 0 0 0 2px rgba(0, 0, 0, 0.28),
-      inset 0 0 0 5px rgba(255, 248, 242, 0.07),
-      inset 3px 3px 9px rgba(255, 248, 235, 0.16),
-      inset -5px -7px 14px rgba(0, 0, 0, 0.5),
-      inset -2px -11px 18px rgba(0, 0, 0, 0.42),
-      5px 2px 12px rgba(0, 0, 0, 0.28),
-      0 3px 6px rgba(0, 0, 0, 0.32),
-      0 9px 20px rgba(0, 0, 0, 0.26);
-  }
-
-  .wax-blob-surface--right {
-    box-shadow:
-      inset 0 0 0 2px rgba(0, 0, 0, 0.28),
-      inset 0 0 0 5px rgba(255, 248, 242, 0.07),
-      inset 3px 3px 9px rgba(255, 248, 235, 0.16),
-      inset -5px -7px 14px rgba(0, 0, 0, 0.5),
-      inset -2px -11px 18px rgba(0, 0, 0, 0.42),
-      -5px 2px 12px rgba(0, 0, 0, 0.28),
-      0 3px 6px rgba(0, 0, 0, 0.32),
-      0 9px 20px rgba(0, 0, 0, 0.26);
+  .wax-blob-surface--pressed {
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.55), inset 0 3px 6px rgba(255, 255, 255, 0.06);
   }
 
   .wax-seal-organic {
-    border-radius: 48% 52% 51% 49% / 50% 48% 52% 50%;
+    border-radius: 48% 52% 54% 46% / 51% 47% 53% 49%;
   }
 
   .wax-monogram-deboss {
     font-family: 'Cinzel Decorative', Georgia, serif;
     font-weight: 700;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #3a1018;
-    text-shadow:
-      0 1px 0 rgba(0, 0, 0, 0.42),
-      0 2px 4px rgba(44, 10, 16, 0.65),
-      1px 1px 0 rgba(74, 21, 32, 0.55),
-      -1px -1px 0 rgba(255, 255, 255, 0.04);
+    color: #4a1010;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4), 1px 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   @keyframes wax-monogram-shimmer {
     0%,
     88%,
     100% {
-      color: #3a1018;
-      text-shadow:
-        0 1px 0 rgba(0, 0, 0, 0.42),
-        0 2px 4px rgba(44, 10, 16, 0.65),
-        1px 1px 0 rgba(74, 21, 32, 0.55),
-        -1px -1px 0 rgba(255, 255, 255, 0.04);
+      color: #4a1010;
+      text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.4), 1px 1px 0 rgba(255, 255, 255, 0.1);
     }
     92%,
     96% {
-      color: #4d1822;
+      color: #551818;
       text-shadow:
-        0 0 10px rgba(212, 175, 55, 0.35),
-        0 1px 0 rgba(0, 0, 0, 0.38),
-        0 2px 5px rgba(44, 10, 16, 0.55),
-        1px 1px 0 rgba(90, 28, 40, 0.5);
+        -1px -1px 0 rgba(0, 0, 0, 0.38),
+        1px 1px 0 rgba(255, 255, 255, 0.14),
+        0 0 8px rgba(212, 175, 55, 0.2);
     }
   }
 
@@ -141,8 +102,14 @@
     animation: wax-monogram-shimmer 5s ease-in-out infinite;
   }
 
+  /* Editorial metadata — dates, hashtags, countdown labels */
   .meta-stationery {
-    @apply font-lato text-sm font-semibold uppercase tracking-widest text-gold-dark;
+    @apply font-lato text-[10px] font-bold uppercase tracking-[0.3em] text-gold-dark;
+  }
+
+  /* Letterpress on parchment */
+  .letterpress-ink {
+    text-shadow: 0.5px 0.5px 0 rgba(255, 255, 255, 0.6);
   }
 
   .paper-parchment {

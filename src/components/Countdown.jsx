@@ -50,19 +50,17 @@ export default function Countdown({ targetIso, className = '', dense = false, in
     : 'flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-5'
 
   const digitClass = dense
-    ? 'font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]'
-    : 'font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]'
+    ? 'letterpress-ink font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]'
+    : 'letterpress-ink font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]'
 
-  const labelClass = dense
-    ? 'meta-stationery mt-0 text-[0.65rem] sm:mt-0.5 md:mt-1'
-    : 'meta-stationery mt-0.5 sm:mt-1'
+  const labelClass = dense ? 'meta-stationery letterpress-ink mt-1' : 'meta-stationery letterpress-ink mt-1.5'
 
   return (
     <div className={`${stackClass} ${className}`.trim()}>
       {intro ? (
         <p
-          className={`meta-stationery mb-3 w-full max-w-xl text-center ${
-            dense ? 'text-[0.65rem] leading-snug sm:mb-3.5' : 'mb-4'
+          className={`meta-stationery letterpress-ink mb-4 w-full max-w-xl text-center ${
+            dense ? 'sm:mb-5' : 'mb-5'
           }`}
         >
           {intro}

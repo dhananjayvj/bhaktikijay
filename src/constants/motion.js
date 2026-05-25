@@ -5,6 +5,11 @@ export const staggerChildren = 0.15
 
 export const fadeUpDuration = 0.85
 
+/** Hero stationery line reveal */
+export const heroLineRevealDuration = 1.2
+
+export const heroLineRisePx = 10
+
 export const layoutHandoff = {
   duration: 0.85,
   ease: easeOutCubic,
