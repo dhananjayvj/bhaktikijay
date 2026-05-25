@@ -9,9 +9,11 @@
 # assets live under /assets/ only after `vite build` in dist/.
 name: Deploy site to gh-pages
 
+# Runs on every commit pushed to main → rebuilds dist/ and updates gh-pages.
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
