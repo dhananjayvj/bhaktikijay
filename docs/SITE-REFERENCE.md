@@ -388,7 +388,7 @@ npm run build
 Every **push to `main`** runs `.github/workflows/deploy-pages.yml` and republishes the live site (no manual deploy step).
 
 1. Workflow: `npm ci` → `npm run build` → verify `dist/index.html` loads hashed `/assets/*.js`
-2. `JamesIves/github-pages-deploy-action` pushes `dist/` to orphan branch **`gh-pages`** (single commit)
+2. Workflow pushes `dist/` to orphan branch **`gh-pages`** via git (single commit; no nested Node 20 actions)
 3. **Pages settings (one-time):** Deploy from branch **`gh-pages`**, folder **`/` (root)** — not `main` (serving `main` shows blank dev `index.html`)
 4. Custom domain: `bhakti-dhananjay.life` via `public/CNAME` → `dist/CNAME`
 5. Check **Actions** tab for `Deploy site to gh-pages` after each merge to `main`

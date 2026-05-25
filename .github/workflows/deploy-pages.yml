@@ -15,6 +15,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 permissions:
   contents: write
 
@@ -46,8 +49,18 @@ jobs:
           fi
 
       - name: Publish dist to gh-pages branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: dist
-          branch: gh-pages
-          single-commit: true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          worktree=$(mktemp -d)
+          cp -a dist/. "$worktree/"
+          cd "$worktree"
+          git init -b gh-pages
+          git add -A
+          git commit -m "Deploy ${GITHUB_SHA::7} from ${GITHUB_REF_NAME}"
+
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" gh-pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
