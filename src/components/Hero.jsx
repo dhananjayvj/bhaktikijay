@@ -140,7 +140,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
 
             <motion.div
               variants={fadeLine}
-              className="font-cinzel font-semibold text-center text-[clamp(0.82rem,2.05vw,1.18rem)] italic leading-snug tracking-[0.06em] text-invite-wine whitespace-nowrap"
+              className="meta-stationery text-center text-[clamp(0.78rem,2vw,0.92rem)] tracking-[0.22em] whitespace-nowrap"
             >
               <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
                 ||
@@ -152,7 +152,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
             </motion.div>
 
             <motion.div variants={fadeLine} className="max-w-3xl px-0.5">
-              <p className="mx-auto max-w-2xl font-cormorant font-extrabold text-[clamp(1.08rem,3.6vw,1.26rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.9)] sm:font-bold sm:text-[clamp(1.0rem,2.35vw,1.26rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+              <p className="mx-auto max-w-2xl font-cormorant text-[clamp(1.1rem,3.5vw,1.28rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_OPENING_VERSE}
               </p>
             </motion.div>
@@ -175,7 +175,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
                   </motion.div>
                 </motion.div>
                 <motion.div variants={fadeLine} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant font-extrabold text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] leading-relaxed drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)]">
+                  <p className="font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve">
                     {BHAKTI_PARENT_LINE}
                   </p>
                 </motion.div>
@@ -185,11 +185,11 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
                 <motion.div variants={instant}>
                   <motion.div
                     layoutId="invite-line-amp"
-                    className="font-script italic font-normal text-invite-wine"
-                    style={{ fontSize: 'clamp(1.65rem, 5.5vw, 3.8rem)', lineHeight: 1, ...gpuLayerStyle }}
+                    className="font-script font-normal text-invite-mauve"
+                    style={{ fontSize: 'clamp(3rem, 11vw, 5.75rem)', lineHeight: 0.9, ...gpuLayerStyle }}
                     transition={layoutHandoff}
                   >
-                    &amp;
+                    <span className="inline-block italic">&amp;</span>
                   </motion.div>
                 </motion.div>
               </div>
@@ -206,7 +206,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
                   </motion.div>
                 </motion.div>
                 <motion.div variants={fadeLine} className="mt-2 max-w-[26rem] sm:mt-3">
-                  <p className="font-cormorant font-extrabold text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] leading-relaxed drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)]">
+                  <p className="font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve">
                     {DHANANJAY_PARENT_LINE}
                   </p>
                 </motion.div>
@@ -219,7 +219,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
             className="relative z-[2] flex flex-col items-center gap-2.5 sm:gap-3.5"
           >
             <motion.div variants={fadeLine} className="max-w-2xl px-0.5">
-              <p className="mx-auto max-w-md font-cormorant font-extrabold text-[clamp(1.06rem,3.4vw,1.22rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.3vw,1.22rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+              <p className="mx-auto max-w-md font-cormorant text-[clamp(1.05rem,3.2vw,1.2rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
                 {INVITE_CELEBRATION}
               </p>
             </motion.div>
@@ -231,10 +231,7 @@ function Hero({ inviteRevealed = false, skipIntro = false }) {
                 style={gpuLayerStyle}
                 transition={layoutHandoff}
               >
-                <div
-                  className="font-cinzel font-bold uppercase tracking-[0.14em] text-invite-wine"
-                  style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.45rem)' }}
-                >
+                <div className="meta-stationery text-[clamp(0.8rem,2.2vw,1rem)] tracking-[0.28em]">
                   {CEREMONY_DATE_HEADLINE}
                 </div>
               </motion.div>

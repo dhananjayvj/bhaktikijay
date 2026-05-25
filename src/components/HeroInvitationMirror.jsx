@@ -26,7 +26,7 @@ export default function HeroInvitationMirror() {
           <KolamWaveDivider compact />
         </div>
 
-        <div className="font-cinzel font-semibold text-center text-[clamp(0.82rem,2.05vw,1.18rem)] italic leading-snug tracking-[0.06em] text-invite-wine whitespace-nowrap">
+        <div className="meta-stationery text-center text-[clamp(0.78rem,2vw,0.92rem)] tracking-[0.22em] whitespace-nowrap">
           <span className="select-none not-italic text-invite-wine/40" aria-hidden="true">
             ||
           </span>
@@ -36,7 +36,7 @@ export default function HeroInvitationMirror() {
           </span>
         </div>
 
-        <p className="font-cormorant font-extrabold mx-auto max-w-2xl px-0.5 text-[clamp(1.08rem,3.6vw,1.26rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.9)] sm:font-bold sm:text-[clamp(1.0rem,2.35vw,1.26rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="mx-auto max-w-2xl px-0.5 font-cormorant text-[clamp(1.1rem,3.5vw,1.28rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_OPENING_VERSE}
         </p>
       </div>
@@ -50,18 +50,18 @@ export default function HeroInvitationMirror() {
             >
               Bhakti
             </div>
-            <p className="font-cormorant font-extrabold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
+            <p className="mt-2 max-w-[26rem] font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve sm:mt-3">
               {BHAKTI_PARENT_LINE}
             </p>
           </div>
 
           <div className="flex items-center justify-center py-0.5 md:pt-3">
-            <div
-              className="font-script font-normal italic text-invite-wine"
-              style={{ fontSize: 'clamp(1.65rem, 5.5vw, 3.8rem)', lineHeight: 1 }}
+            <span
+              className="inline-block font-script font-normal italic text-invite-mauve"
+              style={{ fontSize: 'clamp(3rem, 11vw, 5.75rem)', lineHeight: 0.9 }}
             >
               &amp;
-            </div>
+            </span>
           </div>
 
           <div className="flex flex-col items-center text-center">
@@ -71,7 +71,7 @@ export default function HeroInvitationMirror() {
             >
               Dhananjay
             </div>
-            <p className="font-cormorant font-extrabold mt-2 max-w-[26rem] leading-relaxed text-invite-ink text-[clamp(1.06rem,3.2vw,1.2rem)] drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.1vw,1.2rem)] sm:mt-3">
+            <p className="mt-2 max-w-[26rem] font-cormorant text-[clamp(1.02rem,2.8vw,1.14rem)] italic leading-relaxed text-invite-mauve sm:mt-3">
               {DHANANJAY_PARENT_LINE}
             </p>
           </div>
@@ -79,17 +79,12 @@ export default function HeroInvitationMirror() {
       </div>
 
       <div className="flex flex-col items-center gap-2.5 sm:gap-3.5">
-        <p className="font-cormorant font-extrabold max-w-md px-0.5 text-[clamp(1.06rem,3.4vw,1.22rem)] italic leading-relaxed text-invite-ink drop-shadow-[0_1px_0_rgba(250,246,239,0.85)] sm:font-bold sm:text-[clamp(1.0rem,2.3vw,1.22rem)] whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
+        <p className="max-w-md px-0.5 font-cormorant text-[clamp(1.05rem,3.2vw,1.2rem)] italic leading-relaxed text-invite-wine whitespace-pre-line before:content-['\201C'] after:content-['\201D']">
           {INVITE_CELEBRATION}
         </p>
 
-        <div className="flex flex-col items-center gap-1.5 text-invite-wine">
-          <div
-            className="font-cinzel font-bold uppercase tracking-[0.14em] text-invite-wine"
-            style={{ fontSize: 'clamp(0.95rem, 2.4vw, 1.45rem)' }}
-          >
-            {CEREMONY_DATE_HEADLINE}
-          </div>
+        <div className="meta-stationery text-[clamp(0.8rem,2.2vw,1rem)] tracking-[0.28em]">
+          {CEREMONY_DATE_HEADLINE}
         </div>
 
         <Countdown dense intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />

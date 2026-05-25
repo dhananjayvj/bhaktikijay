@@ -92,7 +92,7 @@ function EventCard({ event, side, index }) {
         >
           {/* Day badge */}
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-cream/80 px-3 py-1">
-            <span className="font-cinzel text-gold-dark text-xs font-bold tracking-wide">
+            <span className="meta-stationery text-xs tracking-[0.18em]">
               {event.dayPill}
             </span>
           </div>
@@ -123,9 +123,7 @@ function EventCard({ event, side, index }) {
             </div>
 
             <div className="flex shrink-0 flex-row items-center justify-between gap-3 border-t border-gold/15 pt-2.5 sm:flex-col sm:items-end sm:justify-start sm:gap-0.5 sm:border-t-0 sm:pt-0 sm:text-right">
-              <div className="font-lato text-terra text-sm font-semibold tracking-widest uppercase">
-                {event.time}
-              </div>
+              <div className="meta-stationery">{event.time}</div>
               <div className="flex flex-col items-end gap-0.5 text-right">
                 <a
                   data-no-sparkle="true"
@@ -139,7 +137,7 @@ function EventCard({ event, side, index }) {
                 >
                   📍
                 </a>
-                <span className="max-w-[9.5rem] font-lato text-[0.65rem] font-semibold leading-snug tracking-wide text-stone-600/90">
+                <span className="meta-stationery max-w-[9.5rem] text-[0.65rem] leading-snug tracking-[0.14em]">
                   {event.pinLabel}
                 </span>
               </div>

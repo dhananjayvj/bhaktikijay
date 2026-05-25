@@ -21,7 +21,9 @@ const invitePaperBg = {
     'radial-gradient(circle at 12% 20%, rgba(122,46,63,0.08) 0%, rgba(122,46,63,0) 52%), radial-gradient(circle at 88% 16%, rgba(139,107,122,0.10) 0%, rgba(139,107,122,0) 50%), radial-gradient(circle at 50% 100%, rgba(233,216,221,0.35) 0%, rgba(250,247,242,0) 45%)',
 }
 
-const waxOrganicRadius = '48% 52% 47% 53% / 52% 48% 51% 49%'
+const waxOrganicRadius = '48% 52% 51% 49% / 50% 48% 52% 50%'
+
+const sealTapSpring = { type: 'spring', stiffness: 680, damping: 22, mass: 0.55 }
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
 
@@ -147,24 +149,12 @@ function WaxBlobHalf({ side, size }) {
       aria-hidden="true"
     >
       <div
-        className="absolute top-0 h-full"
+        className={`wax-blob-surface absolute top-0 h-full ${
+          side === 'left' ? 'wax-blob-surface--left' : 'wax-blob-surface--right'
+        }`}
         style={{
           width: size,
           [side === 'left' ? 'left' : 'right']: 0,
-          borderRadius: waxOrganicRadius,
-          background: `
-            radial-gradient(ellipse 72% 62% at 38% 26%, rgba(200, 115, 130, 0.55) 0%, transparent 50%),
-            radial-gradient(ellipse 88% 82% at 50% 100%, rgba(35, 6, 12, 0.5) 0%, transparent 46%),
-            linear-gradient(158deg, #9b3348 0%, #6e1f30 36%, #4a1520 70%, #2c0a10 100%)
-          `,
-          boxShadow: `
-            inset 3px 3px 8px rgba(255, 248, 235, 0.2),
-            inset -4px -5px 12px rgba(0, 0, 0, 0.42),
-            inset -2px -10px 18px rgba(0, 0, 0, 0.38),
-            inset 0 2px 10px rgba(255, 230, 220, 0.08),
-            inset 0 -12px 22px rgba(0, 0, 0, 0.45),
-            ${side === 'left' ? '6px' : '-6px'} 0 14px rgba(0, 0, 0, 0.32)
-          `,
         }}
       />
     </div>
@@ -172,10 +162,6 @@ function WaxBlobHalf({ side, size }) {
 }
 
 function WaxOnCurtain({ side, size, letter, shimmer }) {
-  const engraved =
-    side === 'left'
-      ? '0 1px 0 rgba(255,255,255,0.12), 0 -1px 2px rgba(0,0,0,0.5), 2px 3px 4px rgba(0,0,0,0.35)'
-      : '0 1px 0 rgba(255,255,255,0.12), 0 -1px 2px rgba(0,0,0,0.5), -2px 3px 4px rgba(0,0,0,0.35)'
   return (
     <div
       className={`pointer-events-none absolute top-1/2 z-[14] flex -translate-y-1/2 items-center ${
@@ -185,14 +171,12 @@ function WaxOnCurtain({ side, size, letter, shimmer }) {
       <div className="relative flex" style={{ width: size * 0.5, height: size * 0.88 }}>
         <WaxBlobHalf side={side} size={size} />
         <span
-          className={`pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.75rem,6vw,2.2rem)] leading-none ${
-            shimmer ? 'wax-monogram-shimmer' : 'text-[#efd9d2]'
+          className={`wax-monogram-deboss pointer-events-none absolute inset-0 flex items-center justify-center select-none text-[clamp(1.5rem,5.5vw,2rem)] leading-none ${
+            shimmer ? 'wax-monogram-shimmer' : ''
           }`}
           style={{
-            fontFamily: "'Pinyon Script', 'Great Vibes', cursive",
-            paddingLeft: side === 'left' ? '0.12em' : 0,
-            paddingRight: side === 'right' ? '0.1em' : 0,
-            ...(shimmer ? {} : { textShadow: engraved }),
+            paddingLeft: side === 'left' ? '0.14em' : 0,
+            paddingRight: side === 'right' ? '0.12em' : 0,
           }}
         >
           {letter}
@@ -326,15 +310,18 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
         </motion.div>
 
         {idle && (
-          <button
+          <motion.button
             type="button"
             data-no-sparkle="true"
             onClick={(e) => {
               e.stopPropagation()
               onSealPress()
             }}
-            className="absolute left-1/2 top-1/2 z-[20] min-h-[112px] min-w-[min(72%,200px)] -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation rounded-full border-0 bg-transparent p-0 outline-none transition-transform hover:scale-[0.96] active:scale-[0.92]"
-            style={{ borderRadius: waxOrganicRadius, WebkitTapHighlightColor: 'transparent' }}
+            className="wax-seal-organic absolute left-1/2 top-1/2 z-[20] min-h-[112px] min-w-[min(72%,200px)] -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation border-0 bg-transparent p-0 outline-none"
+            style={{ WebkitTapHighlightColor: 'transparent', willChange: 'transform' }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.95 }}
+            transition={sealTapSpring}
             aria-label="Break the wax seal to open the invitation"
           />
         )}

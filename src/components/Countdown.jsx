@@ -54,17 +54,15 @@ export default function Countdown({ targetIso, className = '', dense = false, in
     : 'font-playfair font-black text-invite-wine tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]'
 
   const labelClass = dense
-    ? 'mt-0 font-lato text-[0.6rem] font-semibold uppercase tracking-widest text-invite-ink-soft/85 sm:mt-0.5 sm:text-[0.65rem] md:mt-1 md:text-xs'
-    : 'mt-0.5 font-lato text-[0.65rem] font-semibold uppercase tracking-widest text-invite-ink-soft/85 sm:mt-1 sm:text-xs'
+    ? 'meta-stationery mt-0 text-[0.65rem] sm:mt-0.5 md:mt-1'
+    : 'meta-stationery mt-0.5 sm:mt-1'
 
   return (
     <div className={`${stackClass} ${className}`.trim()}>
       {intro ? (
         <p
-          className={`mb-3 w-full max-w-xl text-center font-lato font-bold uppercase tracking-[0.16em] text-invite-ink ${
-            dense
-              ? 'text-[0.65rem] leading-snug sm:mb-3.5 sm:text-[0.7rem]'
-              : 'mb-4 text-xs tracking-[0.18em] sm:text-sm'
+          className={`meta-stationery mb-3 w-full max-w-xl text-center ${
+            dense ? 'text-[0.65rem] leading-snug sm:mb-3.5' : 'mb-4'
           }`}
         >
           {intro}
