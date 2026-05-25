@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import couplePortrait from '../../images/bhakti-dhananjay.jpeg'
+import { easeOutCubic, sectionReveal } from '../constants/motion.js'
 
-export default function CouplePortrait() {
+function CouplePortrait() {
   return (
     <motion.section
       id="couple"
@@ -10,7 +11,7 @@ export default function CouplePortrait() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+      transition={sectionReveal}
     >
       <div
         aria-hidden="true"
@@ -35,7 +36,7 @@ export default function CouplePortrait() {
           initial={{ opacity: 0, scale: 0.99 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.7, ease: [0.77, 0, 0.175, 1] }}
+          transition={{ duration: 0.85, ease: easeOutCubic }}
         >
           <div className="relative">
             <div
@@ -59,4 +60,6 @@ export default function CouplePortrait() {
     </motion.section>
   )
 }
+
+export default memo(CouplePortrait)
 

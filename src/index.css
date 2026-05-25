@@ -41,7 +41,7 @@
     transform-style: preserve-3d;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
-    will-change: transform;
+    will-change: transform, opacity;
   }
 
   /* Skip layout/paint for off-screen long-scroll sections (older iPhones) */

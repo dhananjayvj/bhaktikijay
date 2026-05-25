@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
+import { gpuLayerStyle } from '../constants/motion.js'
 import {
   animate,
   motion,
@@ -270,6 +271,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border border-invite-wine/12 bg-invite-paper"
           style={{
             scale: innerScale,
+            ...gpuLayerStyle,
           }}
         >
           <div className="absolute inset-0" style={invitePaperBg} />
@@ -299,6 +301,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             z: zLift,
             transformOrigin: 'right center',
             transformPerspective: 1400,
+            ...gpuLayerStyle,
           }}
         >
           <CurtainPaper side="left">
@@ -314,6 +317,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             z: zLift,
             transformOrigin: 'left center',
             transformPerspective: 1400,
+            ...gpuLayerStyle,
           }}
         >
           <CurtainPaper side="right">
@@ -364,12 +368,13 @@ function SpotlightVignette({ hidden, curtainProgress }) {
       transition={{ duration: 0.45, ease: curtainEase }}
       style={{
         background: bg,
+        willChange: 'opacity',
       }}
     />
   )
 }
 
-export default function Overlay({ onClose, onExpandingStart }) {
+function Overlay({ onClose, onExpandingStart }) {
   const [phase, setPhase] = useState('closed')
   const [petals, setPetals] = useState([])
   const [notified, setNotified] = useState(false)
@@ -515,6 +520,7 @@ export default function Overlay({ onClose, onExpandingStart }) {
             duration: phase === 'expanding' ? 0.88 : 0.42,
             ease: curtainEase,
           }}
+          style={gpuLayerStyle}
           onAnimationComplete={() => {
             if (phase === 'expanding') setPhase('exiting')
           }}
@@ -529,3 +535,5 @@ export default function Overlay({ onClose, onExpandingStart }) {
     </motion.div>
   )
 }
+
+export default memo(Overlay)

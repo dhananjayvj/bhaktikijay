@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const easeSmooth = [0.77, 0, 0.175, 1]
+import { easeOutCubic } from '../constants/motion.js'
 
 function AnimatedDigit({ value, className, digitKey }) {
   return (
@@ -10,7 +10,7 @@ function AnimatedDigit({ value, className, digitKey }) {
       className={className}
       initial={{ y: -10, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.35, ease: easeSmooth }}
+      transition={{ duration: 0.4, ease: easeOutCubic }}
     >
       {value}
     </motion.span>

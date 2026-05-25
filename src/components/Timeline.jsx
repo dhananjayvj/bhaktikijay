@@ -1,7 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
 import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
+import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren } from '../constants/motion.js'
 
 const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
 const MAPS_SDM_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
@@ -32,14 +33,36 @@ function Dot() {
   )
 }
 
+const cardReveal = {
+  hidden: { opacity: 0, x: -48 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: fadeUpDuration, ease: easeOutCubic },
+  },
+}
+
+const cardRevealRight = {
+  hidden: { opacity: 0, x: 48 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: fadeUpDuration, ease: easeOutCubic },
+  },
+}
+
+const timelineListStagger = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren, delayChildren: 0.08 },
+  },
+}
+
 function EventCard({ event, side, index }) {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, amount: 0.12 })
 
   const [burstOpen, setBurstOpen] = useState(false)
   const [burstId, setBurstId] = useState(0)
-
-  const xOffset = side === 'left' ? -60 : 60
 
   const triggerBurst = () => {
     setBurstId((v) => v + 1)
@@ -47,8 +70,10 @@ function EventCard({ event, side, index }) {
     window.setTimeout(() => setBurstOpen(false), 900)
   }
 
+  const cardVariants = side === 'right' ? cardRevealRight : cardReveal
+
   return (
-    <div ref={ref} className="relative">
+    <motion.div ref={ref} className="relative" variants={cardVariants}>
       <div
         data-no-sparkle="true"
         className={[
@@ -58,10 +83,8 @@ function EventCard({ event, side, index }) {
         ].join(' ')}
       >
         <motion.div
-          initial={{ opacity: 0, x: xOffset }}
-          animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : xOffset }}
-          transition={{ type: 'spring', stiffness: 80, damping: 18 }}
           className="relative"
+          style={gpuLayerStyle}
           onPointerEnter={(e) => {
             if (e.pointerType === 'mouse') triggerBurst()
           }}
@@ -133,7 +156,7 @@ function EventCard({ event, side, index }) {
                       initial={{ y: 0, opacity: 1, x: i % 2 === 0 ? -8 : 8 }}
                       animate={{ y: -42 - i * 6, opacity: 0 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 0.75, delay: i * 0.06, ease: 'easeOut' }}
+                      transition={{ duration: 0.75, delay: i * 0.06, ease: easeOutCubic }}
                       className="absolute text-[18px] leading-none"
                     >
                       {sym}
@@ -147,11 +170,13 @@ function EventCard({ event, side, index }) {
 
         <span className="sr-only">{`Timeline event ${index + 1}`}</span>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
-export default function Timeline() {
+const MemoEventCard = memo(EventCard)
+
+function Timeline() {
   const mdUp = useIsMdUp()
 
   const events = useMemo(
@@ -229,14 +254,17 @@ export default function Timeline() {
 
   const headerRef = useRef(null)
   const headerInView = useInView(headerRef, { once: true, amount: 0.12 })
+  const listRef = useRef(null)
+  const listInView = useInView(listRef, { once: true, amount: 0.08 })
 
   return (
     <motion.section
       id="timeline"
       className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.12 }}
+      transition={sectionReveal}
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         <svg
@@ -266,9 +294,10 @@ export default function Timeline() {
       <div className="mx-auto max-w-5xl">
         <div ref={headerRef} className="text-center">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
+            initial={{ opacity: 0, y: 18 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={sectionReveal}
+            style={gpuLayerStyle}
             className="font-cinzel text-terra text-3xl font-bold tracking-wide md:text-4xl"
           >
             Celebration Timeline
@@ -285,7 +314,13 @@ export default function Timeline() {
             }}
           />
 
-          <div className="space-y-10 md:space-y-16">
+          <motion.div
+            ref={listRef}
+            className="space-y-10 md:space-y-16"
+            variants={timelineListStagger}
+            initial="hidden"
+            animate={listInView ? 'show' : 'hidden'}
+          >
             {events.map((event, i) => {
               const side = mdUp ? (i % 2 === 0 ? 'left' : 'right') : 'left'
               const cardSideClasses =
@@ -305,14 +340,16 @@ export default function Timeline() {
                   </div>
 
                   <div className={`pl-12 pr-2 ${cardSideClasses} md:pl-0 md:pr-0`}>
-                    <EventCard event={event} side={side} index={i} />
+                    <MemoEventCard event={event} side={side} index={i} />
                   </div>
                 </div>
               )
             })}
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>
   )
 }
+
+export default memo(Timeline)
