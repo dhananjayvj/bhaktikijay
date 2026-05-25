@@ -123,6 +123,62 @@
     animation: wax-gold-glitter 4.5s ease-in-out infinite;
   }
 
+  /* Envelope overlay — no scroll, content scaled to card */
+  .overlay-envelope-lock {
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
+  }
+
+  .overlay-envelope-lock .wax-seal-hit-target {
+    touch-action: manipulation;
+  }
+
+  .envelope-stage {
+    display: flex;
+    flex-direction: column;
+    height: 100svh;
+    height: 100dvh;
+    max-height: -webkit-fill-available;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  .envelope-card {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .envelope-preview-fit {
+    display: flex;
+    height: 100%;
+    min-height: 0;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .envelope-preview-scaler {
+    width: 100%;
+    max-height: 100%;
+    transform: scale(0.88);
+    transform-origin: center center;
+  }
+
+  @media (max-height: 700px) {
+    .envelope-preview-scaler {
+      transform: scale(0.8);
+    }
+  }
+
+  @media (max-height: 620px) {
+    .envelope-preview-scaler {
+      transform: scale(0.72);
+    }
+  }
+
   /* Editorial metadata — dates, hashtags, countdown labels */
   .meta-stationery {
     @apply font-lato text-[10px] font-bold uppercase tracking-[0.3em] text-gold-dark;

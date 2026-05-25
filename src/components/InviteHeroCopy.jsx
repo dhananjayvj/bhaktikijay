@@ -26,8 +26,8 @@ export default function InviteHeroCopy({ variant = 'full' }) {
   const coupleNameSize = envelope ? envelopeCoupleName : fullCoupleName
   const ampSize = envelope ? envelopeAmp : fullAmp
 
-  const gridGap = envelope ? 'gap-y-3 sm:gap-y-4' : 'gap-y-5 sm:gap-y-6'
-  const blockGap = envelope ? 'gap-3 sm:gap-4' : 'gap-5 sm:gap-6'
+  const gridGap = envelope ? 'gap-y-2 sm:gap-y-2.5' : 'gap-y-5 sm:gap-y-6'
+  const blockGap = envelope ? 'gap-2 sm:gap-2.5' : 'gap-5 sm:gap-6'
   const metaClass = envelope
     ? 'invite-hero-meta px-1 text-[9px] tracking-[0.22em] sm:text-[10px] sm:tracking-[0.28em]'
     : 'invite-hero-meta px-2'
@@ -100,9 +100,11 @@ export default function InviteHeroCopy({ variant = 'full' }) {
       <div className={`relative z-[2] flex flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'}`}>
         <p className={celebrationClass}>{INVITE_CELEBRATION}</p>
         <div className={dateMetaClass}>{CEREMONY_DATE_HEADLINE}</div>
-        <div className={envelope ? '' : 'w-full pt-1'}>
-          <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
-        </div>
+        {!envelope ? (
+          <div className="w-full pt-1">
+            <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
+          </div>
+        ) : null}
       </div>
     </div>
   )

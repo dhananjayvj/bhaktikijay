@@ -4,8 +4,10 @@ import InviteHeroCopy from './InviteHeroCopy.jsx'
 /** Envelope preview behind curtains — zooms with curtain progress (no fade). */
 export default function HeroInvitationMirror() {
   return (
-    <div className="pointer-events-none h-full min-h-0 w-full select-none" aria-hidden="true">
-      <InviteHeroCopy variant="envelope" />
+    <div className="envelope-preview-fit pointer-events-none w-full select-none" aria-hidden="true">
+      <div className="envelope-preview-scaler">
+        <InviteHeroCopy variant="envelope" />
+      </div>
     </div>
   )
 }

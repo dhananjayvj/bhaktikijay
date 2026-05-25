@@ -27,20 +27,20 @@ function CurtainOrnament({ side }) {
   return (
     <div className="pointer-events-none absolute inset-0" aria-hidden="true">
       {/* inner gold border */}
-      <div className="absolute inset-3 rounded-[0.9rem] border border-[#D4AF37]/35" />
-      <div className="absolute inset-[18px] rounded-[0.85rem] border border-[#7A2E3F]/10" />
+      <div className="absolute inset-3 rounded-[0.9rem] border-2 border-[#D4AF37]/55 shadow-[inset_0_0_12px_rgba(212,175,55,0.12)]" />
+      <div className="absolute inset-[18px] rounded-[0.85rem] border border-[#7A2E3F]/22" />
 
       {/* corner filigree */}
       <svg
         viewBox="0 0 200 200"
-        className={`absolute top-3 ${flip ? 'right-3' : 'left-3'} h-24 w-24 opacity-[0.32]`}
+        className={`absolute top-3 ${flip ? 'right-3' : 'left-3'} h-24 w-24 opacity-[0.48]`}
         style={{ transform: flip ? 'scaleX(-1)' : undefined }}
       >
         <path
           d="M20 40c26-14 54-16 76 2 10 8 16 18 18 31-15-12-32-18-50-17 16 10 28 24 33 44-16-10-33-14-52-11 10 8 18 18 22 32-22-18-44-22-71-15 6-18 11-33 24-46-18 0-34 6-50 18 4-20 12-36 26-48 6-6 14-11 24-15Z"
           fill="none"
           stroke="#D4AF37"
-          strokeWidth="2.4"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -56,14 +56,14 @@ function CurtainOrnament({ side }) {
 
       <svg
         viewBox="0 0 200 200"
-        className={`absolute bottom-3 ${flip ? 'left-3' : 'right-3'} h-24 w-24 opacity-[0.28]`}
+        className={`absolute bottom-3 ${flip ? 'left-3' : 'right-3'} h-24 w-24 opacity-[0.44]`}
         style={{ transform: flip ? 'scaleX(-1) rotate(180deg)' : 'rotate(180deg)' }}
       >
         <path
           d="M20 40c26-14 54-16 76 2 10 8 16 18 18 31-15-12-32-18-50-17 16 10 28 24 33 44-16-10-33-14-52-11 10 8 18 18 22 32-22-18-44-22-71-15 6-18 11-33 24-46-18 0-34 6-50 18 4-20 12-36 26-48 6-6 14-11 24-15Z"
           fill="none"
           stroke="#D4AF37"
-          strokeWidth="2.4"
+          strokeWidth="3"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
@@ -152,7 +152,7 @@ function WaxSealCenter({ size, idle, pressed, onSealPress, onPressChange }) {
       onPointerUp={() => onPressChange(false)}
       onPointerLeave={() => onPressChange(false)}
       onPointerCancel={() => onPressChange(false)}
-      className={`absolute left-1/2 top-1/2 z-[30] flex -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation items-center justify-center border-0 bg-transparent p-0 outline-none ${wrapClass}`}
+      className={`wax-seal-hit-target absolute left-1/2 top-1/2 z-[30] flex -translate-x-1/2 -translate-y-1/2 cursor-pointer touch-manipulation items-center justify-center border-0 bg-transparent p-0 outline-none ${wrapClass}`}
       style={{
         width: size,
         height: size * 0.94,
@@ -183,7 +183,7 @@ function WaxSealCenter({ size, idle, pressed, onSealPress, onPressChange }) {
 function CurtainPaper({ side, children }) {
   return (
     <div
-      className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border border-invite-wine/15 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
+      className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border-2 border-invite-wine/28 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
         side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
       }`}
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
@@ -225,29 +225,29 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const innerGlowOpacity = useTransform(curtainProgress, [0, 0.45, 1], [0, 0.06, 0.1])
 
   return (
-    <div className="relative mx-auto w-full max-w-[min(96vw,28rem)] px-1">
-      <div
-        className="pointer-events-none absolute -inset-[min(10%,80px)] z-0 rounded-[1.5rem] opacity-[0.95]"
-        style={{
-          background:
-            'radial-gradient(ellipse 90% 75% at 50% 38%, rgba(255, 250, 242, 0.2) 0%, rgba(255, 245, 236, 0.06) 45%, transparent 70%)',
-          mixBlendMode: 'soft-light',
-        }}
-        aria-hidden="true"
-      />
+    <div className="envelope-stage mx-auto w-full max-w-[min(96vw,28rem)] px-1">
+      <div className="envelope-card relative min-h-0">
+        <div
+          className="pointer-events-none absolute -inset-2 z-0 rounded-[1.35rem] opacity-[0.95]"
+          style={{
+            background:
+              'radial-gradient(ellipse 90% 75% at 50% 38%, rgba(255, 250, 242, 0.28) 0%, rgba(255, 245, 236, 0.08) 45%, transparent 70%)',
+            mixBlendMode: 'soft-light',
+          }}
+          aria-hidden="true"
+        />
 
-      <div
-        className="relative z-[1] mx-auto flex min-h-0 w-full flex-col overflow-visible rounded-xl"
-        style={{
-          height: 'min(88svh, 44rem)',
-          maxHeight: 'calc(100svh - 2.5rem)',
-          boxShadow: '0 4px 0 rgba(0,0,0,0.03)',
-          perspective: '1400px',
-          perspectiveOrigin: '50% 50%',
-        }}
-      >
+        <div
+          className="relative z-[1] mx-auto h-full min-h-0 w-full overflow-hidden rounded-xl ring-2 ring-[#D4AF37]/35 ring-offset-2 ring-offset-transparent"
+          style={{
+            boxShadow:
+              '0 4px 0 rgba(0,0,0,0.03), 0 0 0 1px rgba(122,46,63,0.12), 0 18px 40px rgba(0,0,0,0.12)',
+            perspective: '1400px',
+            perspectiveOrigin: '50% 50%',
+          }}
+        >
         <motion.div
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border border-invite-wine/12 bg-invite-paper"
+          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border-2 border-invite-wine/22 bg-invite-paper"
           aria-hidden="true"
           style={{
             scale: contentScale,
@@ -312,10 +312,11 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             onSealPress={onSealPress}
           />
         ) : null}
+        </div>
       </div>
 
       <p
-        className={`relative z-[4] mt-14 pb-2 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/60 sm:mt-16 md:mt-20 ${
+        className={`relative z-[4] shrink-0 py-3 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/70 sm:py-4 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
@@ -426,7 +427,7 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
 
   return (
     <motion.div
-      className={`viewport-fill fixed inset-0 z-50 touch-manipulation overflow-x-hidden overflow-y-hidden ${
+      className={`overlay-envelope-lock viewport-fill fixed inset-0 z-50 overflow-hidden ${
         tapTarget ? 'cursor-default' : 'pointer-events-none'
       }`}
       aria-label="Invitation"
@@ -482,7 +483,7 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
         </motion.div>
       ))}
 
-      <div className="pointer-events-auto absolute inset-0 z-[30] flex items-center justify-center overflow-x-hidden p-3 pt-[max(0.75rem,env(safe-area-inset-top))] pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:p-4">
+      <div className="pointer-events-auto absolute inset-0 z-[30] flex items-center justify-center overflow-hidden p-3 pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:px-4">
         <motion.div
           className="relative flex w-[min(94vw,400px)] max-w-full flex-col items-center justify-center"
           initial={false}
