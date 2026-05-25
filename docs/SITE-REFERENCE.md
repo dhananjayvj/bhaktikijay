@@ -57,7 +57,7 @@ bhaktikijay/
 │   └── doodle-pattern-rsvp.svg
 ├── images/                    # Vite-imported assets (hashed in build)
 │   ├── backdrop.jpeg          # Hero parchment photo wash
-│   ├── bhakti-dhananjay.jpeg  # Couple portrait section
+│   ├── bhakti-dhananjay.jpg   # Couple portrait section
 │   └── flute.mp3              # ambient loop after reveal
 ├── docs/
 │   ├── SITE-REFERENCE.md      # this file
@@ -294,7 +294,7 @@ App (curtainProgress MotionValue in App.jsx)
 | **Hero.jsx** | Invitation after reveal; centered layout; GPU zoom while overlay open; backdrop 50ms | InviteHeroCopy, Countdown, backdrop.jpeg |
 | **InviteHeroCopy.jsx** | Shared invite markup (`full` \| `envelope` variants) | inviteCopy, Countdown |
 | **HeroInvitationMirror.jsx** | Envelope preview wrapper (`variant="envelope"`) | InviteHeroCopy |
-| **CouplePortrait.jsx** | Message + couple photo | bhakti-dhananjay.jpeg |
+| **CouplePortrait.jsx** | Message + couple photo | bhakti-dhananjay.jpg |
 | **Timeline.jsx** | Vertical timeline, alternating cards on md+, event icons, map pins | EventIcons, MandapArchIcon, framer-motion |
 | **Venue.jsx** | Pro-tip, address card, Maps + Google Calendar CTAs | framer-motion |
 | **RSVP.jsx** | Form, event checkboxes, admission card, Sheets POST | ParticleCanvas, wedding constants |
@@ -412,7 +412,7 @@ Use this order to recreate the site from scratch:
 1. **Scaffold:** `npm create vite@latest` → React + JS; add Tailwind, Framer Motion, `@vitejs/plugin-react`.
 2. **Copy design tokens** from `tailwind.config.js` and fonts from `index.html`.
 3. **Add constants:** `src/constants/inviteCopy.js`, `src/constants/wedding.js` (§4).
-4. **Add assets:** `images/backdrop.jpeg`, `bhakti-dhananjay.jpeg`, `flute.mp3`; `public/favicon.svg`, doodle SVGs.
+4. **Add assets:** `images/backdrop.jpeg`, `bhakti-dhananjay.jpg`, `flute.mp3`; `public/favicon.svg`, doodle SVGs.
 5. **Implement sections** in order: Overlay → Hero (+ mirror) → CouplePortrait → Timeline → Venue → RSVP → Footer.
 6. **Wire App.jsx:** overlay state, `heroReveal`, lazy imports, sparkles, scroll bar, audio.
 7. **RSVP:** Apps Script per `docs/rsvp-google-sheets.md`; set `VITE_RSVP_ENDPOINT`.

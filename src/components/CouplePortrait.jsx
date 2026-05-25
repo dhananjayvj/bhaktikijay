@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { motion } from 'framer-motion'
-import couplePortrait from '../../images/bhakti-dhananjay.jpeg'
+import couplePortrait from '../../images/bhakti-dhananjay.jpg'
 import { easeOutCubic, sectionReveal } from '../constants/motion.js'
 
 function CouplePortrait() {
