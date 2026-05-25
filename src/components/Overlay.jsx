@@ -160,14 +160,19 @@ function WaxSealCenter({ size, idle, pressed, onSealPress, onPressChange }) {
       }}
       aria-label="Tap to open the invitation"
     >
-      <span
-        className={`wax-seal-face ${idle && !pressed ? 'wax-monogram-shimmer' : ''}`}
-        aria-hidden="true"
-      >
-        <span className="wax-monogram-deboss font-cinzel text-[clamp(1.55rem,5.5vw,2.05rem)] leading-none">
+      <span className="wax-seal-face" aria-hidden="true">
+        <span
+          className={`wax-monogram-gold font-cinzel text-[clamp(1.55rem,5.5vw,2.05rem)] leading-none ${
+            idle && !pressed ? 'wax-monogram-shimmer' : ''
+          }`}
+        >
           B
         </span>
-        <span className="wax-monogram-deboss font-cinzel text-[clamp(1.55rem,5.5vw,2.05rem)] leading-none">
+        <span
+          className={`wax-monogram-gold font-cinzel text-[clamp(1.55rem,5.5vw,2.05rem)] leading-none ${
+            idle && !pressed ? 'wax-monogram-shimmer' : ''
+          }`}
+        >
           D
         </span>
       </span>

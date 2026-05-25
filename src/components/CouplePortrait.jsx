@@ -1,6 +1,9 @@
 import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import couplePortrait from '../../images/bhakti-dhananjay.jpg'
+import { COUPLE_PORTRAIT_VERSION } from '../constants/assetVersions.js'
+
+const portraitSrc = `${couplePortrait}?v=${COUPLE_PORTRAIT_VERSION}`
 import { easeOutCubic, sectionReveal } from '../constants/motion.js'
 
 function CouplePortrait() {
@@ -50,10 +53,11 @@ function CouplePortrait() {
               }}
             />
             <img
-              src={couplePortrait}
+              src={portraitSrc}
               alt="Bhakti and Dhananjay"
-              loading="lazy"
+              loading="eager"
               decoding="async"
+              fetchPriority="high"
               className="w-full object-cover object-center"
             />
           </div>
