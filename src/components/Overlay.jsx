@@ -9,7 +9,7 @@ import {
 import { useInviteRevealTransform } from '../hooks/useInviteRevealTransform.js'
 import { animate, motion, useTransform } from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
-import HeroInvitationMirror from './HeroInvitationMirror.jsx'
+import GaneshMark from './GaneshMark.jsx'
 import { playSealBreakFeedback } from '../utils/sealFeedback.js'
 
 /** Matches Hero section paper lighting */
@@ -189,6 +189,17 @@ function CurtainPaper({ side, children }) {
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
       <CurtainOrnament side={side} />
+      {/* Center ornament — blind-embossed / gold-foil feel */}
+      <div className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center" aria-hidden="true">
+        <div
+          style={{
+            opacity: 0.4,
+            filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.5))',
+          }}
+        >
+          <GaneshMark className="scale-[1.8] sm:scale-[2.05]" />
+        </div>
+      </div>
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
         style={{
@@ -211,7 +222,6 @@ function CurtainPaper({ side, children }) {
 function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const idle = phase === 'closed'
   const [sealPressed, setSealPressed] = useState(false)
-  const { contentScale, contentY } = useInviteRevealTransform(curtainProgress)
 
   const waxSize = 108
 
@@ -238,7 +248,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
         />
 
         <div
-          className="relative z-[1] mx-auto h-full min-h-0 w-full overflow-hidden rounded-xl ring-2 ring-[#D4AF37]/35 ring-offset-2 ring-offset-transparent"
+          className="relative z-[1] mx-auto h-full min-h-0 w-full overflow-visible rounded-xl ring-2 ring-[#D4AF37]/35 ring-offset-2 ring-offset-transparent"
           style={{
             boxShadow:
               '0 4px 0 rgba(0,0,0,0.03), 0 0 0 1px rgba(122,46,63,0.12), 0 18px 40px rgba(0,0,0,0.12)',
@@ -246,34 +256,33 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             perspectiveOrigin: '50% 50%',
           }}
         >
-        <motion.div
-          className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border-2 border-invite-wine/22 bg-invite-paper"
-          aria-hidden="true"
-          style={{
-            scale: contentScale,
-            y: contentY,
-            transformOrigin: REVEAL_ORIGIN,
-            ...gpuLayerStyle,
-          }}
-        >
-          <div className="absolute inset-0" style={invitePaperBg} />
-          <motion.div
-            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-invite-blush/20"
-            style={{ opacity: innerGlowOpacity }}
+          {/* Inner clip layer (keeps rounded corners) */}
+          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border-2 border-invite-wine/22 bg-invite-paper" aria-hidden="true">
+            <div className="absolute inset-0" style={invitePaperBg} />
+            <motion.div
+              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-invite-blush/20"
+              style={{ opacity: innerGlowOpacity }}
+              aria-hidden="true"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
+            <div
+              className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
+              style={{
+                backgroundImage: noiseSvg,
+                backgroundSize: '160px 160px',
+              }}
+            />
+          </div>
+
+          {/* Center crease line under the seal */}
+          <div
+            className="pointer-events-none absolute inset-y-8 left-1/2 z-[3] w-px -translate-x-1/2 opacity-[0.32]"
+            style={{
+              background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.12), transparent)',
+              boxShadow: '0 0 0 1px rgba(255,255,255,0.12)',
+            }}
             aria-hidden="true"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
-          <div
-            className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
-            style={{
-              backgroundImage: noiseSvg,
-              backgroundSize: '160px 160px',
-            }}
-          />
-          <div className="pointer-events-none relative z-[2] flex h-full min-h-0 flex-col items-stretch overflow-hidden px-1 py-2 sm:px-2 sm:py-3">
-            <HeroInvitationMirror />
-          </div>
-        </motion.div>
 
         <motion.div
           className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"
@@ -316,7 +325,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] shrink-0 py-3 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/70 sm:py-4 ${
+        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-white/50 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >

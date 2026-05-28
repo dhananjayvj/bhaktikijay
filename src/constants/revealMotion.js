@@ -1,6 +1,7 @@
 /** Curtain / zoom reveal — shared by Overlay preview and Hero */
 
-export const curtainEase = [0.4, 0, 0.2, 1]
+// easeOutCubic — avoids spring jitter on mobile
+export const curtainEase = [0.33, 1, 0.68, 1]
 
 export const CURTAIN_DURATION = 1.15
 

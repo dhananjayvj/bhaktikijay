@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useTransform } from 'framer-motion'
 import Toast from './Toast.jsx'
 import InviteHeroCopy from './InviteHeroCopy.jsx'
 import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
@@ -52,6 +52,7 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
   const { contentScale, contentY } = useInviteRevealTransform(curtainProgress)
+  const revealOpacity = useTransform(curtainProgress, [0, 0.5, 0.62], [0, 0, 1])
 
   const bgStyle = useMemo(
     () => ({
@@ -76,6 +77,7 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
           scale: contentScale,
           y: contentY,
           transformOrigin: REVEAL_ORIGIN,
+          opacity: revealOpacity,
           ...gpuLayerStyle,
         }
       : undefined
