@@ -101,7 +101,12 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
       {!inviteRevealed ? (
         <div className="min-h-[100svh] w-full" aria-hidden="true" />
       ) : (
-        <>
+        <motion.div
+          className="absolute inset-0"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, ease: easeOutCubic }}
+        >
           <div className="absolute inset-0 bg-invite-paper" style={bgStyle} />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
           <HeroParchmentLayers backdropOn={backdropOn} />
@@ -109,7 +114,7 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
             <InviteHeroCopy variant="full" animate={!overlayOpen || staggerReady} />
           </motion.div>
-        </>
+        </motion.div>
       )}
     </section>
   )

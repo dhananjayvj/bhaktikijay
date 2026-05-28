@@ -22,6 +22,8 @@ const waxOrganicRadius = '48% 52% 54% 46% / 51% 47% 53% 49%'
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
 
+const LEAF_HOLD_AFTER_OPEN_MS = 800
+
 function CurtainOrnament({ side }) {
   const flip = side === 'right'
   return (
@@ -184,7 +186,7 @@ function CurtainPaper({ side, children }) {
   const isLeft = side === 'left'
   return (
     <div
-      className={`relative z-[1] h-full w-full overflow-hidden border-2 border-[#5D4037]/18 bg-[#F4E8DB] ${
+      className={`relative z-[1] h-full w-full overflow-hidden border border-white/10 bg-[#0c0e14] ${
         side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
       }`}
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
@@ -192,13 +194,10 @@ function CurtainPaper({ side, children }) {
       <CurtainOrnament side={side} />
       {/* Physical fold line: subtle border on left flap */}
       {isLeft ? (
-        <div
-          className="pointer-events-none absolute right-0 top-0 z-20 h-full w-[1px] bg-[#5D4037]/15"
-          aria-hidden="true"
-        />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-px bg-white/10" aria-hidden="true" />
       ) : null}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
         style={{
           backgroundImage: noiseSvg,
           backgroundSize: '160px 160px',
@@ -208,7 +207,7 @@ function CurtainPaper({ side, children }) {
         className="pointer-events-none absolute inset-0 opacity-[0.2]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(93,64,55,0.02) 3px, rgba(93,64,55,0.02) 4px)',
+            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.02) 3px, rgba(255,255,255,0.02) 4px)',
         }}
       />
       {children}
@@ -271,8 +270,24 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             />
           </div>
 
+          {/* Inner leaf: beige + Ganesh (revealed when curtains part) */}
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-[8] overflow-hidden rounded-xl bg-[#F4E8DB]"
+            aria-hidden="true"
+            initial={false}
+            animate={{ opacity: phase === 'closed' ? 0 : phase === 'expanding' || phase === 'exiting' ? 0 : 1 }}
+            transition={{ duration: phase === 'expanding' ? 0.6 : 0.2, ease: curtainEase }}
+          >
+            <img
+              src={ganeshImageUrl}
+              alt=""
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-auto object-contain select-none pointer-events-none"
+              draggable={false}
+            />
+          </motion.div>
+
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2 overflow-visible"
+          className="curtain-3d-panel absolute inset-y-0 left-0 z-[12] w-1/2 overflow-visible"
           style={{
             x: xLeft,
             rotateY: rotLeft,
@@ -283,17 +298,10 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="left" />
-          <img
-            src={ganeshImageUrl}
-            alt=""
-            className="absolute top-1/2 right-0 -translate-y-1/2 h-48 w-24 object-cover object-left z-10 select-none pointer-events-none"
-            style={{ opacity: 0.4, filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))' }}
-            draggable={false}
-          />
         </motion.div>
 
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 right-0 z-[4] w-1/2 overflow-visible"
+          className="curtain-3d-panel absolute inset-y-0 right-0 z-[12] w-1/2 overflow-visible"
           style={{
             x: xRight,
             rotateY: rotRight,
@@ -304,13 +312,6 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="right" />
-          <img
-            src={ganeshImageUrl}
-            alt=""
-            className="absolute top-1/2 left-0 -translate-y-1/2 h-48 w-24 object-cover object-right z-10 select-none pointer-events-none"
-            style={{ opacity: 0.4, filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))' }}
-            draggable={false}
-          />
         </motion.div>
 
         {idle ? (
@@ -326,7 +327,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-[#5D4037]/60 ${
+        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-white/50 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
@@ -384,13 +385,8 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
   }, [])
 
   useEffect(() => {
-    if (phase !== 'opening') return
-    const expandT = window.setTimeout(() => {
-      setPhase('expanding')
-    }, EXPAND_AFTER_MS)
-    return () => {
-      window.clearTimeout(expandT)
-    }
+    // Phase change to `expanding` is scheduled from the curtain animation completion.
+    return undefined
   }, [phase])
 
   useEffect(() => {
@@ -415,11 +411,16 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
     playSealBreakFeedback()
     curtainAnimRef.current?.stop()
     curtainProgress.set(0)
-    onExpandingStart?.()
     setPhase('opening')
     curtainAnimRef.current = animate(curtainProgress, 1, {
       duration: CURTAIN_DURATION,
       ease: curtainEase,
+      onComplete: () => {
+        window.setTimeout(() => {
+          onExpandingStart?.()
+          setPhase('expanding')
+        }, LEAF_HOLD_AFTER_OPEN_MS)
+      },
     })
   }, [curtainProgress, onExpandingStart])
 
@@ -455,7 +456,7 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(180deg, #F4E8DB 0%, #F4E8DB 100%)',
+            'radial-gradient(ellipse 120% 80% at 50% -20%, rgba(122, 46, 63, 0.22), transparent 55%), linear-gradient(165deg, #0c0e14 0%, #141822 45%, #0a0c10 100%)',
         }}
         initial={false}
         animate={{ opacity: ambientHidden ? 0 : 1 }}
