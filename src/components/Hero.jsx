@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useMemo, useState } from 'react'
-import { motion, useTransform } from 'framer-motion'
+import { motion, useMotionValueEvent, useTransform } from 'framer-motion'
 import Toast from './Toast.jsx'
 import InviteHeroCopy from './InviteHeroCopy.jsx'
 import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
@@ -51,8 +51,19 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
+  const [staggerReady, setStaggerReady] = useState(false)
   const { contentScale, contentY } = useInviteRevealTransform(curtainProgress)
   const revealOpacity = useTransform(curtainProgress, [0, 0.5, 0.62], [0, 0, 1])
+
+  useMotionValueEvent(curtainProgress, 'change', (v) => {
+    if (!overlayOpen) return
+    if (v >= 0.5) setStaggerReady(true)
+  })
+
+  useEffect(() => {
+    if (!overlayOpen) setStaggerReady(true)
+    if (overlayOpen) setStaggerReady(false)
+  }, [overlayOpen])
 
   const bgStyle = useMemo(
     () => ({
@@ -96,7 +107,7 @@ function Hero({ inviteRevealed = false, overlayOpen = false, curtainProgress }) 
           <HeroParchmentLayers backdropOn={backdropOn} />
           <motion.div className={gridClass} style={zoomStyle}>
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
-            <InviteHeroCopy variant="full" />
+            <InviteHeroCopy variant="full" animate={!overlayOpen || staggerReady} />
           </motion.div>
         </>
       )}

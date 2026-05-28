@@ -181,6 +181,7 @@ function WaxSealCenter({ size, idle, pressed, onSealPress, onPressChange }) {
 }
 
 function CurtainPaper({ side, children }) {
+  const isLeft = side === 'left'
   return (
     <div
       className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border-2 border-invite-wine/28 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
@@ -189,17 +190,24 @@ function CurtainPaper({ side, children }) {
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
       <CurtainOrnament side={side} />
-      {/* Center ornament — blind-embossed / gold-foil feel */}
-      <div className="pointer-events-none absolute inset-0 z-[2] flex items-center justify-center" aria-hidden="true">
-        <div
-          style={{
-            opacity: 0.4,
-            filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.5))',
-          }}
-        >
-          <GaneshMark className="scale-[1.8] sm:scale-[2.05]" />
-        </div>
+      {/* Center seam ornament: two halves form one mark under seal */}
+      <div
+        className={`pointer-events-none absolute top-1/2 z-[2] -translate-y-1/2 ${
+          isLeft ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'
+        }`}
+        aria-hidden="true"
+        style={{
+          opacity: 0.4,
+          filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))',
+        }}
+      >
+        <GaneshMark className="scale-[2.1] sm:scale-[2.4]" />
       </div>
+
+      {/* Physical fold line: subtle border on left flap */}
+      {isLeft ? (
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-[3] w-px bg-white/10" aria-hidden="true" />
+      ) : null}
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
         style={{
@@ -273,16 +281,6 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
               }}
             />
           </div>
-
-          {/* Center crease line under the seal */}
-          <div
-            className="pointer-events-none absolute inset-y-8 left-1/2 z-[3] w-px -translate-x-1/2 opacity-[0.32]"
-            style={{
-              background: 'linear-gradient(to bottom, transparent, rgba(0,0,0,0.12), transparent)',
-              boxShadow: '0 0 0 1px rgba(255,255,255,0.12)',
-            }}
-            aria-hidden="true"
-          />
 
         <motion.div
           className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"

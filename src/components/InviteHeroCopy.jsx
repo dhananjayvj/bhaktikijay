@@ -22,9 +22,10 @@ const envelopeAmp = { fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }
  * Shared invitation copy for overlay preview and Hero — keeps zoom handoff aligned.
  * @param {'full' | 'envelope'} variant
  */
-export default function InviteHeroCopy({ variant = 'full' }) {
+export default function InviteHeroCopy({ variant = 'full', animate = true }) {
   const envelope = variant === 'envelope'
   const animated = variant === 'full'
+  const shouldAnimate = animated && animate
   const coupleNameSize = envelope ? envelopeCoupleName : fullCoupleName
   const ampSize = envelope ? envelopeAmp : fullAmp
 
@@ -44,10 +45,10 @@ export default function InviteHeroCopy({ variant = 'full' }) {
     : "invite-hero-body mx-auto max-w-lg italic tracking-wide whitespace-pre-line before:content-['\\201C'] after:content-['\\201D']"
   const dateMetaClass = envelope ? 'invite-hero-meta px-1 text-[9px] tracking-[0.2em] sm:text-[10px]' : 'invite-hero-meta px-2 pt-1'
 
-  const Root = animated ? motion.div : 'div'
-  const Block = animated ? motion.div : 'div'
+  const Root = shouldAnimate ? motion.div : 'div'
+  const Block = shouldAnimate ? motion.div : 'div'
 
-  const rootMotionProps = animated
+  const rootMotionProps = shouldAnimate
     ? {
         initial: 'hidden',
         animate: 'show',
@@ -58,7 +59,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
       }
     : {}
 
-  const blockMotionProps = animated
+  const blockMotionProps = shouldAnimate
     ? {
         variants: {
           hidden: { opacity: 0, y: 10 },
