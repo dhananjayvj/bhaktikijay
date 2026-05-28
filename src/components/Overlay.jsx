@@ -308,7 +308,7 @@ function SpotlightVignette({ hidden, curtainProgress }) {
   )
 }
 
-function Overlay({ onClose, onExpandingStart, onRevealStart }) {
+function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) {
   const [phase, setPhase] = useState('closed')
   const [notified, setNotified] = useState(false)
 
@@ -336,10 +336,14 @@ function Overlay({ onClose, onExpandingStart, onRevealStart }) {
     if (phase !== 'open') return
     const t = window.setTimeout(() => {
       setPhase('handoff')
-      onExpandingStart?.()
+      onHeroShellStart?.()
+      // Let Ganesh/beige fade finish before mounting heavy Hero text.
+      window.setTimeout(() => {
+        onHeroTextStart?.()
+      }, 500)
     }, 300)
     return () => window.clearTimeout(t)
-  }, [phase, onExpandingStart])
+  }, [phase, onHeroShellStart, onHeroTextStart])
 
   const phaseRef = useRef(phase)
   phaseRef.current = phase
@@ -370,7 +374,7 @@ function Overlay({ onClose, onExpandingStart, onRevealStart }) {
   }
 
   const tapTarget = phase === 'closed' || phase === 'opening'
-  const ganeshVisible = phase === 'opening' || phase === 'open' || phase === 'handoff'
+  const ganeshOpacity = phase === 'handoff' ? 0 : phase === 'opening' || phase === 'open' ? 1 : 0
 
   return (
     <motion.div
@@ -380,7 +384,7 @@ function Overlay({ onClose, onExpandingStart, onRevealStart }) {
       aria-label="Invitation"
       initial={{ opacity: 1 }}
       animate={{ opacity: phase === 'handoff' ? 0 : 1 }}
-      transition={{ duration: phase === 'handoff' ? 0.65 : 0.2, ease: curtainEase }}
+      transition={{ duration: phase === 'handoff' ? 0.5 : 0.2, ease: [0.33, 1, 0.68, 1] }}
       onAnimationComplete={() => {
         if (phase === 'handoff') finishAndClose()
       }}
@@ -403,12 +407,12 @@ function Overlay({ onClose, onExpandingStart, onRevealStart }) {
 
       {/* Step 1/2: Beige paper + Ganesh revealed by curtains, then fades out for handoff */}
       <motion.div
-        className="pointer-events-none absolute inset-0 z-[8] bg-[#F4E8DB]"
+        className="pointer-events-none absolute inset-0 z-[6] bg-[#F4E8DB]"
         initial={false}
-        animate={{ opacity: ganeshVisible ? (phase === 'handoff' ? 0 : 1) : 0 }}
-        transition={{ duration: phase === 'handoff' ? 0.65 : 0.2, ease: curtainEase }}
+        animate={{ opacity: ganeshOpacity }}
+        transition={{ duration: phase === 'handoff' ? 0.5 : 0.2, ease: [0.33, 1, 0.68, 1] }}
         aria-hidden="true"
-        style={gpuLayerStyle}
+        style={{ willChange: 'transform, opacity' }}
       >
         <img
           src={ganeshImg}
@@ -416,6 +420,7 @@ function Overlay({ onClose, onExpandingStart, onRevealStart }) {
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-auto object-contain"
           decoding="async"
           loading="eager"
+          style={{ willChange: 'transform, opacity' }}
         />
       </motion.div>
 

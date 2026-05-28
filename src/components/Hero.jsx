@@ -45,7 +45,7 @@ function HeroParchmentLayers({ backdropOn }) {
   )
 }
 
-function Hero({ inviteRevealed = false }) {
+function Hero({ inviteRevealed = false, textActive = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
@@ -80,13 +80,23 @@ function Hero({ inviteRevealed = false }) {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
           <HeroParchmentLayers backdropOn={backdropOn} />
           <motion.div
-            className={gridClass}
+            className={`${gridClass} hero-typography`}
+            style={{ willChange: 'transform, opacity' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.65, ease: easeOutCubic }}
+            transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
           >
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
-            <InviteHeroCopy variant="full" />
+            {textActive ? (
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+                style={{ willChange: 'transform, opacity' }}
+              >
+                <InviteHeroCopy variant="full" />
+              </motion.div>
+            ) : null}
           </motion.div>
         </>
       )}

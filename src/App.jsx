@@ -8,16 +8,19 @@ import AmbientFlute from './components/AmbientFlute.jsx'
 
 export default function App() {
   const [overlayOpen, setOverlayOpen] = useState(true)
-  /** True once overlay hands off to Hero (step 3). */
-  const [heroReveal, setHeroReveal] = useState(false)
+  /** Step 3 shell: fade in hero background while Ganesh fades out. */
+  const [heroShell, setHeroShell] = useState(false)
+  /** Heavy typography mounts only after the Ganesh fade completes. */
+  const [heroText, setHeroText] = useState(false)
   /** Start audio immediately on seal interaction / Ganesh reveal. */
   const [fluteActive, setFluteActive] = useState(false)
 
   const handleOverlayClose = useCallback(() => setOverlayOpen(false), [])
-  const handleExpandingStart = useCallback(() => setHeroReveal(true), [])
+  const handleHeroShellStart = useCallback(() => setHeroShell(true), [])
+  const handleHeroTextStart = useCallback(() => setHeroText(true), [])
   const handleRevealStart = useCallback(() => setFluteActive(true), [])
 
-  const inviteRevealed = heroReveal || !overlayOpen
+  const inviteRevealed = heroShell || !overlayOpen
 
   return (
     <>
@@ -29,7 +32,8 @@ export default function App() {
           {overlayOpen && (
             <Overlay
               onClose={handleOverlayClose}
-              onExpandingStart={handleExpandingStart}
+              onHeroShellStart={handleHeroShellStart}
+              onHeroTextStart={handleHeroTextStart}
               onRevealStart={handleRevealStart}
             />
           )}
@@ -39,6 +43,7 @@ export default function App() {
 
         <MainPageContent
           inviteRevealed={inviteRevealed}
+          textActive={heroText}
           sparklesDisabled={overlayOpen}
         />
       </div>
