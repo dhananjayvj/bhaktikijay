@@ -190,20 +190,6 @@ function CurtainPaper({ side, children }) {
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
       <CurtainOrnament side={side} />
-      {/* Center seam ornament: two halves form one mark under seal */}
-      <div
-        className={`pointer-events-none absolute top-1/2 z-[2] -translate-y-1/2 ${
-          isLeft ? 'right-0 translate-x-1/2' : 'left-0 -translate-x-1/2'
-        }`}
-        aria-hidden="true"
-        style={{
-          opacity: 0.4,
-          filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))',
-        }}
-      >
-        <GaneshMark className="scale-[2.1] sm:scale-[2.4]" />
-      </div>
-
       {/* Physical fold line: subtle border on left flap */}
       {isLeft ? (
         <div className="pointer-events-none absolute inset-y-0 right-0 z-[3] w-px bg-white/10" aria-hidden="true" />
@@ -238,6 +224,8 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const rotLeft = useTransform(curtainProgress, [0, 1], [0, -4])
   const rotRight = useTransform(curtainProgress, [0, 1], [0, 4])
   const zLift = useTransform(curtainProgress, [0, 1], [0, 18])
+  const ganeshOpacity = useTransform(curtainProgress, [0, 0.65, 1], [1, 0.85, 0])
+  const ganeshScale = useTransform(curtainProgress, [0, 1], [1, 0.98])
 
   /** Cheap “brightening”: opacity on a white wash — avoids filter: brightness() repaints */
   const innerGlowOpacity = useTransform(curtainProgress, [0, 0.45, 1], [0, 0.06, 0.1])
@@ -281,6 +269,21 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
               }}
             />
           </div>
+
+          {/* Center ornament behind the seal (not clipped by panel overflow) */}
+          <motion.div
+            className="pointer-events-none absolute left-1/2 top-1/2 z-[10] -translate-x-1/2 -translate-y-1/2"
+            aria-hidden="true"
+            style={{
+              opacity: ganeshOpacity,
+              scale: ganeshScale,
+              filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))',
+            }}
+          >
+            <div style={{ opacity: 0.4 }}>
+              <GaneshMark className="scale-[2.1] sm:scale-[2.4]" />
+            </div>
+          </motion.div>
 
         <motion.div
           className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"
