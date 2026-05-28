@@ -388,10 +388,11 @@ npm run build
 Every **push to `main`** runs `.github/workflows/deploy-pages.yml` and republishes the live site (no manual deploy step).
 
 1. Workflow: `npm ci` → `npm run build` → verify `dist/index.html` loads hashed `/assets/*.js`
-2. `peaceiris/actions-gh-pages@v4` pushes `dist/` to orphan branch **`gh-pages`** (single commit)
-3. **Pages settings (one-time):** Deploy from branch **`gh-pages`**, folder **`/` (root)** — not `main` (serving `main` shows blank dev `index.html`)
-4. Custom domain: `bhakti-dhananjay.life` via `public/CNAME` → `dist/CNAME`
-5. Check **Actions** tab for `Deploy site to gh-pages` after each merge to `main`
+2. Uploads `dist/` as a Pages artifact (`actions/upload-pages-artifact@v4`)
+3. Deploys via `actions/deploy-pages@v4` (official GitHub Pages)
+4. **Pages settings (one-time):** Settings → Pages → **Source: GitHub Actions**
+5. Custom domain: `bhakti-dhananjay.life` via `public/CNAME` → `dist/CNAME`
+6. Check **Actions** tab for `Deploy site to GitHub Pages` after each push to `main`
 
 ### 8.4 Optional: RSVP endpoint at build time
 
