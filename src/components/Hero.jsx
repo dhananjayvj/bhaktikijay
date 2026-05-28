@@ -49,6 +49,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
   const [toastOpen, setToastOpen] = useState(false)
   const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
+  const [compositeActive, setCompositeActive] = useState(true)
 
   const bgStyle = useMemo(
     () => ({
@@ -71,6 +72,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
     <section
       id="invitation"
       className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-x-hidden overflow-y-visible"
+      style={{ perspective: '1000px' }}
     >
       {!inviteRevealed ? (
         <div className="min-h-[100svh] w-full" aria-hidden="true" />
@@ -81,10 +83,24 @@ function Hero({ inviteRevealed = false, textActive = false }) {
           <HeroParchmentLayers backdropOn={backdropOn} />
           <motion.div
             className={`${gridClass} hero-typography`}
-            style={{ willChange: 'transform, opacity' }}
+            style={
+              compositeActive
+                ? {
+                    willChange: 'transform, opacity',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                  }
+                : {
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    WebkitBackfaceVisibility: 'hidden',
+                  }
+            }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+            onAnimationComplete={() => setCompositeActive(false)}
           >
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
             {textActive ? (
@@ -92,7 +108,20 @@ function Hero({ inviteRevealed = false, textActive = false }) {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-                style={{ willChange: 'transform, opacity' }}
+                style={
+                  compositeActive
+                    ? {
+                        willChange: 'transform, opacity',
+                        transform: 'translateZ(0)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                      }
+                    : {
+                        transform: 'translateZ(0)',
+                        backfaceVisibility: 'hidden',
+                        WebkitBackfaceVisibility: 'hidden',
+                      }
+                }
               >
                 <InviteHeroCopy variant="full" />
               </motion.div>
