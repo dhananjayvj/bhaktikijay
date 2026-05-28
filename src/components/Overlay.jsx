@@ -9,7 +9,7 @@ import {
 import { useInviteRevealTransform } from '../hooks/useInviteRevealTransform.js'
 import { animate, motion, useTransform } from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
-import GaneshMark from './GaneshMark.jsx'
+import ganeshImageUrl from '../../images/Ganesh.jpeg'
 import { playSealBreakFeedback } from '../utils/sealFeedback.js'
 
 /** Matches Hero section paper lighting */
@@ -184,7 +184,7 @@ function CurtainPaper({ side, children }) {
   const isLeft = side === 'left'
   return (
     <div
-      className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border-2 border-invite-wine/28 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
+      className={`relative z-[1] h-full w-full overflow-hidden border-2 border-[#5D4037]/18 bg-[#F4E8DB] ${
         side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
       }`}
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
@@ -192,20 +192,23 @@ function CurtainPaper({ side, children }) {
       <CurtainOrnament side={side} />
       {/* Physical fold line: subtle border on left flap */}
       {isLeft ? (
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-[3] w-px bg-white/10" aria-hidden="true" />
+        <div
+          className="pointer-events-none absolute right-0 top-0 z-20 h-full w-[1px] bg-[#5D4037]/15"
+          aria-hidden="true"
+        />
       ) : null}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
+        className="pointer-events-none absolute inset-0 opacity-[0.12] mix-blend-multiply"
         style={{
           backgroundImage: noiseSvg,
-          backgroundSize: '140px 140px',
+          backgroundSize: '160px 160px',
         }}
       />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.2]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(122,46,63,0.02) 3px, rgba(122,46,63,0.02) 4px)',
+            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(93,64,55,0.02) 3px, rgba(93,64,55,0.02) 4px)',
         }}
       />
       {children}
@@ -224,8 +227,6 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const rotLeft = useTransform(curtainProgress, [0, 1], [0, -4])
   const rotRight = useTransform(curtainProgress, [0, 1], [0, 4])
   const zLift = useTransform(curtainProgress, [0, 1], [0, 18])
-  const ganeshOpacity = useTransform(curtainProgress, [0, 0.65, 1], [1, 0.85, 0])
-  const ganeshScale = useTransform(curtainProgress, [0, 1], [1, 0.98])
 
   /** Cheap “brightening”: opacity on a white wash — avoids filter: brightness() repaints */
   const innerGlowOpacity = useTransform(curtainProgress, [0, 0.45, 1], [0, 0.06, 0.1])
@@ -270,23 +271,8 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             />
           </div>
 
-          {/* Center ornament behind the seal (not clipped by panel overflow) */}
-          <motion.div
-            className="pointer-events-none absolute left-1/2 top-1/2 z-[10] -translate-x-1/2 -translate-y-1/2"
-            aria-hidden="true"
-            style={{
-              opacity: ganeshOpacity,
-              scale: ganeshScale,
-              filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))',
-            }}
-          >
-            <div style={{ opacity: 0.4 }}>
-              <GaneshMark className="scale-[2.1] sm:scale-[2.4]" />
-            </div>
-          </motion.div>
-
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"
+          className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2 overflow-visible"
           style={{
             x: xLeft,
             rotateY: rotLeft,
@@ -297,10 +283,17 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="left" />
+          <img
+            src={ganeshImageUrl}
+            alt=""
+            className="absolute top-1/2 right-0 -translate-y-1/2 h-48 w-24 object-cover object-left z-10 select-none pointer-events-none"
+            style={{ opacity: 0.4, filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))' }}
+            draggable={false}
+          />
         </motion.div>
 
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 right-0 z-[4] w-1/2"
+          className="curtain-3d-panel absolute inset-y-0 right-0 z-[4] w-1/2 overflow-visible"
           style={{
             x: xRight,
             rotateY: rotRight,
@@ -311,6 +304,13 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
           }}
         >
           <CurtainPaper side="right" />
+          <img
+            src={ganeshImageUrl}
+            alt=""
+            className="absolute top-1/2 left-0 -translate-y-1/2 h-48 w-24 object-cover object-right z-10 select-none pointer-events-none"
+            style={{ opacity: 0.4, filter: 'drop-shadow(0 1px 1px rgba(255,255,255,0.3))' }}
+            draggable={false}
+          />
         </motion.div>
 
         {idle ? (
@@ -326,7 +326,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-white/50 ${
+        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-[#5D4037]/60 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
@@ -455,7 +455,7 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 120% 80% at 50% -20%, rgba(122, 46, 63, 0.22), transparent 55%), linear-gradient(165deg, #0c0e14 0%, #141822 45%, #0a0c10 100%)',
+            'linear-gradient(180deg, #F4E8DB 0%, #F4E8DB 100%)',
         }}
         initial={false}
         animate={{ opacity: ambientHidden ? 0 : 1 }}
