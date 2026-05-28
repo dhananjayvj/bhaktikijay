@@ -1,4 +1,4 @@
-/** Shared invitation copy — keep Hero, mirror, and InviteNarrative in sync */
+/** Shared invitation copy — keep Hero and other sections in sync */
 
 export const INVITE_HEADER = 'Shri Neera Narasimha Prasanna'
 

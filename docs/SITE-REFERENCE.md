@@ -69,9 +69,7 @@ bhaktikijay/
     ├── constants/
     │   ├── inviteCopy.js      # invitation text
     │   ├── wedding.js         # date headlines / RSVP line
-    │   └── revealMotion.js    # curtain duration, zoom scale/y ranges
-    ├── hooks/
-    │   └── useInviteRevealTransform.js  # shared scale+lift from curtainProgress
+    │   └── revealMotion.js    # curtain duration + easing
     ├── utils/
     │   └── sealFeedback.js    # haptic/audio on wax seal break
     └── components/            # see §6
@@ -269,14 +267,15 @@ Submission uses `navigator.sendBeacon` when available, else `fetch` with `mode: 
 ### 6.1 Page flow (mounted in `App.jsx`)
 
 ```
-App (curtainProgress MotionValue in App.jsx)
+App
 ├── Overlay (until dismissed)
-│   ├── WeddingDoodles
-│   ├── HeroInvitationMirror → InviteHeroCopy variant="envelope"
-│   └── Curtains + wax seal; preview zooms (no fade) with curtainProgress
+│   ├── WeddingDoodles + outside doodle background
+│   ├── Curtains + wax seal
+│   ├── Full-screen Ganesh layer (beige paper) revealed by curtains
+│   └── 3-step handoff: Ganesh fades out → Hero fades in → overlay closes
 ├── Scroll progress bar (Framer useScroll)
 └── mainCardRef
-    ├── Hero (#invitation) — same layout throughout; zoom transform only while overlay open
+    ├── Hero (#invitation)
     ├── CouplePortrait (#couple)
     ├── Timeline (#timeline)        [lazy]
     ├── Venue (#venue)              [lazy]
@@ -289,11 +288,10 @@ App (curtainProgress MotionValue in App.jsx)
 
 | File | Role | Key dependencies |
 |------|------|------------------|
-| **App.jsx** | `curtainProgress`, overlay, hero reveal, sparkles, flute; passes progress to Overlay + Hero | Overlay, Hero, framer-motion |
-| **Overlay.jsx** | Curtain intro; wax seal; preview zoom via `useInviteRevealTransform`; hint “Tap to open” | revealMotion, HeroInvitationMirror, sealFeedback |
-| **Hero.jsx** | Invitation after reveal; centered layout; GPU zoom while overlay open; backdrop 50ms | InviteHeroCopy, Countdown, backdrop.jpeg |
-| **InviteHeroCopy.jsx** | Shared invite markup (`full` \| `envelope` variants) | inviteCopy, Countdown |
-| **HeroInvitationMirror.jsx** | Envelope preview wrapper (`variant="envelope"`) | InviteHeroCopy |
+| **App.jsx** | Root state: overlay, 3-step reveal gating, sparkles, flute audio | Overlay, Hero, AmbientFlute |
+| **Overlay.jsx** | Curtain intro; wax seal; reveals Ganesh (beige paper) then fades out for Hero | revealMotion, Ganesh.jpeg, sealFeedback |
+| **Hero.jsx** | Main invitation after reveal; backdrop fade; delayed text mount for perf | InviteHeroCopy, Countdown, backdrop.jpeg |
+| **InviteHeroCopy.jsx** | Shared invite markup (Hero copy) | inviteCopy, Countdown |
 | **CouplePortrait.jsx** | Message + couple photo | bhakti-dhananjay.jpg |
 | **Timeline.jsx** | Vertical timeline, alternating cards on md+, event icons, map pins | EventIcons, MandapArchIcon, framer-motion |
 | **Venue.jsx** | Pro-tip, address card, Maps + Google Calendar CTAs | framer-motion |
@@ -307,39 +305,24 @@ App (curtainProgress MotionValue in App.jsx)
 | **EventIcons.jsx** | Haldi, Mehendi, Sangeet, Baraat, Reception SVG icons | — |
 | **MandapArchIcon.jsx** | Mandap arch for Muhurtham | — |
 
-### 6.3 Present but not mounted in current `App` tree
-
-These exist for reuse or earlier layouts; sync copy via `inviteCopy.js` if you wire them back in:
-
-| File | Notes |
-|------|--------|
-| **InviteNarrative.jsx** | Compact/full invite block with hashtag pill; uses `WEDDING_DATE_HEADLINE` |
-| **GaneshMark.jsx** | SVG Ganesh mark |
-| **SubtleGoldDivider.jsx** | Small gold divider ornament |
-
 ---
 
 ## 7. Key behaviors & timings
 
-### 7.1 Overlay & reveal zoom (`revealMotion.js`, `Overlay.jsx`, `Hero.jsx`)
+### 7.1 Overlay reveal (`Overlay.jsx`)
 
 | Constant | Location | Value |
 |----------|----------|--------|
 | `CURTAIN_DURATION` | `revealMotion.js` | 1.15s |
-| `EXPAND_AFTER_MS` | `revealMotion.js` | 1400ms after seal break |
-| `REVEAL_SCALE_RANGE` | `revealMotion.js` | `[0.56, 1]` |
-| `REVEAL_Y_RANGE` | `revealMotion.js` | `[18, 0]` px lift |
-| `REVEAL_ORIGIN` | `revealMotion.js` | `50% 42%` |
 | Curtain easing | `revealMotion.js` | `[0.4, 0, 0.2, 1]` |
 
-**Flow (smooth zoom, no preview fade):**
+**3-step flow (luxury stationery handoff):**
 
 1. User taps seal (“Tap to open”).
-2. `onExpandingStart` runs immediately → `heroReveal` true; Hero mounts in its **final** centered layout (no fixed/handoff swap).
-3. `curtainProgress` animates `0 → 1`; **same** `contentScale` + `contentY` on overlay preview and Hero while `overlayOpen`.
-4. Preview stays visible and zooms with curtains (GPU `transform` only).
-5. After `EXPAND_AFTER_MS`, overlay enters `expanding` → fades; `onClose` unmounts overlay.
-6. Hero keeps the same DOM/layout; zoom transform is removed at progress `1` (no page readjustment). Parchment + backdrop (50ms delay) were present throughout.
+2. Curtains open to reveal **Ganesh** on full-screen beige paper (`bg-[#F4E8DB]`).
+3. After curtains fully open, wait **300ms**, then fade out the Ganesh/beige layer.
+4. While Ganesh fades out, the Hero section fades in.
+5. After the fade completes, the overlay closes.
 
 ### 7.2 Hero backdrop (`Hero.jsx`)
 

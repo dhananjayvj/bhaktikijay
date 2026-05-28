@@ -1,5 +1,4 @@
 import React from 'react'
-import { motion } from 'framer-motion'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -22,10 +21,8 @@ const envelopeAmp = { fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }
  * Shared invitation copy for overlay preview and Hero — keeps zoom handoff aligned.
  * @param {'full' | 'envelope'} variant
  */
-export default function InviteHeroCopy({ variant = 'full', animate = true }) {
+export default function InviteHeroCopy({ variant = 'full' }) {
   const envelope = variant === 'envelope'
-  const animated = variant === 'full'
-  const shouldAnimate = animated && animate
   const coupleNameSize = envelope ? envelopeCoupleName : fullCoupleName
   const ampSize = envelope ? envelopeAmp : fullAmp
 
@@ -35,47 +32,23 @@ export default function InviteHeroCopy({ variant = 'full', animate = true }) {
     ? 'invite-hero-meta px-1 text-[9px] tracking-[0.22em] sm:text-[10px] sm:tracking-[0.28em]'
     : 'invite-hero-meta px-2'
   const verseClass = envelope
-    ? "invite-hero-body mx-auto max-w-[34ch] px-1 text-[clamp(0.8rem,2.6vw,0.95rem)] leading-relaxed italic whitespace-pre-line before:content-['\\201C'] after:content-['\\201D']"
-    : "invite-hero-body mx-auto max-w-xl px-2 italic whitespace-pre-line before:content-['\\201C'] after:content-['\\201D']"
+    ? "invite-hero-body mx-auto max-w-[34ch] px-1 text-[clamp(0.8rem,2.6vw,0.95rem)] leading-relaxed italic whitespace-pre-line before:content-['\201C'] after:content-['\201D']"
+    : "invite-hero-body mx-auto max-w-xl px-2 italic whitespace-pre-line before:content-['\201C'] after:content-['\201D']"
   const parentClass = envelope
     ? 'invite-hero-parent mx-auto max-w-[22rem] text-[clamp(0.72rem,2.2vw,0.88rem)] italic'
     : 'invite-hero-parent mx-auto max-w-[26rem] italic'
   const celebrationClass = envelope
-    ? "invite-hero-body mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed italic whitespace-pre-line before:content-['\\201C'] after:content-['\\201D']"
-    : "invite-hero-body mx-auto max-w-lg italic tracking-wide whitespace-pre-line before:content-['\\201C'] after:content-['\\201D']"
+    ? "invite-hero-body mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed italic whitespace-pre-line before:content-['\201C'] after:content-['\201D']"
+    : "invite-hero-body mx-auto max-w-lg italic tracking-wide whitespace-pre-line before:content-['\201C'] after:content-['\201D']"
   const dateMetaClass = envelope ? 'invite-hero-meta px-1 text-[9px] tracking-[0.2em] sm:text-[10px]' : 'invite-hero-meta px-2 pt-1'
 
-  const Root = shouldAnimate ? motion.div : 'div'
-  const Block = shouldAnimate ? motion.div : 'div'
-
-  const rootMotionProps = shouldAnimate
-    ? {
-        initial: 'hidden',
-        animate: 'show',
-        variants: {
-          hidden: {},
-          show: { transition: { staggerChildren: 0.14, delayChildren: 0.05 } },
-        },
-      }
-    : {}
-
-  const blockMotionProps = shouldAnimate
-    ? {
-        variants: {
-          hidden: { opacity: 0, y: 10 },
-          show: { opacity: 1, y: 0, transition: { duration: 0.85, ease: [0.33, 1, 0.68, 1] } },
-        },
-      }
-    : {}
-
   return (
-    <Root
+    <div
       className={`mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] text-center ${gridGap} ${
         envelope ? 'px-2' : ''
       }`}
-      {...rootMotionProps}
     >
-      <Block className={`relative z-[2] flex flex-col items-center ${blockGap}`} {...blockMotionProps}>
+      <div className={`relative z-[2] flex flex-col items-center ${blockGap}`}>
         <div className={`w-full ${envelope ? '' : 'md:mt-1'}`}>
           <KolamWaveDivider compact />
         </div>
@@ -89,13 +62,12 @@ export default function InviteHeroCopy({ variant = 'full', animate = true }) {
           </span>
         </div>
         <p className={verseClass}>{INVITE_OPENING_VERSE}</p>
-      </Block>
+      </div>
 
-      <Block
+      <div
         className={`relative z-[2] flex min-h-0 w-full flex-col items-center justify-center ${
           envelope ? 'px-1 pt-1' : 'px-2 pt-2 sm:pt-4'
         }`}
-        {...blockMotionProps}
       >
         <div
           className={`grid w-full max-w-4xl grid-cols-1 items-center justify-center md:grid-cols-[1fr_auto_1fr] ${
@@ -123,14 +95,9 @@ export default function InviteHeroCopy({ variant = 'full', animate = true }) {
             <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
           </div>
         </div>
-      </Block>
+      </div>
 
-      <Block
-        className={`relative z-[2] flex flex-col items-center ${
-          envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'
-        }`}
-        {...blockMotionProps}
-      >
+      <div className={`relative z-[2] flex flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'}`}>
         <p className={celebrationClass}>{INVITE_CELEBRATION}</p>
         <div className={dateMetaClass}>{CEREMONY_DATE_HEADLINE}</div>
         {!envelope ? (
@@ -138,7 +105,7 @@ export default function InviteHeroCopy({ variant = 'full', animate = true }) {
             <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
           </div>
         ) : null}
-      </Block>
-    </Root>
+      </div>
+    </div>
   )
 }
