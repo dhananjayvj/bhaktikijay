@@ -1,28 +1,14 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { gpuLayerStyle } from '../constants/motion.js'
-import {
-  curtainEase,
-  CURTAIN_DURATION,
-  EXPAND_AFTER_MS,
-  REVEAL_ORIGIN,
-} from '../constants/revealMotion.js'
-import { useInviteRevealTransform } from '../hooks/useInviteRevealTransform.js'
-import { animate, motion, useTransform } from 'framer-motion'
+import { curtainEase, CURTAIN_DURATION } from '../constants/revealMotion.js'
+import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
-import ganeshImageUrl from '../../images/Ganesh.jpeg'
 import { playSealBreakFeedback } from '../utils/sealFeedback.js'
-
-/** Matches Hero section paper lighting */
-const invitePaperBg = {
-  backgroundImage:
-    'radial-gradient(circle at 12% 20%, rgba(122,46,63,0.08) 0%, rgba(122,46,63,0) 52%), radial-gradient(circle at 88% 16%, rgba(139,107,122,0.10) 0%, rgba(139,107,122,0) 50%), radial-gradient(circle at 50% 100%, rgba(233,216,221,0.35) 0%, rgba(250,247,242,0) 45%)',
-}
+import ganeshImg from '../../images/Ganesh.jpeg'
 
 const waxOrganicRadius = '48% 52% 54% 46% / 51% 47% 53% 49%'
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
-
-const LEAF_HOLD_AFTER_OPEN_MS = 800
 
 function CurtainOrnament({ side }) {
   const flip = side === 'right'
@@ -183,31 +169,26 @@ function WaxSealCenter({ size, idle, pressed, onSealPress, onPressChange }) {
 }
 
 function CurtainPaper({ side, children }) {
-  const isLeft = side === 'left'
   return (
     <div
-      className={`relative z-[1] h-full w-full overflow-hidden border border-white/10 bg-[#0c0e14] ${
+      className={`paper-parchment relative z-[1] h-full w-full overflow-hidden border-2 border-invite-wine/28 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] ${
         side === 'left' ? 'rounded-l-xl border-r-0' : 'rounded-r-xl border-l-0'
       }`}
       style={{ boxShadow: curtainPaperShadowStatic(side) }}
     >
       <CurtainOrnament side={side} />
-      {/* Physical fold line: subtle border on left flap */}
-      {isLeft ? (
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-20 w-px bg-white/10" aria-hidden="true" />
-      ) : null}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.22] mix-blend-overlay"
+        className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
         style={{
           backgroundImage: noiseSvg,
-          backgroundSize: '160px 160px',
+          backgroundSize: '140px 140px',
         }}
       />
       <div
         className="pointer-events-none absolute inset-0 opacity-[0.2]"
         style={{
           backgroundImage:
-            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.02) 3px, rgba(255,255,255,0.02) 4px)',
+            'repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(122,46,63,0.02) 3px, rgba(122,46,63,0.02) 4px)',
         }}
       />
       {children}
@@ -227,8 +208,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
   const rotRight = useTransform(curtainProgress, [0, 1], [0, 4])
   const zLift = useTransform(curtainProgress, [0, 1], [0, 18])
 
-  /** Cheap “brightening”: opacity on a white wash — avoids filter: brightness() repaints */
-  const innerGlowOpacity = useTransform(curtainProgress, [0, 0.45, 1], [0, 0.06, 0.1])
+  // Keep inner lighting static during reveal to avoid flicker/jitter.
 
   return (
     <div className="envelope-stage mx-auto w-full max-w-[min(96vw,28rem)] px-1">
@@ -244,7 +224,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
         />
 
         <div
-          className="relative z-[1] mx-auto h-full min-h-0 w-full overflow-visible rounded-xl ring-2 ring-[#D4AF37]/35 ring-offset-2 ring-offset-transparent"
+          className="relative z-[1] mx-auto h-full min-h-0 w-full overflow-hidden rounded-xl ring-2 ring-[#D4AF37]/35 ring-offset-2 ring-offset-transparent"
           style={{
             boxShadow:
               '0 4px 0 rgba(0,0,0,0.03), 0 0 0 1px rgba(122,46,63,0.12), 0 18px 40px rgba(0,0,0,0.12)',
@@ -252,42 +232,10 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
             perspectiveOrigin: '50% 50%',
           }}
         >
-          {/* Inner clip layer (keeps rounded corners) */}
-          <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-xl border-2 border-invite-wine/22 bg-invite-paper" aria-hidden="true">
-            <div className="absolute inset-0" style={invitePaperBg} />
-            <motion.div
-              className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/25 via-transparent to-invite-blush/20"
-              style={{ opacity: innerGlowOpacity }}
-              aria-hidden="true"
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
-            <div
-              className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-multiply"
-              style={{
-                backgroundImage: noiseSvg,
-                backgroundSize: '160px 160px',
-              }}
-            />
-          </div>
-
-          {/* Inner leaf: beige + Ganesh (revealed when curtains part) */}
-          <motion.div
-            className="pointer-events-none absolute inset-0 z-[8] overflow-hidden rounded-xl bg-[#F4E8DB]"
-            aria-hidden="true"
-            initial={false}
-            animate={{ opacity: phase === 'closed' ? 0 : phase === 'expanding' || phase === 'exiting' ? 0 : 1 }}
-            transition={{ duration: phase === 'expanding' ? 0.6 : 0.2, ease: curtainEase }}
-          >
-            <img
-              src={ganeshImageUrl}
-              alt=""
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-auto object-contain select-none pointer-events-none"
-              draggable={false}
-            />
-          </motion.div>
+        {/* Background behind curtains is the full-screen Ganesh/beige layer (outside this card). */}
 
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 left-0 z-[12] w-1/2 overflow-visible"
+          className="curtain-3d-panel absolute inset-y-0 left-0 z-[4] w-1/2"
           style={{
             x: xLeft,
             rotateY: rotLeft,
@@ -301,7 +249,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
         </motion.div>
 
         <motion.div
-          className="curtain-3d-panel absolute inset-y-0 right-0 z-[12] w-1/2 overflow-visible"
+          className="curtain-3d-panel absolute inset-y-0 right-0 z-[4] w-1/2"
           style={{
             x: xRight,
             rotateY: rotRight,
@@ -327,7 +275,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] mt-2 shrink-0 pb-[max(1.2rem,env(safe-area-inset-bottom))] text-center font-cormorant text-xs italic uppercase tracking-[0.2em] text-white/50 ${
+        className={`relative z-[4] shrink-0 py-3 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/70 sm:py-4 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
@@ -360,11 +308,11 @@ function SpotlightVignette({ hidden, curtainProgress }) {
   )
 }
 
-function Overlay({ onClose, onExpandingStart, curtainProgress }) {
+function Overlay({ onClose, onExpandingStart, onRevealStart }) {
   const [phase, setPhase] = useState('closed')
-  const [petals, setPetals] = useState([])
   const [notified, setNotified] = useState(false)
 
+  const curtainProgress = useMotionValue(0)
   const curtainAnimRef = useRef(null)
 
   useEffect(() => {
@@ -385,23 +333,13 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
   }, [])
 
   useEffect(() => {
-    // Phase change to `expanding` is scheduled from the curtain animation completion.
-    return undefined
-  }, [phase])
-
-  useEffect(() => {
-    const next = Array.from({ length: 14 }).map((_, i) => {
-      const left = Math.random() * 100
-      const delay = Math.random() * 0.8 + i * 0.03
-      const duration = 6.5 + Math.random() * 6
-      const xDrift = (Math.random() - 0.5) * 120
-      const rotate = (Math.random() - 0.5) * 40
-      const size = 10 + Math.random() * 18
-      const opacity = 0.25 + Math.random() * 0.25
-      return { id: `petal-${i}`, left, delay, duration, xDrift, rotate, size, opacity }
-    })
-    setPetals(next)
-  }, [])
+    if (phase !== 'open') return
+    const t = window.setTimeout(() => {
+      setPhase('handoff')
+      onExpandingStart?.()
+    }, 300)
+    return () => window.clearTimeout(t)
+  }, [phase, onExpandingStart])
 
   const phaseRef = useRef(phase)
   phaseRef.current = phase
@@ -409,6 +347,7 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
   const handleSealPress = useCallback(() => {
     if (phaseRef.current !== 'closed') return
     playSealBreakFeedback()
+    onRevealStart?.()
     curtainAnimRef.current?.stop()
     curtainProgress.set(0)
     setPhase('opening')
@@ -416,13 +355,10 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
       duration: CURTAIN_DURATION,
       ease: curtainEase,
       onComplete: () => {
-        window.setTimeout(() => {
-          onExpandingStart?.()
-          setPhase('expanding')
-        }, LEAF_HOLD_AFTER_OPEN_MS)
+        setPhase('open')
       },
     })
-  }, [curtainProgress, onExpandingStart])
+  }, [curtainProgress, onRevealStart])
 
   const finishAndClose = () => {
     if (notified) return
@@ -433,8 +369,8 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
     onClose()
   }
 
-  const ambientHidden = phase === 'expanding' || phase === 'exiting'
   const tapTarget = phase === 'closed' || phase === 'opening'
+  const ganeshVisible = phase === 'opening' || phase === 'open' || phase === 'handoff'
 
   return (
     <motion.div
@@ -443,13 +379,13 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
       }`}
       aria-label="Invitation"
       initial={{ opacity: 1 }}
-      animate={{ opacity: phase === 'exiting' ? 0 : 1 }}
-      transition={{ duration: phase === 'exiting' ? 0.5 : 0.2 }}
+      animate={{ opacity: phase === 'handoff' ? 0 : 1 }}
+      transition={{ duration: phase === 'handoff' ? 0.65 : 0.2, ease: curtainEase }}
       onAnimationComplete={() => {
-        if (phase === 'exiting') finishAndClose()
+        if (phase === 'handoff') finishAndClose()
       }}
     >
-      <SpotlightVignette hidden={ambientHidden} curtainProgress={curtainProgress} />
+      <SpotlightVignette hidden={false} curtainProgress={curtainProgress} />
 
       <motion.div
         aria-hidden="true"
@@ -459,57 +395,42 @@ function Overlay({ onClose, onExpandingStart, curtainProgress }) {
             'radial-gradient(ellipse 120% 80% at 50% -20%, rgba(122, 46, 63, 0.22), transparent 55%), linear-gradient(165deg, #0c0e14 0%, #141822 45%, #0a0c10 100%)',
         }}
         initial={false}
-        animate={{ opacity: ambientHidden ? 0 : 1 }}
+        animate={{ opacity: phase === 'handoff' ? 0 : 1 }}
         transition={{ duration: 0.55, ease: curtainEase }}
       />
 
-      <OutsideAreaDoodles hidden={ambientHidden} />
+      <OutsideAreaDoodles hidden={phase === 'handoff'} />
 
-      {petals.map((p) => (
-        <motion.div
-          key={p.id}
-          className="pointer-events-none absolute z-[1]"
-          style={{ left: `${p.left}%`, top: '-10dvh', opacity: p.opacity }}
-          initial={{ y: -40, x: 0, rotate: 0 }}
-          animate={{
-            y: ['-18dvh', '118dvh'],
-            x: [0, p.xDrift],
-            rotate: [0, p.rotate],
-            opacity: ambientHidden ? 0 : [0, p.opacity, 0],
-          }}
-          transition={{
-            delay: p.delay,
-            duration: p.duration,
-            ease: 'easeInOut',
-          }}
-        >
-          <svg width={p.size} height={p.size} viewBox="0 0 100 100" fill="none">
-            <path
-              d="M50 10c-10 18-10 35 0 53 10-18 10-35 0-53z"
-              stroke="#9a4a5c"
-              strokeOpacity="0.5"
-              strokeWidth="2"
-            />
-          </svg>
-        </motion.div>
-      ))}
+      {/* Step 1/2: Beige paper + Ganesh revealed by curtains, then fades out for handoff */}
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-[8] bg-[#F4E8DB]"
+        initial={false}
+        animate={{ opacity: ganeshVisible ? (phase === 'handoff' ? 0 : 1) : 0 }}
+        transition={{ duration: phase === 'handoff' ? 0.65 : 0.2, ease: curtainEase }}
+        aria-hidden="true"
+        style={gpuLayerStyle}
+      >
+        <img
+          src={ganeshImg}
+          alt=""
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-auto object-contain"
+          decoding="async"
+          loading="eager"
+        />
+      </motion.div>
 
       <div className="pointer-events-auto absolute inset-0 z-[30] flex items-center justify-center overflow-hidden p-3 pt-[max(0.5rem,env(safe-area-inset-top))] pb-[max(0.5rem,env(safe-area-inset-bottom))] sm:px-4">
         <motion.div
           className="relative flex w-[min(94vw,400px)] max-w-full flex-col items-center justify-center"
           initial={false}
           animate={{
-            scale: phase === 'expanding' || phase === 'exiting' ? 1.04 : 1,
-            opacity: phase === 'exiting' || phase === 'expanding' ? 0 : 1,
+            opacity: phase === 'handoff' ? 0 : 1,
           }}
           transition={{
-            duration: phase === 'expanding' ? 0.88 : 0.42,
+            duration: phase === 'handoff' ? 0.65 : 0.25,
             ease: curtainEase,
           }}
           style={gpuLayerStyle}
-          onAnimationComplete={() => {
-            if (phase === 'expanding') setPhase('exiting')
-          }}
         >
           <CurtainReveal
             phase={phase}

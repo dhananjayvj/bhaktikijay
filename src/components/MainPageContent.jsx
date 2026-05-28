@@ -8,21 +8,12 @@ const Venue = React.lazy(() => import('./Venue.jsx'))
 const RSVP = React.lazy(() => import('./RSVP.jsx'))
 const Footer = React.lazy(() => import('./Footer.jsx'))
 
-function MainPageContent({
-  inviteRevealed,
-  sparklesDisabled,
-  curtainProgress,
-  overlayOpen,
-}) {
+function MainPageContent({ inviteRevealed, sparklesDisabled }) {
   const mainCardRef = useRef(null)
 
   return (
     <div ref={mainCardRef} className="relative z-[2]">
-      <Hero
-        inviteRevealed={inviteRevealed}
-        overlayOpen={overlayOpen}
-        curtainProgress={curtainProgress}
-      />
+      <Hero inviteRevealed={inviteRevealed} />
       <CouplePortrait />
 
       <Suspense fallback={null}>
