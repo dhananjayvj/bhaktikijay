@@ -3,14 +3,22 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
 import { WEDDING_DATE_LINE } from '../constants/wedding.js'
 
-const EVENTS = [
-  { key: 'Mehendi', label: 'Mehendi' },
-  { key: 'Haldi', label: 'Haldi' },
-  { key: 'Baraat', label: 'Baraat' },
-  { key: 'Sangeet', label: 'Sangeet' },
-  { key: 'Muhurtham', label: 'Muhurtham' },
-  { key: 'Reception', label: 'Reception' },
+const EVENT_GROUPS = [
+  { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
+  { key: 'sangeet-baraat', label: 'Sangeet & Baraat', events: ['Sangeet', 'Baraat'] },
+  { key: 'muhurtham-reception', label: 'Muhurtham & Reception', events: ['Muhurtham', 'Reception'] },
 ]
+
+function expandSelectedEvents(selectedKeys) {
+  return selectedKeys.flatMap((key) => {
+    const group = EVENT_GROUPS.find((g) => g.key === key)
+    return group ? group.events : [key]
+  })
+}
+
+function selectedEventLabels(selectedKeys) {
+  return selectedKeys.map((key) => EVENT_GROUPS.find((g) => g.key === key)?.label ?? key)
+}
 
 const DEFAULT_RSVP_ENDPOINT =
   'https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec'
@@ -95,7 +103,7 @@ export default function RSVP() {
     setSubmitError('')
     setSubmitState('submitting')
     setParticleTriggerId((v) => v + 1)
-    const tags = selected.length ? selected.join(', ') : ''
+    const tags = selected.length ? selectedEventLabels(selected).join(', ') : ''
     setEventTags(tags)
 
     const payload = {
@@ -103,7 +111,7 @@ export default function RSVP() {
       name: name.trim(),
       guests,
       guestNames: guestNames.trim(),
-      events: selected,
+      events: expandSelectedEvents(selected),
       eventTags: tags,
       message: message.trim(),
       userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
@@ -243,7 +251,7 @@ export default function RSVP() {
                     Events you’ll join
                   </div>
                   <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
-                    {EVENTS.map((ev) => {
+                    {EVENT_GROUPS.map((ev) => {
                       const active = selectedSet.has(ev.key)
                       return (
                         <button
