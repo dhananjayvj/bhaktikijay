@@ -1,7 +1,8 @@
 import React, { memo, useMemo } from 'react'
-import { motion, useScroll } from 'framer-motion'
+import { motion, useReducedMotion, useScroll } from 'framer-motion'
 
 function ScrollProgressBar() {
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
 
   const progressBarStyle = useMemo(
@@ -11,6 +12,8 @@ function ScrollProgressBar() {
     }),
     [],
   )
+
+  if (reduceMotion) return null
 
   return (
     <motion.div

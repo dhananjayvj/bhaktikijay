@@ -3,6 +3,8 @@ import { AnimatePresence } from 'framer-motion'
 import Overlay from './components/Overlay.jsx'
 import MainPageContent from './components/MainPageContent.jsx'
 import ScrollProgressBar from './components/ScrollProgressBar.jsx'
+import SiteNav from './components/SiteNav.jsx'
+import FloatingRsvpCta from './components/FloatingRsvpCta.jsx'
 import RevealAssetPreloader from './components/RevealAssetPreloader.jsx'
 import AmbientFlute from './components/AmbientFlute.jsx'
 
@@ -41,6 +43,9 @@ export default function App() {
         </AnimatePresence>
 
         <ScrollProgressBar />
+
+        <SiteNav visible={inviteRevealed} />
+        <FloatingRsvpCta visible={inviteRevealed} />
 
         <MainPageContent
           inviteRevealed={inviteRevealed}

@@ -8,6 +8,7 @@
     height: 100%;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    scroll-padding-top: 3.75rem;
   }
 
   body {
@@ -40,6 +41,28 @@
     min-height: 100svh;
     min-height: 100dvh;
     min-height: -webkit-fill-available;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .site-grain {
+      display: none;
+    }
+
+    .wax-monogram-shimmer {
+      animation: none;
+    }
   }
 }
 
@@ -88,6 +111,64 @@
   /* RSVP / warm accent band — darker terra for WCAG-friendly cream text */
   .section-band-rsvp {
     background: linear-gradient(168deg, #A84838 0%, #C9634E 42%, #B85542 100%);
+  }
+
+  /* Soft UI Evolution — subtle depth cards (ui-ux-pro-max) */
+  .soft-card {
+    @apply rounded-2xl border border-gold/30 bg-cream/95 shadow-soft backdrop-blur-sm;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.65) inset,
+      0 2px 8px rgba(110, 40, 56, 0.06),
+      0 12px 32px rgba(59, 31, 10, 0.08);
+  }
+
+  .soft-panel-dark {
+    @apply rounded-2xl border border-gold/45 bg-black/10 shadow-soft backdrop-blur-sm;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 8px 28px rgba(59, 31, 10, 0.22);
+  }
+
+  .site-nav-glass {
+    @apply bg-cream/90 backdrop-blur-md;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 4px 20px rgba(59, 31, 10, 0.06);
+  }
+
+  .btn-primary {
+    @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-full border border-accent bg-accent px-6 py-2.5 font-lato text-sm font-semibold tracking-wide text-on-primary shadow-premium-sm transition-all duration-200 ease-out;
+  }
+
+  .btn-primary:hover {
+    @apply -translate-y-0.5 bg-gold-dark border-gold-dark;
+  }
+
+  .btn-primary:active {
+    @apply translate-y-0 scale-[0.98];
+  }
+
+  .form-label {
+    @apply mb-1.5 block text-left font-lato text-xs font-semibold uppercase tracking-[0.2em] text-invite-wine;
+  }
+
+  .form-label-on-dark {
+    @apply mb-1.5 block text-left font-lato text-xs font-semibold uppercase tracking-[0.2em] text-cream/95;
+  }
+
+  .form-error {
+    @apply mt-1.5 text-left font-lato text-xs font-medium text-gold-light;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-scroll-cue {
+    @apply mt-6 inline-flex min-h-[44px] cursor-pointer flex-col items-center gap-1 font-lato text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-invite-wine/80 transition-colors duration-200 hover:text-invite-wine;
   }
 
   /* Subtle linen / parchment grain (no external asset) */

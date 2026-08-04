@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
-import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
+import { BaraatIcon, HaldiIcon, MehendiIcon, PinIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
 import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren, viewportOnce } from '../constants/motion.js'
 
 const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
@@ -77,7 +77,7 @@ function EventCard({ event, side, index }) {
       <div
         data-no-sparkle="true"
         className={[
-          'rounded-2xl border border-gold/30 bg-cream/95 backdrop-blur-sm shadow-premium-sm',
+          'soft-card',
           'p-5 md:p-6',
           'relative',
         ].join(' ')}
@@ -133,9 +133,9 @@ function EventCard({ event, side, index }) {
                   onPointerDown={(e) => e.stopPropagation()}
                   onClick={(e) => e.stopPropagation()}
                   aria-label={`Open directions in maps (${event.pinLabel})`}
-                  className="text-[1.125rem] leading-none text-terra-light transition-opacity hover:opacity-80"
+                  className="inline-flex min-h-[44px] min-w-[44px] cursor-pointer items-center justify-center rounded-full text-terra-light transition-colors duration-200 hover:bg-terra/10 hover:text-terra-deep"
                 >
-                  📍
+                  <PinIcon size={22} />
                 </a>
                 <span className="meta-stationery max-w-[9.5rem] text-[0.65rem] leading-snug tracking-[0.14em]">
                   {event.pinLabel}

@@ -54,7 +54,7 @@ export default function Venue() {
         </RevealItem>
 
         <RevealItem className="mx-auto mt-8 max-w-prose">
-          <div className="rounded-2xl border border-gold/40 bg-invite-paper/90 px-5 py-5 text-left shadow-premium-sm md:px-8 md:py-6">
+          <div className="soft-card px-5 py-5 text-left md:px-8 md:py-6">
             <p className="meta-stationery">Pro-tip</p>
             <p className="mt-3 font-cormorant text-stone-800 text-[1rem] font-medium leading-[1.75] text-pretty">
               Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the
@@ -65,11 +65,7 @@ export default function Venue() {
         </RevealItem>
 
         <RevealItem variant="scale" className="mt-10 flex flex-col items-center md:mt-12">
-          <motion.div
-            className="relative w-full max-w-xl rounded-2xl border border-gold/40 bg-cream/85 p-6 shadow-card-warm md:p-8"
-            whileHover={{ y: -3 }}
-            transition={springGentle}
-          >
+          <motion.div className="soft-card relative w-full max-w-xl p-6 md:p-8" whileHover={{ y: -3 }} transition={springGentle}>
             <motion.div
               className="absolute -inset-2 z-[-1] rounded-[1.25rem] opacity-70 blur-md"
               style={{

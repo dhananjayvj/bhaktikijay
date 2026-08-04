@@ -4,6 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        /* Semantic tokens (ui-ux-pro-max) mapped to Indian wedding palette */
+        primary: '#6E2838',
+        'on-primary': '#FCF9F1',
+        secondary: '#8A3A4C',
+        accent: '#A16207',
+        background: '#FCF9F1',
+        foreground: '#1a1522',
+        muted: '#faf7f2',
+        border: '#E8D4A8',
+        ring: '#C9A227',
         terra: '#C9634E',
         'terra-light': '#E2725B',
         'terra-deep': '#A84838',
@@ -13,7 +23,6 @@ module.exports = {
         'gold-dark': '#7A5E10',
         brown: '#3B1F0A',
         'brown-soft': '#5C3D1E',
-        /** Invitation / first-screen palette (high contrast, no gold-on-ivory monograms) */
         'invite-night': '#0c0e14',
         'invite-night-mid': '#141822',
         'invite-ivory': '#f5f1ea',
@@ -43,6 +52,8 @@ module.exports = {
         premium: '0 12px 40px rgba(59, 31, 10, 0.12), 0 4px 12px rgba(122, 46, 63, 0.08)',
         'premium-lg': '0 24px 60px rgba(59, 31, 10, 0.14), 0 8px 24px rgba(122, 46, 63, 0.1)',
         'card-warm': '0 8px 32px rgba(184, 74, 56, 0.12), 0 2px 8px rgba(59, 31, 10, 0.06)',
+        soft: '0 2px 8px rgba(110, 40, 56, 0.06), 0 8px 24px rgba(59, 31, 10, 0.08)',
+        'soft-lg': '0 4px 12px rgba(110, 40, 56, 0.08), 0 16px 40px rgba(59, 31, 10, 0.1)',
       },
       maxWidth: {
         prose: '42rem',

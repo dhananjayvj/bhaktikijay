@@ -121,6 +121,18 @@ function Hero({ inviteRevealed = false, textActive = false }) {
                 }
               >
                 <InviteHeroCopy variant="full" />
+                <a href="#couple" className="hero-scroll-cue motion-reduce:hidden">
+                  <span>Explore</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M12 5v14M6 13l6 6 6-6"
+                      stroke="currentColor"
+                      strokeWidth="1.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
               </div>
             ) : null}
           </motion.div>

@@ -165,3 +165,27 @@ export function ReceptionIcon(props) {
   )
 }
 
+export function PinIcon({ className = '', size = 20, title = 'Open in maps' }) {
+  return (
+    <svg
+      className={className}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-hidden={title ? undefined : 'true'}
+    >
+      {title ? <title>{title}</title> : null}
+      <path
+        d="M12 21s6-5.2 6-10a6 6 0 10-12 0c0 4.8 6 10 6 10z"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="11" r="2.25" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  )
+}
+

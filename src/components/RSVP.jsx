@@ -88,6 +88,7 @@ export default function RSVP() {
   const [eventTags, setEventTags] = useState('')
   const [submitState, setSubmitState] = useState('idle') // idle | submitting | success | error
   const [submitError, setSubmitError] = useState('')
+  const [nameTouched, setNameTouched] = useState(false)
 
   const selectedSet = useMemo(() => new Set(selected), [selected])
   const showGuestNames = guests !== '1'
@@ -181,7 +182,7 @@ export default function RSVP() {
           Please reply by <span className="font-semibold text-gold-light">January 15, 2027</span> so we can plan with care.
         </RevealItem>
 
-        <RevealItem variant="scale" className="relative mt-10 rounded-2xl border border-gold/55 bg-black/10 p-5 shadow-premium backdrop-blur-sm md:p-8">
+        <RevealItem variant="scale" className="relative mt-10 soft-panel-dark p-5 md:p-8">
           <ParticleCanvas
             triggerId={particleTriggerId}
             className="absolute inset-0 pointer-events-none"
@@ -201,22 +202,29 @@ export default function RSVP() {
               >
                 <motion.div variants={formField} className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="md:col-span-1">
-                    <label className="sr-only" htmlFor="rsvp-name">
-                      Name
+                    <label className="form-label-on-dark" htmlFor="rsvp-name">
+                      Your name
                     </label>
                     <input
                       id="rsvp-name"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Name"
+                      onBlur={() => setNameTouched(true)}
+                      placeholder="Full name"
                       className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                       required
+                      aria-invalid={nameTouched && !name.trim()}
                     />
+                    {nameTouched && !name.trim() ? (
+                      <p className="form-error" role="alert">
+                        Please enter your name.
+                      </p>
+                    ) : null}
                   </div>
 
                   <div className="md:col-span-1">
-                    <label className="sr-only" htmlFor="rsvp-guests">
-                      Number of Guests
+                    <label className="form-label-on-dark" htmlFor="rsvp-guests">
+                      Number of guests
                     </label>
                     <select
                       id="rsvp-guests"
@@ -259,8 +267,8 @@ export default function RSVP() {
                 </AnimatePresence>
 
                 <motion.div variants={formField} className="mt-5">
-                  <label className="sr-only" htmlFor="rsvp-message">
-                    Message
+                  <label className="form-label-on-dark" htmlFor="rsvp-message">
+                    Message <span className="font-normal normal-case text-cream/75">(optional)</span>
                   </label>
                   <textarea
                     id="rsvp-message"
@@ -318,7 +326,7 @@ export default function RSVP() {
                     transition={springGentle}
                     disabled={submitState === 'submitting'}
                     className={[
-                      'w-full rounded-xl border border-gold-light bg-gold-light py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-premium-sm',
+                      'btn-primary w-full rounded-xl py-4 text-sm font-bold tracking-widest',
                       submitState === 'submitting' ? 'opacity-75' : '',
                     ].join(' ')}
                   >

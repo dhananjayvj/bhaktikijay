@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   gpuLayerStyle,
   sectionContainer,
@@ -34,12 +34,13 @@ export default function SectionReveal({
   ...rest
 }) {
   const MotionTag = motionTags[as] ?? motion.section
+  const reduceMotion = useReducedMotion()
 
   return (
     <MotionTag
       id={id}
       className={className}
-      initial="hidden"
+      initial={reduceMotion ? 'show' : 'hidden'}
       whileInView="show"
       viewport={viewport}
       variants={sectionContainer}
