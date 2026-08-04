@@ -1,115 +1,95 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 
-/** Vector corner + flourish art — wine/ivory palette. Use `position="absolute"` inside overlays. */
+const fadeIn = { duration: 1.4, ease: [0.16, 1, 0.3, 1] }
+
+function CornerFlourish({ className, flipX = false, flipY = false }) {
+  const transform = [flipX ? 'scaleX(-1)' : '', flipY ? 'scaleY(-1)' : ''].filter(Boolean).join(' ') || undefined
+
+  return (
+    <svg
+      viewBox="0 0 160 160"
+      className={className}
+      style={{ transform }}
+      fill="none"
+      aria-hidden="true"
+    >
+      <defs>
+        <linearGradient id="flourishGold" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stopColor="#FBBF24" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#D97706" stopOpacity="0.18" />
+        </linearGradient>
+        <linearGradient id="flourishTeal" x1="1" y1="0" x2="0" y2="1">
+          <stop offset="0" stopColor="#0F766E" stopOpacity="0.28" />
+          <stop offset="1" stopColor="#134E4A" stopOpacity="0.12" />
+        </linearGradient>
+      </defs>
+      <path
+        d="M12 12c28 0 52 18 60 44"
+        stroke="url(#flourishGold)"
+        strokeWidth="1.2"
+        strokeLinecap="round"
+      />
+      <path
+        d="M12 12c0 28 18 52 44 60"
+        stroke="url(#flourishTeal)"
+        strokeWidth="1"
+        strokeLinecap="round"
+      />
+      <path
+        d="M28 28c14 6 26 18 32 32"
+        stroke="url(#flourishGold)"
+        strokeWidth="0.9"
+        strokeLinecap="round"
+      />
+      <circle cx="12" cy="12" r="2.5" fill="#FBBF24" fillOpacity="0.22" />
+      <circle cx="52" cy="12" r="1.5" fill="#0F766E" fillOpacity="0.2" />
+      <circle cx="12" cy="52" r="1.5" fill="#0F766E" fillOpacity="0.2" />
+    </svg>
+  )
+}
+
+/** Delicate corner flourishes for the opening envelope backdrop */
 export default function WeddingDoodles({ position = 'fixed', className = '' }) {
   const pos = position === 'absolute' ? 'absolute inset-0' : 'fixed inset-0'
+
   return (
-    <div aria-hidden="true" className={`pointer-events-none ${pos} z-[1] ${className}`}>
-      <motion.svg
-        viewBox="0 0 220 220"
-        className="absolute left-[-40px] top-[90px] text-invite-wine/25"
-        initial={{ opacity: 0, scale: 0.98, rotate: -4 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 1.0, ease: [0.77, 0, 0.175, 1] }}
+    <div aria-hidden="true" className={`pointer-events-none ${pos} z-[1] overflow-hidden ${className}`}>
+      <motion.div
+        className="absolute left-[-8px] top-[12%] h-28 w-28 sm:h-36 sm:w-36 md:left-4 md:top-[14%]"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ ...fadeIn, delay: 0.05 }}
       >
-        <defs>
-          <linearGradient id="inviteDoodleGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stopColor="#9a4a5c" stopOpacity="0.4" />
-            <stop offset="0.5" stopColor="#7a2e3f" stopOpacity="0.55" />
-            <stop offset="1" stopColor="#8b6b7a" stopOpacity="0.25" />
-          </linearGradient>
-        </defs>
-        <circle cx="110" cy="110" r="84" fill="none" stroke="url(#inviteDoodleGrad)" strokeWidth="2" />
-        <path
-          d="M110 42c14 22 14 46 0 68-14-22-14-46 0-68Z"
-          fill="none"
-          stroke="url(#inviteDoodleGrad)"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M48 110c24-10 48-10 72 0-24 10-48 10-72 0Z"
-          fill="none"
-          stroke="url(#inviteDoodleGrad)"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M110 110c26-6 50-2 72 10-26 6-50 2-72-10Z"
-          fill="none"
-          stroke="url(#inviteDoodleGrad)"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M88 156c10-8 18-18 22-28 4 10 12 20 22 28"
-          fill="none"
-          stroke="url(#inviteDoodleGrad)"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </motion.svg>
+        <CornerFlourish className="h-full w-full" />
+      </motion.div>
 
-      <motion.svg
-        viewBox="0 0 240 240"
-        className="absolute right-[-60px] top-[210px] text-invite-wine/20"
-        initial={{ opacity: 0, scale: 0.98, rotate: 4 }}
-        animate={{ opacity: 1, scale: 1, rotate: 0 }}
-        transition={{ duration: 1.2, delay: 0.1, ease: [0.77, 0, 0.175, 1] }}
+      <motion.div
+        className="absolute right-[-8px] top-[18%] h-28 w-28 sm:h-36 sm:w-36 md:right-4"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ ...fadeIn, delay: 0.12 }}
       >
-        <circle cx="120" cy="120" r="72" fill="none" stroke="#7a2e3f" strokeOpacity="0.45" strokeWidth="2" />
-        <circle cx="120" cy="120" r="46" fill="none" stroke="#9a4a5c" strokeOpacity="0.35" strokeWidth="2" />
-        <path
-          d="M120 110c10-20 36-8 26 12-4 8-12 14-26 18-14-4-22-10-26-18-10-20 16-32 26-12Z"
-          fill="none"
-          stroke="#7a2e3f"
-          strokeOpacity="0.4"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M170 70c6-6 16-2 12 7-2 4-7 7-12 9-5-2-10-5-12-9-4-9 6-13 12-7Z"
-          fill="none"
-          stroke="#9a4a5c"
-          strokeOpacity="0.4"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-        <path
-          d="M60 166c6-6 16-2 12 7-2 4-7 7-12 9-5-2-10-5-12-9-4-9 6-13 12-7Z"
-          fill="none"
-          stroke="#9a4a5c"
-          strokeOpacity="0.4"
-          strokeWidth="2"
-          strokeLinejoin="round"
-        />
-      </motion.svg>
+        <CornerFlourish className="h-full w-full" flipX />
+      </motion.div>
 
-      <motion.svg
-        viewBox="0 0 900 200"
-        className="absolute bottom-[-30px] left-1/2 h-[180px] w-[900px] -translate-x-1/2 opacity-[0.22]"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.0, delay: 0.25, ease: [0.77, 0, 0.175, 1] }}
+      <motion.div
+        className="absolute bottom-[14%] left-[-8px] h-24 w-24 sm:h-32 sm:w-32 md:bottom-[16%] md:left-4"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ ...fadeIn, delay: 0.18 }}
       >
-        <path
-          d="M40 120c70-60 160-60 230 0s160 60 230 0 160-60 230 0"
-          fill="none"
-          stroke="#7a2e3f"
-          strokeOpacity="0.4"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-        <path
-          d="M60 140c65-45 145-45 210 0s145 45 210 0 145-45 210 0"
-          fill="none"
-          stroke="#9a4a5c"
-          strokeOpacity="0.3"
-          strokeWidth="2"
-          strokeLinecap="round"
-        />
-      </motion.svg>
+        <CornerFlourish className="h-full w-full" flipY />
+      </motion.div>
+
+      <motion.div
+        className="absolute bottom-[10%] right-[-8px] h-24 w-24 sm:h-32 sm:w-32 md:bottom-[12%] md:right-4"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ ...fadeIn, delay: 0.24 }}
+      >
+        <CornerFlourish className="h-full w-full" flipX flipY />
+      </motion.div>
     </div>
   )
 }

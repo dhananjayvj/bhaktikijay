@@ -65,14 +65,14 @@ export default function Countdown({
     : `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]`
 
   const labelClass = dense
-    ? `${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mt-1`
-    : `${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mt-1.5`
+    ? `${heroReadable ? 'invite-countdown-label' : 'meta-stationery letterpress-ink'} mt-1`
+    : `${heroReadable ? 'invite-countdown-label' : 'meta-stationery letterpress-ink'} mt-1.5`
 
   return (
     <div className={`${stackClass} ${className}`.trim()}>
       {intro ? (
         <p
-          className={`${heroReadable ? 'invite-hero-meta' : 'meta-stationery letterpress-ink'} mb-4 w-full max-w-xl text-center ${
+          className={`${heroReadable ? 'invite-countdown-intro' : 'meta-stationery letterpress-ink'} mb-4 w-full max-w-xl text-center ${
             dense ? 'sm:mb-5' : 'mb-5'
           }`}
         >

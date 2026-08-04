@@ -94,22 +94,18 @@ function OutsideAreaDoodles({ hidden }) {
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/doodle-pattern-light.svg)',
+          backgroundImage: 'url(/doodle-pattern-elegant.svg)',
           backgroundRepeat: 'repeat',
-          backgroundSize: '280px 280px',
-          opacity: 0.4,
-          mixBlendMode: 'soft-light',
+          backgroundSize: '420px 420px',
+          backgroundPosition: 'center',
+          opacity: 0.22,
         }}
       />
       <div
         className="absolute inset-0"
         style={{
-          backgroundImage: 'url(/doodle-pattern-rsvp.svg)',
-          backgroundRepeat: 'repeat',
-          backgroundSize: '220px 220px',
-          backgroundPosition: '60px 40px',
-          opacity: 0.18,
-          mixBlendMode: 'overlay',
+          background:
+            'radial-gradient(ellipse 85% 70% at 50% 45%, transparent 0%, transparent 42%, rgba(12, 14, 20, 0.55) 100%)',
         }}
       />
       <WeddingDoodles position="absolute" />

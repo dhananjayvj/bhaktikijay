@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" fill="none">
+  <defs>
+    <style>
+      .gold { stroke: #D97706; stroke-width: 0.65; opacity: 0.14; fill: none; }
+      .teal { stroke: #0F766E; stroke-width: 0.55; opacity: 0.1; fill: none; }
+      .dot { fill: #FBBF24; opacity: 0.08; }
+    </style>
+  </defs>
+  <circle class="gold" cx="180" cy="180" r="72"/>
+  <circle class="teal" cx="180" cy="180" r="52"/>
+  <circle class="gold" cx="180" cy="180" r="34"/>
+  <path class="teal" d="M180 108c20 0 36 16 36 36s-16 36-36 36-36-16-36-36 16-36 36-36Z"/>
+  <path class="gold" d="M108 180c0-20 16-36 36-36"/>
+  <path class="gold" d="M252 180c0 20-16 36-36 36"/>
+  <path class="gold" d="M180 252c-20 0-36-16-36-36"/>
+  <circle class="dot" cx="180" cy="180" r="3"/>
+  <circle class="dot" cx="180" cy="108" r="2"/>
+  <circle class="dot" cx="252" cy="180" r="2"/>
+  <circle class="dot" cx="180" cy="252" r="2"/>
+  <circle class="dot" cx="108" cy="180" r="2"/>
+  <path class="gold" d="M36 36c12-8 28-8 40 0M284 36c12 8 28 8 40 0M36 324c12 8 28 8 40 0M284 324c12-8 28-8 40 0"/>
+</svg>

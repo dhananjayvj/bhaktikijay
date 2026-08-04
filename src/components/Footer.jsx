@@ -3,17 +3,10 @@ import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { springGentle } from '../constants/motion.js'
 
-function GearJoke() {
+function PersonalNote() {
   return (
-    <RevealItem className="mx-auto mt-6 max-w-prose px-2 text-center font-lato text-cream/85 text-sm leading-relaxed">
-      <motion.span
-        whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
-        className="inline-block align-middle mr-2 text-gold-light/90"
-        aria-hidden="true"
-      >
-        ⚙️
-      </motion.span>
-      Note: This website was built with 10% inspiration and 90% technical troubleshooting.
+    <RevealItem className="mx-auto mt-6 max-w-md px-4 text-center font-cormorant text-base italic leading-relaxed text-cream/88 md:text-lg">
+      Built with love, family group chats, and one wax seal Bhakti made Dhananjay tap twice.
     </RevealItem>
   )
 }
@@ -75,7 +68,7 @@ export default function Footer() {
           </motion.div>
         </RevealItem>
 
-        <GearJoke />
+        <PersonalNote />
 
         <RevealItem className="mt-8 font-lato text-xs font-medium text-cream/80">Made with ♥️</RevealItem>
       </div>

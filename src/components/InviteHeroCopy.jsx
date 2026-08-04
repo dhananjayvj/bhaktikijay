@@ -29,9 +29,8 @@ export default function InviteHeroCopy({ variant = 'full' }) {
   const gridGap = envelope ? 'gap-y-2 sm:gap-y-2.5' : 'gap-y-5 sm:gap-y-6'
   const blockGap = envelope ? 'gap-2 sm:gap-2.5' : 'gap-4 sm:gap-5'
   const parentClass = envelope
-    ? 'invite-hero-parent mx-auto max-w-[22rem] text-[clamp(0.72rem,2.2vw,0.88rem)] italic'
-    : 'invite-hero-parent mx-auto max-w-[26rem] italic'
-  const dateMetaClass = envelope ? 'invite-hero-meta px-1 text-[9px] tracking-[0.2em] sm:text-[10px]' : 'invite-hero-meta px-2 pt-1'
+    ? 'invite-hero-parent mx-auto max-w-[22rem] text-[clamp(0.72rem,2.2vw,0.88rem)]'
+    : 'invite-hero-parent mx-auto max-w-[26rem]'
 
   const Root = envelope ? 'div' : motion.div
   const Block = envelope ? 'div' : motion.div
@@ -85,7 +84,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
           }`}
         >
           <div className={`flex flex-col items-center text-center ${envelope ? 'gap-1' : 'gap-2 sm:gap-3'}`}>
-            <div className="invite-couple-name" style={coupleNameSize}>
+            <div className="invite-couple-name--bhakti" style={coupleNameSize}>
               Bhakti
             </div>
             <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
@@ -99,7 +98,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             </span>
           </div>
           <div className={`flex flex-col items-center text-center ${envelope ? 'gap-1' : 'gap-2 sm:gap-3'}`}>
-            <div className="invite-couple-name" style={coupleNameSize}>
+            <div className="invite-couple-name--dhananjay" style={coupleNameSize}>
               Dhananjay
             </div>
             <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
@@ -111,10 +110,12 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         className={`relative z-[2] flex flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'}`}
         {...blockProps}
       >
-        <p className={envelope ? 'invite-hero-body mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed italic' : 'invite-hero-body mx-auto max-w-lg italic tracking-wide text-pretty'}>
+        <p className={envelope ? 'invite-hero-celebration mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed' : 'invite-hero-celebration mx-auto max-w-lg tracking-wide text-pretty'}>
           {INVITE_CELEBRATION}
         </p>
-        <div className={dateMetaClass}>{CEREMONY_DATE_HEADLINE}</div>
+        <div className={envelope ? 'invite-hero-date px-1 text-[9px] tracking-[0.2em] sm:text-[10px]' : 'invite-hero-date px-2 pt-1'}>
+          {CEREMONY_DATE_HEADLINE}
+        </div>
         {!envelope ? (
           <div className="w-full pt-1">
             <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
