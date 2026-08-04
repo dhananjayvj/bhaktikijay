@@ -4,12 +4,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        terra: '#E2725B',
+        terra: '#C9634E',
+        'terra-light': '#E2725B',
+        'terra-deep': '#A84838',
         cream: '#FCF9F1',
-        gold: '#D4AF37',
-        'gold-light': '#F0D060',
-        'gold-dark': '#A8861A',
+        gold: '#C9A227',
+        'gold-light': '#E8C547',
+        'gold-dark': '#7A5E10',
         brown: '#3B1F0A',
+        'brown-soft': '#5C3D1E',
         /** Invitation / first-screen palette (high contrast, no gold-on-ivory monograms) */
         'invite-night': '#0c0e14',
         'invite-night-mid': '#141822',
@@ -17,9 +20,9 @@ module.exports = {
         'invite-paper': '#faf7f2',
         'invite-ink': '#1a1522',
         'invite-ink-soft': '#3d3548',
-        'invite-wine': '#7a2e3f',
-        'invite-wine-light': '#9a4a5c',
-        'invite-mauve': '#8b6b7a',
+        'invite-wine': '#6E2838',
+        'invite-wine-light': '#8A3A4C',
+        'invite-mauve': '#7A5C6A',
         'invite-blush': '#e9d8dd',
       },
       fontFamily: {
@@ -30,8 +33,22 @@ module.exports = {
         script: ['"Great Vibes"', 'cursive'],
         hand: ['Caveat', 'cursive'],
       },
+      fontSize: {
+        'display-sm': ['clamp(1.75rem, 4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '0.04em' }],
+        display: ['clamp(2rem, 5vw, 2.75rem)', { lineHeight: '1.08', letterSpacing: '0.05em' }],
+        'body-lg': ['1.125rem', { lineHeight: '1.75' }],
+      },
+      boxShadow: {
+        'premium-sm': '0 4px 20px rgba(59, 31, 10, 0.08), 0 1px 3px rgba(122, 46, 63, 0.06)',
+        premium: '0 12px 40px rgba(59, 31, 10, 0.12), 0 4px 12px rgba(122, 46, 63, 0.08)',
+        'premium-lg': '0 24px 60px rgba(59, 31, 10, 0.14), 0 8px 24px rgba(122, 46, 63, 0.1)',
+        'card-warm': '0 8px 32px rgba(184, 74, 56, 0.12), 0 2px 8px rgba(59, 31, 10, 0.06)',
+      },
+      maxWidth: {
+        prose: '42rem',
+        'prose-narrow': '36rem',
+      },
     },
   },
   plugins: [],
 }
-

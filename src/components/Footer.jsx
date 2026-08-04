@@ -5,10 +5,10 @@ import { springGentle } from '../constants/motion.js'
 
 function GearJoke() {
   return (
-    <RevealItem className="mx-auto mt-6 max-w-2xl px-2 text-center font-lato text-cream/70 text-sm leading-relaxed">
+    <RevealItem className="mx-auto mt-6 max-w-prose px-2 text-center font-lato text-cream/85 text-sm leading-relaxed">
       <motion.span
         whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
-        className="inline-block align-middle mr-2 text-gold/80"
+        className="inline-block align-middle mr-2 text-gold-light/90"
         aria-hidden="true"
       >
         ⚙️
@@ -21,19 +21,19 @@ function GearJoke() {
 function KolamFooterMark() {
   return (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-      <circle cx="60" cy="60" r="50" stroke="#D4AF37" strokeOpacity="0.45" strokeWidth="1" />
-      <circle cx="60" cy="60" r="30" stroke="#D4AF37" strokeOpacity="0.35" strokeWidth="1" />
+      <circle cx="60" cy="60" r="50" stroke="#E8C547" strokeOpacity="0.5" strokeWidth="1" />
+      <circle cx="60" cy="60" r="30" stroke="#E8C547" strokeOpacity="0.38" strokeWidth="1" />
       <path
         d="M60 20v20M60 80v20M20 60h20M80 60h20"
-        stroke="#D4AF37"
-        strokeOpacity="0.55"
+        stroke="#E8C547"
+        strokeOpacity="0.6"
         strokeWidth="1.2"
         strokeLinecap="round"
       />
       <path
         d="M38 42c7-8 19-8 26 0 7 8 7 20 0 28-7 8-19 8-26 0-7-8-7-20 0-28Z"
-        stroke="#D4AF37"
-        strokeOpacity="0.65"
+        stroke="#E8C547"
+        strokeOpacity="0.7"
         strokeWidth="1"
       />
     </svg>
@@ -44,7 +44,7 @@ export default function Footer() {
   return (
     <SectionReveal
       as="footer"
-      className="defer-heavy-section reveal bg-brown px-4 py-16 text-center md:px-10 md:py-20"
+      className="defer-heavy-section reveal border-t border-gold/30 bg-gradient-to-b from-brown-soft to-brown px-4 py-16 text-center md:px-10 md:py-20"
     >
       <div className="mx-auto max-w-4xl">
         <RevealItem className="mx-auto flex items-center justify-center">
@@ -57,15 +57,18 @@ export default function Footer() {
           </motion.div>
         </RevealItem>
 
-        <RevealItem className="mt-5 font-playfair italic text-gold text-xl leading-relaxed">
-          With love, blessings, and joyful anticipation.
+        <RevealItem>
+          <p className="section-eyebrow-on-dark mt-5">Until we meet</p>
+          <p className="mt-2 font-playfair text-xl font-medium italic leading-relaxed text-gold-light md:text-2xl">
+            With love, blessings, and joyful anticipation.
+          </p>
         </RevealItem>
 
-        <RevealItem className="mt-4">
+        <RevealItem className="mt-5">
           <motion.div
             whileHover={{ scale: 1.04, y: -2 }}
             transition={springGentle}
-            className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-brown/50 px-5 py-2 font-lato text-sm font-semibold tracking-widest text-gold"
+            className="inline-flex items-center gap-2 rounded-full border border-gold/45 bg-brown/40 px-5 py-2 font-lato text-sm font-semibold tracking-widest text-gold-light"
           >
             <span aria-hidden="true">#</span>
             JayKiBhakti
@@ -74,7 +77,7 @@ export default function Footer() {
 
         <GearJoke />
 
-        <RevealItem className="mt-8 font-lato text-xs text-cream/55">Made with ♥️</RevealItem>
+        <RevealItem className="mt-8 font-lato text-xs font-medium text-cream/80">Made with ♥️</RevealItem>
       </div>
     </SectionReveal>
   )

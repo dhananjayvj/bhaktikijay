@@ -38,7 +38,7 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
     eventTags.trim() || 'We’ll share the full schedule with you closer to the date.'
   return (
     <motion.div
-      className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border-2 border-gold/80 bg-gradient-to-b from-cream via-cream to-invite-blush/40 px-6 py-8 text-center shadow-[0_20px_50px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.85)]"
+      className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border-2 border-gold/75 bg-gradient-to-b from-cream via-cream to-invite-blush/35 px-6 py-8 text-center shadow-premium-lg"
       initial={{ opacity: 0, y: 16, rotateX: -8 }}
       animate={{ opacity: 1, y: 0, rotateX: 0 }}
       transition={{ duration: 0.55, ease: [0.33, 1, 0.24, 1] }}
@@ -52,19 +52,19 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
             'repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(59,31,10,0.12) 6px, rgba(59,31,10,0.12) 8px)',
         }}
       />
-      <p className="font-lato text-[0.65rem] font-bold uppercase tracking-[0.35em] text-terra/90">Admitted</p>
+      <p className="meta-stationery text-invite-wine">Admitted</p>
       <p className="mt-2 font-cinzel text-2xl font-bold tracking-wide text-brown md:text-3xl">JayKiBhakti</p>
-      <p className="mt-1 font-cormorant text-lg italic text-stone-700">Celebration of love</p>
+      <p className="mt-1 font-cormorant text-lg font-medium italic text-stone-700">Celebration of love</p>
       <div className="mx-auto my-5 h-px max-w-[12rem] bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
       <p className="font-playfair text-2xl font-semibold text-invite-wine md:text-3xl">{name}</p>
-      <p className="mt-2 font-lato text-sm text-stone-700/90">
+      <p className="mt-2 font-lato text-sm font-medium text-stone-800">
         {guests === '1' ? '1 guest' : `${guests} guests`}
         {guestNames.trim() && guests !== '1' ? ` · ${guestNames.trim()}` : ''}
       </p>
-      <p className="mt-4 font-cinzel text-sm font-semibold tracking-wider text-terra">{WEDDING_DATE_LINE}</p>
-      <p className="mt-3 font-cormorant text-sm italic leading-relaxed text-stone-700/85">{eventsDisplay}</p>
+      <p className="mt-4 font-cinzel text-sm font-semibold tracking-wider text-terra-deep">{WEDDING_DATE_LINE}</p>
+      <p className="mt-3 font-cormorant text-sm font-medium italic leading-relaxed text-stone-700">{eventsDisplay}</p>
       {message.trim() ? (
-        <p className="mt-4 rounded-xl border border-gold/30 bg-cream/40 px-3 py-2 font-lato text-xs text-stone-700/90">
+        <p className="mt-4 rounded-xl border border-gold/35 bg-cream/50 px-3 py-2 font-lato text-xs font-medium text-stone-800">
           “{message.trim()}”
         </p>
       ) : null}
@@ -161,19 +161,27 @@ export default function RSVP() {
   return (
     <SectionReveal
       id="rsvp"
-      className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-terra px-4 py-16 md:px-10 md:py-20"
+      className="defer-heavy-section reveal section-band-rsvp relative overflow-hidden border-t border-gold/30 px-4 py-16 md:px-10 md:py-20"
     >
-      <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.12]"
+        aria-hidden="true"
+        style={{
+          backgroundImage: 'url(/doodle-pattern-rsvp.svg)',
+          backgroundSize: '420px',
+        }}
+      />
 
       <div className="mx-auto max-w-3xl text-center">
         <RevealItem>
-          <div className="font-cinzel text-cream text-3xl font-bold tracking-wide md:text-4xl">RSVP</div>
+          <p className="section-eyebrow-on-dark">Kindly respond</p>
+          <h2 className="section-display-on-dark mt-2">RSVP</h2>
         </RevealItem>
-        <RevealItem className="mt-3 font-lato text-cream/95 text-sm">
-          Kindly respond by <span className="font-bold text-gold">January 15, 2027</span> so we can plan with care.
+        <RevealItem className="section-lead-on-dark mt-1">
+          Please reply by <span className="font-semibold text-gold-light">January 15, 2027</span> so we can plan with care.
         </RevealItem>
 
-        <RevealItem variant="scale" className="relative mt-10 rounded-2xl border border-gold/45 bg-terra/95 p-5 shadow-xl backdrop-blur md:p-8">
+        <RevealItem variant="scale" className="relative mt-10 rounded-2xl border border-gold/55 bg-black/10 p-5 shadow-premium backdrop-blur-sm md:p-8">
           <ParticleCanvas
             triggerId={particleTriggerId}
             className="absolute inset-0 pointer-events-none"
@@ -201,7 +209,7 @@ export default function RSVP() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Name"
-                      className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
+                      className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                       required
                     />
                   </div>
@@ -214,10 +222,10 @@ export default function RSVP() {
                       id="rsvp-guests"
                       value={guests}
                       onChange={(e) => setGuests(e.target.value)}
-                      className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
+                      className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                     >
                       {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '5+'].map((opt) => (
-                        <option key={opt} value={opt} className="bg-terra">
+                        <option key={opt} value={opt} className="bg-terra-deep text-cream">
                           {opt === '5+' ? '5+' : opt}
                         </option>
                       ))}
@@ -235,8 +243,8 @@ export default function RSVP() {
                       exit={{ opacity: 0, height: 0, marginTop: 0 }}
                       className="mt-4 overflow-hidden"
                     >
-                    <label className="mb-1.5 block text-left font-lato text-cream/90 text-xs font-semibold uppercase tracking-widest">
-                      Guest names <span className="font-normal normal-case text-cream/60">(optional)</span>
+                    <label className="mb-1.5 block text-left meta-stationery-on-dark">
+                      Guest names <span className="font-normal normal-case text-cream/75">(optional)</span>
                     </label>
                     <textarea
                       id="rsvp-guest-names"
@@ -244,7 +252,7 @@ export default function RSVP() {
                       onChange={(e) => setGuestNames(e.target.value)}
                       placeholder="Who’s coming with you?"
                       rows={2}
-                      className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
+                      className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                     />
                     </motion.div>
                   ) : null}
@@ -260,12 +268,12 @@ export default function RSVP() {
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Message (optional)"
                     rows={4}
-                    className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
+                    className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                   />
                 </motion.div>
 
                 <motion.div variants={formField} className="mt-6">
-                  <div className="font-lato text-cream/95 text-xs font-bold uppercase tracking-widest">
+                  <div className="meta-stationery-on-dark">
                     Events you’ll join
                   </div>
                   <motion.div
@@ -289,10 +297,10 @@ export default function RSVP() {
                           whileTap={{ scale: 0.94 }}
                           transition={springSnappy}
                           className={[
-                            'rounded-full border px-4 py-2 font-lato text-sm transition-colors',
+                            'rounded-full border px-4 py-2 font-lato text-sm font-medium transition-colors',
                             active
-                              ? 'border-gold bg-gold text-brown shadow-md'
-                              : 'border-gold/35 bg-cream/10 text-cream hover:bg-cream/15',
+                              ? 'border-gold-light bg-gold-light text-brown shadow-md'
+                              : 'border-cream/35 bg-black/15 text-cream hover:border-gold-light/60 hover:bg-black/25',
                           ].join(' ')}
                         >
                           {ev.label}
@@ -310,7 +318,7 @@ export default function RSVP() {
                     transition={springGentle}
                     disabled={submitState === 'submitting'}
                     className={[
-                      'w-full rounded-xl border border-gold bg-gold py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-md',
+                      'w-full rounded-xl border border-gold-light bg-gold-light py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-premium-sm',
                       submitState === 'submitting' ? 'opacity-75' : '',
                     ].join(' ')}
                   >

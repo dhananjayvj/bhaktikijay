@@ -77,7 +77,7 @@ function EventCard({ event, side, index }) {
       <div
         data-no-sparkle="true"
         className={[
-          'rounded-2xl border border-gold/25 bg-cream/90 backdrop-blur-sm shadow-sm',
+          'rounded-2xl border border-gold/30 bg-cream/95 backdrop-blur-sm shadow-premium-sm',
           'p-5 md:p-6',
           'relative',
         ].join(' ')}
@@ -100,7 +100,7 @@ function EventCard({ event, side, index }) {
           <div className="mt-3 flex flex-col gap-2.5 sm:flex-row sm:items-start sm:justify-between sm:gap-3">
             <div className="min-w-0 w-full flex-1 sm:pr-1">
               <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <h3 className="min-w-0 max-w-full font-playfair text-stone-900 text-lg font-black tracking-tight sm:text-xl">
+                <h3 className="min-w-0 max-w-full font-playfair text-stone-900 text-xl font-bold tracking-tight sm:text-2xl">
                   {event.title}
                 </h3>
                 {event.icon === 'mandap' ? (
@@ -117,7 +117,7 @@ function EventCard({ event, side, index }) {
                   <ReceptionIcon className="shrink-0 text-[#8B6B7A]" size={26} />
                 ) : null}
               </div>
-              <p className="mt-1.5 font-cormorant text-stone-800/70 text-sm leading-snug">
+              <p className="mt-2 font-cormorant text-[0.95rem] font-medium leading-relaxed text-stone-700">
                 {event.subtitle}
               </p>
             </div>
@@ -133,7 +133,7 @@ function EventCard({ event, side, index }) {
                   onPointerDown={(e) => e.stopPropagation()}
                   onClick={(e) => e.stopPropagation()}
                   aria-label={`Open directions in maps (${event.pinLabel})`}
-                  className="text-[1.125rem] leading-none text-terra transition-opacity hover:opacity-75"
+                  className="text-[1.125rem] leading-none text-terra-light transition-opacity hover:opacity-80"
                 >
                   📍
                 </a>
@@ -291,15 +291,17 @@ function Timeline() {
 
       <div className="mx-auto max-w-5xl">
         <div ref={headerRef} className="text-center">
+          <p className="section-eyebrow">Mar 11 – 14, 2027</p>
           <motion.h2
             initial={{ opacity: 0, y: 18 }}
             animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={sectionReveal}
             style={gpuLayerStyle}
-            className="font-cinzel text-terra text-3xl font-bold tracking-wide md:text-4xl"
+            className="section-display-light mt-2"
           >
-            Celebration Timeline
+            Celebration timeline
           </motion.h2>
+          <p className="section-lead mt-3">Six moments across three days — tap a card for a little sparkle.</p>
         </div>
 
         <div className="relative mt-14">

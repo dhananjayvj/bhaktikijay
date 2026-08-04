@@ -16,6 +16,16 @@
     width: 100%;
     /* iOS legacy fallback when dvh unsupported */
     min-height: -webkit-fill-available;
+    color: #2a2218;
+  }
+
+  :focus-visible {
+    outline: 2px solid #C9A227;
+    outline-offset: 3px;
+  }
+
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[10000] focus:rounded-lg focus:border focus:border-gold/50 focus:bg-cream focus:px-4 focus:py-2 focus:font-lato focus:text-sm focus:font-semibold focus:text-brown focus:shadow-premium-sm;
   }
 
   #root {
@@ -34,6 +44,52 @@
 }
 
 @layer components {
+  /* Fixed film grain — breaks digital flatness without hurting readability */
+  .site-grain {
+    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Section typography hierarchy */
+  .section-display {
+    @apply font-cinzel text-display font-bold text-balance text-invite-wine;
+  }
+
+  .section-display-light {
+    @apply font-cinzel text-display font-bold text-balance text-terra;
+  }
+
+  .section-display-on-dark {
+    @apply font-cinzel text-display font-bold text-balance text-cream;
+    text-shadow: 0 1px 2px rgba(59, 31, 10, 0.25);
+  }
+
+  .section-lead {
+    @apply mx-auto mt-4 max-w-prose-narrow font-cormorant text-body-lg font-medium leading-relaxed text-pretty text-stone-700;
+  }
+
+  .section-lead-on-dark {
+    @apply mx-auto mt-4 max-w-prose-narrow font-cormorant text-body-lg font-medium leading-relaxed text-pretty text-cream/95;
+  }
+
+  .section-eyebrow {
+    @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-invite-wine/85;
+  }
+
+  .section-eyebrow-on-dark {
+    @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-gold-light/95;
+  }
+
+  /* RSVP / warm accent band — darker terra for WCAG-friendly cream text */
+  .section-band-rsvp {
+    background: linear-gradient(168deg, #A84838 0%, #C9634E 42%, #B85542 100%);
+  }
+
   /* Subtle linen / parchment grain (no external asset) */
   /* 3D curtain panels — pairs with perspective parent + preserve-3d children */
   .curtain-3d-panel {
@@ -181,7 +237,11 @@
 
   /* Editorial metadata — dates, hashtags, countdown labels */
   .meta-stationery {
-    @apply font-lato text-[10px] font-bold uppercase tracking-[0.3em] text-gold-dark;
+    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.26em] text-invite-wine;
+  }
+
+  .meta-stationery-on-dark {
+    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.26em] text-cream/90;
   }
 
   /* Letterpress on parchment */
@@ -191,7 +251,7 @@
 
   /* Hero invitation — readable on photo backdrop */
   .invite-hero-meta {
-    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.3em] text-invite-wine;
+    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.28em] text-invite-wine;
     text-shadow:
       0 0 1px rgba(255, 252, 248, 1),
       0 1px 3px rgba(250, 247, 242, 0.95),
@@ -200,7 +260,7 @@
   }
 
   .invite-hero-body {
-    @apply font-cormorant text-lg font-semibold leading-loose text-invite-ink;
+    @apply font-cormorant text-lg font-medium leading-[1.85] text-invite-ink;
     text-shadow:
       0 0 1px rgba(255, 252, 248, 1),
       0 1px 3px rgba(250, 247, 242, 0.92),
@@ -210,7 +270,7 @@
   }
 
   .invite-hero-parent {
-    @apply font-cormorant text-base font-semibold leading-relaxed tracking-wide text-invite-ink sm:text-lg;
+    @apply font-cormorant text-base font-medium leading-relaxed tracking-wide text-invite-ink-soft sm:text-lg;
     text-shadow:
       0 0 1px rgba(255, 252, 248, 0.98),
       0 1px 4px rgba(250, 247, 242, 0.88),

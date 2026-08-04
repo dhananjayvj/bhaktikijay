@@ -12,7 +12,7 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
   const mainCardRef = useRef(null)
 
   return (
-    <div ref={mainCardRef} className="relative z-[2]">
+    <main id="main" ref={mainCardRef} className="relative z-[2]">
       <Hero inviteRevealed={inviteRevealed} textActive={textActive} />
       <CouplePortrait />
 
@@ -24,7 +24,7 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
       </Suspense>
 
       <SparkleLayer containerRef={mainCardRef} disabled={sparklesDisabled} />
-    </div>
+    </main>
   )
 }
 

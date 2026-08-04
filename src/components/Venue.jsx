@@ -49,15 +49,14 @@ export default function Venue() {
     >
       <div className="mx-auto max-w-5xl">
         <RevealItem className="text-center">
-          <div className="font-cinzel text-terra text-3xl font-bold tracking-wide md:text-4xl">
-            Venue &amp; logistics
-          </div>
+          <p className="section-eyebrow">Getting there</p>
+          <h2 className="section-display-light mt-2">Venue &amp; logistics</h2>
         </RevealItem>
 
-        <RevealItem className="mx-auto mt-8 max-w-2xl">
-          <div className="rounded-2xl border border-gold/35 bg-invite-paper/80 px-5 py-5 text-left shadow-sm md:px-8 md:py-6">
-            <p className="font-lato text-[0.7rem] font-bold uppercase tracking-[0.2em] text-terra/90">Pro-tip</p>
-            <p className="mt-3 font-cormorant text-stone-800/90 text-[0.98rem] leading-relaxed">
+        <RevealItem className="mx-auto mt-8 max-w-prose">
+          <div className="rounded-2xl border border-gold/40 bg-invite-paper/90 px-5 py-5 text-left shadow-premium-sm md:px-8 md:py-6">
+            <p className="meta-stationery">Pro-tip</p>
+            <p className="mt-3 font-cormorant text-stone-800 text-[1rem] font-medium leading-[1.75] text-pretty">
               Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the
               Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and
               peak evenings need extra time. Parking is limited, so come a bit early if you drive.
@@ -67,7 +66,7 @@ export default function Venue() {
 
         <RevealItem variant="scale" className="mt-10 flex flex-col items-center md:mt-12">
           <motion.div
-            className="relative w-full max-w-xl rounded-2xl border border-gold/35 bg-cream/70 p-6 shadow-lg md:p-8"
+            className="relative w-full max-w-xl rounded-2xl border border-gold/40 bg-cream/85 p-6 shadow-card-warm md:p-8"
             whileHover={{ y: -3 }}
             transition={springGentle}
           >
@@ -82,7 +81,7 @@ export default function Venue() {
             />
 
             <div className="flex flex-col gap-6">
-              <p className="text-center font-cormorant text-stone-800/90 text-[1.05rem] leading-snug md:text-[1.12rem]">
+              <p className="text-center font-cormorant text-stone-800 text-[1.05rem] font-medium leading-[1.65] text-pretty md:text-[1.12rem]">
                 Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru
               </p>
 
