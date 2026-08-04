@@ -421,7 +421,7 @@
 
   .invite-couple-name {
     @apply invite-hero-ink font-script font-normal leading-none;
-    font-size: clamp(1.35rem, 5.4vw, 7rem);
+    font-size: clamp(2rem, 8.5vw, 7rem);
     text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
   }
 
@@ -431,7 +431,7 @@
 
   .invite-couple-amp {
     @apply invite-hero-ink font-script font-normal italic leading-none;
-    font-size: clamp(1.1rem, 4vw, 4.5rem);
+    font-size: clamp(1.5rem, 5.5vw, 4.5rem);
     text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
   }
 
@@ -480,6 +480,24 @@
     .invite-hero-parent {
       font-size: clamp(0.72rem, 2.8vw, 0.88rem);
       line-height: 1.45;
+    }
+
+    .invite-couple-grid {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      row-gap: 0.65rem;
+    }
+
+    .invite-couple-name {
+      font-size: clamp(2.75rem, 10vw, 4.25rem);
+    }
+
+    .invite-couple-amp {
+      font-size: clamp(2.25rem, 8vw, 3.25rem);
+    }
+
+    .invite-couple-amp-cell {
+      padding-top: 0;
     }
 
     .site-grain {
