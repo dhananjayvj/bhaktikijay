@@ -232,9 +232,9 @@ export default function RSVP() {
                       onChange={(e) => setGuests(e.target.value)}
                       className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                     >
-                      {['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '5+'].map((opt) => (
+                      {['1', '2', '3', '4', '5'].map((opt) => (
                         <option key={opt} value={opt} className="bg-terra-deep text-cream">
-                          {opt === '5+' ? '5+' : opt}
+                          {opt}
                         </option>
                       ))}
                     </select>
