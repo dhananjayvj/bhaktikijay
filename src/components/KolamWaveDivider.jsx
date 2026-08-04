@@ -7,8 +7,6 @@ export default function KolamWaveDivider({ className = '', compact = false, anim
   const gid = useId()
   const gradId = `kolam-grad-${gid.replace(/:/g, '')}`
 
-  const dashDelay = animateIn ? 1.05 : 0
-
   return (
     <div aria-hidden="true" className={`relative mx-auto mt-0 max-w-[720px] ${className}`}>
       <svg viewBox="0 0 800 80" className={`w-full ${compact ? 'max-h-[52px]' : ''}`}>
@@ -27,11 +25,10 @@ export default function KolamWaveDivider({ className = '', compact = false, anim
           strokeLinecap="round"
           strokeDasharray="6 10"
           initial={animateIn ? { pathLength: 0, opacity: 0 } : false}
-          animate={{ pathLength: 1, opacity: 1, strokeDashoffset: -160 }}
+          animate={animateIn ? { pathLength: 1, opacity: 1 } : { pathLength: 1, opacity: 1 }}
           transition={{
             pathLength: { duration: 1.05, ease: easeOutCubic },
             opacity: { duration: 0.75, ease: easeOutCubic },
-            strokeDashoffset: { duration: 6, repeat: Infinity, ease: 'linear', delay: dashDelay },
           }}
         />
         <motion.path
@@ -43,11 +40,10 @@ export default function KolamWaveDivider({ className = '', compact = false, anim
           strokeLinecap="round"
           strokeDasharray="2 12"
           initial={animateIn ? { pathLength: 0, opacity: 0 } : false}
-          animate={{ pathLength: 1, opacity: 1, strokeDashoffset: -220 }}
+          animate={{ pathLength: 1, opacity: 1 }}
           transition={{
             pathLength: { duration: 1.05, ease: easeOutCubic, delay: 0.1 },
             opacity: { duration: 0.75, ease: easeOutCubic, delay: 0.1 },
-            strokeDashoffset: { duration: 9, repeat: Infinity, ease: 'linear', delay: dashDelay + 0.1 },
           }}
         />
       </svg>

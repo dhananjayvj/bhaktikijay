@@ -12,6 +12,12 @@
     scroll-padding-top: 3.75rem;
   }
 
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
   body {
     min-height: 100svh;
     min-height: 100dvh;
@@ -135,6 +141,42 @@
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset, 0 4px 20px rgba(59, 31, 10, 0.06);
   }
 
+  .site-nav-inner {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 0.25rem;
+  }
+
+  .site-nav-pill {
+    @apply flex min-h-[40px] min-w-0 cursor-pointer items-center justify-center rounded-full px-1 py-2 text-center font-lato text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-primary-deep/85 transition-colors duration-200 sm:px-3 sm:text-[0.65rem] sm:tracking-[0.14em];
+  }
+
+  .site-nav-pill--active {
+    @apply bg-primary-deep text-cream shadow-premium-sm;
+  }
+
+  .site-nav-pill--cta {
+    @apply bg-accent text-on-primary border border-accent;
+  }
+
+  .site-nav-pill--cta.site-nav-pill--active {
+    @apply bg-gold-dark border-gold-dark;
+  }
+
+  @media (min-width: 640px) {
+    .site-nav-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .site-nav-pill {
+      flex: 0 1 auto;
+    }
+  }
+
   .btn-primary {
     @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center rounded-full border border-accent bg-accent px-6 py-2.5 font-lato text-sm font-semibold tracking-wide text-on-primary shadow-premium-sm transition-all duration-200 ease-out;
   }
@@ -182,16 +224,9 @@
     will-change: transform, opacity;
   }
 
-  /* Skip layout/paint for off-screen long-scroll sections (older iPhones) */
+  /* Long-scroll sections — avoid content-visibility (causes mobile scroll jank) */
   .defer-heavy-section {
-    content-visibility: auto;
-    contain-intrinsic-size: auto 720px;
-  }
-
-  @supports not (contain-intrinsic-size: auto 1px) {
-    .defer-heavy-section {
-      contain-intrinsic-size: 720px;
-    }
+    contain: layout style;
   }
 
   /* Red wax seal; gold glitter letters only */
@@ -367,15 +402,41 @@
     @apply invite-hero-ink font-cormorant text-base font-normal leading-relaxed tracking-wide sm:text-lg;
   }
 
+  .invite-couple-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: start;
+    column-gap: 0.35rem;
+    row-gap: 0.5rem;
+  }
+
+  .invite-couple-column {
+    @apply flex min-w-0 flex-col items-center gap-1.5 text-center;
+  }
+
+  .invite-couple-amp-cell {
+    @apply flex items-center justify-center self-center px-0.5;
+    padding-top: 0.35rem;
+  }
+
   .invite-couple-name {
-    @apply invite-hero-ink font-script font-normal;
-    line-height: 0.92;
+    @apply invite-hero-ink font-script font-normal leading-none;
+    font-size: clamp(1.35rem, 5.4vw, 7rem);
     text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
   }
 
+  .invite-couple-name--envelope {
+    font-size: clamp(1.55rem, 5.2vw, 2.35rem);
+  }
+
   .invite-couple-amp {
-    @apply invite-hero-ink font-script font-normal italic;
+    @apply invite-hero-ink font-script font-normal italic leading-none;
+    font-size: clamp(1.1rem, 4vw, 4.5rem);
     text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
+  }
+
+  .invite-couple-amp--envelope {
+    font-size: clamp(1.25rem, 4vw, 1.75rem);
   }
 
   .invite-countdown-intro {
@@ -416,8 +477,17 @@
       letter-spacing: 0.28em;
     }
 
-    .defer-heavy-section {
-      contain-intrinsic-size: auto 560px;
+    .invite-hero-parent {
+      font-size: clamp(0.72rem, 2.8vw, 0.88rem);
+      line-height: 1.45;
+    }
+
+    .site-grain {
+      display: none;
+    }
+
+    .hero-scroll-cue svg {
+      animation: none;
     }
   }
 

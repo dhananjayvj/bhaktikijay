@@ -9,7 +9,7 @@ const BACKDROP_MOUNT_DELAY_MS = 50
 const BACKDROP_FADE_SEC = 3
 
 const heroShellClass =
-  'relative z-[2] mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(3.75rem+env(safe-area-inset-top))] text-center sm:px-6 sm:pb-16 sm:pt-[max(3.5rem,env(safe-area-inset-top))] md:px-12 md:pb-24 md:pt-14'
+  'relative z-[2] mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] text-center sm:px-6 sm:pb-16 sm:pt-10 md:px-12 md:pb-24 md:pt-14'
 
 function HeroParchmentLayers({ backdropOn }) {
   return (
@@ -33,7 +33,6 @@ function HeroParchmentLayers({ backdropOn }) {
               backgroundImage: `url(${backdropImageUrl})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              filter: 'saturate(1.15) contrast(1.08)',
               willChange: 'opacity',
             }}
           />

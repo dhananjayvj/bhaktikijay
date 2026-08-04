@@ -1,4 +1,4 @@
-import React, { memo, Suspense, useRef } from 'react'
+import React, { memo, Suspense, useEffect, useRef, useState } from 'react'
 import Hero from './Hero.jsx'
 import CouplePortrait from './CouplePortrait.jsx'
 import SparkleLayer from './SparkleLayer.jsx'
@@ -11,6 +11,13 @@ const Footer = React.lazy(() => import('./Footer.jsx'))
 
 function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled }) {
   const mainCardRef = useRef(null)
+  const [sparklesEnabled, setSparklesEnabled] = useState(false)
+
+  useEffect(() => {
+    const coarse = window.matchMedia('(pointer: coarse)').matches
+    const narrow = window.matchMedia('(max-width: 767px)').matches
+    setSparklesEnabled(!coarse && !narrow)
+  }, [])
 
   return (
     <main id="main" ref={mainCardRef} className="relative z-[2]">
@@ -32,7 +39,7 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
         </LazySection>
       </Suspense>
 
-      <SparkleLayer containerRef={mainCardRef} disabled={sparklesDisabled} />
+      <SparkleLayer containerRef={mainCardRef} disabled={sparklesDisabled || !sparklesEnabled} />
     </main>
   )
 }

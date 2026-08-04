@@ -15,22 +15,14 @@ import {
 import { CEREMONY_DATE_HEADLINE } from '../constants/wedding.js'
 import { heroStaggerContainer, heroStaggerItem } from '../constants/motion.js'
 
-const fullCoupleName = { fontSize: 'clamp(2rem, 8.5vw, 7rem)' }
-const fullAmp = { fontSize: 'clamp(1.5rem, 5.5vw, 4.5rem)' }
-
-const envelopeCoupleName = { fontSize: 'clamp(1.55rem, 5.2vw, 2.35rem)' }
-const envelopeAmp = { fontSize: 'clamp(1.25rem, 4vw, 1.75rem)' }
-
 export default function InviteHeroCopy({ variant = 'full' }) {
   const envelope = variant === 'envelope'
-  const coupleNameSize = envelope ? envelopeCoupleName : fullCoupleName
-  const ampSize = envelope ? envelopeAmp : fullAmp
 
   const gridGap = envelope ? 'gap-y-2 sm:gap-y-2.5' : 'gap-y-4 sm:gap-y-6'
   const blockGap = envelope ? 'gap-2 sm:gap-2.5' : 'gap-3 sm:gap-5'
   const parentClass = envelope
     ? 'invite-hero-parent mx-auto max-w-[22rem] text-[clamp(0.72rem,2.2vw,0.88rem)]'
-    : 'invite-hero-parent mx-auto max-w-[26rem] text-[clamp(0.82rem,2.8vw,1.05rem)] leading-snug sm:text-base sm:leading-relaxed'
+    : 'invite-hero-parent w-full text-pretty'
 
   const Root = envelope ? 'div' : motion.div
   const Block = envelope ? 'div' : motion.div
@@ -84,27 +76,24 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         }`}
         {...blockProps}
       >
-        <div className="w-full max-w-4xl">
-          <div className="flex items-end justify-center gap-1 px-1 sm:gap-3 md:gap-4">
-            <div className="min-w-0 flex-1 text-center md:text-right">
-              <div className="invite-couple-name break-words" style={coupleNameSize}>
-                Bhakti
-              </div>
+        <div className="invite-couple-grid w-full max-w-4xl px-1 sm:px-2">
+          <div className="invite-couple-column">
+            <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
+              Bhakti
             </div>
-            <div className="flex shrink-0 items-center justify-center self-center px-0.5 sm:px-1">
-              <span className="invite-couple-amp inline-block leading-none" style={ampSize}>
-                &amp;
-              </span>
-            </div>
-            <div className="min-w-0 flex-1 text-center md:text-left">
-              <div className="invite-couple-name break-words" style={coupleNameSize}>
-                Dhananjay
-              </div>
-            </div>
+            <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
           </div>
 
-          <div className="mt-3 grid grid-cols-1 gap-2 px-1 sm:mt-4 sm:grid-cols-2 sm:gap-4 sm:px-0">
-            <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
+          <div className="invite-couple-amp-cell" aria-hidden="true">
+            <span className={envelope ? 'invite-couple-amp invite-couple-amp--envelope' : 'invite-couple-amp'}>
+              &amp;
+            </span>
+          </div>
+
+          <div className="invite-couple-column">
+            <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
+              Dhananjay
+            </div>
             <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
           </div>
         </div>
