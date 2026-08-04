@@ -56,10 +56,10 @@ function SectionDoodleBackdrop({ variant = 'cream' }) {
           opacity: tone.patternOpacity,
         }}
       />
-      <CornerMark className="absolute -left-6 top-10 h-28 w-28 opacity-80 sm:h-36 sm:w-36 md:left-2" />
-      <CornerMark className="absolute -right-6 top-16 h-24 w-24 opacity-70 sm:h-32 sm:w-32 md:right-2" flipX />
-      <CornerMark className="absolute -left-4 bottom-8 h-20 w-20 opacity-60 sm:h-28 sm:w-28" />
-      <CornerMark className="absolute -right-4 bottom-12 h-20 w-20 opacity-60 sm:h-28 sm:w-28" flipX />
+      <CornerMark className="absolute left-0 top-10 h-20 w-20 opacity-60 sm:h-36 sm:w-36 md:left-2" />
+      <CornerMark className="absolute right-0 top-16 h-20 w-20 opacity-55 sm:h-32 sm:w-32 md:right-2" flipX />
+      <CornerMark className="absolute bottom-8 left-0 h-16 w-16 opacity-50 sm:h-28 sm:w-28" />
+      <CornerMark className="absolute bottom-12 right-0 h-16 w-16 opacity-50 sm:h-28 sm:w-28" flipX />
       <div
         className="absolute inset-0"
         style={{

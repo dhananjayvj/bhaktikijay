@@ -8,20 +8,20 @@ import { easeOutCubic, gpuLayerStyle } from '../constants/motion.js'
 const BACKDROP_MOUNT_DELAY_MS = 50
 const BACKDROP_FADE_SEC = 3
 
-const gridClass =
-  'relative z-[2] mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] gap-y-5 px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(0.5rem,env(safe-area-inset-top))] text-center sm:gap-y-6 sm:px-6 sm:pb-16 sm:pt-10 md:gap-y-8 md:px-12 md:pb-24 md:pt-14'
+const heroShellClass =
+  'relative z-[2] mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[calc(3.75rem+env(safe-area-inset-top))] text-center sm:px-6 sm:pb-16 sm:pt-[max(3.5rem,env(safe-area-inset-top))] md:px-12 md:pb-24 md:pt-14'
 
 function HeroParchmentLayers({ backdropOn }) {
   return (
     <>
       <div
         aria-hidden="true"
-        className="paper-parchment pointer-events-none absolute inset-x-3 top-8 bottom-8 z-0 overflow-hidden rounded-3xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10 sm:inset-x-4"
+        className="paper-parchment pointer-events-none absolute inset-x-2 top-4 bottom-4 z-0 overflow-hidden rounded-2xl border border-invite-wine/12 bg-[linear-gradient(168deg,#faf6ef_0%,#f0e9dc_52%,#e8dfd2_100%)] shadow-[0_18px_50px_rgba(0,0,0,0.10)] ring-1 ring-[#D4AF37]/10 sm:inset-x-4 sm:top-8 sm:bottom-8 sm:rounded-3xl"
       />
       {backdropOn ? (
         <motion.div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-3 top-8 bottom-8 z-0 overflow-hidden rounded-3xl sm:inset-x-4"
+          className="pointer-events-none absolute inset-x-2 top-4 bottom-4 z-0 overflow-hidden rounded-2xl sm:inset-x-4 sm:top-8 sm:bottom-8 sm:rounded-3xl"
           style={gpuLayerStyle}
         >
           <motion.div
@@ -71,7 +71,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
   return (
     <section
       id="invitation"
-      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-x-hidden overflow-y-visible"
+      className="relative flex min-h-[100svh] flex-col items-stretch justify-start overflow-x-hidden sm:items-center sm:justify-center"
       style={{ perspective: '1000px' }}
     >
       {!inviteRevealed ? (
@@ -82,7 +82,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-invite-paper/0 via-invite-paper/0 to-invite-ivory/80" />
           <HeroParchmentLayers backdropOn={backdropOn} />
           <motion.div
-            className={`${gridClass} hero-typography`}
+            className={`${heroShellClass} hero-typography w-full`}
             style={
               compositeActive
                 ? {
@@ -104,22 +104,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
           >
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
             {textActive ? (
-              <div
-                style={
-                  compositeActive
-                    ? {
-                        willChange: 'transform, opacity',
-                        transform: 'translateZ(0)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                      }
-                    : {
-                        transform: 'translateZ(0)',
-                        backfaceVisibility: 'hidden',
-                        WebkitBackfaceVisibility: 'hidden',
-                      }
-                }
-              >
+              <div className="w-full max-w-5xl">
                 <InviteHeroCopy variant="full" />
                 <a href="#couple" className="hero-scroll-cue motion-reduce:hidden">
                   <span>Explore</span>

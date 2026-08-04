@@ -6,6 +6,7 @@
 @layer base {
   html {
     height: 100%;
+    overflow-x: hidden;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: 3.75rem;
@@ -392,10 +393,32 @@
 
   /* Smooth luxury typography (Hero only) */
   .hero-typography {
+    width: 100%;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: subpixel-antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-smooth: always;
+  }
+
+  @media (max-width: 639px) {
+    .invite-hero-title {
+      font-size: clamp(1.55rem, 6.8vw, 2rem);
+      letter-spacing: 0.04em;
+      line-height: 1.12;
+    }
+
+    .invite-hero-tagline {
+      font-size: clamp(1.35rem, 6vw, 1.85rem);
+    }
+
+    .invite-hero-blessing {
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+    }
+
+    .defer-heavy-section {
+      contain-intrinsic-size: auto 560px;
+    }
   }
 
   .paper-parchment {

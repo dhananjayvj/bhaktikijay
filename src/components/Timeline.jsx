@@ -121,7 +121,7 @@ function Timeline() {
         <div className="relative mt-12">
           <div
             aria-hidden="true"
-            className="absolute left-5 top-2 bottom-2 w-[2px] md:left-8"
+            className="absolute left-3 top-2 bottom-2 w-px md:left-8 md:w-[2px]"
             style={{
               background:
                 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(217,119,6,0.45) 18%, rgba(15,118,110,0.8) 50%, rgba(217,119,6,0.35) 70%, rgba(0,0,0,0) 100%)',
@@ -136,8 +136,8 @@ function Timeline() {
             animate={listInView ? 'show' : 'hidden'}
           >
             {CELEBRATION_DAYS.map((day, i) => (
-              <div key={day.id} className="relative pl-12 md:pl-16">
-                <div className="absolute left-5 top-8 z-[2] md:left-8">
+              <div key={day.id} className="relative pl-10 md:pl-16">
+                <div className="absolute left-3 top-8 z-[2] md:left-8">
                   <Dot />
                 </div>
                 <DayCard day={day} index={i} />

@@ -57,8 +57,8 @@ export default function Countdown({
     : 'mt-6 w-full flex flex-col items-center sm:mt-8'
 
   const digitsRowClass = dense
-    ? 'flex flex-wrap items-center justify-center gap-x-2 gap-y-2 sm:gap-x-4 sm:gap-y-3 md:gap-x-5'
-    : 'flex flex-wrap items-center justify-center gap-x-4 gap-y-3 sm:gap-x-5'
+    ? 'grid w-full max-w-sm grid-cols-4 gap-x-1 gap-y-2 sm:max-w-none sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-4 sm:gap-y-3 md:gap-x-5'
+    : 'grid w-full max-w-md grid-cols-4 gap-x-2 gap-y-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-5'
 
   const digitClass = dense
     ? `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]`

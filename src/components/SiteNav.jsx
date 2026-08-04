@@ -59,7 +59,7 @@ function SiteNav({ visible }) {
       className="site-nav-glass fixed left-0 right-0 top-[2px] z-[55] border-b border-primary/15"
     >
       <div className="mx-auto flex max-w-5xl items-center gap-1 px-3 py-2 sm:gap-2 sm:px-6">
-        <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto no-scrollbar sm:justify-center sm:gap-1">
+        <div className="flex min-w-0 flex-1 items-center justify-center gap-0.5 overflow-x-auto no-scrollbar sm:gap-1">
           {SECTIONS.map(({ id, label }) => {
             const active = activeId === id
             return (
