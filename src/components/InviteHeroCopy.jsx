@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -10,6 +11,7 @@ import {
   INVITE_OPENING_VERSE,
 } from '../constants/inviteCopy.js'
 import { CEREMONY_DATE_HEADLINE } from '../constants/wedding.js'
+import { heroStaggerContainer, heroStaggerItem } from '../constants/motion.js'
 
 const fullCoupleName = { fontSize: 'clamp(2.75rem, 10vw, 7rem)' }
 const fullAmp = { fontSize: 'clamp(2.5rem, 8vw, 4.5rem)' }
@@ -42,15 +44,27 @@ export default function InviteHeroCopy({ variant = 'full' }) {
     : "invite-hero-body mx-auto max-w-lg italic tracking-wide whitespace-pre-line before:content-['\201C'] after:content-['\201D']"
   const dateMetaClass = envelope ? 'invite-hero-meta px-1 text-[9px] tracking-[0.2em] sm:text-[10px]' : 'invite-hero-meta px-2 pt-1'
 
+  const Root = envelope ? 'div' : motion.div
+  const Block = envelope ? 'div' : motion.div
+  const rootProps = envelope
+    ? {}
+    : {
+        initial: 'hidden',
+        animate: 'show',
+        variants: heroStaggerContainer,
+      }
+  const blockProps = envelope ? {} : { variants: heroStaggerItem }
+
   return (
-    <div
+    <Root
       className={`mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] text-center ${gridGap} ${
         envelope ? 'px-2' : ''
       }`}
+      {...rootProps}
     >
-      <div className={`relative z-[2] flex flex-col items-center ${blockGap}`}>
+      <Block className={`relative z-[2] flex flex-col items-center ${blockGap}`} {...blockProps}>
         <div className={`w-full ${envelope ? '' : 'md:mt-1'}`}>
-          <KolamWaveDivider compact />
+          <KolamWaveDivider compact animateIn={!envelope} />
         </div>
         <div className={metaClass}>
           <span className="select-none not-italic text-invite-wine/50" aria-hidden="true">
@@ -62,12 +76,13 @@ export default function InviteHeroCopy({ variant = 'full' }) {
           </span>
         </div>
         <p className={verseClass}>{INVITE_OPENING_VERSE}</p>
-      </div>
+      </Block>
 
-      <div
+      <Block
         className={`relative z-[2] flex min-h-0 w-full flex-col items-center justify-center ${
           envelope ? 'px-1 pt-1' : 'px-2 pt-2 sm:pt-4'
         }`}
+        {...blockProps}
       >
         <div
           className={`grid w-full max-w-4xl grid-cols-1 items-center justify-center md:grid-cols-[1fr_auto_1fr] ${
@@ -95,9 +110,12 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
           </div>
         </div>
-      </div>
+      </Block>
 
-      <div className={`relative z-[2] flex flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'}`}>
+      <Block
+        className={`relative z-[2] flex flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-4 px-3 sm:gap-5 sm:px-4'}`}
+        {...blockProps}
+      >
         <p className={celebrationClass}>{INVITE_CELEBRATION}</p>
         <div className={dateMetaClass}>{CEREMONY_DATE_HEADLINE}</div>
         {!envelope ? (
@@ -105,7 +123,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
           </div>
         ) : null}
-      </div>
-    </div>
+      </Block>
+    </Root>
   )
 }

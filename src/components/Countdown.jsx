@@ -1,19 +1,24 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 import { easeOutCubic } from '../constants/motion.js'
 
 function AnimatedDigit({ value, className, digitKey }) {
   return (
-    <motion.span
-      key={digitKey}
-      className={className}
-      initial={{ y: -10, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.4, ease: easeOutCubic }}
-    >
-      {value}
-    </motion.span>
+    <span className={`relative inline-block overflow-hidden ${className}`} style={{ minWidth: '0.55em' }}>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.span
+          key={digitKey}
+          className="inline-block tabular-nums"
+          initial={{ y: -14, opacity: 0, filter: 'blur(3px)' }}
+          animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+          exit={{ y: 14, opacity: 0, filter: 'blur(3px)' }}
+          transition={{ duration: 0.38, ease: easeOutCubic }}
+        >
+          {value}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   )
 }
 
@@ -85,7 +90,7 @@ export default function Countdown({
           <div className="flex items-baseline justify-center gap-0.5">
             {part.str.split('').map((d, digitIdx) => (
               <AnimatedDigit
-                key={`${part.label}-${d}-${digitIdx}`}
+                key={`${part.label}-${digitIdx}`}
                 value={d}
                 digitKey={`${idx}-${digitIdx}-${d}`}
                 className={digitClass}

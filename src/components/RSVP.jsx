@@ -1,7 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
+import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { WEDDING_DATE_LINE } from '../constants/wedding.js'
+import {
+  easeOutCubic,
+  formContainer,
+  formField,
+  pillContainer,
+  pillReveal,
+  springGentle,
+  springSnappy,
+} from '../constants/motion.js'
 
 const EVENT_GROUPS = [
   { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
@@ -149,23 +159,21 @@ export default function RSVP() {
   }
 
   return (
-    <motion.section
+    <SectionReveal
       id="rsvp"
       className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-terra px-4 py-16 md:px-10 md:py-20"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
     >
       <div className="pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
 
       <div className="mx-auto max-w-3xl text-center">
-        <div className="font-cinzel text-cream text-3xl font-bold tracking-wide md:text-4xl">RSVP</div>
-        <div className="mt-3 font-lato text-cream/95 text-sm">
+        <RevealItem>
+          <div className="font-cinzel text-cream text-3xl font-bold tracking-wide md:text-4xl">RSVP</div>
+        </RevealItem>
+        <RevealItem className="mt-3 font-lato text-cream/95 text-sm">
           Kindly respond by <span className="font-bold text-gold">January 15, 2027</span> so we can plan with care.
-        </div>
+        </RevealItem>
 
-        <div className="relative mt-10 rounded-2xl border border-gold/45 bg-terra/95 p-5 shadow-xl backdrop-blur md:p-8">
+        <RevealItem variant="scale" className="relative mt-10 rounded-2xl border border-gold/45 bg-terra/95 p-5 shadow-xl backdrop-blur md:p-8">
           <ParticleCanvas
             triggerId={particleTriggerId}
             className="absolute inset-0 pointer-events-none"
@@ -176,13 +184,14 @@ export default function RSVP() {
               <motion.form
                 key="form"
                 onSubmit={onSubmit}
-                initial={{ opacity: 1, y: 0 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial="hidden"
+                animate="show"
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.25, ease: [0.77, 0, 0.175, 1] }}
+                variants={formContainer}
+                transition={{ duration: 0.35, ease: easeOutCubic }}
                 className="relative"
               >
-                <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                <motion.div variants={formField} className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div className="md:col-span-1">
                     <label className="sr-only" htmlFor="rsvp-name">
                       Name
@@ -214,10 +223,18 @@ export default function RSVP() {
                       ))}
                     </select>
                   </div>
-                </div>
+                </motion.div>
 
-                {showGuestNames ? (
-                  <div className="mt-4">
+                <AnimatePresence initial={false}>
+                  {showGuestNames ? (
+                    <motion.div
+                      key="guest-names"
+                      variants={formField}
+                      initial="hidden"
+                      animate="show"
+                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                      className="mt-4 overflow-hidden"
+                    >
                     <label className="mb-1.5 block text-left font-lato text-cream/90 text-xs font-semibold uppercase tracking-widest">
                       Guest names <span className="font-normal normal-case text-cream/60">(optional)</span>
                     </label>
@@ -229,10 +246,11 @@ export default function RSVP() {
                       rows={2}
                       className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
                     />
-                  </div>
-                ) : null}
+                    </motion.div>
+                  ) : null}
+                </AnimatePresence>
 
-                <div className="mt-5">
+                <motion.div variants={formField} className="mt-5">
                   <label className="sr-only" htmlFor="rsvp-message">
                     Message
                   </label>
@@ -244,41 +262,52 @@ export default function RSVP() {
                     rows={4}
                     className="w-full rounded-xl border border-gold/40 bg-cream/5 px-4 py-3 font-lato text-cream placeholder:text-cream/60 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/25"
                   />
-                </div>
+                </motion.div>
 
-                <div className="mt-6">
+                <motion.div variants={formField} className="mt-6">
                   <div className="font-lato text-cream/95 text-xs font-bold uppercase tracking-widest">
                     Events you’ll join
                   </div>
-                  <div className="mt-3 flex flex-wrap items-center justify-center gap-2">
+                  <motion.div
+                    className="mt-3 flex flex-wrap items-center justify-center gap-2"
+                    variants={pillContainer}
+                    initial="hidden"
+                    animate="show"
+                  >
                     {EVENT_GROUPS.map((ev) => {
                       const active = selectedSet.has(ev.key)
                       return (
-                        <button
+                        <motion.button
                           type="button"
                           key={ev.key}
+                          layout
+                          variants={pillReveal}
                           data-no-sparkle="true"
                           onClick={() => toggleEvent(ev.key)}
                           aria-pressed={active}
+                          whileHover={{ scale: 1.05, y: -2 }}
+                          whileTap={{ scale: 0.94 }}
+                          transition={springSnappy}
                           className={[
                             'rounded-full border px-4 py-2 font-lato text-sm transition-colors',
                             active
-                              ? 'border-gold bg-gold text-brown'
+                              ? 'border-gold bg-gold text-brown shadow-md'
                               : 'border-gold/35 bg-cream/10 text-cream hover:bg-cream/15',
                           ].join(' ')}
                         >
                           {ev.label}
-                        </button>
+                        </motion.button>
                       )
                     })}
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
 
-                <div className="mt-7">
+                <motion.div variants={formField} className="mt-7">
                   <motion.button
                     type="submit"
-                    whileHover={{ y: -3, scale: 1.03 }}
+                    whileHover={{ y: -4, scale: 1.02 }}
                     whileTap={{ scale: 0.97 }}
+                    transition={springGentle}
                     disabled={submitState === 'submitting'}
                     className={[
                       'w-full rounded-xl border border-gold bg-gold py-4 font-lato text-sm font-bold tracking-widest text-brown shadow-md',
@@ -287,16 +316,16 @@ export default function RSVP() {
                   >
                     {submitState === 'submitting' ? 'Submitting…' : 'Submit RSVP'}
                   </motion.button>
-                </div>
+                </motion.div>
               </motion.form>
             ) : (
               <motion.div
                 key="success"
                 className="relative px-1 sm:px-2"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.55, ease: easeOutCubic }}
               >
                 <AdmissionCard
                   name={name.trim()}
@@ -320,8 +349,8 @@ export default function RSVP() {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </RevealItem>
       </div>
-    </motion.section>
+    </SectionReveal>
   )
 }

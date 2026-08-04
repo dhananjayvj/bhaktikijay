@@ -1,9 +1,11 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import SectionReveal, { RevealItem } from './SectionReveal.jsx'
+import { springGentle } from '../constants/motion.js'
 
 function GearJoke() {
   return (
-    <div className="mx-auto mt-6 max-w-2xl px-2 text-center font-lato text-cream/70 text-sm leading-relaxed">
+    <RevealItem className="mx-auto mt-6 max-w-2xl px-2 text-center font-lato text-cream/70 text-sm leading-relaxed">
       <motion.span
         whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
         className="inline-block align-middle mr-2 text-gold/80"
@@ -12,7 +14,7 @@ function GearJoke() {
         ⚙️
       </motion.span>
       Note: This website was built with 10% inspiration and 90% technical troubleshooting.
-    </div>
+    </RevealItem>
   )
 }
 
@@ -40,15 +42,12 @@ function KolamFooterMark() {
 
 export default function Footer() {
   return (
-    <motion.footer
+    <SectionReveal
+      as="footer"
       className="defer-heavy-section reveal bg-brown px-4 py-16 text-center md:px-10 md:py-20"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
     >
       <div className="mx-auto max-w-4xl">
-        <div className="mx-auto flex items-center justify-center">
+        <RevealItem className="mx-auto flex items-center justify-center">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
@@ -56,24 +55,27 @@ export default function Footer() {
           >
             <KolamFooterMark />
           </motion.div>
-        </div>
+        </RevealItem>
 
-        <div className="mt-5 font-playfair italic text-gold text-xl leading-relaxed">
+        <RevealItem className="mt-5 font-playfair italic text-gold text-xl leading-relaxed">
           With love, blessings, and joyful anticipation.
-        </div>
+        </RevealItem>
 
-        <div className="mt-4">
-          <div className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-brown/50 px-5 py-2 font-lato text-sm font-semibold tracking-widest text-gold">
+        <RevealItem className="mt-4">
+          <motion.div
+            whileHover={{ scale: 1.04, y: -2 }}
+            transition={springGentle}
+            className="inline-flex items-center gap-2 rounded-full border border-gold/35 bg-brown/50 px-5 py-2 font-lato text-sm font-semibold tracking-widest text-gold"
+          >
             <span aria-hidden="true">#</span>
             JayKiBhakti
-          </div>
-        </div>
+          </motion.div>
+        </RevealItem>
 
         <GearJoke />
 
-        <div className="mt-8 font-lato text-xs text-cream/55">Made with ♥️</div>
+        <RevealItem className="mt-8 font-lato text-xs text-cream/55">Made with ♥️</RevealItem>
       </div>
-    </motion.footer>
+    </SectionReveal>
   )
 }
-

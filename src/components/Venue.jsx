@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react'
 import { motion } from 'framer-motion'
+import SectionReveal, { RevealItem } from './SectionReveal.jsx'
+import { springGentle } from '../constants/motion.js'
 
 const MAPS_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
 
@@ -15,8 +17,9 @@ function VenueCTA({ href, children, variant }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      whileHover={{ y: -3, scale: 1.04 }}
-      whileTap={{ scale: 0.97 }}
+      whileHover={{ y: -4, scale: 1.05 }}
+      whileTap={{ scale: 0.96 }}
+      transition={springGentle}
       className={[
         'inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 font-lato text-sm font-semibold',
         className,
@@ -40,34 +43,33 @@ export default function Venue() {
   }, [])
 
   return (
-    <motion.section
+    <SectionReveal
       id="venue"
       className="defer-heavy-section reveal border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={{ duration: 0.8, ease: [0.77, 0, 0.175, 1] }}
     >
       <div className="mx-auto max-w-5xl">
-        <div className="text-center">
+        <RevealItem className="text-center">
           <div className="font-cinzel text-terra text-3xl font-bold tracking-wide md:text-4xl">
             Venue &amp; logistics
           </div>
-        </div>
+        </RevealItem>
 
-        <div className="mx-auto mt-8 max-w-2xl rounded-2xl border border-gold/35 bg-invite-paper/80 px-5 py-5 text-left shadow-sm md:px-8 md:py-6">
-          <p className="font-lato text-[0.7rem] font-bold uppercase tracking-[0.2em] text-terra/90">Pro-tip</p>
-          <p className="mt-3 font-cormorant text-stone-800/90 text-[0.98rem] leading-relaxed">
-            Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the
-            Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and
-            peak evenings need extra time. Parking is limited, so come a bit early if you drive.
-          </p>
-        </div>
+        <RevealItem className="mx-auto mt-8 max-w-2xl">
+          <div className="rounded-2xl border border-gold/35 bg-invite-paper/80 px-5 py-5 text-left shadow-sm md:px-8 md:py-6">
+            <p className="font-lato text-[0.7rem] font-bold uppercase tracking-[0.2em] text-terra/90">Pro-tip</p>
+            <p className="mt-3 font-cormorant text-stone-800/90 text-[0.98rem] leading-relaxed">
+              Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the
+              Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and
+              peak evenings need extra time. Parking is limited, so come a bit early if you drive.
+            </p>
+          </div>
+        </RevealItem>
 
-        <div className="mt-10 flex flex-col items-center md:mt-12">
+        <RevealItem variant="scale" className="mt-10 flex flex-col items-center md:mt-12">
           <motion.div
             className="relative w-full max-w-xl rounded-2xl border border-gold/35 bg-cream/70 p-6 shadow-lg md:p-8"
-            style={{ willChange: 'transform' }}
+            whileHover={{ y: -3 }}
+            transition={springGentle}
           >
             <motion.div
               className="absolute -inset-2 z-[-1] rounded-[1.25rem] opacity-70 blur-md"
@@ -112,8 +114,8 @@ export default function Venue() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </RevealItem>
       </div>
-    </motion.section>
+    </SectionReveal>
   )
 }

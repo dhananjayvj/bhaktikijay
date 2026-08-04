@@ -2,19 +2,15 @@ import React, { memo } from 'react'
 import { motion } from 'framer-motion'
 import couplePortrait from '../../images/bhakti-dhananjay.jpg'
 import { COUPLE_PORTRAIT_VERSION } from '../constants/assetVersions.js'
+import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 
 const portraitSrc = `${couplePortrait}?v=${COUPLE_PORTRAIT_VERSION}`
-import { easeOutCubic, sectionReveal } from '../constants/motion.js'
 
 function CouplePortrait() {
   return (
-    <motion.section
+    <SectionReveal
       id="couple"
       className="relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-24"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
-      transition={sectionReveal}
     >
       <div
         aria-hidden="true"
@@ -26,46 +22,49 @@ function CouplePortrait() {
       />
 
       <div className="relative mx-auto max-w-5xl text-center">
-        <h2 className="font-playfair text-2xl font-semibold tracking-normal text-invite-wine md:text-3xl">
-          A message from the couple
-        </h2>
-        <p className="mx-auto mt-4 max-w-3xl font-cormorant text-sm italic leading-relaxed text-invite-wine md:text-base">
-          We are truly overjoyed to share this milestone with the people who have shaped our lives. The warmth and
-          blessings we have received from each of you have been deeply moving and have touched us both beyond words. As
-          we prepare for this new beginning, we want to thank you most sincerely for your kindness and support. We are
-          so looking forward to celebrating this day with you
-        </p>
+        <RevealItem>
+          <h2 className="font-playfair text-2xl font-semibold tracking-normal text-invite-wine md:text-3xl">
+            A message from the couple
+          </h2>
+        </RevealItem>
+        <RevealItem className="mx-auto mt-4 max-w-3xl">
+          <p className="font-cormorant text-sm italic leading-relaxed text-invite-wine md:text-base">
+            We are truly overjoyed to share this milestone with the people who have shaped our lives. The warmth and
+            blessings we have received from each of you have been deeply moving and have touched us both beyond words. As
+            we prepare for this new beginning, we want to thank you most sincerely for your kindness and support. We are
+            so looking forward to celebrating this day with you
+          </p>
+        </RevealItem>
 
-        <motion.figure
-          className="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border-[3px] border-gold/50 bg-stone-100 shadow-xl ring-1 ring-gold/15"
-          initial={{ opacity: 0, scale: 0.99 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.85, ease: easeOutCubic }}
-        >
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background:
-                  'linear-gradient(165deg, rgba(28,24,20,0.25) 0%, rgba(18,16,14,0.12) 100%)',
-              }}
-            />
-            <img
-              src={portraitSrc}
-              alt="Bhakti and Dhananjay"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="w-full object-cover object-center"
-            />
-          </div>
-        </motion.figure>
+        <RevealItem variant="scale" className="mx-auto mt-10 max-w-3xl">
+          <motion.figure
+            className="overflow-hidden rounded-2xl border-[3px] border-gold/50 bg-stone-100 shadow-xl ring-1 ring-gold/15"
+            whileHover={{ scale: 1.012, y: -4 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+          >
+            <div className="relative">
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    'linear-gradient(165deg, rgba(28,24,20,0.25) 0%, rgba(18,16,14,0.12) 100%)',
+                }}
+              />
+              <img
+                src={portraitSrc}
+                alt="Bhakti and Dhananjay"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
+                className="w-full object-cover object-center"
+              />
+            </div>
+          </motion.figure>
+        </RevealItem>
       </div>
-    </motion.section>
+    </SectionReveal>
   )
 }
 
 export default memo(CouplePortrait)
-

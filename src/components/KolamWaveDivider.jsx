@@ -1,10 +1,13 @@
 import React, { useId } from 'react'
 import { motion } from 'framer-motion'
+import { easeOutCubic } from '../constants/motion.js'
 
 /** Decorative wave / kolam line used in Hero and invitation card back */
-export default function KolamWaveDivider({ className = '', compact = false }) {
+export default function KolamWaveDivider({ className = '', compact = false, animateIn = false }) {
   const gid = useId()
   const gradId = `kolam-grad-${gid.replace(/:/g, '')}`
+
+  const dashDelay = animateIn ? 1.05 : 0
 
   return (
     <div aria-hidden="true" className={`relative mx-auto mt-0 max-w-[720px] ${className}`}>
@@ -23,9 +26,13 @@ export default function KolamWaveDivider({ className = '', compact = false }) {
           strokeWidth="3"
           strokeLinecap="round"
           strokeDasharray="6 10"
-          initial={{ strokeDashoffset: 0 }}
-          animate={{ strokeDashoffset: -160 }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'linear' }}
+          initial={animateIn ? { pathLength: 0, opacity: 0 } : false}
+          animate={{ pathLength: 1, opacity: 1, strokeDashoffset: -160 }}
+          transition={{
+            pathLength: { duration: 1.05, ease: easeOutCubic },
+            opacity: { duration: 0.75, ease: easeOutCubic },
+            strokeDashoffset: { duration: 6, repeat: Infinity, ease: 'linear', delay: dashDelay },
+          }}
         />
         <motion.path
           d="M10 55 C 100 25, 170 85, 250 55 S 410 85, 490 55 S 620 25, 770 55"
@@ -35,9 +42,13 @@ export default function KolamWaveDivider({ className = '', compact = false }) {
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="2 12"
-          initial={{ strokeDashoffset: 0 }}
-          animate={{ strokeDashoffset: -220 }}
-          transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
+          initial={animateIn ? { pathLength: 0, opacity: 0 } : false}
+          animate={{ pathLength: 1, opacity: 1, strokeDashoffset: -220 }}
+          transition={{
+            pathLength: { duration: 1.05, ease: easeOutCubic, delay: 0.1 },
+            opacity: { duration: 0.75, ease: easeOutCubic, delay: 0.1 },
+            strokeDashoffset: { duration: 9, repeat: Infinity, ease: 'linear', delay: dashDelay + 0.1 },
+          }}
         />
       </svg>
     </div>

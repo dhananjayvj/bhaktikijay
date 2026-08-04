@@ -2,7 +2,7 @@ import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
 import { BaraatIcon, HaldiIcon, MehendiIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
-import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren } from '../constants/motion.js'
+import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren, viewportOnce } from '../constants/motion.js'
 
 const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
 const MAPS_SDM_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
@@ -261,7 +261,7 @@ function Timeline() {
       className="defer-heavy-section reveal relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-20"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.12 }}
+      viewport={viewportOnce}
       transition={sectionReveal}
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
