@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import couplePortrait from '../../images/bhakti-dhananjay.jpg'
 import { COUPLE_PORTRAIT_VERSION } from '../constants/assetVersions.js'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
+import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 
 const portraitSrc = `${couplePortrait}?v=${COUPLE_PORTRAIT_VERSION}`
 
@@ -10,18 +11,11 @@ function CouplePortrait() {
   return (
     <SectionReveal
       id="couple"
-      className="relative overflow-hidden border-t border-gold/20 bg-cream px-4 py-16 md:px-10 md:py-24"
+      className="relative overflow-hidden border-t border-gold/20 px-4 py-16 md:px-10 md:py-24"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 15% 10%, rgba(226,114,91,0.12) 0%, rgba(226,114,91,0) 55%), radial-gradient(circle at 85% 10%, rgba(212,175,55,0.10) 0%, rgba(212,175,55,0) 55%)',
-        }}
-      />
+      <SectionDoodleBackdrop variant="cream" />
 
-      <div className="relative mx-auto max-w-5xl text-center">
+      <div className="relative z-[1] mx-auto max-w-5xl text-center">
         <RevealItem>
           <p className="section-eyebrow">From us, with gratitude</p>
           <h2 className="mt-2 font-playfair text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight tracking-tight text-primary-deep text-balance">

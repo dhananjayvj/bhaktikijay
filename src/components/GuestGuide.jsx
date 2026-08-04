@@ -1,6 +1,7 @@
 import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
+import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import { GUEST_GUIDE } from '../constants/siteContent.js'
 import { springGentle } from '../constants/motion.js'
 
@@ -44,9 +45,10 @@ function GuestGuide() {
   return (
     <SectionReveal
       id="guide"
-      className="relative overflow-hidden border-t border-border bg-mint/50 px-4 py-16 md:px-10 md:py-20"
+      className="relative overflow-hidden border-t border-border px-4 py-16 md:px-10 md:py-20"
     >
-      <div className="mx-auto max-w-5xl">
+      <SectionDoodleBackdrop variant="mint" />
+      <div className="mx-auto max-w-5xl relative z-[1]">
         <RevealItem>
           <motion.article className="soft-card p-5 md:p-8" whileHover={{ y: -3 }} transition={springGentle}>
             <div className="text-center">

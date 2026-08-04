@@ -84,7 +84,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
           }`}
         >
           <div className={`flex flex-col items-center text-center ${envelope ? 'gap-1' : 'gap-2 sm:gap-3'}`}>
-            <div className="invite-couple-name--bhakti" style={coupleNameSize}>
+            <div className="invite-couple-name" style={coupleNameSize}>
               Bhakti
             </div>
             <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
@@ -98,7 +98,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             </span>
           </div>
           <div className={`flex flex-col items-center text-center ${envelope ? 'gap-1' : 'gap-2 sm:gap-3'}`}>
-            <div className="invite-couple-name--dhananjay" style={coupleNameSize}>
+            <div className="invite-couple-name" style={coupleNameSize}>
               Dhananjay
             </div>
             <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>

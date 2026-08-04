@@ -3,14 +3,6 @@ import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { springGentle } from '../constants/motion.js'
 
-function PersonalNote() {
-  return (
-    <RevealItem className="mx-auto mt-6 max-w-md px-4 text-center font-cormorant text-base italic leading-relaxed text-cream/88 md:text-lg">
-      Built with love, family group chats, and one wax seal Bhakti made Dhananjay tap twice.
-    </RevealItem>
-  )
-}
-
 function KolamFooterMark() {
   return (
     <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
@@ -67,8 +59,6 @@ export default function Footer() {
             JayKiBhakti
           </motion.div>
         </RevealItem>
-
-        <PersonalNote />
 
         <RevealItem className="mt-8 font-lato text-xs font-medium text-cream/80">Made with ♥️</RevealItem>
       </div>

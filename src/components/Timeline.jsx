@@ -1,6 +1,7 @@
 import React, { memo, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
+import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import { PinIcon } from './EventIcons.jsx'
 import { CELEBRATION_DAYS } from '../constants/siteContent.js'
 import {
@@ -96,20 +97,11 @@ function Timeline() {
   return (
     <SectionReveal
       id="timeline"
-      className="defer-heavy-section reveal relative overflow-hidden border-t border-border bg-cream px-4 py-16 md:px-10 md:py-20"
+      className="defer-heavy-section reveal relative overflow-hidden border-t border-border px-4 py-16 md:px-10 md:py-20"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <svg
-          viewBox="0 0 260 260"
-          className="absolute right-[-70px] top-[-60px] w-[260px] opacity-20"
-          fill="none"
-        >
-          <circle cx="130" cy="130" r="96" stroke="#D97706" strokeOpacity="0.45" strokeWidth="2" />
-          <circle cx="130" cy="130" r="62" stroke="#0F766E" strokeOpacity="0.25" strokeWidth="2" />
-        </svg>
-      </div>
+      <SectionDoodleBackdrop variant="cream" />
 
-      <div className="mx-auto max-w-5xl">
+      <div className="relative z-[1] mx-auto max-w-5xl">
         <RevealItem className="text-center">
           <p className="section-eyebrow">Mar 11 – 14, 2027</p>
           <div ref={headerRef}>

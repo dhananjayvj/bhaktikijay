@@ -331,112 +331,63 @@
   }
 
   .invite-hero-blessing {
-    @apply font-lato text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-accent;
-    text-shadow: 0 1px 8px rgba(255, 251, 235, 0.9);
+    @apply invite-hero-ink font-lato text-[0.62rem] font-semibold uppercase tracking-[0.34em];
   }
 
   .invite-hero-title {
-    @apply font-cinzel text-hero-title font-bold text-balance text-primary-deep;
-    text-shadow:
-      0 0 2px rgba(255, 251, 235, 0.95),
-      0 2px 16px rgba(255, 251, 235, 0.85),
-      0 4px 24px rgba(217, 119, 6, 0.14);
+    @apply font-playfair text-hero-title font-bold text-balance text-primary-deep;
+    letter-spacing: 0.06em;
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.8);
   }
 
   .invite-hero-tagline {
-    @apply font-script text-[clamp(1.75rem,5vw,2.75rem)] leading-none text-terra;
-    text-shadow:
-      0 0 2px rgba(255, 251, 235, 0.95),
-      0 2px 12px rgba(255, 251, 235, 0.8);
+    @apply invite-hero-ink font-script text-[clamp(1.75rem,5vw,2.75rem)] leading-none;
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.75);
   }
 
-  /* Hero invitation — readable on photo backdrop */
-  .invite-hero-meta {
-    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.28em] text-terra-deep;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 3px rgba(250, 247, 242, 0.95),
-      0 2px 10px rgba(250, 247, 242, 0.85),
-      0 0 28px rgba(252, 249, 241, 0.65);
+  .invite-hero-ink {
+    @apply text-brown-soft;
   }
 
   .invite-hero-body {
-    @apply font-cormorant text-lg font-medium leading-[1.85] text-stone-800;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 3px rgba(250, 247, 242, 0.92),
-      0 2px 12px rgba(250, 247, 242, 0.8),
-      0 0 32px rgba(252, 249, 241, 0.55),
-      1px 2px 4px rgba(61, 25, 38, 0.18);
+    @apply invite-hero-ink font-cormorant text-lg font-medium leading-[1.85];
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.65);
   }
 
   .invite-hero-celebration {
-    @apply font-cormorant text-lg font-semibold leading-[1.85] text-primary italic tracking-wide;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 3px rgba(250, 247, 242, 0.92),
-      0 2px 12px rgba(250, 247, 242, 0.8);
+    @apply invite-hero-ink font-cormorant text-lg font-medium leading-[1.85] italic tracking-wide;
   }
 
   .invite-hero-date {
-    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.28em] text-accent;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 3px rgba(250, 247, 242, 0.95),
-      0 2px 10px rgba(250, 247, 242, 0.85);
+    @apply invite-hero-ink font-lato text-[10px] font-bold uppercase tracking-[0.28em];
   }
 
   .invite-hero-parent {
-    @apply font-cormorant text-base font-medium leading-relaxed tracking-wide text-muted-fg sm:text-lg;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 0.98),
-      0 1px 4px rgba(250, 247, 242, 0.88),
-      0 2px 10px rgba(250, 247, 242, 0.72);
+    @apply invite-hero-ink font-cormorant text-base font-normal leading-relaxed tracking-wide sm:text-lg;
   }
 
   .invite-couple-name {
-    @apply font-script font-normal;
+    @apply invite-hero-ink font-script font-normal;
     line-height: 0.92;
-    text-shadow:
-      0 0 2px rgba(255, 252, 248, 0.95),
-      0 2px 14px rgba(250, 247, 242, 0.9),
-      0 4px 22px rgba(252, 249, 241, 0.7),
-      2px 4px 8px rgba(61, 25, 38, 0.28);
-  }
-
-  .invite-couple-name--bhakti {
-    @apply invite-couple-name text-terra;
-  }
-
-  .invite-couple-name--dhananjay {
-    @apply invite-couple-name text-primary;
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
   }
 
   .invite-couple-amp {
-    @apply font-script font-normal italic text-accent-light;
-    text-shadow:
-      0 0 2px rgba(255, 252, 248, 0.95),
-      0 2px 12px rgba(250, 247, 242, 0.85),
-      1px 3px 6px rgba(61, 25, 38, 0.2);
+    @apply invite-hero-ink font-script font-normal italic;
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.7);
   }
 
   .invite-countdown-intro {
-    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.26em] text-terra;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 3px rgba(250, 247, 242, 0.92);
+    @apply invite-hero-ink font-lato text-[10px] font-semibold uppercase tracking-[0.26em];
   }
 
   .invite-countdown-digit {
     @apply font-playfair font-black tabular-nums text-primary-deep;
-    text-shadow:
-      0 0 1px rgba(255, 252, 248, 1),
-      0 1px 4px rgba(250, 247, 242, 0.9),
-      0 2px 14px rgba(250, 247, 242, 0.75);
+    text-shadow: 0 1px 0 rgba(255, 251, 235, 0.75);
   }
 
   .invite-countdown-label {
-    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.22em] text-accent;
+    @apply invite-hero-ink font-lato text-[10px] font-semibold uppercase tracking-[0.22em];
   }
 
   /* Smooth luxury typography (Hero only) */
