@@ -17,7 +17,7 @@
     width: 100%;
     /* iOS legacy fallback when dvh unsupported */
     min-height: -webkit-fill-available;
-    color: #2a2218;
+    color: #1C1917;
   }
 
   :focus-visible {
@@ -80,11 +80,11 @@
 
   /* Section typography hierarchy */
   .section-display {
-    @apply font-cinzel text-display font-bold text-balance text-invite-wine;
+    @apply font-cinzel text-display font-bold text-balance text-primary-deep;
   }
 
   .section-display-light {
-    @apply font-cinzel text-display font-bold text-balance text-terra;
+    @apply font-cinzel text-display font-bold text-balance text-primary-deep;
   }
 
   .section-display-on-dark {
@@ -101,16 +101,16 @@
   }
 
   .section-eyebrow {
-    @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-invite-wine/85;
+    @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-primary/90;
   }
 
   .section-eyebrow-on-dark {
     @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.32em] text-gold-light/95;
   }
 
-  /* RSVP / warm accent band — darker terra for WCAG-friendly cream text */
+  /* RSVP band — terracotta to teal jewel gradient */
   .section-band-rsvp {
-    background: linear-gradient(168deg, #A84838 0%, #C9634E 42%, #B85542 100%);
+    background: linear-gradient(165deg, #7C2D12 0%, #9A3412 38%, #134E4A 100%);
   }
 
   /* Soft UI Evolution — subtle depth cards (ui-ux-pro-max) */
@@ -147,7 +147,7 @@
   }
 
   .form-label {
-    @apply mb-1.5 block text-left font-lato text-xs font-semibold uppercase tracking-[0.2em] text-invite-wine;
+    @apply mb-1.5 block text-left font-lato text-xs font-semibold uppercase tracking-[0.2em] text-primary-deep;
   }
 
   .form-label-on-dark {
@@ -168,7 +168,7 @@
   }
 
   .hero-scroll-cue {
-    @apply mt-6 inline-flex min-h-[44px] cursor-pointer flex-col items-center gap-1 font-lato text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-invite-wine/80 transition-colors duration-200 hover:text-invite-wine;
+    @apply mt-6 inline-flex min-h-[44px] cursor-pointer flex-col items-center gap-1 font-lato text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-primary/75 transition-colors duration-200 hover:text-primary-deep;
   }
 
   /* Subtle linen / parchment grain (no external asset) */
@@ -318,7 +318,7 @@
 
   /* Editorial metadata — dates, hashtags, countdown labels */
   .meta-stationery {
-    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.26em] text-invite-wine;
+    @apply font-lato text-[10px] font-semibold uppercase tracking-[0.26em] text-primary-deep;
   }
 
   .meta-stationery-on-dark {
@@ -330,9 +330,29 @@
     text-shadow: 0.5px 0.5px 0 rgba(255, 255, 255, 0.6);
   }
 
+  .invite-hero-blessing {
+    @apply font-lato text-[0.62rem] font-semibold uppercase tracking-[0.34em] text-primary/80;
+    text-shadow: 0 1px 8px rgba(255, 251, 235, 0.9);
+  }
+
+  .invite-hero-title {
+    @apply font-cinzel text-hero-title font-bold text-balance text-primary-deep;
+    text-shadow:
+      0 0 2px rgba(255, 251, 235, 0.95),
+      0 2px 16px rgba(255, 251, 235, 0.85),
+      0 4px 24px rgba(19, 78, 74, 0.12);
+  }
+
+  .invite-hero-tagline {
+    @apply font-script text-[clamp(1.75rem,5vw,2.75rem)] leading-none text-terra;
+    text-shadow:
+      0 0 2px rgba(255, 251, 235, 0.95),
+      0 2px 12px rgba(255, 251, 235, 0.8);
+  }
+
   /* Hero invitation — readable on photo backdrop */
   .invite-hero-meta {
-    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.28em] text-invite-wine;
+    @apply font-lato text-[10px] font-extrabold uppercase tracking-[0.28em] text-primary-deep;
     text-shadow:
       0 0 1px rgba(255, 252, 248, 1),
       0 1px 3px rgba(250, 247, 242, 0.95),
@@ -359,7 +379,7 @@
   }
 
   .invite-couple-name {
-    @apply font-script font-normal text-invite-wine;
+    @apply font-script font-normal text-primary-deep;
     line-height: 0.92;
     text-shadow:
       0 0 2px rgba(255, 252, 248, 0.95),
@@ -369,7 +389,7 @@
   }
 
   .invite-couple-amp {
-    @apply font-script font-normal italic text-invite-mauve;
+    @apply font-script font-normal italic text-accent;
     text-shadow:
       0 0 2px rgba(255, 252, 248, 0.95),
       0 2px 12px rgba(250, 247, 242, 0.85),
@@ -377,7 +397,7 @@
   }
 
   .invite-countdown-digit {
-    @apply font-playfair font-black tabular-nums text-invite-wine;
+    @apply font-playfair font-black tabular-nums text-primary-deep;
     text-shadow:
       0 0 1px rgba(255, 252, 248, 1),
       0 1px 4px rgba(250, 247, 242, 0.9),

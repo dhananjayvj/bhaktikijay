@@ -1,28 +1,27 @@
 # Page Override: Wedding Invite
 
-> Overrides `MASTER.md` generic pink palette with the site's Indian wedding identity.
+> Overrides generic MASTER pink palette with **jewel teal + marigold + terracotta** on warm cream.
 
-## Color Adaptation
+## Color Adaptation (ui-ux-pro-max: Nature Distilled + terracotta/emerald search)
 
 | Role | Token | Hex |
 |------|-------|-----|
-| Primary | `invite-wine` | `#6E2838` |
-| Accent / CTA | `accent` / `gold-dark` | `#A16207` |
-| Background | `cream` | `#FCF9F1` |
-| Warm band | `terra-deep` → `terra` | `#A84838` → `#C9634E` |
+| Primary | `primary-deep` | `#134E4A` |
+| Accent | `accent` / marigold | `#D97706` |
+| Warm | `terra` | `#9A3412` |
+| Background | `cream` | `#FFFBEB` |
+| Mint wash | `mint` | `#ECFDF5` |
 
-Do **not** use the generic `#DB2777` pink from the auto-generated MASTER for this project.
+## Invite Copy
 
-## Pattern
+- **Title:** The Celebration Call
+- **Tagline:** Join us for the beginning
+- **Blessing:** Shri Neera Narasimha Prasanna (secondary eyebrow)
 
-**Scroll-triggered storytelling:** Hero (envelope) → Couple message → Timeline chapters → Venue → RSVP climax CTA.
+## Sections (storytelling scroll)
 
-## Navigation
+Hero → Couple → **Our Story** → **Celebration Overview** → Timeline → **Guest Guide** → Venue → RSVP → Footer
 
-- Sticky glass section nav after envelope reveal
-- Floating mobile RSVP CTA after hero scroll
-- Scroll progress bar (hidden when `prefers-reduced-motion`)
+## Motion
 
-## Style
-
-**Soft UI Evolution** — tinted shadows, soft-card panels, 200ms transitions, visible focus rings, 44px touch targets.
+Complex tier (8/10): silk easing `[0.16, 1, 0.3, 1]`, springSilk, lazy section enters, hero stagger 0.16s.

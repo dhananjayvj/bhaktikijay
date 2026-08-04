@@ -54,7 +54,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
   const bgStyle = useMemo(
     () => ({
       backgroundImage:
-        'radial-gradient(circle at 12% 20%, rgba(122,46,63,0.08) 0%, rgba(122,46,63,0) 52%), radial-gradient(circle at 88% 16%, rgba(139,107,122,0.10) 0%, rgba(139,107,122,0) 50%), radial-gradient(circle at 50% 100%, rgba(233,216,221,0.35) 0%, rgba(250,247,242,0) 45%)',
+        'radial-gradient(circle at 12% 20%, rgba(15,118,110,0.1) 0%, rgba(15,118,110,0) 52%), radial-gradient(circle at 88% 16%, rgba(217,119,6,0.08) 0%, rgba(217,119,6,0) 50%), radial-gradient(circle at 50% 100%, rgba(236,253,245,0.5) 0%, rgba(255,251,235,0) 45%)',
     }),
     [],
   )
@@ -99,7 +99,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
             }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+            transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             onAnimationComplete={() => setCompositeActive(false)}
           >
             <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />

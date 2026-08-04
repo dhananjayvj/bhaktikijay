@@ -2,7 +2,7 @@ import React, { memo, useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion, useInView } from 'framer-motion'
 import MandapArchIcon from './MandapArchIcon.jsx'
 import { BaraatIcon, HaldiIcon, MehendiIcon, PinIcon, ReceptionIcon, SangeetIcon } from './EventIcons.jsx'
-import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren, viewportOnce } from '../constants/motion.js'
+import { easeOutCubic, fadeUpDuration, gpuLayerStyle, sectionReveal, staggerChildren, viewportOnce, easeSilk } from '../constants/motion.js'
 
 const MAPS_PRESTIGE_LAKE_RIDGE = 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9'
 const MAPS_SDM_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
@@ -34,20 +34,20 @@ function Dot() {
 }
 
 const cardReveal = {
-  hidden: { opacity: 0, x: -48 },
+  hidden: { opacity: 0, x: -40 },
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: fadeUpDuration, ease: easeOutCubic },
+    transition: { duration: fadeUpDuration, ease: easeSilk },
   },
 }
 
 const cardRevealRight = {
-  hidden: { opacity: 0, x: 48 },
+  hidden: { opacity: 0, x: 40 },
   show: {
     opacity: 1,
     x: 0,
-    transition: { duration: fadeUpDuration, ease: easeOutCubic },
+    transition: { duration: fadeUpDuration, ease: easeSilk },
   },
 }
 

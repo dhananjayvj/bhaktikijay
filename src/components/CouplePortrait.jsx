@@ -24,7 +24,7 @@ function CouplePortrait() {
       <div className="relative mx-auto max-w-5xl text-center">
         <RevealItem>
           <p className="section-eyebrow">From us, with gratitude</p>
-          <h2 className="mt-2 font-playfair text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight tracking-tight text-invite-wine text-balance">
+          <h2 className="mt-2 font-playfair text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight tracking-tight text-primary-deep text-balance">
             A message from the couple
           </h2>
         </RevealItem>

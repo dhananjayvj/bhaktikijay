@@ -14,9 +14,9 @@ export default function KolamWaveDivider({ className = '', compact = false, anim
       <svg viewBox="0 0 800 80" className={`w-full ${compact ? 'max-h-[52px]' : ''}`}>
         <defs>
           <linearGradient id={gradId} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0" stopColor="#7a2e3f" stopOpacity="0.35" />
-            <stop offset="0.35" stopColor="#9a4a5c" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#8b6b7a" stopOpacity="0.35" />
+            <stop offset="0" stopColor="#134E4A" stopOpacity="0.35" />
+            <stop offset="0.35" stopColor="#0F766E" stopOpacity="0.7" />
+            <stop offset="1" stopColor="#D97706" stopOpacity="0.35" />
           </linearGradient>
         </defs>
         <motion.path
@@ -37,7 +37,7 @@ export default function KolamWaveDivider({ className = '', compact = false, anim
         <motion.path
           d="M10 55 C 100 25, 170 85, 250 55 S 410 85, 490 55 S 620 25, 770 55"
           fill="none"
-          stroke="#8b6b7a"
+          stroke="#0F766E"
           strokeOpacity="0.35"
           strokeWidth="2"
           strokeLinecap="round"

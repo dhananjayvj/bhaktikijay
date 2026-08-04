@@ -7,7 +7,7 @@ function ScrollProgressBar() {
 
   const progressBarStyle = useMemo(
     () => ({
-      background: 'linear-gradient(90deg, #D4AF37, #E2725B)',
+      background: 'linear-gradient(90deg, #0F766E, #D97706)',
       willChange: 'transform',
     }),
     [],
