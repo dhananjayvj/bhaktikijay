@@ -22,10 +22,10 @@ export const CELEBRATION_DAYS = [
     day: 'Day 2 · Saturday, Mar 13',
     title: 'Music & procession',
     venue: 'SDM Kalyana Mantapa',
-    tone: 'An afternoon of music and dance, followed by the baraat procession in the evening.',
+    tone: 'The baraat procession in the afternoon, followed by an evening of music and dance.',
     schedule: [
-      { name: 'Sangeet', time: '2:00 PM' },
-      { name: 'Baraat', time: '5:00 PM' },
+      { name: 'Baraat', time: '4:00 PM' },
+      { name: 'Sangeet', time: '7:00 PM' },
     ],
     mapsHref: MAPS_KALYANA,
     mapsLabel: 'Open directions to SDM Kalyana Mantapa',
@@ -46,30 +46,16 @@ export const CELEBRATION_DAYS = [
 ]
 
 export const GUEST_GUIDE = {
-  eyebrow: 'For our guests',
-  title: 'Guest guide',
-  sections: [
-    {
-      title: 'Dress code',
-      body: 'Wear yellow for Haldi. Festive Indian attire is warmly encouraged for all other events.',
-    },
-    {
-      title: 'Arrival & timing',
-      body: 'Please plan to arrive 15–20 minutes before each event start time. Sunday muhurtham is time-sensitive — we request guests to be seated by 8:30 AM. Parking near SDM is limited on weekends; cabs and autos are the easiest option.',
-    },
-  ],
-  venue: {
-    eyebrow: 'Getting there',
-    title: 'Venue & logistics',
-    proTipLabel: 'Pro-tip',
-    proTip:
-      'Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and peak evenings need extra time. Parking is limited, so come a bit early if you drive.',
-    address:
-      'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru',
-    mapsHref: MAPS_KALYANA,
-    calendar: {
-      text: 'Bhakti & Dhananjay — Wedding, March 14, 2027',
-      dates: '20270314/20270315',
-    },
+  eyebrow: 'Getting there',
+  title: 'Venue & logistics',
+  proTipLabel: 'Pro-tip',
+  proTip:
+    'Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and peak evenings need extra time. Parking is limited, so come a bit early if you drive.',
+  address:
+    'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru',
+  mapsHref: MAPS_KALYANA,
+  calendar: {
+    text: 'Bhakti & Dhananjay — Wedding, March 14, 2027',
+    dates: '20270314/20270315',
   },
 }

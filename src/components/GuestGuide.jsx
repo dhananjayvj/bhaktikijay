@@ -2,7 +2,7 @@ import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { GUEST_GUIDE } from '../constants/siteContent.js'
-import { springGentle, springSilk } from '../constants/motion.js'
+import { springGentle } from '../constants/motion.js'
 
 function GuideCTA({ href, children, variant }) {
   const className =
@@ -30,18 +30,16 @@ function GuideCTA({ href, children, variant }) {
 }
 
 function GuestGuide() {
-  const { venue } = GUEST_GUIDE
-
   const calendarHref = useMemo(() => {
     const params = new URLSearchParams({
       action: 'TEMPLATE',
-      text: venue.calendar.text,
-      dates: venue.calendar.dates,
-      details: venue.mapsHref,
-      location: venue.mapsHref,
+      text: GUEST_GUIDE.calendar.text,
+      dates: GUEST_GUIDE.calendar.dates,
+      details: GUEST_GUIDE.mapsHref,
+      location: GUEST_GUIDE.mapsHref,
     })
     return `https://calendar.google.com/calendar/render?${params.toString()}`
-  }, [venue.calendar.dates, venue.calendar.text, venue.mapsHref])
+  }, [])
 
   return (
     <SectionReveal
@@ -49,42 +47,24 @@ function GuestGuide() {
       className="relative overflow-hidden border-t border-border bg-mint/50 px-4 py-16 md:px-10 md:py-20"
     >
       <div className="mx-auto max-w-5xl">
-        <RevealItem className="text-center">
-          <p className="section-eyebrow">{GUEST_GUIDE.eyebrow}</p>
-          <h2 className="section-display mt-2">{GUEST_GUIDE.title}</h2>
-        </RevealItem>
-
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
-          {GUEST_GUIDE.sections.map((section) => (
-            <RevealItem key={section.title} variant="scale">
-              <motion.article
-                className="soft-card h-full p-5 md:p-6"
-                whileHover={{ y: -4, scale: 1.01 }}
-                transition={springSilk}
-              >
-                <h3 className="font-cinzel text-sm font-bold tracking-wide text-terra">{section.title}</h3>
-                <p className="mt-3 font-cormorant text-base font-medium leading-[1.75] text-stone-700">{section.body}</p>
-              </motion.article>
-            </RevealItem>
-          ))}
-        </div>
-
-        <RevealItem className="mt-8">
+        <RevealItem>
           <motion.article className="soft-card p-5 md:p-8" whileHover={{ y: -3 }} transition={springGentle}>
-            <p className="section-eyebrow">{venue.eyebrow}</p>
-            <h3 className="section-display-light mt-2 text-left">{venue.title}</h3>
+            <div className="text-center">
+              <p className="section-eyebrow">{GUEST_GUIDE.eyebrow}</p>
+              <h2 className="section-display mt-2">{GUEST_GUIDE.title}</h2>
+            </div>
 
             <div className="mt-6 rounded-xl border border-gold/25 bg-cream/70 px-4 py-4 md:px-5">
-              <p className="meta-stationery">{venue.proTipLabel}</p>
-              <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">{venue.proTip}</p>
+              <p className="meta-stationery">{GUEST_GUIDE.proTipLabel}</p>
+              <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">{GUEST_GUIDE.proTip}</p>
             </div>
 
             <p className="mt-6 text-center font-cormorant text-[1.05rem] font-medium leading-[1.65] text-stone-800 md:text-[1.12rem]">
-              {venue.address}
+              {GUEST_GUIDE.address}
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
-              <GuideCTA href={venue.mapsHref} variant="filled">
+              <GuideCTA href={GUEST_GUIDE.mapsHref} variant="filled">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                   <path
                     d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1118 0z"

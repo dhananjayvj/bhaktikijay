@@ -6,7 +6,7 @@ const SECTIONS = [
   { id: 'invitation', label: 'Invite' },
   { id: 'couple', label: 'Couple' },
   { id: 'timeline', label: 'Events' },
-  { id: 'guide', label: 'Guide' },
+  { id: 'guide', label: 'Venue' },
 ]
 
 function SiteNav({ visible }) {
