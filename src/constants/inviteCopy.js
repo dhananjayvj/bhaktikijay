@@ -7,10 +7,10 @@ export const INVITE_TAGLINE = 'Join us for the beginning'
 export const INVITE_BLESSING = 'Shri Neera Narasimha Prasanna'
 
 export const INVITE_OPENING_VERSE =
-  'Blessed by grace and family love, we are stepping into our new life together. Please join us to share our joy and witness the union that was always meant to be.'
+  "With our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy."
 
 export const INVITE_CELEBRATION =
-  'Three days of colour, music, and tradition — we would be honoured to celebrate with you.'
+  "Three days of colour, music, and tradition. We'd love to celebrate with you."
 
 export const COUNTDOWN_INTRO = 'Until the muhurtham...'
 

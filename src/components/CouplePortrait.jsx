@@ -24,10 +24,9 @@ function CouplePortrait() {
         </RevealItem>
         <RevealItem className="mx-auto mt-5 max-w-prose">
           <p className="font-cormorant text-base font-medium leading-[1.85] text-pretty text-stone-700 md:text-lg">
-            We are truly overjoyed to share this milestone with the people who have shaped our lives. The warmth and
-            blessings we have received from each of you have been deeply moving and have touched us both beyond words. As
-            we prepare for this new beginning, we want to thank you most sincerely for your kindness and support. We are
-            so looking forward to celebrating this day with you
+            We're so happy to share this moment with the people who mean the most to us. Your warmth and blessings
+            have meant everything to us both. Thank you, from the bottom of our hearts. We can't wait to celebrate
+            with you.
           </p>
         </RevealItem>
 

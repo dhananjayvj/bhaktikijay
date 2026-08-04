@@ -8,7 +8,7 @@ export const CELEBRATION_DAYS = [
     day: 'Day 1 · Thursday, Mar 11',
     title: 'Pre-wedding warmth',
     venue: 'Prestige Lake Ridge Clubhouse',
-    tone: 'Intimate, colourful, and relaxed — arrive in comfortable festive wear.',
+    tone: 'Intimate, colourful, and relaxed. Come in comfortable festive wear.',
     dressCode: 'Wear yellow for Haldi.',
     schedule: [
       { name: 'Haldi', time: '3:30 PM' },
@@ -55,7 +55,7 @@ export const GUEST_GUIDE = {
     'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru',
   mapsHref: MAPS_KALYANA,
   calendar: {
-    text: 'Bhakti & Dhananjay — Wedding, March 14, 2027',
+    text: 'Bhakti & Dhananjay, Wedding, March 14, 2027',
     dates: '20270314/20270315',
   },
 }

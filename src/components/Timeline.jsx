@@ -103,7 +103,7 @@ function Timeline() {
 
       <div className="relative z-[1] mx-auto max-w-5xl">
         <RevealItem className="text-center">
-          <p className="section-eyebrow">Mar 11 – 14, 2027</p>
+          <p className="section-eyebrow">Mar 11 to 14, 2027</p>
           <div ref={headerRef}>
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
@@ -115,7 +115,7 @@ function Timeline() {
               Celebration timeline
             </motion.h2>
           </div>
-          <p className="section-lead mt-3">Three days of rituals, music, and celebration across Bengaluru.</p>
+          <p className="section-lead mt-3">Three days of rituals, music, and celebration in Bengaluru.</p>
         </RevealItem>
 
         <div className="relative mt-12">

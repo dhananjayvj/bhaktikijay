@@ -175,11 +175,11 @@ export default function RSVP() {
 
       <div className="mx-auto max-w-3xl text-center">
         <RevealItem>
-          <p className="section-eyebrow-on-dark">Kindly respond</p>
+          <p className="section-eyebrow-on-dark">Let us know</p>
           <h2 className="section-display-on-dark mt-2">RSVP</h2>
         </RevealItem>
         <RevealItem className="section-lead-on-dark mt-1">
-          Please reply by <span className="font-semibold text-gold-light">January 15, 2027</span> so we can plan with care.
+          Please reply by <span className="font-semibold text-gold-light">March 1st, 2027</span> so we can plan with care. ;)
         </RevealItem>
 
         <RevealItem variant="scale" className="relative mt-10 soft-panel-dark p-5 md:p-8">
@@ -351,7 +351,7 @@ export default function RSVP() {
                   message={message}
                 />
                 <p className="mt-6 font-cormorant text-cream/95 text-base leading-relaxed">
-                  Thank you, {name.trim()} — we can’t wait to celebrate with you.
+                  Thank you, {name.trim()}. We can’t wait to celebrate with you.
                 </p>
                 {submitState === 'success' ? (
                   <p className="mt-3 font-lato text-cream/75 text-xs">
