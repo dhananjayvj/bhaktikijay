@@ -6,7 +6,6 @@ import LazySection from './LazySection.jsx'
 
 const Timeline = React.lazy(() => import('./Timeline.jsx'))
 const GuestGuide = React.lazy(() => import('./GuestGuide.jsx'))
-const Venue = React.lazy(() => import('./Venue.jsx'))
 const RSVP = React.lazy(() => import('./RSVP.jsx'))
 const Footer = React.lazy(() => import('./Footer.jsx'))
 
@@ -24,9 +23,6 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
         </LazySection>
         <LazySection>
           <GuestGuide />
-        </LazySection>
-        <LazySection>
-          <Venue />
         </LazySection>
         <LazySection>
           <RSVP />

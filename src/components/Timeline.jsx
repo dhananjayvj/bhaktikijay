@@ -47,7 +47,15 @@ function DayCard({ day, index }) {
     <motion.article variants={dayCardReveal} className="soft-card relative p-5 md:p-7">
       <p className="meta-stationery">{day.day}</p>
       <h3 className="mt-2 font-playfair text-2xl font-bold text-primary-deep md:text-[1.65rem]">{day.title}</h3>
-      <p className="mt-1 font-lato text-sm font-semibold text-terra">{day.events}</p>
+
+      <ul className="mt-4 space-y-2 border-t border-gold/20 pt-4" aria-label="Event schedule">
+        {day.schedule.map((item) => (
+          <li key={item.name} className="flex items-baseline justify-between gap-4">
+            <span className="font-lato text-sm font-semibold text-stone-800">{item.name}</span>
+            <span className="shrink-0 font-cormorant text-base font-semibold tabular-nums text-terra">{item.time}</span>
+          </li>
+        ))}
+      </ul>
 
       <div className="mt-5 border-t border-gold/20 pt-4">
         <p className="font-lato text-xs font-semibold uppercase tracking-[0.2em] text-muted-fg">Venue</p>
