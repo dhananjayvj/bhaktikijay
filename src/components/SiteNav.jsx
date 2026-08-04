@@ -5,12 +5,9 @@ import { easeSilk } from '../constants/motion.js'
 const SECTIONS = [
   { id: 'invitation', label: 'Invite' },
   { id: 'couple', label: 'Couple' },
-  { id: 'story', label: 'Story' },
-  { id: 'overview', label: 'Days' },
   { id: 'timeline', label: 'Events' },
   { id: 'guide', label: 'Guide' },
   { id: 'venue', label: 'Venue' },
-  { id: 'rsvp', label: 'RSVP' },
 ]
 
 function SiteNav({ visible }) {
@@ -34,7 +31,22 @@ function SiteNav({ visible }) {
       return observer
     })
 
-    return () => observers.forEach((o) => o?.disconnect())
+    const rsvpEl = document.getElementById('rsvp')
+    let rsvpObserver = null
+    if (rsvpEl) {
+      rsvpObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveId('rsvp')
+        },
+        { rootMargin: '-40% 0px -45% 0px', threshold: 0 },
+      )
+      rsvpObserver.observe(rsvpEl)
+    }
+
+    return () => {
+      observers.forEach((o) => o?.disconnect())
+      rsvpObserver?.disconnect()
+    }
   }, [visible])
 
   if (!visible) return null
@@ -68,7 +80,14 @@ function SiteNav({ visible }) {
             )
           })}
         </div>
-        <a href="#rsvp" className="btn-primary shrink-0 hidden sm:inline-flex text-[0.7rem]">
+        <a
+          href="#rsvp"
+          className={[
+            'btn-primary shrink-0 text-[0.7rem]',
+            activeId === 'rsvp' ? 'ring-2 ring-cream/80 ring-offset-2 ring-offset-primary-deep' : '',
+          ].join(' ')}
+          aria-current={activeId === 'rsvp' ? 'true' : undefined}
+        >
           RSVP
         </a>
       </div>
