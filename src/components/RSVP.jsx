@@ -12,6 +12,7 @@ import {
   springGentle,
   springSnappy,
 } from '../constants/motion.js'
+import { GUEST_PASS_TITLE, RSVP_LOADING_JOKES } from '../constants/quirkyCopy.js'
 
 const EVENT_GROUPS = [
   { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
@@ -33,7 +34,7 @@ function selectedEventLabels(selectedKeys) {
 const DEFAULT_RSVP_ENDPOINT =
   'https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec'
 
-function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
+function AdmissionCard({ name, guests, guestNames, eventTags, message, songRequest }) {
   const eventsDisplay =
     eventTags.trim() || 'We’ll share the full schedule with you closer to the date.'
   return (
@@ -52,7 +53,7 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
             'repeating-linear-gradient(90deg, transparent, transparent 6px, rgba(59,31,10,0.12) 6px, rgba(59,31,10,0.12) 8px)',
         }}
       />
-      <p className="meta-stationery text-invite-wine">Admitted</p>
+      <p className="meta-stationery text-invite-wine">{GUEST_PASS_TITLE}</p>
       <p className="mt-2 font-cinzel text-2xl font-bold tracking-wide text-brown md:text-3xl">JayKiBhakti</p>
       <p className="mt-1 font-cormorant text-lg font-medium italic text-stone-700">Celebration of love</p>
       <div className="mx-auto my-5 h-px max-w-[12rem] bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
@@ -63,6 +64,11 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
       </p>
       <p className="mt-4 font-cinzel text-sm font-semibold tracking-wider text-terra-deep">{WEDDING_DATE_LINE}</p>
       <p className="mt-3 font-cormorant text-sm font-medium italic leading-relaxed text-stone-700">{eventsDisplay}</p>
+      {songRequest.trim() ? (
+        <p className="mt-3 font-lato text-xs font-medium text-stone-700">
+          Dance floor pick: <span className="italic">“{songRequest.trim()}”</span>
+        </p>
+      ) : null}
       {message.trim() ? (
         <p className="mt-4 rounded-xl border border-gold/35 bg-cream/50 px-3 py-2 font-lato text-xs font-medium text-stone-800">
           “{message.trim()}”
@@ -81,6 +87,7 @@ export default function RSVP() {
   const [guests, setGuests] = useState('2')
   const [guestNames, setGuestNames] = useState('')
   const [message, setMessage] = useState('')
+  const [songRequest, setSongRequest] = useState('')
   const [selected, setSelected] = useState([])
 
   const [submitted, setSubmitted] = useState(false)
@@ -89,6 +96,7 @@ export default function RSVP() {
   const [submitState, setSubmitState] = useState('idle') // idle | submitting | success | error
   const [submitError, setSubmitError] = useState('')
   const [nameTouched, setNameTouched] = useState(false)
+  const [loadingJokeIndex, setLoadingJokeIndex] = useState(0)
 
   const selectedSet = useMemo(() => new Set(selected), [selected])
   const showGuestNames = guests !== '1'
@@ -96,6 +104,17 @@ export default function RSVP() {
   useEffect(() => {
     if (guests === '1') setGuestNames('')
   }, [guests])
+
+  useEffect(() => {
+    if (submitState !== 'submitting') {
+      setLoadingJokeIndex(0)
+      return undefined
+    }
+    const interval = window.setInterval(() => {
+      setLoadingJokeIndex((i) => (i + 1) % RSVP_LOADING_JOKES.length)
+    }, 1400)
+    return () => window.clearInterval(interval)
+  }, [submitState])
 
   const toggleEvent = (key) => {
     setSelected((prev) => {
@@ -125,6 +144,7 @@ export default function RSVP() {
       events: expandSelectedEvents(selected),
       eventTags: tags,
       message: message.trim(),
+      songRequest: songRequest.trim(),
       userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
     }
 
@@ -267,6 +287,20 @@ export default function RSVP() {
                 </AnimatePresence>
 
                 <motion.div variants={formField} className="mt-5">
+                  <label className="form-label-on-dark" htmlFor="rsvp-song">
+                    One song that will get you on the dance floor{' '}
+                    <span className="font-normal normal-case text-cream/75">(optional)</span>
+                  </label>
+                  <input
+                    id="rsvp-song"
+                    value={songRequest}
+                    onChange={(e) => setSongRequest(e.target.value)}
+                    placeholder="For the sangeet playlist vibes"
+                    className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
+                  />
+                </motion.div>
+
+                <motion.div variants={formField} className="mt-5">
                   <label className="form-label-on-dark" htmlFor="rsvp-message">
                     Message <span className="font-normal normal-case text-cream/75">(optional)</span>
                   </label>
@@ -330,7 +364,9 @@ export default function RSVP() {
                       submitState === 'submitting' ? 'opacity-75' : '',
                     ].join(' ')}
                   >
-                    {submitState === 'submitting' ? 'Submitting…' : 'Submit RSVP'}
+                    {submitState === 'submitting'
+                      ? RSVP_LOADING_JOKES[loadingJokeIndex]
+                      : 'Submit RSVP'}
                   </motion.button>
                 </motion.div>
               </motion.form>
@@ -349,6 +385,7 @@ export default function RSVP() {
                   guestNames={guestNames}
                   eventTags={eventTags}
                   message={message}
+                  songRequest={songRequest}
                 />
                 <p className="mt-6 font-cormorant text-cream/95 text-base leading-relaxed">
                   Thank you, {name.trim()}. We can’t wait to celebrate with you.

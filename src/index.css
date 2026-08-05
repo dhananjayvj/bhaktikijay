@@ -242,8 +242,12 @@
     @apply mt-3 space-y-3;
   }
 
+  .timeline-schedule-item {
+    @apply border-b border-gold/15 pb-3 last:border-b-0 last:pb-0;
+  }
+
   .timeline-schedule-row {
-    @apply flex items-center justify-between gap-4 border-b border-gold/15 pb-3 last:border-b-0 last:pb-0;
+    @apply flex items-center justify-between gap-4;
   }
 
   .timeline-event-name {
@@ -272,6 +276,52 @@
 
   .timeline-maps-link {
     @apply inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2.5 font-lato text-sm font-semibold text-primary-deep transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10 sm:w-auto sm:justify-start;
+  }
+
+  .timeline-wear-tip {
+    @apply mt-2;
+  }
+
+  .timeline-wear-tip-trigger {
+    @apply inline-flex cursor-pointer list-none items-center gap-1.5 font-lato text-xs font-semibold tracking-wide text-terra transition-colors hover:text-terra-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40;
+    list-style: none;
+  }
+
+  .timeline-wear-tip-trigger::-webkit-details-marker {
+    display: none;
+  }
+
+  .timeline-wear-tip-trigger::after {
+    content: '↓';
+    @apply text-[0.65rem] opacity-60 transition-transform duration-200;
+  }
+
+  .timeline-wear-tip[open] .timeline-wear-tip-trigger::after,
+  .timeline-wear-tip:hover .timeline-wear-tip-trigger::after {
+    transform: rotate(180deg);
+  }
+
+  @media (hover: hover) {
+    .timeline-wear-tip:not([open]) .timeline-wear-tip-body {
+      @apply max-h-0 overflow-hidden opacity-0;
+    }
+
+    .timeline-wear-tip:not([open]):hover .timeline-wear-tip-body,
+    .timeline-wear-tip:not([open]):focus-within .timeline-wear-tip-body {
+      @apply mt-1 max-h-24 opacity-100;
+    }
+  }
+
+  .timeline-wear-tip-body {
+    @apply mt-1 font-cormorant text-sm font-medium italic leading-snug text-stone-600;
+  }
+
+  .timeline-wear-tip[open] .timeline-wear-tip-body {
+    @apply mt-1;
+  }
+
+  .blessings-toast {
+    @apply rounded-full border border-gold/50 bg-cream/95 px-4 py-2 font-lato text-xs font-semibold tracking-wide text-primary-deep shadow-premium backdrop-blur-sm;
   }
 
   /* Subtle linen / parchment grain (no external asset) */

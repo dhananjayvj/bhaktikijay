@@ -2,6 +2,7 @@ import React, { memo, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
+import EventWearTip from './EventWearTip.jsx'
 import { PinIcon } from './EventIcons.jsx'
 import { CELEBRATION_DAYS } from '../constants/siteContent.js'
 import {
@@ -55,9 +56,12 @@ function DayCard({ day, index }) {
         <p className="timeline-schedule-label">Schedule</p>
         <ul className="timeline-schedule-list" aria-label="Event schedule">
           {day.schedule.map((item) => (
-            <li key={item.name} className="timeline-schedule-row">
-              <span className="timeline-event-name">{item.name}</span>
-              <span className="timeline-event-time">{item.time}</span>
+            <li key={item.name} className="timeline-schedule-item">
+              <div className="timeline-schedule-row">
+                <span className="timeline-event-name">{item.name}</span>
+                <span className="timeline-event-time">{item.time}</span>
+              </div>
+              <EventWearTip tip={item.wearTip} />
             </li>
           ))}
         </ul>
@@ -67,8 +71,6 @@ function DayCard({ day, index }) {
         <p className="timeline-meta-label">Venue</p>
         <p className="timeline-venue">{day.venue}</p>
       </div>
-
-      {day.dressCode ? <p className="timeline-dress-code">{day.dressCode}</p> : null}
 
       <a
         data-no-sparkle="true"

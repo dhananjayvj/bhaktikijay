@@ -1,9 +1,10 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { gpuLayerStyle } from '../constants/motion.js'
 import { curtainEase, CURTAIN_DURATION } from '../constants/revealMotion.js'
-import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
+import { animate, motion, useMotionValue, useTransform, AnimatePresence } from 'framer-motion'
 import WeddingDoodles from './WeddingDoodles.jsx'
 import { playSealBreakFeedback } from '../utils/sealFeedback.js'
+import { BLESSINGS_LOADED_TOAST } from '../constants/quirkyCopy.js'
 import ganeshImg from '../../images/Ganesh.jpeg'
 
 const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
@@ -305,6 +306,7 @@ function SpotlightVignette({ hidden, curtainProgress }) {
 function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) {
   const [phase, setPhase] = useState('closed')
   const [notified, setNotified] = useState(false)
+  const [blessingToast, setBlessingToast] = useState(false)
 
   const curtainProgress = useMotionValue(0)
   const curtainAnimRef = useRef(null)
@@ -345,6 +347,7 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
   const handleSealPress = useCallback(() => {
     if (phaseRef.current !== 'closed') return
     playSealBreakFeedback()
+    setBlessingToast(true)
     onRevealStart?.()
     curtainAnimRef.current?.stop()
     curtainProgress.set(0)
@@ -357,6 +360,12 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
       },
     })
   }, [curtainProgress, onRevealStart])
+
+  useEffect(() => {
+    if (!blessingToast) return undefined
+    const t = window.setTimeout(() => setBlessingToast(false), 2200)
+    return () => window.clearTimeout(t)
+  }, [blessingToast])
 
   const finishAndClose = () => {
     if (notified) return
@@ -398,6 +407,23 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
       />
 
       <OutsideAreaDoodles hidden={phase === 'handoff'} />
+
+      <AnimatePresence>
+        {blessingToast ? (
+          <motion.div
+            key="blessing-toast"
+            role="status"
+            aria-live="polite"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -6 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            className="blessings-toast pointer-events-none fixed left-1/2 top-[max(1.25rem,env(safe-area-inset-top))] z-[40] -translate-x-1/2"
+          >
+            {BLESSINGS_LOADED_TOAST}
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
 
       {/* Step 1/2: Beige paper + Ganesh revealed by curtains, then fades out for handoff */}
       <motion.div

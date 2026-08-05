@@ -10,10 +10,17 @@ export const CELEBRATION_DAYS = [
     description:
       'We begin with turmeric blessings and laughter, then settle in for an evening of mehendi and music.',
     venue: 'Prestige Lake Ridge Clubhouse',
-    dressCode: 'Wear yellow for Haldi.',
     schedule: [
-      { name: 'Haldi', time: '3:30 PM' },
-      { name: 'Mehendi', time: '5:30 PM' },
+      {
+        name: 'Haldi',
+        time: '3:30 PM',
+        wearTip: "Yellow clothes you don't mind getting destroyed.",
+      },
+      {
+        name: 'Mehendi',
+        time: '5:30 PM',
+        wearTip: 'Bright festive colours — sleeves that roll up are a smart move.',
+      },
     ],
     mapsHref: 'https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9',
     mapsLabel: 'Open directions to Prestige Lake Ridge',
@@ -27,7 +34,11 @@ export const CELEBRATION_DAYS = [
     venue: 'SDM Kalyana Mantapa',
     schedule: [
       { name: 'Baraat', time: '4:00 PM' },
-      { name: 'Sangeet', time: '7:00 PM' },
+      {
+        name: 'Sangeet',
+        time: '7:00 PM',
+        wearTip: 'Comfortable shoes for non-stop dancing - no heels that bite!',
+      },
     ],
     mapsHref: MAPS_KALYANA,
     mapsLabel: 'Open directions to SDM Kalyana Mantapa',
@@ -40,7 +51,11 @@ export const CELEBRATION_DAYS = [
       'The muhurtham seals our vows at the auspicious hour, and we continue with a joyful lunch reception.',
     venue: 'SDM Kalyana Mantapa',
     schedule: [
-      { name: 'Muhurtham', time: '8:48 AM' },
+      {
+        name: 'Muhurtham',
+        time: '8:48 AM',
+        wearTip: 'Your finest traditional outfit, ready for photos at 8:48 AM sharp!',
+      },
       { name: 'Reception', time: '12:30 PM' },
     ],
     mapsHref: MAPS_KALYANA,
@@ -52,8 +67,14 @@ export const GUEST_GUIDE = {
   eyebrow: 'Getting there',
   title: 'Venue & logistics',
   proTipLabel: 'Pro-tip',
+  trafficTip: {
+    mapsEstimate: 'Google Maps says: 15 mins',
+    reality: 'Bengaluru traffic reality: 45 mins',
+    recommendation:
+      'Leave now, grab a masala dosa at Vidyarthi Bhavan, and join us on time!',
+  },
   proTip:
-    'Bull Temple Road is easy by auto, cab, or private car. Nearest metro is National College/LalBagh on the Green Line, about 2 km from the hall and roughly 15 to 20 minutes by road in normal traffic. Sundays and peak evenings need extra time. Parking is limited, so come a bit early if you drive.',
+    'Nearest metro is National College/LalBagh on the Green Line, about 2 km from the hall. Parking is limited on weekends, so cabs and autos are the easiest option.',
   address:
     'Sri Dharmastala Manjunatha Swamy Kalyana Mantapa · Bull Temple Road · Basavanagudi · Bengaluru',
   mapsHref: MAPS_KALYANA,
