@@ -6,9 +6,12 @@ function EventWearTip({ tip }) {
   if (!tip) return null
 
   return (
-    <details className="timeline-wear-tip group">
+    <details className="timeline-wear-tip">
       <summary className="timeline-wear-tip-trigger" aria-describedby={id}>
         What should I wear?
+        <span className="timeline-wear-tip-chevron" aria-hidden="true">
+          ▾
+        </span>
       </summary>
       <p id={id} className="timeline-wear-tip-body">
         {tip}

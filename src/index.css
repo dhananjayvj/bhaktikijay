@@ -283,7 +283,7 @@
   }
 
   .timeline-wear-tip-trigger {
-    @apply inline-flex cursor-pointer list-none items-center gap-1.5 font-lato text-xs font-semibold tracking-wide text-terra transition-colors hover:text-terra-deep focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold/40;
+    @apply inline-flex cursor-pointer list-none items-center gap-1 font-lato text-xs font-normal tracking-normal text-stone-500 underline decoration-gold/25 underline-offset-[3px] transition-colors hover:text-stone-700;
     list-style: none;
   }
 
@@ -291,37 +291,24 @@
     display: none;
   }
 
-  .timeline-wear-tip-trigger::after {
-    content: '↓';
-    @apply text-[0.65rem] opacity-60 transition-transform duration-200;
+  .timeline-wear-tip-trigger::marker {
+    content: '';
   }
 
-  .timeline-wear-tip[open] .timeline-wear-tip-trigger::after,
-  .timeline-wear-tip:hover .timeline-wear-tip-trigger::after {
+  .timeline-wear-tip-chevron {
+    @apply inline-block text-[0.6rem] leading-none opacity-50 transition-transform duration-200 ease-out;
+  }
+
+  .timeline-wear-tip[open] .timeline-wear-tip-chevron {
     transform: rotate(180deg);
   }
 
-  @media (hover: hover) {
-    .timeline-wear-tip:not([open]) .timeline-wear-tip-body {
-      @apply max-h-0 overflow-hidden opacity-0;
-    }
-
-    .timeline-wear-tip:not([open]):hover .timeline-wear-tip-body,
-    .timeline-wear-tip:not([open]):focus-within .timeline-wear-tip-body {
-      @apply mt-1 max-h-24 opacity-100;
-    }
-  }
-
   .timeline-wear-tip-body {
-    @apply mt-1 font-cormorant text-sm font-medium italic leading-snug text-stone-600;
-  }
-
-  .timeline-wear-tip[open] .timeline-wear-tip-body {
-    @apply mt-1;
+    @apply mt-1.5 font-cormorant text-sm font-medium italic leading-snug text-stone-600;
   }
 
   .blessings-toast {
-    @apply rounded-full border border-gold/50 bg-cream/95 px-4 py-2 font-lato text-xs font-semibold tracking-wide text-primary-deep shadow-premium backdrop-blur-sm;
+    @apply font-cormorant text-sm font-medium italic tracking-[0.06em] text-white/45;
   }
 
   /* Subtle linen / parchment grain (no external asset) */

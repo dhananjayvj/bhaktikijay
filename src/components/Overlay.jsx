@@ -414,11 +414,11 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
             key="blessing-toast"
             role="status"
             aria-live="polite"
-            initial={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
-            className="blessings-toast pointer-events-none fixed left-1/2 top-[max(1.25rem,env(safe-area-inset-top))] z-[40] -translate-x-1/2"
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="blessings-toast pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-[40] -translate-x-1/2"
           >
             {BLESSINGS_LOADED_TOAST}
           </motion.div>

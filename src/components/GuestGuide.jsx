@@ -58,21 +58,23 @@ function GuestGuide() {
 
             <div className="mt-6 rounded-xl border border-gold/25 bg-cream/70 px-4 py-4 md:px-5">
               <p className="meta-stationery">{GUEST_GUIDE.proTipLabel}</p>
+              <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">
+                {GUEST_GUIDE.proTip}
+              </p>
+
               {GUEST_GUIDE.trafficTip ? (
-                <div className="mt-3 space-y-2 text-left font-cormorant text-base font-medium leading-[1.75] text-stone-800">
-                  <p>
-                    <span className="font-semibold text-primary-deep">{GUEST_GUIDE.trafficTip.mapsEstimate}</span>
+                <div className="guide-traffic-aside mt-5 border-t border-gold/15 pt-4">
+                  <p className="font-cormorant text-sm font-medium italic leading-relaxed text-stone-600">
+                    {GUEST_GUIDE.trafficTip.mapsEstimate}
                   </p>
-                  <p>
-                    <span className="font-semibold text-invite-wine">{GUEST_GUIDE.trafficTip.reality}</span>
+                  <p className="mt-1 font-cormorant text-sm font-medium italic leading-relaxed text-stone-600">
+                    {GUEST_GUIDE.trafficTip.reality}
                   </p>
-                  <p className="rounded-lg border border-gold/30 bg-sand/50 px-3 py-2 italic">
-                    <span className="font-semibold not-italic text-terra-deep">Recommendation: </span>
+                  <p className="mt-2 font-cormorant text-sm font-medium italic leading-relaxed text-stone-500">
                     {GUEST_GUIDE.trafficTip.recommendation}
                   </p>
                 </div>
               ) : null}
-              <p className="mt-4 font-cormorant text-base font-medium leading-[1.75] text-stone-800">{GUEST_GUIDE.proTip}</p>
             </div>
 
             <p className="mt-6 text-center font-cormorant text-[1.05rem] font-medium leading-[1.65] text-stone-800 md:text-[1.12rem]">

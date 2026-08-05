@@ -71,7 +71,7 @@ export const GUEST_GUIDE = {
     mapsEstimate: 'Google Maps says: 15 mins',
     reality: 'Bengaluru traffic reality: 45 mins',
     recommendation:
-      'Leave now, grab a masala dosa at Vidyarthi Bhavan, and join us on time!',
+      'Recommendation: Leave now, grab a masala dosa at Vidyarthi Bhavan, and join us on time!',
   },
   proTip:
     'Nearest metro is National College/LalBagh on the Green Line, about 2 km from the hall. Parking is limited on weekends, so cabs and autos are the easiest option.',
