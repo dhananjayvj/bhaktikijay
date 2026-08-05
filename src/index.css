@@ -214,6 +214,66 @@
     @apply mt-6 inline-flex min-h-[44px] cursor-pointer flex-col items-center gap-1 font-lato text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-primary/75 transition-colors duration-200 hover:text-primary-deep;
   }
 
+  .timeline-day-card {
+    @apply soft-card relative flex flex-col gap-5 p-5 md:gap-6 md:p-7;
+  }
+
+  .timeline-day-header {
+    @apply space-y-2 text-left;
+  }
+
+  .timeline-day-title {
+    @apply font-playfair text-[clamp(1.45rem,4vw,1.85rem)] font-bold leading-tight text-primary-deep;
+  }
+
+  .timeline-day-description {
+    @apply max-w-prose font-cormorant text-base font-medium leading-relaxed text-stone-700 md:text-lg;
+  }
+
+  .timeline-schedule-panel {
+    @apply rounded-2xl border border-gold/25 bg-sand/50 px-4 py-4 md:px-5 md:py-5;
+  }
+
+  .timeline-schedule-label {
+    @apply font-lato text-[0.65rem] font-semibold uppercase tracking-[0.24em] text-primary/90;
+  }
+
+  .timeline-schedule-list {
+    @apply mt-3 space-y-3;
+  }
+
+  .timeline-schedule-row {
+    @apply flex items-center justify-between gap-4 border-b border-gold/15 pb-3 last:border-b-0 last:pb-0;
+  }
+
+  .timeline-event-name {
+    @apply font-playfair text-lg font-semibold text-stone-900 md:text-xl;
+  }
+
+  .timeline-event-time {
+    @apply shrink-0 font-cormorant text-xl font-bold tabular-nums text-terra md:text-2xl;
+  }
+
+  .timeline-day-meta {
+    @apply border-t border-gold/20 pt-4 text-left;
+  }
+
+  .timeline-meta-label {
+    @apply font-lato text-xs font-semibold uppercase tracking-[0.2em] text-muted-fg;
+  }
+
+  .timeline-venue {
+    @apply mt-1 font-cormorant text-lg font-medium text-stone-800 md:text-xl;
+  }
+
+  .timeline-dress-code {
+    @apply rounded-xl border border-accent/30 bg-sand/60 px-4 py-2.5 text-left font-lato text-sm font-medium text-primary-deep;
+  }
+
+  .timeline-maps-link {
+    @apply inline-flex min-h-[44px] w-full cursor-pointer items-center justify-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2.5 font-lato text-sm font-semibold text-primary-deep transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10 sm:w-auto sm:justify-start;
+  }
+
   /* Subtle linen / parchment grain (no external asset) */
   /* 3D curtain panels — pairs with perspective parent + preserve-3d children */
   .curtain-3d-panel {

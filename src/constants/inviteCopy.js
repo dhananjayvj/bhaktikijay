@@ -14,5 +14,5 @@ export const INVITE_CELEBRATION =
 
 export const COUNTDOWN_INTRO = 'Until the muhurtham...'
 
-export const BHAKTI_PARENT_LINE = 'Daughter of Medini and Manoj Tolmatti'
+export const BHAKTI_PARENT_LINE = 'Daughter of Medini and Manoj Tolamatti'
 export const DHANANJAY_PARENT_LINE = 'Son of Pratibha and Vinod Jahagirdar'

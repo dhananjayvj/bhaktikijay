@@ -10,7 +10,6 @@ import {
   gpuLayerStyle,
   sectionReveal,
   staggerChildren,
-  viewportOnce,
 } from '../constants/motion.js'
 
 function Dot() {
@@ -45,31 +44,31 @@ const dayListStagger = {
 
 function DayCard({ day, index }) {
   return (
-    <motion.article variants={dayCardReveal} className="soft-card relative p-5 md:p-7">
-      <p className="meta-stationery">{day.day}</p>
-      <h3 className="mt-2 font-playfair text-2xl font-bold text-primary-deep md:text-[1.65rem]">{day.title}</h3>
+    <motion.article variants={dayCardReveal} className="timeline-day-card">
+      <header className="timeline-day-header">
+        <p className="meta-stationery">{day.day}</p>
+        <h3 className="timeline-day-title">{day.title}</h3>
+        <p className="timeline-day-description">{day.description}</p>
+      </header>
 
-      <ul className="mt-4 space-y-2 border-t border-gold/20 pt-4" aria-label="Event schedule">
-        {day.schedule.map((item) => (
-          <li key={item.name} className="flex items-baseline justify-between gap-4">
-            <span className="font-lato text-sm font-semibold text-stone-800">{item.name}</span>
-            <span className="shrink-0 font-cormorant text-base font-semibold tabular-nums text-terra">{item.time}</span>
-          </li>
-        ))}
-      </ul>
-
-      <div className="mt-5 border-t border-gold/20 pt-4">
-        <p className="font-lato text-xs font-semibold uppercase tracking-[0.2em] text-muted-fg">Venue</p>
-        <p className="mt-1 font-cormorant text-lg font-medium text-stone-800">{day.venue}</p>
+      <div className="timeline-schedule-panel">
+        <p className="timeline-schedule-label">Schedule</p>
+        <ul className="timeline-schedule-list" aria-label="Event schedule">
+          {day.schedule.map((item) => (
+            <li key={item.name} className="timeline-schedule-row">
+              <span className="timeline-event-name">{item.name}</span>
+              <span className="timeline-event-time">{item.time}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <p className="mt-4 font-cormorant text-base font-medium leading-relaxed text-stone-700">{day.tone}</p>
+      <div className="timeline-day-meta">
+        <p className="timeline-meta-label">Venue</p>
+        <p className="timeline-venue">{day.venue}</p>
+      </div>
 
-      {day.dressCode ? (
-        <p className="mt-3 rounded-xl border border-accent/30 bg-sand/60 px-3 py-2 font-lato text-sm font-medium text-primary-deep">
-          {day.dressCode}
-        </p>
-      ) : null}
+      {day.dressCode ? <p className="timeline-dress-code">{day.dressCode}</p> : null}
 
       <a
         data-no-sparkle="true"
@@ -77,7 +76,7 @@ function DayCard({ day, index }) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={day.mapsLabel}
-        className="mt-5 inline-flex min-h-[44px] cursor-pointer items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2 font-lato text-sm font-semibold text-primary-deep transition-colors duration-200 hover:border-primary/40 hover:bg-primary/10"
+        className="timeline-maps-link"
       >
         <PinIcon size={18} />
         <span>View on maps</span>

@@ -7,8 +7,9 @@ export const CELEBRATION_DAYS = [
     id: 'day-1',
     day: 'Day 1 · Thursday, Mar 11',
     title: 'Pre-wedding warmth',
+    description:
+      'We begin with turmeric blessings and laughter, then settle in for an evening of mehendi and music.',
     venue: 'Prestige Lake Ridge Clubhouse',
-    tone: 'Intimate, colourful, and relaxed. Come in comfortable festive wear.',
     dressCode: 'Wear yellow for Haldi.',
     schedule: [
       { name: 'Haldi', time: '3:30 PM' },
@@ -21,8 +22,9 @@ export const CELEBRATION_DAYS = [
     id: 'day-2',
     day: 'Day 2 · Saturday, Mar 13',
     title: 'Music & procession',
+    description:
+      'The baraat brings the groom’s side with drums and colour, followed by a sangeet night of dance and celebration.',
     venue: 'SDM Kalyana Mantapa',
-    tone: 'The baraat procession in the afternoon, followed by an evening of music and dance.',
     schedule: [
       { name: 'Baraat', time: '4:00 PM' },
       { name: 'Sangeet', time: '7:00 PM' },
@@ -34,8 +36,9 @@ export const CELEBRATION_DAYS = [
     id: 'day-3',
     day: 'Day 3 · Sunday, Mar 14',
     title: 'Sacred union',
+    description:
+      'The muhurtham seals our vows at the auspicious hour, and we continue with a joyful lunch reception.',
     venue: 'SDM Kalyana Mantapa',
-    tone: 'Traditional ceremony followed by a celebratory lunch reception.',
     schedule: [
       { name: 'Muhurtham', time: '8:48 AM' },
       { name: 'Reception', time: '12:30 PM' },
