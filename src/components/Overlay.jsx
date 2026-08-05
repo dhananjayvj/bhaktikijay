@@ -418,7 +418,7 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="blessings-toast pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-[40] -translate-x-1/2"
+            className="blessings-toast pointer-events-none fixed bottom-[max(1.5rem,env(safe-area-inset-bottom))] left-1/2 z-[45] -translate-x-1/2"
           >
             {BLESSINGS_LOADED_TOAST}
           </motion.div>

@@ -308,7 +308,10 @@
   }
 
   .blessings-toast {
-    @apply font-cormorant text-sm font-medium italic tracking-[0.06em] text-white/45;
+    @apply font-cormorant text-sm font-medium italic tracking-[0.06em] text-gold-light;
+    text-shadow:
+      0 1px 10px rgba(12, 10, 18, 0.65),
+      0 0 1px rgba(12, 10, 18, 0.5);
   }
 
   /* Subtle linen / parchment grain (no external asset) */
