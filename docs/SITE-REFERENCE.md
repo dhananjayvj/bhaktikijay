@@ -184,6 +184,7 @@ https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmx
   "events": ["Haldi", "Muhurtham", ...],
   "eventTags": "comma-separated string",
   "message": "string",
+  "songRequest": "string (optional dance floor pick)",
   "userAgent": "string"
 }
 ```
