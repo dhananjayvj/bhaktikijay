@@ -24,12 +24,13 @@ const defaultItemVariants = {
   visible: { opacity: 1 },
 }
 
+/** em-based offsets scale with type size on small screens */
 const presetVariants = {
   blur: {
     container: defaultContainerVariants,
     item: {
-      exit: { filter: 'blur(12px)', opacity: 0 },
-      hidden: { filter: 'blur(12px)', opacity: 0 },
+      exit: { filter: 'blur(8px)', opacity: 0 },
+      hidden: { filter: 'blur(8px)', opacity: 0 },
       visible: { filter: 'blur(0px)', opacity: 1 },
     },
   },
@@ -44,24 +45,24 @@ const presetVariants = {
   'fade-in-blur': {
     container: defaultContainerVariants,
     item: {
-      exit: { filter: 'blur(12px)', opacity: 0, y: 20 },
-      hidden: { filter: 'blur(12px)', opacity: 0, y: 20 },
+      exit: { filter: 'blur(8px)', opacity: 0, y: '0.55em' },
+      hidden: { filter: 'blur(8px)', opacity: 0, y: '0.55em' },
       visible: { filter: 'blur(0px)', opacity: 1, y: 0 },
     },
   },
   scale: {
     container: defaultContainerVariants,
     item: {
-      exit: { opacity: 0, scale: 0 },
-      hidden: { opacity: 0, scale: 0 },
+      exit: { opacity: 0, scale: 0.92 },
+      hidden: { opacity: 0, scale: 0.92 },
       visible: { opacity: 1, scale: 1 },
     },
   },
   slide: {
     container: defaultContainerVariants,
     item: {
-      exit: { opacity: 0, y: 20 },
-      hidden: { opacity: 0, y: 20 },
+      exit: { opacity: 0, y: '0.5em' },
+      hidden: { opacity: 0, y: '0.5em' },
       visible: { opacity: 1, y: 0 },
     },
   },
@@ -72,36 +73,48 @@ function splitText(text, per) {
   return text.split(/(\s+)/)
 }
 
+function RevealClip({ children, className }) {
+  return (
+    <span className={cn('text-reveal-clip inline-block max-w-full overflow-hidden align-bottom', className)}>
+      {children}
+    </span>
+  )
+}
+
 function SegmentItem({ segment, variants, per, wrapperClassName }) {
+  const motionClass = 'text-reveal-segment inline-block whitespace-pre will-change-transform'
+
   const content =
     per === 'line' ? (
-      <motion.span className="block" variants={variants}>
-        {segment}
-      </motion.span>
+      <RevealClip className={cn('block w-full', wrapperClassName)}>
+        <motion.span className={cn(motionClass, 'block')} variants={variants}>
+          {segment}
+        </motion.span>
+      </RevealClip>
     ) : per === 'word' ? (
-      <motion.span aria-hidden="true" className="inline-block whitespace-pre" variants={variants}>
-        {segment}
-      </motion.span>
+      <RevealClip className={wrapperClassName}>
+        <motion.span aria-hidden="true" className={motionClass} variants={variants}>
+          {segment}
+        </motion.span>
+      </RevealClip>
     ) : (
-      <motion.span className="inline-block whitespace-pre">
-        {segment.split('').map((char, i) => (
-          <motion.span
-            aria-hidden="true"
-            className="inline-block whitespace-pre"
-            key={`${char}-${i}`}
-            variants={variants}
-          >
-            {char}
-          </motion.span>
-        ))}
-      </motion.span>
+      <RevealClip className={wrapperClassName}>
+        <motion.span className={motionClass}>
+          {segment.split('').map((char, i) => (
+            <motion.span
+              aria-hidden="true"
+              className={motionClass}
+              key={`${char}-${i}`}
+              variants={variants}
+            >
+              {char}
+            </motion.span>
+          ))}
+        </motion.span>
+      </RevealClip>
     )
 
-  if (!wrapperClassName) return content
-
-  return (
-    <span className={cn(per === 'line' ? 'block' : 'inline-block', wrapperClassName)}>{content}</span>
-  )
+  return content
 }
 
 export function TextReveal({
@@ -145,7 +158,7 @@ export function TextReveal({
     ...base.item,
     visible: {
       ...(base.item.visible ?? {}),
-      transition: { duration: baseDuration, ...segmentTransition },
+      transition: { duration: baseDuration, ease: [0.16, 1, 0.3, 1], ...segmentTransition },
     },
   }
 
@@ -161,7 +174,7 @@ export function TextReveal({
       {trigger ? (
         <MotionTag
           animate="visible"
-          className={className}
+          className={cn('text-reveal-root', className)}
           exit="exit"
           initial="hidden"
           onAnimationComplete={onAnimationComplete}
