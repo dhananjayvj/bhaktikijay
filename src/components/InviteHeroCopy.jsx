@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { TextReveal } from '@/components/ui/text-reveal.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -49,8 +50,26 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         {!envelope ? (
           <>
             <p className="invite-hero-blessing px-1">{INVITE_BLESSING}</p>
-            <h1 className="invite-hero-title px-1">{INVITE_HEADER}</h1>
-            <p className="invite-hero-tagline px-1">{INVITE_TAGLINE}</p>
+            <TextReveal
+              as="h1"
+              className="invite-hero-title px-1"
+              delay={0}
+              per="word"
+              preset="fade-in-blur"
+              speedReveal={1.2}
+            >
+              {INVITE_HEADER}
+            </TextReveal>
+            <TextReveal
+              as="p"
+              className="invite-hero-tagline px-1"
+              delay={0.28}
+              per="word"
+              preset="slide"
+              speedReveal={1.4}
+            >
+              {INVITE_TAGLINE}
+            </TextReveal>
           </>
         ) : (
           <div className="invite-hero-meta px-1">
@@ -59,15 +78,22 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <span className="mt-0.5 block italic">{INVITE_TAGLINE}</span>
           </div>
         )}
-        <p
-          className={
-            envelope
-              ? 'invite-hero-body mx-auto max-w-[34ch] px-1 text-[clamp(0.8rem,2.6vw,0.95rem)] leading-relaxed italic'
-              : 'invite-hero-body mx-auto w-full max-w-xl px-3 text-pretty sm:px-2'
-          }
-        >
-          {INVITE_OPENING_VERSE}
-        </p>
+        {envelope ? (
+          <p className="invite-hero-body mx-auto max-w-[34ch] px-1 text-[clamp(0.8rem,2.6vw,0.95rem)] leading-relaxed italic">
+            {INVITE_OPENING_VERSE}
+          </p>
+        ) : (
+          <TextReveal
+            as="p"
+            className="invite-hero-body mx-auto w-full max-w-xl px-3 text-pretty sm:px-2"
+            delay={0.52}
+            per="word"
+            preset="fade"
+            speedReveal={1.6}
+          >
+            {INVITE_OPENING_VERSE}
+          </TextReveal>
+        )}
       </Block>
 
       <Block
@@ -103,15 +129,22 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         className={`relative z-[2] flex w-full flex-col items-center ${envelope ? 'gap-2 px-2 sm:gap-3' : 'gap-3 px-2 sm:gap-5 sm:px-4'}`}
         {...blockProps}
       >
-        <p
-          className={
-            envelope
-              ? 'invite-hero-celebration mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed'
-              : 'invite-hero-celebration mx-auto w-full max-w-lg px-2 text-pretty sm:px-0'
-          }
-        >
-          {INVITE_CELEBRATION}
-        </p>
+        {envelope ? (
+          <p className="invite-hero-celebration mx-auto max-w-[32ch] text-[clamp(0.78rem,2.4vw,0.92rem)] leading-relaxed">
+            {INVITE_CELEBRATION}
+          </p>
+        ) : (
+          <TextReveal
+            as="p"
+            className="invite-hero-celebration mx-auto w-full max-w-lg px-2 text-pretty sm:px-0"
+            delay={0.18}
+            per="word"
+            preset="fade-in-blur"
+            speedReveal={1.3}
+          >
+            {INVITE_CELEBRATION}
+          </TextReveal>
+        )}
         <div
           className={
             envelope
