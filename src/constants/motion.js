@@ -9,7 +9,7 @@ export const easeInOutCubic = [0.65, 0, 0.35, 1]
 
 export const staggerChildren = 0.12
 
-export const fadeUpDuration = 1.05
+export const fadeUpDuration = 0.55
 
 export const heroLineRevealDuration = 1.35
 
@@ -25,7 +25,8 @@ export const sectionReveal = {
   ease: easeSilk,
 }
 
-export const gpuLayerStyle = { willChange: 'transform, opacity' }
+// Compositor hints are applied only to the opening curtain while it moves.
+export const gpuLayerStyle = {}
 
 export const viewportOnce = { once: true, amount: 0.12, margin: '0px 0px -5% 0px' }
 
@@ -38,7 +39,7 @@ export const springSnappy = { type: 'spring', stiffness: 320, damping: 28, mass:
 export const sectionContainer = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.14, delayChildren: 0.08 },
+    transition: { staggerChildren: 0.06, delayChildren: 0 },
   },
 }
 
@@ -57,7 +58,7 @@ export const sectionItemScale = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.95, ease: easeSilk },
+    transition: { duration: 0.55, ease: easeSilk },
   },
 }
 

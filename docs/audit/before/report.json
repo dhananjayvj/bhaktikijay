@@ -1,0 +1,1693 @@
+{
+  "phase": "before",
+  "screens": {
+    "360": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 360,
+        "viewport": 360,
+        "bodyText": "SHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting\n \nthis\n \nnew\n \nchapter\n \ntogethe",
+        "navigation": {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 138,
+          "navigationId": 7282,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.20000000298023224,
+          "domainLookupStart": 0.20000000298023224,
+          "domainLookupEnd": 0.20000000298023224,
+          "connectStart": 0.20000000298023224,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.20000000298023224,
+          "requestStart": 0.7000000029802322,
+          "responseStart": 2.2000000029802322,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 2.2000000029802322,
+          "responseEnd": 2.2999999970197678,
+          "transferSize": 2328,
+          "encodedBodySize": 2028,
+          "decodedBodySize": 2028,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 6.100000008940697,
+          "domContentLoadedEventStart": 137.20000000298023,
+          "domContentLoadedEventEnd": 137.20000000298023,
+          "domComplete": 138,
+          "loadEventStart": 138,
+          "loadEventEnd": 138,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "client",
+            "bytes": 204823,
+            "duration": 6.4000000059604645
+          },
+          {
+            "name": "main.jsx",
+            "bytes": 6814,
+            "duration": 6.399999991059303
+          },
+          {
+            "name": "css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@400;500;600;700&family=Great+Vibes&display=swap",
+            "bytes": 1746,
+            "duration": 105.79999999701977
+          },
+          {
+            "name": "@react-refresh",
+            "bytes": 112194,
+            "duration": 7.5999999940395355
+          },
+          {
+            "name": "react.js?v=579e18e4",
+            "bytes": 1055,
+            "duration": 2.5
+          },
+          {
+            "name": "react-dom_client.js?v=35d33c51",
+            "bytes": 821219,
+            "duration": 5.5999999940395355
+          },
+          {
+            "name": "App.jsx",
+            "bytes": 9646,
+            "duration": 5.700000002980232
+          },
+          {
+            "name": "index.css",
+            "bytes": 75338,
+            "duration": 6.5
+          },
+          {
+            "name": "react_jsx-dev-runtime.js?v=579e18e4",
+            "bytes": 10810,
+            "duration": 6.700000002980232
+          },
+          {
+            "name": "env.mjs",
+            "bytes": 3778,
+            "duration": 4.5999999940395355
+          },
+          {
+            "name": "react-3_O8oni9.js?v=179aafc9",
+            "bytes": 39871,
+            "duration": 2.1000000089406967
+          },
+          {
+            "name": "framer-motion.js?v=1f631ee1",
+            "bytes": 541361,
+            "duration": 3.0999999940395355
+          },
+          {
+            "name": "Overlay.jsx",
+            "bytes": 55459,
+            "duration": 4
+          },
+          {
+            "name": "MainPageContent.jsx",
+            "bytes": 9680,
+            "duration": 4.700000002980232
+          },
+          {
+            "name": "ScrollProgressBar.jsx",
+            "bytes": 4957,
+            "duration": 5.300000011920929
+          },
+          {
+            "name": "AmbientFlute.jsx",
+            "bytes": 4146,
+            "duration": 4.299999997019768
+          },
+          {
+            "name": "SiteNav.jsx",
+            "bytes": 9949,
+            "duration": 5.5999999940395355
+          },
+          {
+            "name": "RevealAssetPreloader.jsx",
+            "bytes": 4148,
+            "duration": 6
+          },
+          {
+            "name": "react-dom.js?v=579e18e4",
+            "bytes": 14867,
+            "duration": 1.199999988079071
+          },
+          {
+            "name": "motion.js",
+            "bytes": 8871,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "revealMotion.js",
+            "bytes": 876,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "sealFeedback.js",
+            "bytes": 4829,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "WeddingDoodles.jsx",
+            "bytes": 16478,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "quirkyCopy.js",
+            "bytes": 1447,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "Ganesh.jpeg?import",
+            "bytes": 643,
+            "duration": 2.2000000029802322
+          },
+          {
+            "name": "preloadRevealAssets.js",
+            "bytes": 3414,
+            "duration": 2.300000011920929
+          },
+          {
+            "name": "Hero.jsx",
+            "bytes": 19843,
+            "duration": 2.5
+          },
+          {
+            "name": "CouplePortrait.jsx",
+            "bytes": 11378,
+            "duration": 2.6000000089406967
+          },
+          {
+            "name": "SparkleLayer.jsx",
+            "bytes": 10517,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "LazySection.jsx",
+            "bytes": 3242,
+            "duration": 3.4000000059604645
+          },
+          {
+            "name": "useScrollPastHero.js",
+            "bytes": 2769,
+            "duration": 2.7000000029802322
+          },
+          {
+            "name": "react_jsx-runtime.js?v=579e18e4",
+            "bytes": 11120,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "backdrop.jpeg?import",
+            "bytes": 649,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "flute.mp3?import",
+            "bytes": 633,
+            "duration": 1.5
+          },
+          {
+            "name": "Toast.jsx",
+            "bytes": 6315,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "InviteHeroCopy.jsx",
+            "bytes": 22537,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?import",
+            "bytes": 688,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "SectionReveal.jsx",
+            "bytes": 6202,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "assetVersions.js",
+            "bytes": 795,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "SectionDoodleBackdrop.jsx",
+            "bytes": 11208,
+            "duration": 2
+          },
+          {
+            "name": "text-reveal.jsx",
+            "bytes": 19549,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "inviteCopy.js",
+            "bytes": 2453,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "KolamWaveDivider.jsx",
+            "bytes": 10498,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "Countdown.jsx",
+            "bytes": 16231,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "wedding.js",
+            "bytes": 1756,
+            "duration": 1.300000011920929
+          },
+          {
+            "name": "utils.js",
+            "bytes": 1073,
+            "duration": 0.5
+          },
+          {
+            "name": "clsx.js?v=27d798be",
+            "bytes": 898,
+            "duration": 0.5
+          },
+          {
+            "name": "tailwind-merge.js?v=ce0c2d41",
+            "bytes": 61171,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "Timeline.jsx",
+            "bytes": 23526,
+            "duration": 1
+          },
+          {
+            "name": "backdrop.jpeg",
+            "bytes": 237060,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "Ganesh.jpeg",
+            "bytes": 27356,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?v=20250526-v2",
+            "bytes": 1958197,
+            "duration": 2.5
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 1412,
+            "duration": 2.2000000029802322
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.5
+          },
+          {
+            "name": "EventWearTip.jsx",
+            "bytes": 4714,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "EventIcons.jsx",
+            "bytes": 21500,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "siteContent.js",
+            "bytes": 7764,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "flute.mp3",
+            "bytes": 300,
+            "duration": 15133.39999999106
+          },
+          {
+            "name": "GuestGuide.jsx",
+            "bytes": 19627,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "RSVP.jsx",
+            "bytes": 61161,
+            "duration": 1
+          },
+          {
+            "name": "ParticleCanvas.jsx",
+            "bytes": 10921,
+            "duration": 0.699999988079071
+          },
+          {
+            "name": "Footer.jsx",
+            "bytes": 11859,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 1836,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 1.800000011920929
+          }
+        ],
+        "links": [
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9"
+          }
+        ]
+      }
+    },
+    "390": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 390,
+        "viewport": 390,
+        "bodyText": "INVITE\nCOUPLE\nEVENTS\nVENUE\nRSVP\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting",
+        "navigation": {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 138.20000000298023,
+          "navigationId": 2202,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.09999999403953552,
+          "domainLookupStart": 0.09999999403953552,
+          "domainLookupEnd": 0.09999999403953552,
+          "connectStart": 0.09999999403953552,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.09999999403953552,
+          "requestStart": 0.5,
+          "responseStart": 1.7999999970197678,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.7999999970197678,
+          "responseEnd": 1.9000000059604645,
+          "transferSize": 2328,
+          "encodedBodySize": 2028,
+          "decodedBodySize": 2028,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 8.200000002980232,
+          "domContentLoadedEventStart": 137.70000000298023,
+          "domContentLoadedEventEnd": 137.70000000298023,
+          "domComplete": 138.20000000298023,
+          "loadEventStart": 138.20000000298023,
+          "loadEventEnd": 138.20000000298023,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "client",
+            "bytes": 204823,
+            "duration": 6.299999997019768
+          },
+          {
+            "name": "main.jsx",
+            "bytes": 6814,
+            "duration": 6.800000011920929
+          },
+          {
+            "name": "css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@400;500;600;700&family=Great+Vibes&display=swap",
+            "bytes": 1746,
+            "duration": 102.5
+          },
+          {
+            "name": "@react-refresh",
+            "bytes": 112194,
+            "duration": 7.299999997019768
+          },
+          {
+            "name": "react.js?v=579e18e4",
+            "bytes": 1055,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "App.jsx",
+            "bytes": 9646,
+            "duration": 5.0999999940395355
+          },
+          {
+            "name": "index.css",
+            "bytes": 75338,
+            "duration": 6.5
+          },
+          {
+            "name": "react-dom_client.js?v=35d33c51",
+            "bytes": 821219,
+            "duration": 4.299999997019768
+          },
+          {
+            "name": "env.mjs",
+            "bytes": 3778,
+            "duration": 4.700000002980232
+          },
+          {
+            "name": "react_jsx-dev-runtime.js?v=579e18e4",
+            "bytes": 10810,
+            "duration": 9
+          },
+          {
+            "name": "react-3_O8oni9.js?v=179aafc9",
+            "bytes": 39871,
+            "duration": 2.5999999940395355
+          },
+          {
+            "name": "framer-motion.js?v=1f631ee1",
+            "bytes": 541361,
+            "duration": 3.7999999970197678
+          },
+          {
+            "name": "Overlay.jsx",
+            "bytes": 55459,
+            "duration": 3.1000000089406967
+          },
+          {
+            "name": "MainPageContent.jsx",
+            "bytes": 9680,
+            "duration": 3.4000000059604645
+          },
+          {
+            "name": "ScrollProgressBar.jsx",
+            "bytes": 4957,
+            "duration": 3.5
+          },
+          {
+            "name": "SiteNav.jsx",
+            "bytes": 9949,
+            "duration": 3.5
+          },
+          {
+            "name": "RevealAssetPreloader.jsx",
+            "bytes": 4148,
+            "duration": 4.0999999940395355
+          },
+          {
+            "name": "AmbientFlute.jsx",
+            "bytes": 4146,
+            "duration": 4.299999997019768
+          },
+          {
+            "name": "motion.js",
+            "bytes": 8871,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "revealMotion.js",
+            "bytes": 876,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "WeddingDoodles.jsx",
+            "bytes": 16478,
+            "duration": 1
+          },
+          {
+            "name": "quirkyCopy.js",
+            "bytes": 1447,
+            "duration": 1
+          },
+          {
+            "name": "sealFeedback.js",
+            "bytes": 4829,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "Ganesh.jpeg?import",
+            "bytes": 643,
+            "duration": 1.7000000029802322
+          },
+          {
+            "name": "Hero.jsx",
+            "bytes": 19843,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "CouplePortrait.jsx",
+            "bytes": 11378,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "SparkleLayer.jsx",
+            "bytes": 10517,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "LazySection.jsx",
+            "bytes": 3242,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "react-dom.js?v=579e18e4",
+            "bytes": 14867,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "useScrollPastHero.js",
+            "bytes": 2769,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "preloadRevealAssets.js",
+            "bytes": 3414,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "Toast.jsx",
+            "bytes": 6315,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "InviteHeroCopy.jsx",
+            "bytes": 22537,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?import",
+            "bytes": 688,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "assetVersions.js",
+            "bytes": 795,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "SectionReveal.jsx",
+            "bytes": 6202,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "SectionDoodleBackdrop.jsx",
+            "bytes": 11208,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "backdrop.jpeg?import",
+            "bytes": 649,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "flute.mp3?import",
+            "bytes": 633,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "react_jsx-runtime.js?v=579e18e4",
+            "bytes": 11120,
+            "duration": 0.5
+          },
+          {
+            "name": "inviteCopy.js",
+            "bytes": 2453,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "Countdown.jsx",
+            "bytes": 16231,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "wedding.js",
+            "bytes": 1756,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "KolamWaveDivider.jsx",
+            "bytes": 10498,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "text-reveal.jsx",
+            "bytes": 19549,
+            "duration": 0.5
+          },
+          {
+            "name": "utils.js",
+            "bytes": 1073,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "clsx.js?v=27d798be",
+            "bytes": 898,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "tailwind-merge.js?v=ce0c2d41",
+            "bytes": 61171,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "Timeline.jsx",
+            "bytes": 23526,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "backdrop.jpeg",
+            "bytes": 237060,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "Ganesh.jpeg",
+            "bytes": 27356,
+            "duration": 1
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?v=20250526-v2",
+            "bytes": 1958197,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 1412,
+            "duration": 2.0999999940395355
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "EventWearTip.jsx",
+            "bytes": 4714,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "EventIcons.jsx",
+            "bytes": 21500,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "siteContent.js",
+            "bytes": 7764,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "flute.mp3",
+            "bytes": 4572701,
+            "duration": 9.700000002980232
+          },
+          {
+            "name": "GuestGuide.jsx",
+            "bytes": 19627,
+            "duration": 0.6000000089406967
+          },
+          {
+            "name": "RSVP.jsx",
+            "bytes": 61161,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "ParticleCanvas.jsx",
+            "bytes": 10921,
+            "duration": 1.5
+          },
+          {
+            "name": "Footer.jsx",
+            "bytes": 11859,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 1836,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 1.2000000029802322
+          }
+        ],
+        "links": [
+          {
+            "text": "INVITE",
+            "href": "http://127.0.0.1:5173/#invitation"
+          },
+          {
+            "text": "COUPLE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "EVENTS",
+            "href": "http://127.0.0.1:5173/#timeline"
+          },
+          {
+            "text": "VENUE",
+            "href": "http://127.0.0.1:5173/#guide"
+          },
+          {
+            "text": "RSVP",
+            "href": "http://127.0.0.1:5173/#rsvp"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9"
+          }
+        ]
+      }
+    },
+    "768": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 768,
+        "viewport": 768,
+        "bodyText": "SHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting\n \nthis\n \nnew\n \nchapter\n \ntogethe",
+        "navigation": {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 137.20000000298023,
+          "navigationId": 4719,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.09999999403953552,
+          "domainLookupStart": 0.09999999403953552,
+          "domainLookupEnd": 0.09999999403953552,
+          "connectStart": 0.09999999403953552,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.09999999403953552,
+          "requestStart": 0.5,
+          "responseStart": 1.5,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.5,
+          "responseEnd": 1.5999999940395355,
+          "transferSize": 2328,
+          "encodedBodySize": 2028,
+          "decodedBodySize": 2028,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 5.0999999940395355,
+          "domContentLoadedEventStart": 136.40000000596046,
+          "domContentLoadedEventEnd": 136.40000000596046,
+          "domComplete": 137.20000000298023,
+          "loadEventStart": 137.20000000298023,
+          "loadEventEnd": 137.20000000298023,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "client",
+            "bytes": 204823,
+            "duration": 5.5999999940395355
+          },
+          {
+            "name": "main.jsx",
+            "bytes": 6814,
+            "duration": 5.600000008940697
+          },
+          {
+            "name": "css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@400;500;600;700&family=Great+Vibes&display=swap",
+            "bytes": 1746,
+            "duration": 105.40000000596046
+          },
+          {
+            "name": "@react-refresh",
+            "bytes": 112194,
+            "duration": 6
+          },
+          {
+            "name": "react.js?v=579e18e4",
+            "bytes": 1055,
+            "duration": 2
+          },
+          {
+            "name": "App.jsx",
+            "bytes": 9646,
+            "duration": 4.800000011920929
+          },
+          {
+            "name": "index.css",
+            "bytes": 75338,
+            "duration": 5
+          },
+          {
+            "name": "react_jsx-dev-runtime.js?v=579e18e4",
+            "bytes": 10810,
+            "duration": 5.5
+          },
+          {
+            "name": "react-dom_client.js?v=35d33c51",
+            "bytes": 821219,
+            "duration": 4.4000000059604645
+          },
+          {
+            "name": "env.mjs",
+            "bytes": 3778,
+            "duration": 4.300000011920929
+          },
+          {
+            "name": "react-3_O8oni9.js?v=179aafc9",
+            "bytes": 39871,
+            "duration": 2.7000000029802322
+          },
+          {
+            "name": "Overlay.jsx",
+            "bytes": 55459,
+            "duration": 2
+          },
+          {
+            "name": "MainPageContent.jsx",
+            "bytes": 9680,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "framer-motion.js?v=1f631ee1",
+            "bytes": 541361,
+            "duration": 2.9000000059604645
+          },
+          {
+            "name": "ScrollProgressBar.jsx",
+            "bytes": 4957,
+            "duration": 2.4000000059604645
+          },
+          {
+            "name": "RevealAssetPreloader.jsx",
+            "bytes": 4148,
+            "duration": 2.800000011920929
+          },
+          {
+            "name": "SiteNav.jsx",
+            "bytes": 9949,
+            "duration": 2.7000000029802322
+          },
+          {
+            "name": "AmbientFlute.jsx",
+            "bytes": 4146,
+            "duration": 2.800000011920929
+          },
+          {
+            "name": "motion.js",
+            "bytes": 8871,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "revealMotion.js",
+            "bytes": 876,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "WeddingDoodles.jsx",
+            "bytes": 16478,
+            "duration": 1.6000000089406967
+          },
+          {
+            "name": "sealFeedback.js",
+            "bytes": 4829,
+            "duration": 1.800000011920929
+          },
+          {
+            "name": "quirkyCopy.js",
+            "bytes": 1447,
+            "duration": 1.8999999910593033
+          },
+          {
+            "name": "Ganesh.jpeg?import",
+            "bytes": 643,
+            "duration": 2.3999999910593033
+          },
+          {
+            "name": "CouplePortrait.jsx",
+            "bytes": 11378,
+            "duration": 2.5
+          },
+          {
+            "name": "SparkleLayer.jsx",
+            "bytes": 10517,
+            "duration": 2.6000000089406967
+          },
+          {
+            "name": "LazySection.jsx",
+            "bytes": 3242,
+            "duration": 2.7000000029802322
+          },
+          {
+            "name": "Hero.jsx",
+            "bytes": 19843,
+            "duration": 3.4000000059604645
+          },
+          {
+            "name": "preloadRevealAssets.js",
+            "bytes": 3414,
+            "duration": 2.4000000059604645
+          },
+          {
+            "name": "useScrollPastHero.js",
+            "bytes": 2769,
+            "duration": 4
+          },
+          {
+            "name": "react-dom.js?v=579e18e4",
+            "bytes": 14867,
+            "duration": 2.0999999940395355
+          },
+          {
+            "name": "SectionReveal.jsx",
+            "bytes": 6202,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?import",
+            "bytes": 688,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "assetVersions.js",
+            "bytes": 795,
+            "duration": 1.7000000029802322
+          },
+          {
+            "name": "SectionDoodleBackdrop.jsx",
+            "bytes": 11208,
+            "duration": 2.0999999940395355
+          },
+          {
+            "name": "react_jsx-runtime.js?v=579e18e4",
+            "bytes": 11120,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "backdrop.jpeg?import",
+            "bytes": 649,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "flute.mp3?import",
+            "bytes": 633,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "Toast.jsx",
+            "bytes": 6315,
+            "duration": 1.199999988079071
+          },
+          {
+            "name": "InviteHeroCopy.jsx",
+            "bytes": 22537,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "text-reveal.jsx",
+            "bytes": 19549,
+            "duration": 0.5
+          },
+          {
+            "name": "KolamWaveDivider.jsx",
+            "bytes": 10498,
+            "duration": 0.6000000089406967
+          },
+          {
+            "name": "Countdown.jsx",
+            "bytes": 16231,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "inviteCopy.js",
+            "bytes": 2453,
+            "duration": 0.800000011920929
+          },
+          {
+            "name": "wedding.js",
+            "bytes": 1756,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "utils.js",
+            "bytes": 1073,
+            "duration": 0.3999999910593033
+          },
+          {
+            "name": "clsx.js?v=27d798be",
+            "bytes": 898,
+            "duration": 0.29999999701976776
+          },
+          {
+            "name": "tailwind-merge.js?v=ce0c2d41",
+            "bytes": 61171,
+            "duration": 0.5
+          },
+          {
+            "name": "Timeline.jsx",
+            "bytes": 23526,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "backdrop.jpeg",
+            "bytes": 237060,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "Ganesh.jpeg",
+            "bytes": 27356,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?v=20250526-v2",
+            "bytes": 1958197,
+            "duration": 2.2000000029802322
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 1412,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "EventWearTip.jsx",
+            "bytes": 4714,
+            "duration": 1
+          },
+          {
+            "name": "EventIcons.jsx",
+            "bytes": 21500,
+            "duration": 1.300000011920929
+          },
+          {
+            "name": "siteContent.js",
+            "bytes": 7764,
+            "duration": 1.5
+          },
+          {
+            "name": "flute.mp3",
+            "bytes": 300,
+            "duration": 15016
+          },
+          {
+            "name": "GuestGuide.jsx",
+            "bytes": 19627,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "RSVP.jsx",
+            "bytes": 61161,
+            "duration": 1
+          },
+          {
+            "name": "ParticleCanvas.jsx",
+            "bytes": 10921,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "Footer.jsx",
+            "bytes": 11859,
+            "duration": 0.699999988079071
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 1836,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 1.4000000059604645
+          }
+        ],
+        "links": [
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9"
+          }
+        ]
+      }
+    },
+    "1440": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 1440,
+        "viewport": 1440,
+        "bodyText": "INVITE\nCOUPLE\nEVENTS\nVENUE\nRSVP\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting",
+        "navigation": {
+          "name": "http://127.0.0.1:5173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 139.20000000298023,
+          "navigationId": 3896,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.29999999701976776,
+          "domainLookupStart": 0.29999999701976776,
+          "domainLookupEnd": 0.29999999701976776,
+          "connectStart": 0.29999999701976776,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.29999999701976776,
+          "requestStart": 0.7000000029802322,
+          "responseStart": 1.9000000059604645,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.9000000059604645,
+          "responseEnd": 2,
+          "transferSize": 2328,
+          "encodedBodySize": 2028,
+          "decodedBodySize": 2028,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 7.299999997019768,
+          "domContentLoadedEventStart": 138.40000000596046,
+          "domContentLoadedEventEnd": 138.40000000596046,
+          "domComplete": 139.20000000298023,
+          "loadEventStart": 139.20000000298023,
+          "loadEventEnd": 139.20000000298023,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "client",
+            "bytes": 204823,
+            "duration": 6.399999991059303
+          },
+          {
+            "name": "main.jsx",
+            "bytes": 6814,
+            "duration": 7
+          },
+          {
+            "name": "css2?family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@400;500;600;700&family=Great+Vibes&display=swap",
+            "bytes": 1746,
+            "duration": 103.29999999701977
+          },
+          {
+            "name": "@react-refresh",
+            "bytes": 112194,
+            "duration": 7.899999991059303
+          },
+          {
+            "name": "env.mjs",
+            "bytes": 3778,
+            "duration": 2
+          },
+          {
+            "name": "react.js?v=579e18e4",
+            "bytes": 1055,
+            "duration": 2.0999999940395355
+          },
+          {
+            "name": "App.jsx",
+            "bytes": 9646,
+            "duration": 5.0999999940395355
+          },
+          {
+            "name": "index.css",
+            "bytes": 75338,
+            "duration": 5.799999997019768
+          },
+          {
+            "name": "react-dom_client.js?v=35d33c51",
+            "bytes": 821219,
+            "duration": 5.4000000059604645
+          },
+          {
+            "name": "react_jsx-dev-runtime.js?v=579e18e4",
+            "bytes": 10810,
+            "duration": 2.4000000059604645
+          },
+          {
+            "name": "react-3_O8oni9.js?v=179aafc9",
+            "bytes": 39871,
+            "duration": 2.5999999940395355
+          },
+          {
+            "name": "framer-motion.js?v=1f631ee1",
+            "bytes": 541361,
+            "duration": 2.0999999940395355
+          },
+          {
+            "name": "Overlay.jsx",
+            "bytes": 55459,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "MainPageContent.jsx",
+            "bytes": 9680,
+            "duration": 2.5999999940395355
+          },
+          {
+            "name": "ScrollProgressBar.jsx",
+            "bytes": 4957,
+            "duration": 2.5999999940395355
+          },
+          {
+            "name": "SiteNav.jsx",
+            "bytes": 9949,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "RevealAssetPreloader.jsx",
+            "bytes": 4148,
+            "duration": 3.5
+          },
+          {
+            "name": "AmbientFlute.jsx",
+            "bytes": 4146,
+            "duration": 3.9000000059604645
+          },
+          {
+            "name": "revealMotion.js",
+            "bytes": 876,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "motion.js",
+            "bytes": 8871,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "WeddingDoodles.jsx",
+            "bytes": 16478,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "sealFeedback.js",
+            "bytes": 4829,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "quirkyCopy.js",
+            "bytes": 1447,
+            "duration": 2.2999999970197678
+          },
+          {
+            "name": "Ganesh.jpeg?import",
+            "bytes": 643,
+            "duration": 2.5999999940395355
+          },
+          {
+            "name": "Hero.jsx",
+            "bytes": 19843,
+            "duration": 2.7000000029802322
+          },
+          {
+            "name": "CouplePortrait.jsx",
+            "bytes": 11378,
+            "duration": 3
+          },
+          {
+            "name": "SparkleLayer.jsx",
+            "bytes": 10517,
+            "duration": 3.1000000089406967
+          },
+          {
+            "name": "LazySection.jsx",
+            "bytes": 3242,
+            "duration": 3.6000000089406967
+          },
+          {
+            "name": "useScrollPastHero.js",
+            "bytes": 2769,
+            "duration": 3.3999999910593033
+          },
+          {
+            "name": "preloadRevealAssets.js",
+            "bytes": 3414,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "react-dom.js?v=579e18e4",
+            "bytes": 14867,
+            "duration": 1.9000000059604645
+          },
+          {
+            "name": "react_jsx-runtime.js?v=579e18e4",
+            "bytes": 11120,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "Toast.jsx",
+            "bytes": 6315,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "InviteHeroCopy.jsx",
+            "bytes": 22537,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "SectionDoodleBackdrop.jsx",
+            "bytes": 11208,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?import",
+            "bytes": 688,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "assetVersions.js",
+            "bytes": 795,
+            "duration": 1.5
+          },
+          {
+            "name": "SectionReveal.jsx",
+            "bytes": 6202,
+            "duration": 1.5
+          },
+          {
+            "name": "backdrop.jpeg?import",
+            "bytes": 649,
+            "duration": 1
+          },
+          {
+            "name": "flute.mp3?import",
+            "bytes": 633,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "KolamWaveDivider.jsx",
+            "bytes": 10498,
+            "duration": 0.5
+          },
+          {
+            "name": "text-reveal.jsx",
+            "bytes": 19549,
+            "duration": 0.5
+          },
+          {
+            "name": "inviteCopy.js",
+            "bytes": 2453,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "Countdown.jsx",
+            "bytes": 16231,
+            "duration": 0.800000011920929
+          },
+          {
+            "name": "wedding.js",
+            "bytes": 1756,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "utils.js",
+            "bytes": 1073,
+            "duration": 0.4000000059604645
+          },
+          {
+            "name": "clsx.js?v=27d798be",
+            "bytes": 898,
+            "duration": 0.5
+          },
+          {
+            "name": "tailwind-merge.js?v=ce0c2d41",
+            "bytes": 61171,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "Timeline.jsx",
+            "bytes": 23526,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "backdrop.jpeg",
+            "bytes": 237060,
+            "duration": 1
+          },
+          {
+            "name": "Ganesh.jpeg",
+            "bytes": 27356,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "bhakti-dhananjay.jpg?v=20250526-v2",
+            "bytes": 1958197,
+            "duration": 2.2000000029802322
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 1412,
+            "duration": 1.9000000059604645
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "EventWearTip.jsx",
+            "bytes": 4714,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "EventIcons.jsx",
+            "bytes": 21500,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "siteContent.js",
+            "bytes": 7764,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "flute.mp3",
+            "bytes": 4572701,
+            "duration": 9
+          },
+          {
+            "name": "GuestGuide.jsx",
+            "bytes": 19627,
+            "duration": 1
+          },
+          {
+            "name": "RSVP.jsx",
+            "bytes": 61161,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "ParticleCanvas.jsx",
+            "bytes": 10921,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "Footer.jsx",
+            "bytes": 11859,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 1836,
+            "duration": 1.199999988079071
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 1.5
+          }
+        ],
+        "links": [
+          {
+            "text": "INVITE",
+            "href": "http://127.0.0.1:5173/#invitation"
+          },
+          {
+            "text": "COUPLE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "EVENTS",
+            "href": "http://127.0.0.1:5173/#timeline"
+          },
+          {
+            "text": "VENUE",
+            "href": "http://127.0.0.1:5173/#guide"
+          },
+          {
+            "text": "RSVP",
+            "href": "http://127.0.0.1:5173/#rsvp"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:5173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9"
+          }
+        ]
+      }
+    }
+  },
+  "checks": {
+    "opened": true,
+    "rsvp": true
+  }
+}

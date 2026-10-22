@@ -1,0 +1,1067 @@
+{
+  "phase": "after",
+  "screens": {
+    "360": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 360,
+        "viewport": 360,
+        "bodyText": "Skip to invitation\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting\n \nthis\n \nnew",
+        "navigation": {
+          "name": "http://127.0.0.1:4173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 27.299999997019768,
+          "navigationId": 1951,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.20000000298023224,
+          "domainLookupStart": 0.20000000298023224,
+          "domainLookupEnd": 0.20000000298023224,
+          "connectStart": 0.20000000298023224,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.20000000298023224,
+          "requestStart": 0.6000000089406967,
+          "responseStart": 1.2999999970197678,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.2999999970197678,
+          "responseEnd": 1.4000000059604645,
+          "transferSize": 1522,
+          "encodedBodySize": 1222,
+          "decodedBodySize": 2915,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 5.299999997019768,
+          "domContentLoadedEventStart": 27.100000008940697,
+          "domContentLoadedEventEnd": 27.100000008940697,
+          "domComplete": 27.299999997019768,
+          "loadEventStart": 27.299999997019768,
+          "loadEventEnd": 27.299999997019768,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "cinzel-decorative-normal-700.woff2",
+            "bytes": 15728,
+            "duration": 3.4000000059604645
+          },
+          {
+            "name": "rolldown-runtime-COnpUsM8.js",
+            "bytes": 1117,
+            "duration": 3.8999999910593033
+          },
+          {
+            "name": "index-CHrXf5Aw.css",
+            "bytes": 10939,
+            "duration": 5
+          },
+          {
+            "name": "framer-motion-Dg6ZO1kM.js",
+            "bytes": 48854,
+            "duration": 9.5
+          },
+          {
+            "name": "index-QpD9pumB.js",
+            "bytes": 79638,
+            "duration": 12.199999988079071
+          },
+          {
+            "name": "lato-normal-400.woff2",
+            "bytes": 14280,
+            "duration": 7.299999997019768
+          },
+          {
+            "name": "Timeline-B27jiTvk.js",
+            "bytes": 2131,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "siteContent-CC0nAlf-.js",
+            "bytes": 1416,
+            "duration": 1.6000000089406967
+          },
+          {
+            "name": "backdrop-vUpDVmLL.jpeg",
+            "bytes": 237060,
+            "duration": 1.6000000089406967
+          },
+          {
+            "name": "Ganesh-D3dQrp6z.jpeg",
+            "bytes": 27356,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 709,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "lato-normal-700.woff2",
+            "bytes": 14468,
+            "duration": 7.300000011920929
+          },
+          {
+            "name": "playfair-display-normal-700.woff2",
+            "bytes": 38760,
+            "duration": 7.200000002980232
+          },
+          {
+            "name": "cormorant-garamond-normal-500.woff2",
+            "bytes": 38076,
+            "duration": 7.200000002980232
+          },
+          {
+            "name": "cormorant-garamond-italic-400.woff2",
+            "bytes": 39604,
+            "duration": 7.200000002980232
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "GuestGuide-BD8e3DdE.js",
+            "bytes": 1761,
+            "duration": 1.5
+          },
+          {
+            "name": "bhakti-dhananjay-560-D9c6ThX5.webp",
+            "bytes": 62122,
+            "duration": 1.199999988079071
+          },
+          {
+            "name": "hold-hands-560-C3FyX_3T.webp",
+            "bytes": 38940,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "RSVP-Bq2O5hOj.js",
+            "bytes": 4655,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "Footer-gCCyUxXI.js",
+            "bytes": 1260,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 890,
+            "duration": 1.4000000059604645
+          },
+          {
+            "name": "playfair-display-normal-500.woff2",
+            "bytes": 38760,
+            "duration": 7.9000000059604645
+          },
+          {
+            "name": "cormorant-garamond-normal-600.woff2",
+            "bytes": 38076,
+            "duration": 7.9000000059604645
+          },
+          {
+            "name": "cormorant-garamond-italic-500.woff2",
+            "bytes": 39604,
+            "duration": 7.899999991059303
+          },
+          {
+            "name": "cinzel-decorative-normal-400.woff2",
+            "bytes": 14720,
+            "duration": 22.69999998807907
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "great-vibes-normal-400.woff2",
+            "bytes": 29896,
+            "duration": 7
+          },
+          {
+            "name": "cormorant-garamond-normal-400.woff2",
+            "bytes": 38076,
+            "duration": 6.9000000059604645
+          },
+          {
+            "name": "playfair-display-normal-900.woff2",
+            "bytes": 38760,
+            "duration": 6.799999997019768
+          }
+        ],
+        "links": [
+          {
+            "text": "Skip to invitation",
+            "href": "http://127.0.0.1:4173/#main"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=Sri+Dharmastala+Manjunatha+Swamy+Kalyana+Mantapa+%C2%B7+Bull+Temple+Road+%C2%B7+Basavanagudi+%C2%B7+Bengaluru"
+          },
+          {
+            "text": "Download calendar file",
+            "href": "http://127.0.0.1:4173/calendar.ics"
+          }
+        ],
+        "vitals": {
+          "lcp": 112,
+          "cls": 0.0802603541906959,
+          "inp": 168
+        }
+      }
+    },
+    "390": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 390,
+        "viewport": 390,
+        "bodyText": "Skip to invitation\nINVITE\nCOUPLE\nEVENTS\nVENUE\nRSVP\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,",
+        "navigation": {
+          "name": "http://127.0.0.1:4173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 24.799999997019768,
+          "navigationId": 6752,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.09999999403953552,
+          "domainLookupStart": 0.09999999403953552,
+          "domainLookupEnd": 0.09999999403953552,
+          "connectStart": 0.09999999403953552,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.09999999403953552,
+          "requestStart": 0.5,
+          "responseStart": 1.2999999970197678,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.2999999970197678,
+          "responseEnd": 1.2999999970197678,
+          "transferSize": 1522,
+          "encodedBodySize": 1222,
+          "decodedBodySize": 2915,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 5.0999999940395355,
+          "domContentLoadedEventStart": 24.69999998807907,
+          "domContentLoadedEventEnd": 24.69999998807907,
+          "domComplete": 24.799999997019768,
+          "loadEventStart": 24.799999997019768,
+          "loadEventEnd": 24.799999997019768,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "cinzel-decorative-normal-700.woff2",
+            "bytes": 15728,
+            "duration": 3
+          },
+          {
+            "name": "rolldown-runtime-COnpUsM8.js",
+            "bytes": 1117,
+            "duration": 3.4000000059604645
+          },
+          {
+            "name": "index-QpD9pumB.js",
+            "bytes": 79638,
+            "duration": 9.799999997019768
+          },
+          {
+            "name": "index-CHrXf5Aw.css",
+            "bytes": 10939,
+            "duration": 3.8999999910593033
+          },
+          {
+            "name": "framer-motion-Dg6ZO1kM.js",
+            "bytes": 48854,
+            "duration": 7.5
+          },
+          {
+            "name": "lato-normal-400.woff2",
+            "bytes": 14280,
+            "duration": 6.799999997019768
+          },
+          {
+            "name": "Timeline-B27jiTvk.js",
+            "bytes": 2131,
+            "duration": 1.5
+          },
+          {
+            "name": "siteContent-CC0nAlf-.js",
+            "bytes": 1416,
+            "duration": 1.3999999910593033
+          },
+          {
+            "name": "backdrop-vUpDVmLL.jpeg",
+            "bytes": 237060,
+            "duration": 1.0999999940395355
+          },
+          {
+            "name": "Ganesh-D3dQrp6z.jpeg",
+            "bytes": 27356,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 709,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "lato-normal-700.woff2",
+            "bytes": 14468,
+            "duration": 8.099999994039536
+          },
+          {
+            "name": "cormorant-garamond-normal-500.woff2",
+            "bytes": 38076,
+            "duration": 8.099999994039536
+          },
+          {
+            "name": "playfair-display-normal-700.woff2",
+            "bytes": 38760,
+            "duration": 8
+          },
+          {
+            "name": "cormorant-garamond-italic-400.woff2",
+            "bytes": 39604,
+            "duration": 8.100000008940697
+          },
+          {
+            "name": "bhakti-dhananjay-560-D9c6ThX5.webp",
+            "bytes": 62122,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "hold-hands-560-C3FyX_3T.webp",
+            "bytes": 38940,
+            "duration": 1
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "GuestGuide-BD8e3DdE.js",
+            "bytes": 1761,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "RSVP-Bq2O5hOj.js",
+            "bytes": 4655,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "Footer-gCCyUxXI.js",
+            "bytes": 1260,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 890,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "playfair-display-normal-500.woff2",
+            "bytes": 38760,
+            "duration": 10.799999997019768
+          },
+          {
+            "name": "cormorant-garamond-normal-600.woff2",
+            "bytes": 38076,
+            "duration": 10.900000005960464
+          },
+          {
+            "name": "cormorant-garamond-italic-500.woff2",
+            "bytes": 39604,
+            "duration": 10.600000008940697
+          },
+          {
+            "name": "cinzel-decorative-normal-400.woff2",
+            "bytes": 14720,
+            "duration": 26.80000001192093
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "great-vibes-normal-400.woff2",
+            "bytes": 29896,
+            "duration": 7.200000002980232
+          },
+          {
+            "name": "cormorant-garamond-normal-400.woff2",
+            "bytes": 38076,
+            "duration": 7.199999988079071
+          },
+          {
+            "name": "playfair-display-normal-900.woff2",
+            "bytes": 38760,
+            "duration": 7
+          }
+        ],
+        "links": [
+          {
+            "text": "Skip to invitation",
+            "href": "http://127.0.0.1:4173/#main"
+          },
+          {
+            "text": "INVITE",
+            "href": "http://127.0.0.1:4173/#invitation"
+          },
+          {
+            "text": "COUPLE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "EVENTS",
+            "href": "http://127.0.0.1:4173/#timeline"
+          },
+          {
+            "text": "VENUE",
+            "href": "http://127.0.0.1:4173/#guide"
+          },
+          {
+            "text": "RSVP",
+            "href": "http://127.0.0.1:4173/#rsvp"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=Sri+Dharmastala+Manjunatha+Swamy+Kalyana+Mantapa+%C2%B7+Bull+Temple+Road+%C2%B7+Basavanagudi+%C2%B7+Bengaluru"
+          },
+          {
+            "text": "Download calendar file",
+            "href": "http://127.0.0.1:4173/calendar.ics"
+          }
+        ],
+        "vitals": {
+          "lcp": 56,
+          "cls": 0.08014578342649277,
+          "inp": 32
+        }
+      }
+    },
+    "768": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 768,
+        "viewport": 768,
+        "bodyText": "Skip to invitation\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,\n \nwe're\n \nstarting\n \nthis\n \nnew",
+        "navigation": {
+          "name": "http://127.0.0.1:4173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 24.399999991059303,
+          "navigationId": 8886,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.20000000298023224,
+          "domainLookupStart": 0.20000000298023224,
+          "domainLookupEnd": 0.20000000298023224,
+          "connectStart": 0.20000000298023224,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.20000000298023224,
+          "requestStart": 0.5,
+          "responseStart": 1.2000000029802322,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.2000000029802322,
+          "responseEnd": 1.2999999970197678,
+          "transferSize": 1522,
+          "encodedBodySize": 1222,
+          "decodedBodySize": 2915,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 5.0999999940395355,
+          "domContentLoadedEventStart": 24.200000002980232,
+          "domContentLoadedEventEnd": 24.200000002980232,
+          "domComplete": 24.399999991059303,
+          "loadEventStart": 24.399999991059303,
+          "loadEventEnd": 24.399999991059303,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "cinzel-decorative-normal-700.woff2",
+            "bytes": 15728,
+            "duration": 2.8999999910593033
+          },
+          {
+            "name": "rolldown-runtime-COnpUsM8.js",
+            "bytes": 1117,
+            "duration": 3
+          },
+          {
+            "name": "framer-motion-Dg6ZO1kM.js",
+            "bytes": 48854,
+            "duration": 6.4000000059604645
+          },
+          {
+            "name": "index-QpD9pumB.js",
+            "bytes": 79638,
+            "duration": 9.300000011920929
+          },
+          {
+            "name": "index-CHrXf5Aw.css",
+            "bytes": 10939,
+            "duration": 3.7999999970197678
+          },
+          {
+            "name": "lato-normal-400.woff2",
+            "bytes": 14280,
+            "duration": 6.699999988079071
+          },
+          {
+            "name": "Timeline-B27jiTvk.js",
+            "bytes": 2131,
+            "duration": 1.7999999970197678
+          },
+          {
+            "name": "siteContent-CC0nAlf-.js",
+            "bytes": 1416,
+            "duration": 1.6000000089406967
+          },
+          {
+            "name": "backdrop-vUpDVmLL.jpeg",
+            "bytes": 237060,
+            "duration": 1
+          },
+          {
+            "name": "Ganesh-D3dQrp6z.jpeg",
+            "bytes": 27356,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 709,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "lato-normal-700.woff2",
+            "bytes": 14468,
+            "duration": 8.200000002980232
+          },
+          {
+            "name": "playfair-display-normal-700.woff2",
+            "bytes": 38760,
+            "duration": 8.099999994039536
+          },
+          {
+            "name": "cormorant-garamond-italic-400.woff2",
+            "bytes": 39604,
+            "duration": 8
+          },
+          {
+            "name": "cormorant-garamond-normal-500.woff2",
+            "bytes": 38076,
+            "duration": 8
+          },
+          {
+            "name": "bhakti-dhananjay-900--vMuJOUT.webp",
+            "bytes": 134638,
+            "duration": 0.9000000059604645
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "GuestGuide-BD8e3DdE.js",
+            "bytes": 1761,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "RSVP-Bq2O5hOj.js",
+            "bytes": 4655,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "Footer-gCCyUxXI.js",
+            "bytes": 1260,
+            "duration": 0.8999999910593033
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 890,
+            "duration": 1.199999988079071
+          },
+          {
+            "name": "playfair-display-normal-500.woff2",
+            "bytes": 38760,
+            "duration": 8.5
+          },
+          {
+            "name": "cormorant-garamond-normal-600.woff2",
+            "bytes": 38076,
+            "duration": 8.5
+          },
+          {
+            "name": "cormorant-garamond-italic-500.woff2",
+            "bytes": 39604,
+            "duration": 8.5
+          },
+          {
+            "name": "cinzel-decorative-normal-400.woff2",
+            "bytes": 14720,
+            "duration": 21.599999994039536
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "great-vibes-normal-400.woff2",
+            "bytes": 29896,
+            "duration": 7
+          },
+          {
+            "name": "cormorant-garamond-normal-400.woff2",
+            "bytes": 38076,
+            "duration": 6.899999991059303
+          },
+          {
+            "name": "playfair-display-normal-900.woff2",
+            "bytes": 38760,
+            "duration": 6.799999997019768
+          }
+        ],
+        "links": [
+          {
+            "text": "Skip to invitation",
+            "href": "http://127.0.0.1:4173/#main"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=Sri+Dharmastala+Manjunatha+Swamy+Kalyana+Mantapa+%C2%B7+Bull+Temple+Road+%C2%B7+Basavanagudi+%C2%B7+Bengaluru"
+          },
+          {
+            "text": "Download calendar file",
+            "href": "http://127.0.0.1:4173/calendar.ics"
+          }
+        ],
+        "vitals": {
+          "lcp": 60,
+          "cls": 0.08007403064626586,
+          "inp": 32
+        }
+      }
+    },
+    "1440": {
+      "status": 200,
+      "overflow": 0,
+      "errors": [],
+      "data": {
+        "width": 1440,
+        "viewport": 1440,
+        "bodyText": "Skip to invitation\nINVITE\nCOUPLE\nEVENTS\nVENUE\nRSVP\n\nSHRI NEERA NARASIMHA PRASANNA\n\nThe Celebration Call\nThe\n \nCelebration\n \nCall\n\nJoin us for the beginning\nJoin\n \nus\n \nfor\n \nthe\n \nbeginning\n\nWith our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy.\nWith\n \nour\n \nfamilies'\n \nblessings,",
+        "navigation": {
+          "name": "http://127.0.0.1:4173/",
+          "entryType": "navigation",
+          "startTime": 0,
+          "duration": 25.200000002980232,
+          "navigationId": 6036,
+          "initiatorType": "navigation",
+          "deliveryType": "",
+          "nextHopProtocol": "http/1.1",
+          "renderBlockingStatus": "non-blocking",
+          "contentType": "text/html",
+          "contentEncoding": "gzip",
+          "workerStart": 0,
+          "workerRouterEvaluationStart": 0,
+          "workerCacheLookupStart": 0,
+          "workerMatchedSourceType": "",
+          "workerFinalSourceType": "",
+          "redirectStart": 0,
+          "redirectEnd": 0,
+          "fetchStart": 0.20000000298023224,
+          "domainLookupStart": 0.20000000298023224,
+          "domainLookupEnd": 0.20000000298023224,
+          "connectStart": 0.20000000298023224,
+          "secureConnectionStart": 0,
+          "connectEnd": 0.20000000298023224,
+          "requestStart": 0.5,
+          "responseStart": 1.1000000089406967,
+          "firstInterimResponseStart": 0,
+          "finalResponseHeadersStart": 1.1000000089406967,
+          "responseEnd": 1.2999999970197678,
+          "transferSize": 1522,
+          "encodedBodySize": 1222,
+          "decodedBodySize": 2915,
+          "responseStatus": 200,
+          "serverTiming": [],
+          "unloadEventStart": 0,
+          "unloadEventEnd": 0,
+          "domInteractive": 5,
+          "domContentLoadedEventStart": 24.900000005960464,
+          "domContentLoadedEventEnd": 25,
+          "domComplete": 25.200000002980232,
+          "loadEventStart": 25.200000002980232,
+          "loadEventEnd": 25.200000002980232,
+          "type": "navigate",
+          "redirectCount": 0,
+          "activationStart": 0,
+          "criticalCHRestart": 0,
+          "notRestoredReasons": null,
+          "confidence": {
+            "randomizedTriggerRate": 0.4994798,
+            "value": "high"
+          }
+        },
+        "resources": [
+          {
+            "name": "cinzel-decorative-normal-700.woff2",
+            "bytes": 15728,
+            "duration": 3
+          },
+          {
+            "name": "rolldown-runtime-COnpUsM8.js",
+            "bytes": 1117,
+            "duration": 3.5999999940395355
+          },
+          {
+            "name": "index-QpD9pumB.js",
+            "bytes": 79638,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "index-CHrXf5Aw.css",
+            "bytes": 10939,
+            "duration": 4.4000000059604645
+          },
+          {
+            "name": "framer-motion-Dg6ZO1kM.js",
+            "bytes": 48854,
+            "duration": 7.9000000059604645
+          },
+          {
+            "name": "lato-normal-400.woff2",
+            "bytes": 14280,
+            "duration": 7.0999999940395355
+          },
+          {
+            "name": "siteContent-CC0nAlf-.js",
+            "bytes": 1416,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "Timeline-B27jiTvk.js",
+            "bytes": 2131,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "backdrop-vUpDVmLL.jpeg",
+            "bytes": 237060,
+            "duration": 1
+          },
+          {
+            "name": "Ganesh-D3dQrp6z.jpeg",
+            "bytes": 27356,
+            "duration": 0.6000000089406967
+          },
+          {
+            "name": "doodle-pattern-elegant.svg",
+            "bytes": 709,
+            "duration": 0.5999999940395355
+          },
+          {
+            "name": "lato-normal-700.woff2",
+            "bytes": 14468,
+            "duration": 7.899999991059303
+          },
+          {
+            "name": "playfair-display-normal-700.woff2",
+            "bytes": 38760,
+            "duration": 7.899999991059303
+          },
+          {
+            "name": "cormorant-garamond-normal-500.woff2",
+            "bytes": 38076,
+            "duration": 8
+          },
+          {
+            "name": "cormorant-garamond-italic-400.woff2",
+            "bytes": 39604,
+            "duration": 8.099999994039536
+          },
+          {
+            "name": "bhakti-dhananjay-900--vMuJOUT.webp",
+            "bytes": 134638,
+            "duration": 1.2000000029802322
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 890,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "GuestGuide-BD8e3DdE.js",
+            "bytes": 1761,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "RSVP-Bq2O5hOj.js",
+            "bytes": 4655,
+            "duration": 1.2999999970197678
+          },
+          {
+            "name": "Footer-gCCyUxXI.js",
+            "bytes": 1260,
+            "duration": 1.1000000089406967
+          },
+          {
+            "name": "doodle-pattern-rsvp.svg",
+            "bytes": 890,
+            "duration": 1.5999999940395355
+          },
+          {
+            "name": "playfair-display-normal-500.woff2",
+            "bytes": 38760,
+            "duration": 10.5
+          },
+          {
+            "name": "cormorant-garamond-normal-600.woff2",
+            "bytes": 38076,
+            "duration": 10.5
+          },
+          {
+            "name": "cormorant-garamond-italic-500.woff2",
+            "bytes": 39604,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "cinzel-decorative-normal-400.woff2",
+            "bytes": 14720,
+            "duration": 26
+          },
+          {
+            "name": "favicon.svg",
+            "bytes": 300,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "great-vibes-normal-400.woff2",
+            "bytes": 29896,
+            "duration": 7.799999997019768
+          },
+          {
+            "name": "cormorant-garamond-normal-400.woff2",
+            "bytes": 38076,
+            "duration": 7.5
+          },
+          {
+            "name": "playfair-display-normal-900.woff2",
+            "bytes": 38760,
+            "duration": 7.700000002980232
+          },
+          {
+            "name": "hold-hands-560-C3FyX_3T.webp",
+            "bytes": 38940,
+            "duration": 1.2999999970197678
+          }
+        ],
+        "links": [
+          {
+            "text": "Skip to invitation",
+            "href": "http://127.0.0.1:4173/#main"
+          },
+          {
+            "text": "INVITE",
+            "href": "http://127.0.0.1:4173/#invitation"
+          },
+          {
+            "text": "COUPLE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "EVENTS",
+            "href": "http://127.0.0.1:4173/#timeline"
+          },
+          {
+            "text": "VENUE",
+            "href": "http://127.0.0.1:4173/#guide"
+          },
+          {
+            "text": "RSVP",
+            "href": "http://127.0.0.1:4173/#rsvp"
+          },
+          {
+            "text": "EXPLORE",
+            "href": "http://127.0.0.1:4173/#couple"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/vyDCL9iZnM9jVQpb9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "View on maps",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Navigate to Venue",
+            "href": "https://maps.app.goo.gl/p7yrs8a2dHogMKHp9"
+          },
+          {
+            "text": "Add to Calendar",
+            "href": "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Bhakti+%26+Dhananjay%2C+Wedding%2C+March+14%2C+2027&dates=20270314%2F20270315&details=https%3A%2F%2Fmaps.app.goo.gl%2Fp7yrs8a2dHogMKHp9&location=Sri+Dharmastala+Manjunatha+Swamy+Kalyana+Mantapa+%C2%B7+Bull+Temple+Road+%C2%B7+Basavanagudi+%C2%B7+Bengaluru"
+          },
+          {
+            "text": "Download calendar file",
+            "href": "http://127.0.0.1:4173/calendar.ics"
+          }
+        ],
+        "vitals": {
+          "lcp": 60,
+          "cls": 0.04728651400519698,
+          "inp": 32
+        }
+      }
+    }
+  },
+  "checks": {
+    "opened": true,
+    "rsvp": true,
+    "calendar_download": true,
+    "venue_links": true,
+    "rsvp_required_name": true,
+    "rsvp_mock_success": true,
+    "skip_animation": true,
+    "reduced_motion_access": true,
+    "no_js_details": true
+  }
+}

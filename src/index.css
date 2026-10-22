@@ -148,7 +148,7 @@
   }
 
   .site-nav-pill {
-    @apply flex min-h-[40px] min-w-0 cursor-pointer items-center justify-center rounded-full px-1 py-2 text-center font-lato text-[0.58rem] font-semibold uppercase tracking-[0.1em] text-primary-deep/85 transition-colors duration-200 sm:px-3 sm:text-[0.65rem] sm:tracking-[0.14em];
+    @apply flex min-h-[44px] min-w-0 cursor-pointer items-center justify-center rounded-full px-1 py-2 text-center font-lato text-[0.65rem] font-semibold uppercase tracking-[0.08em] text-primary-deep/85 transition-colors duration-200 sm:px-3 sm:tracking-[0.14em];
   }
 
   .site-nav-pill--active {
@@ -215,7 +215,24 @@
   }
 
   .timeline-day-card {
-    @apply soft-card relative flex flex-col gap-5 p-5 md:gap-6 md:p-7;
+    @apply relative flex flex-col gap-5 border-b border-gold/35 bg-cream/35 px-5 py-8 md:gap-6 md:px-9 md:py-10;
+    border-left: 1px solid rgba(217, 119, 6, 0.3);
+  }
+
+  .timeline-day-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3.5rem;
+    height: 1px;
+    background: rgba(217, 119, 6, 0.55);
+  }
+
+  .guest-guide-editorial {
+    border-top: 1px solid rgba(217, 119, 6, 0.55);
+    border-bottom: 1px solid rgba(217, 119, 6, 0.55);
+    background: rgba(255, 251, 235, 0.52);
   }
 
   .timeline-day-header {
@@ -231,7 +248,7 @@
   }
 
   .timeline-schedule-panel {
-    @apply rounded-2xl border border-gold/25 bg-sand/50 px-4 py-4 md:px-5 md:py-5;
+    @apply border-l-2 border-gold/40 bg-sand/30 px-4 py-4 md:px-6 md:py-5;
   }
 
   .timeline-schedule-label {
@@ -283,7 +300,7 @@
   }
 
   .timeline-wear-tip-trigger {
-    @apply inline-flex cursor-pointer list-none items-center gap-1 font-lato text-xs font-normal tracking-normal text-stone-500 underline decoration-gold/25 underline-offset-[3px] transition-colors hover:text-stone-700;
+    @apply inline-flex min-h-[44px] cursor-pointer list-none items-center gap-1 font-lato text-xs font-normal tracking-normal text-stone-600 underline decoration-gold/40 underline-offset-[3px] transition-colors hover:text-stone-700;
     list-style: none;
   }
 

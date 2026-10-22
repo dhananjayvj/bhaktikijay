@@ -1,4 +1,4 @@
-import backdropUrl from '../../images/backdrop.jpeg'
+import backdropUrl from '../../images/backdrop.webp'
 import fluteUrl from '../../images/flute.mp3'
 
 export { backdropUrl as backdropImageUrl }
@@ -7,7 +7,7 @@ let started = false
 let fluteAudio = null
 
 /**
- * Warm cache for hero backdrop + ambient flute before wax seal break.
+ * Warm the small hero backdrop before the wax seal break.
  * Safe to call multiple times.
  */
 export function preloadRevealAssets() {
@@ -21,11 +21,6 @@ export function preloadRevealAssets() {
     img.decode().catch(() => {})
   }
 
-  fluteAudio = new Audio(fluteUrl)
-  fluteAudio.preload = 'auto'
-  fluteAudio.loop = true
-  fluteAudio.volume = 0.28
-  fluteAudio.load()
 }
 
 /** Reuse warmed Audio instance after preload (falls back if preload skipped). */
@@ -34,7 +29,7 @@ export function getPreloadedFluteAudio() {
     fluteAudio = new Audio(fluteUrl)
     fluteAudio.loop = true
     fluteAudio.volume = 0.28
-    fluteAudio.preload = 'auto'
+    fluteAudio.preload = 'none'
   }
   return fluteAudio
 }

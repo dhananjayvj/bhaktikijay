@@ -20,8 +20,7 @@ function Dot() {
       <motion.div
         className="absolute left-1/2 top-1/2 z-[1] h-7 w-7 -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/45"
         animate={{ scale: [1, 1.9], opacity: [0.7, 0] }}
-        transition={{ duration: 1.6, repeat: Infinity, ease: 'easeOut' }}
-        style={{ willChange: 'transform' }}
+        transition={{ duration: 1.6, repeat: 2, ease: 'easeOut' }}
       />
     </div>
   )
@@ -39,7 +38,7 @@ const dayCardReveal = {
 const dayListStagger = {
   hidden: {},
   show: {
-    transition: { staggerChildren: 0.14, delayChildren: 0.06 },
+    transition: { staggerChildren: 0.05, delayChildren: 0 },
   },
 }
 

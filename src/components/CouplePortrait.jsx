@@ -1,11 +1,14 @@
 import React, { memo } from 'react'
 import { motion } from 'framer-motion'
-import couplePortrait from '../../images/bhakti-dhananjay.jpg'
+import couplePortraitSmall from '../../images/bhakti-dhananjay-560.webp'
+import couplePortraitLarge from '../../images/bhakti-dhananjay-900.webp'
+import holdingHandsSmall from '../../images/hold-hands-560.webp'
+import holdingHandsLarge from '../../images/hold-hands-1000.webp'
 import { COUPLE_PORTRAIT_VERSION } from '../constants/assetVersions.js'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 
-const portraitSrc = `${couplePortrait}?v=${COUPLE_PORTRAIT_VERSION}`
+const portraitSrc = `${couplePortraitLarge}?v=${COUPLE_PORTRAIT_VERSION}`
 
 function CouplePortrait() {
   return (
@@ -47,14 +50,39 @@ function CouplePortrait() {
               />
               <img
                 src={portraitSrc}
+                srcSet={`${couplePortraitSmall} 560w, ${couplePortraitLarge} 900w`}
+                sizes="(max-width: 640px) calc(100vw - 32px), 768px"
                 alt="Bhakti and Dhananjay"
-                loading="eager"
+                width="900"
+                height="1538"
+                loading="lazy"
                 decoding="async"
-                fetchPriority="high"
                 className="w-full object-cover object-center"
               />
             </div>
           </motion.figure>
+        </RevealItem>
+
+        <RevealItem className="mx-auto mt-14 grid max-w-3xl items-center gap-6 border-y border-gold/35 py-6 text-left md:grid-cols-[1.1fr_0.9fr] md:gap-10 md:py-8">
+          <figure className="overflow-hidden bg-stone-100">
+            <img
+              src={holdingHandsSmall}
+              srcSet={`${holdingHandsSmall} 560w, ${holdingHandsLarge} 1000w`}
+              sizes="(max-width: 767px) calc(100vw - 48px), 430px"
+              width="1000"
+              height="1366"
+              alt="Bhakti and Dhananjay holding hands"
+              loading="lazy"
+              decoding="async"
+              className="h-full max-h-[28rem] w-full object-cover object-[center_72%]"
+            />
+          </figure>
+          <div className="px-2 text-center md:text-left">
+            <p className="section-eyebrow">A quiet moment</p>
+            <p className="mt-3 font-cormorant text-2xl italic leading-snug text-primary-deep md:text-3xl">
+              Hand in hand, with all of you beside us.
+            </p>
+          </div>
         </RevealItem>
       </div>
     </SectionReveal>

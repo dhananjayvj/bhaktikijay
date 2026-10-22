@@ -1,9 +1,9 @@
 import React, { memo, Suspense, useEffect, useRef, useState } from 'react'
 import Hero from './Hero.jsx'
-import CouplePortrait from './CouplePortrait.jsx'
 import SparkleLayer from './SparkleLayer.jsx'
 import LazySection from './LazySection.jsx'
 
+const CouplePortrait = React.lazy(() => import('./CouplePortrait.jsx'))
 const Timeline = React.lazy(() => import('./Timeline.jsx'))
 const GuestGuide = React.lazy(() => import('./GuestGuide.jsx'))
 const RSVP = React.lazy(() => import('./RSVP.jsx'))
@@ -22,22 +22,23 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
   return (
     <main id="main" ref={mainCardRef} className="relative z-[2]">
       <Hero inviteRevealed={inviteRevealed} textActive={textActive} />
-      <CouplePortrait />
-
-      <Suspense fallback={null}>
-        <LazySection>
-          <Timeline />
-        </LazySection>
-        <LazySection>
-          <GuestGuide />
-        </LazySection>
-        <LazySection>
-          <RSVP />
-        </LazySection>
-        <LazySection>
-          <Footer />
-        </LazySection>
-      </Suspense>
+      {inviteRevealed ? (
+        <Suspense fallback={null}>
+          <CouplePortrait />
+          <LazySection>
+            <Timeline />
+          </LazySection>
+          <LazySection>
+            <GuestGuide />
+          </LazySection>
+          <LazySection>
+            <RSVP />
+          </LazySection>
+          <LazySection>
+            <Footer />
+          </LazySection>
+        </Suspense>
+      ) : null}
 
       <SparkleLayer containerRef={mainCardRef} disabled={sparklesDisabled || !sparklesEnabled} />
     </main>

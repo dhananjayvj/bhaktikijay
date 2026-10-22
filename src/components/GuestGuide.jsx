@@ -37,7 +37,7 @@ function GuestGuide() {
       text: GUEST_GUIDE.calendar.text,
       dates: GUEST_GUIDE.calendar.dates,
       details: GUEST_GUIDE.mapsHref,
-      location: GUEST_GUIDE.mapsHref,
+      location: GUEST_GUIDE.address,
     })
     return `https://calendar.google.com/calendar/render?${params.toString()}`
   }, [])
@@ -50,13 +50,13 @@ function GuestGuide() {
       <SectionDoodleBackdrop variant="mint" />
       <div className="mx-auto max-w-5xl relative z-[1]">
         <RevealItem>
-          <motion.article className="soft-card p-5 md:p-8" whileHover={{ y: -3 }} transition={springGentle}>
+          <motion.article className="guest-guide-editorial p-5 md:p-8">
             <div className="text-center">
               <p className="section-eyebrow">{GUEST_GUIDE.eyebrow}</p>
               <h2 className="section-display mt-2">{GUEST_GUIDE.title}</h2>
             </div>
 
-            <div className="mt-6 rounded-xl border border-gold/25 bg-cream/70 px-4 py-4 md:px-5">
+            <div className="mt-8 border-y border-gold/35 px-1 py-6 md:px-8">
               <p className="meta-stationery">{GUEST_GUIDE.proTipLabel}</p>
               <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">
                 {GUEST_GUIDE.proTip}
@@ -102,6 +102,9 @@ function GuestGuide() {
                 Add to Calendar
               </GuideCTA>
             </div>
+            <a href="/calendar.ics" download="bhakti-dhananjay-wedding.ics" className="mt-5 inline-flex min-h-11 items-center font-lato text-sm font-semibold text-primary-deep underline decoration-gold underline-offset-4">
+              Download calendar file
+            </a>
           </motion.article>
         </RevealItem>
       </div>

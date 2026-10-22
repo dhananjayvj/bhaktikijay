@@ -7,8 +7,6 @@ import { playSealBreakFeedback } from '../utils/sealFeedback.js'
 import { BLESSINGS_LOADED_TOAST } from '../constants/quirkyCopy.js'
 import ganeshImg from '../../images/Ganesh.jpeg'
 
-const noiseSvg = `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E")`
-
 function CurtainOrnament({ side }) {
   const flip = side === 'right'
   return (
@@ -173,13 +171,6 @@ function CurtainPaper({ side, children }) {
     >
       <CurtainOrnament side={side} />
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.38] mix-blend-multiply"
-        style={{
-          backgroundImage: noiseSvg,
-          backgroundSize: '140px 140px',
-        }}
-      />
-      <div
         className="pointer-events-none absolute inset-0 opacity-[0.2]"
         style={{
           backgroundImage:
@@ -270,7 +261,7 @@ function CurtainReveal({ phase, onSealPress, curtainProgress }) {
       </div>
 
       <p
-        className={`relative z-[4] shrink-0 py-3 text-center font-cormorant text-sm italic tracking-[0.2em] text-white/70 sm:py-4 ${
+        className={`relative z-[4] shrink-0 py-3 text-center font-serif text-sm italic tracking-[0.2em] text-white/80 sm:py-4 ${
           idle ? 'opacity-100' : 'pointer-events-none opacity-0'
         } transition-opacity duration-[400ms]`}
       >
@@ -376,6 +367,13 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
     onClose()
   }
 
+  const skipReveal = () => {
+    curtainAnimRef.current?.stop()
+    onHeroShellStart?.()
+    onHeroTextStart?.()
+    finishAndClose()
+  }
+
   const tapTarget = phase === 'closed' || phase === 'opening'
   const ganeshOpacity = phase === 'handoff' ? 0 : phase === 'opening' || phase === 'open' ? 1 : 0
 
@@ -392,6 +390,13 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
         if (phase === 'handoff') finishAndClose()
       }}
     >
+      <button
+        type="button"
+        onClick={skipReveal}
+        className="absolute right-4 top-[max(1rem,env(safe-area-inset-top))] z-[60] min-h-11 rounded-full border border-gold/50 bg-invite-night px-4 font-lato text-xs font-semibold tracking-wide text-white hover:bg-invite-night-mid"
+      >
+        Skip animation
+      </button>
       <SpotlightVignette hidden={false} curtainProgress={curtainProgress} />
 
       <motion.div

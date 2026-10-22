@@ -6,7 +6,7 @@ import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
 import { easeOutCubic, gpuLayerStyle } from '../constants/motion.js'
 
 const BACKDROP_MOUNT_DELAY_MS = 50
-const BACKDROP_FADE_SEC = 3
+const BACKDROP_FADE_SEC = 0.7
 
 const heroShellClass =
   'relative z-[2] mx-auto flex w-full max-w-5xl flex-col items-center px-4 pb-[max(2rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] text-center sm:px-6 sm:pb-16 sm:pt-10 md:px-12 md:pb-24 md:pt-14'
@@ -33,7 +33,6 @@ function HeroParchmentLayers({ backdropOn }) {
               backgroundImage: `url(${backdropImageUrl})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              willChange: 'opacity',
             }}
           />
           <div className="absolute inset-0 bg-[#faf6ef]/55 sm:bg-[#faf6ef]/25" />

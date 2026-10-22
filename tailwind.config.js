@@ -45,7 +45,6 @@ module.exports = {
         cinzel: ['"Cinzel Decorative"', 'Georgia', 'serif'],
         lato: ['"Lato"', 'system-ui', 'sans-serif'],
         script: ['"Great Vibes"', 'cursive'],
-        hand: ['Caveat', 'cursive'],
       },
       fontSize: {
         'display-sm': ['clamp(1.75rem, 4vw, 2.25rem)', { lineHeight: '1.12', letterSpacing: '0.04em' }],

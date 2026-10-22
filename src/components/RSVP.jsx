@@ -132,7 +132,6 @@ export default function RSVP() {
     if (!name.trim()) return
     setSubmitError('')
     setSubmitState('submitting')
-    setParticleTriggerId((v) => v + 1)
     const tags = selected.length ? selectedEventLabels(selected).join(', ') : ''
     setEventTags(tags)
 
@@ -171,12 +170,13 @@ export default function RSVP() {
       }
 
       setSubmitState('success')
+      setSubmitted(true)
+      setParticleTriggerId((v) => v + 1)
     } catch (err) {
       setSubmitState('error')
       setSubmitError('Could not submit right now. Please try again in a moment.')
     }
 
-    setSubmitted(true)
   }
 
   return (
@@ -339,7 +339,7 @@ export default function RSVP() {
                           whileTap={{ scale: 0.94 }}
                           transition={springSnappy}
                           className={[
-                            'rounded-full border px-4 py-2 font-lato text-sm font-medium transition-colors',
+                            'min-h-11 rounded-full border px-4 py-2 font-lato text-sm font-medium transition-colors',
                             active
                               ? 'border-gold-light bg-gold-light text-brown shadow-md'
                               : 'border-cream/35 bg-black/15 text-cream hover:border-gold-light/60 hover:bg-black/25',
@@ -353,6 +353,7 @@ export default function RSVP() {
                 </motion.div>
 
                 <motion.div variants={formField} className="mt-7">
+                  {submitState === 'error' ? <p role="alert" className="mb-3 text-left font-lato text-sm text-gold-light">{submitError}</p> : null}
                   <motion.button
                     type="submit"
                     whileHover={{ y: -4, scale: 1.02 }}

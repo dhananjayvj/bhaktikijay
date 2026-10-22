@@ -8,11 +8,12 @@ import RevealAssetPreloader from './components/RevealAssetPreloader.jsx'
 import AmbientFlute from './components/AmbientFlute.jsx'
 
 export default function App() {
-  const [overlayOpen, setOverlayOpen] = useState(true)
+  const reduceMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const [overlayOpen, setOverlayOpen] = useState(!reduceMotion)
   /** Step 3 shell: fade in hero background while Ganesh fades out. */
-  const [heroShell, setHeroShell] = useState(false)
+  const [heroShell, setHeroShell] = useState(reduceMotion)
   /** Heavy typography mounts only after the Ganesh fade completes. */
-  const [heroText, setHeroText] = useState(false)
+  const [heroText, setHeroText] = useState(reduceMotion)
   /** Start audio immediately on seal interaction / Ganesh reveal. */
   const [fluteActive, setFluteActive] = useState(false)
 

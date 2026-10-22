@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
+import './fonts.css'
 import './index.css'
 
 // Defensive cleanup: if legacy static HTML is accidentally still present in the DOM,
@@ -38,6 +39,7 @@ for (const scriptEl of Array.from(document.head.querySelectorAll('script, script
 const keepBodyTags = new Set(['SCRIPT', 'STYLE', 'LINK', 'NOSCRIPT', 'META'])
 for (const child of Array.from(document.body.children)) {
   if (child === existingRoot) continue
+  if (child.classList?.contains('skip-link')) continue
   if (keepBodyTags.has(child.tagName)) continue
   child.remove()
 }
