@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { TextReveal } from '@/components/ui/text-reveal.jsx'
 import KolamWaveDivider from './KolamWaveDivider.jsx'
 import Countdown from './Countdown.jsx'
 import {
@@ -19,8 +18,8 @@ import { heroStaggerContainer, heroStaggerItem } from '../constants/motion.js'
 export default function InviteHeroCopy({ variant = 'full' }) {
   const envelope = variant === 'envelope'
 
-  const gridGap = envelope ? 'gap-y-2 sm:gap-y-2.5' : 'gap-y-4 sm:gap-y-6'
-  const blockGap = envelope ? 'gap-2 sm:gap-2.5' : 'gap-3 sm:gap-5'
+  const gridGap = envelope ? 'gap-y-2 sm:gap-y-2.5' : 'gap-y-5 sm:gap-y-7'
+  const blockGap = envelope ? 'gap-2 sm:gap-2.5' : 'gap-2 sm:gap-3'
   const parentClass = envelope
     ? 'invite-hero-parent mx-auto max-w-[22rem] text-[clamp(0.72rem,2.2vw,0.88rem)]'
     : 'invite-hero-parent w-full text-pretty'
@@ -38,38 +37,18 @@ export default function InviteHeroCopy({ variant = 'full' }) {
 
   return (
     <Root
-      className={`mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] text-center ${gridGap} ${
+      className={`mx-auto grid w-full max-w-5xl grid-rows-[auto_auto_auto] text-center ${envelope ? '' : 'hero-copy'} ${gridGap} ${
         envelope ? 'px-2' : 'px-1 sm:px-0'
       }`}
       {...rootProps}
     >
       <Block className={`relative z-[2] flex w-full flex-col items-center ${blockGap}`} {...blockProps}>
-        <div className={`w-full ${envelope ? '' : 'md:mt-1'}`}>
-          <KolamWaveDivider compact animateIn={!envelope} />
-        </div>
+        {envelope ? <KolamWaveDivider compact /> : <div className="hero-fine-rule" aria-hidden="true" />}
         {!envelope ? (
           <>
             <p className="invite-hero-blessing px-1">{INVITE_BLESSING}</p>
-            <TextReveal
-              as="h1"
-              className="invite-hero-title px-1"
-              delay={0}
-              per="word"
-              preset="fade-in-blur"
-              speedReveal={1.2}
-            >
-              {INVITE_HEADER}
-            </TextReveal>
-            <TextReveal
-              as="p"
-              className="invite-hero-tagline px-1"
-              delay={0.28}
-              per="word"
-              preset="slide"
-              speedReveal={1.4}
-            >
-              {INVITE_TAGLINE}
-            </TextReveal>
+            <p className="invite-hero-title px-1">{INVITE_HEADER}</p>
+            <p className="invite-hero-tagline px-1">{INVITE_TAGLINE}</p>
           </>
         ) : (
           <div className="invite-hero-meta px-1">
@@ -82,18 +61,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
           <p className="invite-hero-body mx-auto max-w-[34ch] px-1 text-[clamp(0.8rem,2.6vw,0.95rem)] leading-relaxed italic">
             {INVITE_OPENING_VERSE}
           </p>
-        ) : (
-          <TextReveal
-            as="p"
-            className="invite-hero-body mx-auto w-full max-w-xl px-3 text-pretty sm:px-2"
-            delay={0.52}
-            per="word"
-            preset="fade"
-            speedReveal={1.6}
-          >
-            {INVITE_OPENING_VERSE}
-          </TextReveal>
-        )}
+        ) : null}
       </Block>
 
       <Block
@@ -102,12 +70,12 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         }`}
         {...blockProps}
       >
-        <div className="invite-couple-grid w-full max-w-4xl px-1 sm:px-2">
+        {!envelope ? <h1 className="sr-only">Bhakti and Dhananjay</h1> : null}
+        <div className="invite-couple-grid w-full max-w-4xl px-1 sm:px-2" aria-hidden={!envelope}>
           <div className="invite-couple-column">
             <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
               Bhakti
             </div>
-            <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
           </div>
 
           <div className="invite-couple-amp-cell" aria-hidden="true">
@@ -120,9 +88,17 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
               Dhananjay
             </div>
-            <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
           </div>
         </div>
+        <div className="invite-family-grid">
+          <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
+          <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
+        </div>
+        {!envelope ? (
+          <p className="invite-hero-body mx-auto w-full max-w-xl px-3 text-pretty sm:px-2">
+            {INVITE_OPENING_VERSE}
+          </p>
+        ) : null}
       </Block>
 
       <Block
@@ -134,16 +110,9 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             {INVITE_CELEBRATION}
           </p>
         ) : (
-          <TextReveal
-            as="p"
-            className="invite-hero-celebration mx-auto w-full max-w-lg px-2 text-pretty sm:px-0"
-            delay={0.18}
-            per="word"
-            preset="fade-in-blur"
-            speedReveal={1.3}
-          >
+          <p className="invite-hero-celebration mx-auto w-full max-w-lg px-2 text-pretty sm:px-0">
             {INVITE_CELEBRATION}
-          </TextReveal>
+          </p>
         )}
         <div
           className={
