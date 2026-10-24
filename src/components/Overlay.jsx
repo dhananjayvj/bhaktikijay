@@ -1,6 +1,5 @@
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import ganeshImg from '../../images/Ganesh.jpeg'
-import monogramImg from '../../images/bd-monogram-seal.webp'
 import { playSealBreakFeedback } from '../utils/sealFeedback.js'
 
 function WaxMonogram() {
@@ -22,7 +21,7 @@ function WaxMonogram() {
       <circle cx="60" cy="59" r="43" fill="none" stroke="#b4787b" strokeOpacity=".52" strokeWidth="1.25" />
       <circle cx="60" cy="59" r="39" fill="none" stroke="#3d1720" strokeOpacity=".45" strokeWidth="1" />
       <path d="M20 45c5-16 17-27 32-29" fill="none" stroke="#e0a7a0" strokeOpacity=".3" strokeWidth="1.4" strokeLinecap="round" />
-      <image className="atelier-seal-monogram" href={monogramImg} x="20" y="27" width="80" height="65" />
+      <image className="atelier-seal-monogram" href="/images/bd-heart-monogram.webp" x="25" y="27" width="70" height="65" />
       <circle cx="60" cy="13" r="1.3" fill="#bd9080" opacity=".8" />
       <circle cx="60" cy="105" r="1.3" fill="#bd9080" opacity=".7" />
     </svg>
