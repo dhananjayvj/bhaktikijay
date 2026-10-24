@@ -5,6 +5,7 @@ import LazySection from './LazySection.jsx'
 
 const CouplePortrait = React.lazy(() => import('./CouplePortrait.jsx'))
 const Timeline = React.lazy(() => import('./Timeline.jsx'))
+const HandsInterlude = React.lazy(() => import('./HandsInterlude.jsx'))
 const GuestGuide = React.lazy(() => import('./GuestGuide.jsx'))
 const RSVP = React.lazy(() => import('./RSVP.jsx'))
 const Footer = React.lazy(() => import('./Footer.jsx'))
@@ -27,6 +28,9 @@ function MainPageContent({ inviteRevealed, textActive = false, sparklesDisabled 
           <CouplePortrait />
           <LazySection>
             <Timeline />
+          </LazySection>
+          <LazySection>
+            <HandsInterlude />
           </LazySection>
           <LazySection>
             <GuestGuide />

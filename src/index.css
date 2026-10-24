@@ -732,16 +732,6 @@
     font-size: clamp(1.25rem, 4vw, 1.75rem);
   }
 
-  .invite-family-grid {
-    display: grid;
-    width: 100%;
-    max-width: 43rem;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem 3rem;
-    margin-top: 0.65rem;
-    text-align: center;
-  }
-
   .invite-countdown-intro {
     @apply invite-hero-ink font-lato text-[10px] font-semibold uppercase tracking-[0.26em];
   }
@@ -812,10 +802,8 @@
       padding-top: 0;
     }
 
-    .invite-family-grid {
-      grid-template-columns: 1fr;
+    .invite-couple-column {
       gap: 0.2rem;
-      margin-top: 0.5rem;
     }
 
     .hero-copy .invite-hero-body {

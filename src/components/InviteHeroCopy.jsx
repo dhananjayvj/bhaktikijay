@@ -76,6 +76,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
               Bhakti
             </div>
+            <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
           </div>
 
           <div className="invite-couple-amp-cell" aria-hidden="true">
@@ -88,11 +89,8 @@ export default function InviteHeroCopy({ variant = 'full' }) {
             <div className={envelope ? 'invite-couple-name invite-couple-name--envelope' : 'invite-couple-name'}>
               Dhananjay
             </div>
+            <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
           </div>
-        </div>
-        <div className="invite-family-grid">
-          <p className={parentClass}>{BHAKTI_PARENT_LINE}</p>
-          <p className={parentClass}>{DHANANJAY_PARENT_LINE}</p>
         </div>
         {!envelope ? (
           <p className="invite-hero-body mx-auto w-full max-w-xl px-3 text-pretty sm:px-2">
