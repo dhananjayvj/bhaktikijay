@@ -17,6 +17,9 @@ function HandsInterlude() {
           decoding="async"
           className="block h-auto w-full"
         />
+        <figcaption className="px-2 pb-2 pt-4 text-center font-cormorant text-xl italic leading-snug text-primary-deep">
+          Here’s to all the moments we’ll share together.
+        </figcaption>
       </figure>
     </section>
   )

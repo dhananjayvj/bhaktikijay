@@ -14,7 +14,7 @@ export const CELEBRATION_DAYS = [
       {
         name: 'Haldi',
         time: '3:30 PM',
-        wearTip: "Yellow clothes you don't mind getting destroyed.",
+        wearTip: "Wear yellow and choose something you don't mind getting a little turmeric on.",
       },
       {
         name: 'Mehendi',
@@ -37,7 +37,7 @@ export const CELEBRATION_DAYS = [
       {
         name: 'Sangeet',
         time: '7:00 PM',
-        wearTip: 'Comfortable shoes for non-stop dancing - no heels that bite!',
+        wearTip: 'Comfortable shoes for a whole evening of dancing.',
       },
     ],
     mapsHref: MAPS_KALYANA,
