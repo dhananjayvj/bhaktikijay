@@ -69,6 +69,7 @@ function DayCard({ day, index }) {
       <div className="timeline-day-meta">
         <p className="timeline-meta-label">Venue</p>
         <p className="timeline-venue">{day.venue}</p>
+        <p className="timeline-venue-address">{day.address}</p>
       </div>
 
       <a
@@ -80,7 +81,7 @@ function DayCard({ day, index }) {
         className="timeline-maps-link"
       >
         <PinIcon size={18} />
-        <span>View on maps</span>
+        <span>Directions</span>
       </a>
 
       <span className="sr-only">{`Celebration day ${index + 1}`}</span>
@@ -103,7 +104,7 @@ function Timeline() {
 
       <div className="relative z-[1] mx-auto max-w-5xl">
         <RevealItem className="text-center">
-          <p className="section-eyebrow">Mar 11 to 14, 2027</p>
+          <p className="section-eyebrow">11, 13 &amp; 14 March 2027</p>
           <div ref={headerRef}>
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
@@ -124,7 +125,7 @@ function Timeline() {
             className="absolute left-3 top-2 bottom-2 w-px md:left-8 md:w-[2px]"
             style={{
               background:
-                'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(217,119,6,0.45) 18%, rgba(15,118,110,0.8) 50%, rgba(217,119,6,0.35) 70%, rgba(0,0,0,0) 100%)',
+                'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(174,138,104,0.5) 18%, rgba(99,53,58,0.65) 50%, rgba(174,138,104,0.4) 70%, rgba(0,0,0,0) 100%)',
             }}
           />
 

@@ -1,6 +1,5 @@
 import React, { memo, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import Toast from './Toast.jsx'
 import InviteHeroCopy from './InviteHeroCopy.jsx'
 import { backdropImageUrl } from '../utils/preloadRevealAssets.js'
 import { easeOutCubic, gpuLayerStyle } from '../constants/motion.js'
@@ -43,8 +42,6 @@ function HeroParchmentLayers({ backdropOn }) {
 }
 
 function Hero({ inviteRevealed = false, textActive = false }) {
-  const [toastOpen, setToastOpen] = useState(false)
-  const [toastMsg, setToastMsg] = useState('Copied!')
   const [backdropOn, setBackdropOn] = useState(false)
   const [compositeActive, setCompositeActive] = useState(true)
 
@@ -91,7 +88,6 @@ function Hero({ inviteRevealed = false, textActive = false }) {
             transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
             onAnimationComplete={() => setCompositeActive(false)}
           >
-            <Toast message={toastMsg} open={toastOpen} onClose={() => setToastOpen(false)} />
             {textActive ? (
               <div className="w-full max-w-5xl">
                 <InviteHeroCopy variant="full" />

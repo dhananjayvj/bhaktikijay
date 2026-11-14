@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
@@ -12,11 +12,11 @@ import {
   springGentle,
   springSnappy,
 } from '../constants/motion.js'
-import { GUEST_PASS_TITLE, RSVP_LOADING_JOKES } from '../constants/quirkyCopy.js'
+import { GUEST_PASS_TITLE } from '../constants/quirkyCopy.js'
 
 const EVENT_GROUPS = [
   { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
-  { key: 'sangeet-baraat', label: 'Sangeet & Baraat', events: ['Sangeet', 'Baraat'] },
+  { key: 'sangeet-baraat', label: 'Baraat & Sangeet', events: ['Baraat', 'Sangeet'] },
   { key: 'muhurtham-reception', label: 'Muhurtham & Reception', events: ['Muhurtham', 'Reception'] },
 ]
 
@@ -35,8 +35,7 @@ const DEFAULT_RSVP_ENDPOINT =
   'https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec'
 
 function AdmissionCard({ name, guests, guestNames, eventTags, message, songRequest }) {
-  const eventsDisplay =
-    eventTags.trim() || 'We’ll share the full schedule with you closer to the date.'
+  const eventsDisplay = eventTags.trim() || 'The full celebration schedule is above.'
   return (
     <motion.div
       className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl border-2 border-gold/75 bg-gradient-to-b from-cream via-cream to-invite-blush/35 px-6 py-8 text-center shadow-premium-lg"
@@ -96,7 +95,7 @@ export default function RSVP() {
   const [submitState, setSubmitState] = useState('idle') // idle | submitting | success | error
   const [submitError, setSubmitError] = useState('')
   const [nameTouched, setNameTouched] = useState(false)
-  const [loadingJokeIndex, setLoadingJokeIndex] = useState(0)
+  const submittingRef = useRef(false)
 
   const selectedSet = useMemo(() => new Set(selected), [selected])
   const showGuestNames = guests !== '1'
@@ -104,17 +103,6 @@ export default function RSVP() {
   useEffect(() => {
     if (guests === '1') setGuestNames('')
   }, [guests])
-
-  useEffect(() => {
-    if (submitState !== 'submitting') {
-      setLoadingJokeIndex(0)
-      return undefined
-    }
-    const interval = window.setInterval(() => {
-      setLoadingJokeIndex((i) => (i + 1) % RSVP_LOADING_JOKES.length)
-    }, 1400)
-    return () => window.clearInterval(interval)
-  }, [submitState])
 
   const toggleEvent = (key) => {
     setSelected((prev) => {
@@ -129,7 +117,8 @@ export default function RSVP() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    if (!name.trim()) return
+    if (!name.trim() || submittingRef.current) return
+    submittingRef.current = true
     setSubmitError('')
     setSubmitState('submitting')
     const tags = selected.length ? selectedEventLabels(selected).join(', ') : ''
@@ -150,31 +139,24 @@ export default function RSVP() {
     try {
       const body = JSON.stringify(payload)
 
-      /**
-       * Apps Script Web Apps usually don't return CORS headers.
-       * `sendBeacon` is the most reliable way to POST cross-origin without CORS.
-       */
-      const sent =
-        typeof navigator !== 'undefined' && typeof navigator.sendBeacon === 'function'
-          ? navigator.sendBeacon(endpoint, new Blob([body], { type: 'text/plain;charset=utf-8' }))
-          : false
-
-      if (!sent) {
-        const res = await fetch(endpoint, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body,
-        })
-        if (res.type !== 'opaque' && !res.ok) throw new Error(`Request failed (${res.status})`)
-      }
+      // Apps Script returns an opaque response without CORS headers. Waiting for
+      // fetch still lets us catch network failures before showing the sent state.
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        mode: 'no-cors',
+        keepalive: true,
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body,
+      })
+      if (res.type !== 'opaque' && !res.ok) throw new Error(`Request failed (${res.status})`)
 
       setSubmitState('success')
       setSubmitted(true)
       setParticleTriggerId((v) => v + 1)
     } catch (err) {
+      submittingRef.current = false
       setSubmitState('error')
-      setSubmitError('Could not submit right now. Please try again in a moment.')
+      setSubmitError('We couldn’t send your RSVP. Please check your connection and try again.')
     }
 
   }
@@ -199,7 +181,7 @@ export default function RSVP() {
           <h2 className="section-display-on-dark mt-2">RSVP</h2>
         </RevealItem>
         <RevealItem className="section-lead-on-dark mt-1">
-          Please reply by <span className="font-semibold text-gold-light">March 1st, 2027</span> so we can plan with care. ;)
+          Please reply by <span className="font-semibold text-gold-light">1 March 2027</span> so we can prepare for you.
         </RevealItem>
 
         <RevealItem variant="scale" className="relative mt-10 soft-panel-dark p-5 md:p-8">
@@ -271,7 +253,7 @@ export default function RSVP() {
                       exit={{ opacity: 0, height: 0, marginTop: 0 }}
                       className="mt-4 overflow-hidden"
                     >
-                    <label className="mb-1.5 block text-left meta-stationery-on-dark">
+                    <label htmlFor="rsvp-guest-names" className="mb-1.5 block text-left meta-stationery-on-dark">
                       Guest names <span className="font-normal normal-case text-cream/75">(optional)</span>
                     </label>
                     <textarea
@@ -365,9 +347,7 @@ export default function RSVP() {
                       submitState === 'submitting' ? 'opacity-75' : '',
                     ].join(' ')}
                   >
-                    {submitState === 'submitting'
-                      ? RSVP_LOADING_JOKES[loadingJokeIndex]
-                      : 'Submit RSVP'}
+                    {submitState === 'submitting' ? 'Sending your RSVP…' : 'Submit RSVP'}
                   </motion.button>
                 </motion.div>
               </motion.form>
@@ -393,7 +373,7 @@ export default function RSVP() {
                 </p>
                 {submitState === 'success' ? (
                   <p className="mt-3 font-lato text-cream/75 text-xs">
-                    Submitted.
+                    Your RSVP has been sent.
                   </p>
                 ) : submitState === 'error' ? (
                   <p className="mt-3 font-lato text-cream/85 text-xs">

@@ -5,6 +5,36 @@ import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import { GUEST_GUIDE } from '../constants/siteContent.js'
 import { springGentle } from '../constants/motion.js'
 
+const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
+const MARCH_2027_DAYS = Array.from({ length: 31 }, (_, index) => index + 1)
+const MAP_PREVIEW_URL = `https://www.google.com/maps?q=${encodeURIComponent('Sri Dharmastala Manjunatha Swamy Kalyana Mantapa, Bull Temple Road, Basavanagudi, Bengaluru')}&z=16&output=embed`
+
+function WeddingCalendar() {
+  return (
+    <div className="guide-calendar" aria-label="March 2027 calendar">
+      <p className="meta-stationery">The wedding month</p>
+      <h3 className="guide-calendar-title">March <span>2027</span></h3>
+      <ol className="guide-calendar-grid" aria-label="March 2027 dates">
+        {WEEKDAYS.map((day, index) => (
+          <li key={`weekday-${index}`} className="guide-calendar-weekday" aria-hidden="true">{day}</li>
+        ))}
+        <li aria-hidden="true" />
+        {MARCH_2027_DAYS.map((day) => (
+          <li key={day} className={day === 14 ? 'guide-calendar-day guide-calendar-day--wedding' : 'guide-calendar-day'}>
+            <time dateTime={`2027-03-${String(day).padStart(2, '0')}`} aria-label={day === 14 ? 'Wedding day, Sunday 14 March 2027' : undefined}>{day}</time>
+            {day === 14 && (
+              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <path d="M22 39C16.8 35.1 5 27 5 17.2 5 11.4 9.2 7 15 7c3.2 0 5.8 1.7 7 4.1C23.2 8.7 25.8 7 29 7c5.8 0 10 4.4 10 10.2C39 27 27.2 35.1 22 39Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+      <p className="guide-calendar-caption">14 March · Our wedding day</p>
+    </div>
+  )
+}
+
 function GuideCTA({ href, children, variant }) {
   const className =
     variant === 'filled'
@@ -17,8 +47,8 @@ function GuideCTA({ href, children, variant }) {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      whileHover={{ y: -4, scale: 1.05 }}
-      whileTap={{ scale: 0.96 }}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.98 }}
       transition={springGentle}
       className={[
         'inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-8 py-4 font-lato text-sm font-semibold',
@@ -37,7 +67,7 @@ function GuestGuide() {
       text: GUEST_GUIDE.calendar.text,
       dates: GUEST_GUIDE.calendar.dates,
       details: GUEST_GUIDE.mapsHref,
-      location: GUEST_GUIDE.address,
+      location: `${GUEST_GUIDE.venueName}, ${GUEST_GUIDE.venueAddress.replaceAll(' · ', ', ')}`,
     })
     return `https://calendar.google.com/calendar/render?${params.toString()}`
   }, [])
@@ -56,30 +86,23 @@ function GuestGuide() {
               <h2 className="section-display mt-2">{GUEST_GUIDE.title}</h2>
             </div>
 
-            <div className="mt-8 border-y border-gold/35 px-1 py-6 md:px-8">
-              <p className="meta-stationery">{GUEST_GUIDE.proTipLabel}</p>
-              <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">
-                {GUEST_GUIDE.proTip}
-              </p>
-
-              {GUEST_GUIDE.trafficTip ? (
-                <div className="guide-traffic-aside mt-5 border-t border-gold/15 pt-4">
-                  <p className="font-cormorant text-sm font-medium italic leading-relaxed text-stone-600">
-                    {GUEST_GUIDE.trafficTip.mapsEstimate}
-                  </p>
-                  <p className="mt-1 font-cormorant text-sm font-medium italic leading-relaxed text-stone-600">
-                    {GUEST_GUIDE.trafficTip.reality}
-                  </p>
-                  <p className="mt-2 font-cormorant text-sm font-medium italic leading-relaxed text-stone-500">
-                    {GUEST_GUIDE.trafficTip.recommendation}
-                  </p>
-                </div>
-              ) : null}
+            <div className="mt-8 text-center">
+              <h3 className="guide-venue-name">{GUEST_GUIDE.venueName}</h3>
+              <p className="guide-venue-address">{GUEST_GUIDE.venueAddress}</p>
             </div>
 
-            <p className="mt-6 text-center font-cormorant text-[1.05rem] font-medium leading-[1.65] text-stone-800 md:text-[1.12rem]">
-              {GUEST_GUIDE.address}
-            </p>
+            <div className="guide-visuals mt-6">
+              <WeddingCalendar />
+              <div className="guide-map">
+                <iframe
+                  title="Google Maps preview of SDM Kalyana Mantapa, Basavanagudi"
+                  src={MAP_PREVIEW_URL}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                />
+              </div>
+            </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center">
               <GuideCTA href={GUEST_GUIDE.mapsHref} variant="filled">
@@ -102,9 +125,13 @@ function GuestGuide() {
                 Add to Calendar
               </GuideCTA>
             </div>
-            <a href="/calendar.ics" download="bhakti-dhananjay-wedding.ics" className="mt-5 inline-flex min-h-11 items-center font-lato text-sm font-semibold text-primary-deep underline decoration-gold underline-offset-4">
-              Download calendar file
-            </a>
+
+            <div className="mt-8 border-t border-gold/35 px-1 pt-6 md:px-8">
+              <p className="meta-stationery">{GUEST_GUIDE.proTipLabel}</p>
+              <p className="mt-2 font-cormorant text-base font-medium leading-[1.75] text-stone-800">
+                {GUEST_GUIDE.proTip}
+              </p>
+            </div>
           </motion.article>
         </RevealItem>
       </div>

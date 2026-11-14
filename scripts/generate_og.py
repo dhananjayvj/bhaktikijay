@@ -13,6 +13,6 @@ draw.text((535, 105), 'WITH OUR FAMILIES’ BLESSINGS', fill='#775b4e', font=Ima
 draw.text((535, 190), 'Bhakti', fill='#63353a', font=ImageFont.truetype(bold, 72))
 draw.text((535, 274), '& Dhananjay', fill='#63353a', font=ImageFont.truetype(bold, 62))
 draw.line((535, 385, 1120, 385), fill='#ae8a68', width=2)
-draw.text((535, 425), 'MARCH 11 – 14, 2027', fill='#6c5048', font=ImageFont.truetype(serif, 27))
+draw.text((535, 425), 'MARCH 11, 13 & 14, 2027', fill='#6c5048', font=ImageFont.truetype(serif, 27))
 draw.text((535, 476), 'BENGALURU', fill='#6c5048', font=ImageFont.truetype(serif, 25))
-card.save('public/og-couple-2026.jpg', quality=86, optimize=True, progressive=True)
+card.save('public/og-couple-2027.jpg', quality=86, optimize=True, progressive=True)

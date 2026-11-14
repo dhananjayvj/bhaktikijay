@@ -6,6 +6,7 @@ import ScrollProgressBar from './components/ScrollProgressBar.jsx'
 import SiteNav from './components/SiteNav.jsx'
 import RevealAssetPreloader from './components/RevealAssetPreloader.jsx'
 import AmbientFlute from './components/AmbientFlute.jsx'
+import MusicToggle from './components/MusicToggle.jsx'
 
 export default function App() {
   const reduceMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -21,13 +22,15 @@ export default function App() {
   const handleHeroShellStart = useCallback(() => setHeroShell(true), [])
   const handleHeroTextStart = useCallback(() => setHeroText(true), [])
   const handleRevealStart = useCallback(() => setFluteActive(true), [])
+  const handlePlaybackBlocked = useCallback(() => setFluteActive(false), [])
+  const handleMusicToggle = useCallback(() => setFluteActive((playing) => !playing), [])
 
   const inviteRevealed = heroShell || !overlayOpen
 
   return (
     <>
       <RevealAssetPreloader />
-      <AmbientFlute active={fluteActive} />
+      <AmbientFlute active={fluteActive} onPlaybackBlocked={handlePlaybackBlocked} />
 
       <div className="relative min-h-dvh min-h-[100svh] w-full bg-cream">
         <div className="site-grain" aria-hidden="true" />
@@ -45,6 +48,7 @@ export default function App() {
         <ScrollProgressBar />
 
         <SiteNav visible={inviteRevealed} />
+        {!overlayOpen && <MusicToggle playing={fluteActive} onToggle={handleMusicToggle} />}
 
         <MainPageContent
           inviteRevealed={inviteRevealed}

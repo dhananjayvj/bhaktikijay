@@ -189,11 +189,11 @@ https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmx
 }
 ```
 
-Submission uses `navigator.sendBeacon` when available, else `fetch` with `mode: 'no-cors'`.
+Submission uses `fetch` with `mode: 'no-cors'` and waits for the network request before showing a sent state. The opaque response cannot confirm that Google Sheets appended the row.
 
 ### 4.9 Calendar
 
-**`calendar.ics` (root)**
+**`calendar.ics` (root; retained for no-JavaScript and existing direct links)**
 
 - All-day: `DTSTART` 20270314, `DTEND` 20270315
 - `SUMMARY`: Bhakti & Dhananjay — Wedding, March 14, 2027
@@ -300,7 +300,6 @@ App
 | **Footer.jsx** | Kolam SVG, hashtag, joke | framer-motion |
 | **Countdown.jsx** | Days/hours/minutes/seconds to `targetIso` | framer-motion digit animation |
 | **KolamWaveDivider.jsx** | Decorative wave/kolam under header | SVG + motion |
-| **Toast.jsx** | Ephemeral message (Hero copy actions if wired) | framer-motion |
 | **ParticleCanvas.jsx** | Canvas burst on RSVP submit | canvas API |
 | **WeddingDoodles.jsx** | Floating SVG doodles on overlay | motion |
 | **EventIcons.jsx** | Haldi, Mehendi, Sangeet, Baraat, Reception SVG icons | — |

@@ -1,25 +1,24 @@
-import React, { memo, useEffect, useRef } from 'react'
+import React, { memo, useEffect } from 'react'
 import { getPreloadedFluteAudio } from '../utils/preloadRevealAssets.js'
 
-function AmbientFlute({ active }) {
-  const startedRef = useRef(false)
-
+function AmbientFlute({ active, onPlaybackBlocked }) {
   useEffect(() => {
-    if (!active || startedRef.current) return
-    startedRef.current = true
+    if (!active) return undefined
 
     const audio = getPreloadedFluteAudio()
+    let cancelled = false
     const p = audio.play()
-    if (p && typeof p.catch === 'function') p.catch(() => {})
+    if (p && typeof p.catch === 'function') {
+      p.catch(() => {
+        if (!cancelled) onPlaybackBlocked()
+      })
+    }
 
     return () => {
-      try {
-        audio.pause()
-      } catch {
-        // ignore
-      }
+      cancelled = true
+      audio.pause()
     }
-  }, [active])
+  }, [active, onPlaybackBlocked])
 
   return null
 }

@@ -102,7 +102,6 @@ function Overlay({ onClose, onHeroShellStart, onHeroTextStart, onRevealStart }) 
 
   return (
     <div className="atelier-overlay viewport-fill fixed inset-0 z-[70]" data-phase={phase} aria-label="Invitation opening">
-      <button type="button" className="atelier-skip" onClick={finish}>Skip animation</button>
       <Envelope phase={phase} onOpen={open} />
     </div>
   )

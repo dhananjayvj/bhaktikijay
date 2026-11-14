@@ -29,7 +29,7 @@ export default function Footer() {
   return (
     <SectionReveal
       as="footer"
-      className="defer-heavy-section reveal border-t border-border bg-gradient-to-b from-primary-deep to-brown px-4 py-16 text-center md:px-10 md:py-20"
+      className="defer-heavy-section reveal border-t border-border bg-gradient-to-b from-[#63353a] to-brown px-4 py-16 text-center md:px-10 md:py-20"
     >
       <div className="mx-auto max-w-4xl">
         <RevealItem className="mx-auto flex items-center justify-center">
