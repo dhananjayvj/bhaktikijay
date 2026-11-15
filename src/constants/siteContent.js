@@ -1,8 +1,9 @@
 /** Site content — timeline days, guest guide */
+import { IS_COLLEAGUE_INVITE } from './audience.js'
 
 export const MAPS_KALYANA = 'https://maps.app.goo.gl/p7yrs8a2dHogMKHp9'
 
-export const CELEBRATION_DAYS = [
+const FRIENDS_DAYS = [
   {
     id: 'day-1',
     day: 'Thursday · 11 March 2027',
@@ -65,6 +66,8 @@ export const CELEBRATION_DAYS = [
     mapsLabel: 'Open directions to SDM Kalyana Mantapa',
   },
 ]
+
+export const CELEBRATION_DAYS = IS_COLLEAGUE_INVITE ? [FRIENDS_DAYS[2]] : FRIENDS_DAYS
 
 export const GUEST_GUIDE = {
   eyebrow: 'Getting there',

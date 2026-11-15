@@ -16,3 +16,8 @@ draw.line((535, 385, 1120, 385), fill='#ae8a68', width=2)
 draw.text((535, 425), 'MARCH 11, 13 & 14, 2027', fill='#6c5048', font=ImageFont.truetype(serif, 27))
 draw.text((535, 476), 'BENGALURU', fill='#6c5048', font=ImageFont.truetype(serif, 25))
 card.save('public/og-couple-2027.jpg', quality=86, optimize=True, progressive=True)
+
+# Keep the same stationery composition for the wedding-day invitation.
+draw.rectangle((530, 415, 1125, 467), fill='#f6efe2')
+draw.text((535, 425), 'MARCH 14, 2027', fill='#6c5048', font=ImageFont.truetype(serif, 27))
+card.save('public/og-wedding-2027.jpg', quality=86, optimize=True, progressive=True)

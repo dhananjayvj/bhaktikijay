@@ -5,6 +5,7 @@ import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import EventWearTip from './EventWearTip.jsx'
 import { PinIcon } from './EventIcons.jsx'
 import { CELEBRATION_DAYS } from '../constants/siteContent.js'
+import { IS_COLLEAGUE_INVITE } from '../constants/audience.js'
 import {
   easeSilk,
   fadeUpDuration,
@@ -104,7 +105,7 @@ function Timeline() {
 
       <div className="relative z-[1] mx-auto max-w-5xl">
         <RevealItem className="text-center">
-          <p className="section-eyebrow">11, 13 &amp; 14 March 2027</p>
+          <p className="section-eyebrow">{IS_COLLEAGUE_INVITE ? 'Sunday · 14 March 2027' : '11, 13 & 14 March 2027'}</p>
           <div ref={headerRef}>
             <motion.h2
               initial={{ opacity: 0, y: 18 }}
@@ -116,7 +117,11 @@ function Timeline() {
               Celebration timeline
             </motion.h2>
           </div>
-          <p className="section-lead mt-3">Three days of rituals, music, and celebration in Bengaluru.</p>
+          <p className="section-lead mt-3">
+            {IS_COLLEAGUE_INVITE
+              ? 'Join us for the wedding ceremony and lunch reception in Bengaluru.'
+              : 'Three days of rituals, music, and celebration in Bengaluru.'}
+          </p>
         </RevealItem>
 
         <div className="relative mt-12">

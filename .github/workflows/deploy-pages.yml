@@ -31,6 +31,15 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+      - name: Verify colleague invitation has no other event dates
+        run: |
+          if grep -Eiq '11, 13|March 11|11 March|13 March|Haldi|Mehendi|Baraat|Sangeet|Three days' dist/index.html dist/assets/*.js; then
+            echo "Colleague build contains earlier celebration details"
+            exit 1
+          fi
+          test -f dist/og-wedding-2027.jpg
+          test ! -e dist/og-couple-2027.jpg
+
       - name: Verify dist is a production build (not dev index.html)
         run: |
           test -f dist/index.html

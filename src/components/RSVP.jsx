@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { WEDDING_DATE_LINE } from '../constants/wedding.js'
+import { IS_COLLEAGUE_INVITE } from '../constants/audience.js'
 import {
   easeOutCubic,
   formContainer,
@@ -14,11 +15,13 @@ import {
 } from '../constants/motion.js'
 import { GUEST_PASS_TITLE } from '../constants/quirkyCopy.js'
 
-const EVENT_GROUPS = [
-  { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
-  { key: 'sangeet-baraat', label: 'Baraat & Sangeet', events: ['Baraat', 'Sangeet'] },
-  { key: 'muhurtham-reception', label: 'Muhurtham & Reception', events: ['Muhurtham', 'Reception'] },
-]
+const EVENT_GROUPS = IS_COLLEAGUE_INVITE
+  ? [{ key: 'muhurtham-reception', label: 'Muhurtham & Reception', events: ['Muhurtham', 'Reception'] }]
+  : [
+      { key: 'haldi-mehendi', label: 'Haldi & Mehendi', events: ['Haldi', 'Mehendi'] },
+      { key: 'sangeet-baraat', label: 'Baraat & Sangeet', events: ['Baraat', 'Sangeet'] },
+      { key: 'muhurtham-reception', label: 'Muhurtham & Reception', events: ['Muhurtham', 'Reception'] },
+    ]
 
 function expandSelectedEvents(selectedKeys) {
   return selectedKeys.flatMap((key) => {
@@ -277,7 +280,7 @@ export default function RSVP() {
                     id="rsvp-song"
                     value={songRequest}
                     onChange={(e) => setSongRequest(e.target.value)}
-                    placeholder="For the sangeet playlist vibes"
+                    placeholder={IS_COLLEAGUE_INVITE ? 'A song to celebrate with us' : 'For the sangeet playlist vibes'}
                     className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
                   />
                 </motion.div>

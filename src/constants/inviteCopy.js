@@ -1,4 +1,5 @@
 /** Shared invitation copy — keep Hero and other sections in sync */
+import { IS_COLLEAGUE_INVITE } from './audience.js'
 
 export const INVITE_HEADER = 'The Celebration Call'
 
@@ -10,7 +11,9 @@ export const INVITE_OPENING_VERSE =
   "With our families' blessings, we're starting this new chapter together. We'd love for you to be there and share in our joy."
 
 export const INVITE_CELEBRATION =
-  "Three days of colour, music, and tradition. We'd love to celebrate with you."
+  IS_COLLEAGUE_INVITE
+    ? "Join us for our wedding and reception on 14 March. We'd love to celebrate with you."
+    : "Three days of colour, music, and tradition. We'd love to celebrate with you."
 
 export const COUNTDOWN_INTRO = 'Until the muhurtham...'
 
