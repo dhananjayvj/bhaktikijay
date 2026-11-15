@@ -161,11 +161,9 @@
   }
 
   .soft-panel-dark {
-    @apply border border-gold/45 bg-black/10 shadow-soft backdrop-blur-sm;
-    position: relative;
+    @apply rounded-2xl border border-gold/45 bg-black/10 shadow-soft backdrop-blur-sm;
     box-shadow:
-      0 0 0 6px rgba(255, 248, 226, 0.035) inset,
-      0 0 0 7px rgba(231, 208, 170, 0.22) inset,
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
       0 8px 28px rgba(59, 31, 10, 0.22);
   }
 
@@ -495,7 +493,7 @@
     height: 2.1rem;
     min-height: 0;
     place-self: center;
-    color: #63353a;
+    color: #fff3df;
     font-weight: 700;
   }
   .guide-calendar-day--wedding time { position: relative; z-index: 1; transform: translateY(-1px); }
@@ -506,8 +504,17 @@
     width: 2.55rem;
     height: 2.55rem;
     transform: translate(-50%, -50%);
-    color: #9b594e;
+    color: #8c3f4a;
     pointer-events: none;
+    animation: wedding-heartbeat 3.2s ease-in-out infinite;
+  }
+  @keyframes wedding-heartbeat {
+    0%, 12%, 28%, 42%, 100% { transform: translate(-50%, -50%) scale(1); }
+    18% { transform: translate(-50%, -50%) scale(1.075); }
+    34% { transform: translate(-50%, -50%) scale(1.035); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .guide-calendar-day--wedding svg { animation: none; }
   }
   .guide-calendar-caption {
     margin: 1.2rem 0 0.1rem;
@@ -677,13 +684,6 @@
     background: linear-gradient(155deg, #fcf7ec 0%, #fffaf0 54%, #f7eddd 100%);
   }
 
-  .section-heritage-backdrop--mint {
-    background: linear-gradient(155deg, #fbf5e9 0%, #fffbf2 54%, #f6ecdc 100%);
-  }
-
-  .section-heritage-backdrop--dark { background: transparent; }
-  .section-heritage-backdrop--dark .section-edge-melukote { opacity: 0.27; }
-  .section-heritage-backdrop--dark .section-edge-floral { display: none; }
   .section-heritage-backdrop--timeline .section-edge-floral,
   .section-heritage-backdrop--hands .section-edge-melukote { display: none; }
 

@@ -22,7 +22,7 @@ function CouplePortrait() {
 
   useEffect(() => {
     if (!inView || paused || reduceMotion) return undefined
-    const timer = window.setInterval(() => setActive((index) => (index + 1) % PHOTOS.length), 6000)
+    const timer = window.setInterval(() => setActive((index) => (index + 1) % PHOTOS.length), 4800)
     return () => window.clearInterval(timer)
   }, [active, inView, paused, reduceMotion])
 
@@ -57,8 +57,6 @@ function CouplePortrait() {
             role="region"
             aria-roledescription="carousel"
             aria-label="Bhakti and Dhananjay photo gallery"
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
             onFocusCapture={() => setPaused(true)}
             onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false) }}
           >

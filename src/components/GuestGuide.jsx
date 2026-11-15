@@ -1,7 +1,6 @@
 import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
-import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import { GUEST_GUIDE } from '../constants/siteContent.js'
 import { COUNTDOWN_INTRO } from '../constants/inviteCopy.js'
 import { springGentle } from '../constants/motion.js'
@@ -25,8 +24,8 @@ function WeddingCalendar() {
           <li key={day} className={day === 14 ? 'guide-calendar-day guide-calendar-day--wedding' : 'guide-calendar-day'}>
             <time dateTime={`2027-03-${String(day).padStart(2, '0')}`} aria-label={day === 14 ? 'Wedding day, Sunday 14 March 2027' : undefined}>{day}</time>
             {day === 14 && (
-              <svg viewBox="0 0 44 44" fill="none" aria-hidden="true">
-                <path d="M22 39C16.8 35.1 5 27 5 17.2 5 11.4 9.2 7 15 7c3.2 0 5.8 1.7 7 4.1C23.2 8.7 25.8 7 29 7c5.8 0 10 4.4 10 10.2C39 27 27.2 35.1 22 39Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+              <svg viewBox="0 0 44 44" aria-hidden="true">
+                <path d="M22 39C16.8 35.1 5 27 5 17.2 5 11.4 9.2 7 15 7c3.2 0 5.8 1.7 7 4.1C23.2 8.7 25.8 7 29 7c5.8 0 10 4.4 10 10.2C39 27 27.2 35.1 22 39Z" fill="currentColor" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
               </svg>
             )}
           </li>
@@ -78,9 +77,8 @@ function GuestGuide() {
   return (
     <SectionReveal
       id="guide"
-      className="relative overflow-hidden border-t border-border px-4 py-16 md:px-10 md:py-20"
+      className="relative overflow-hidden border-t border-border bg-[#faf3e7] px-4 py-16 md:px-10 md:py-20"
     >
-      <SectionDoodleBackdrop variant="mint" />
       <div className="mx-auto max-w-5xl relative z-[1]">
         <RevealItem>
           <motion.article className="guest-guide-editorial p-5 md:p-8">
