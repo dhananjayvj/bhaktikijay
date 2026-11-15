@@ -123,7 +123,7 @@ export default function InviteHeroCopy({ variant = 'full' }) {
         </div>
         {!envelope ? (
           <div className="w-full max-w-md px-1 pt-1 sm:max-w-xl sm:px-0">
-            <Countdown dense heroReadable intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
+            <Countdown dense heroReadable className="hero-countdown" intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
           </div>
         ) : null}
       </Block>

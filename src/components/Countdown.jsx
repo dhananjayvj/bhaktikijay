@@ -61,7 +61,7 @@ export default function Countdown({
     : 'grid w-full max-w-md grid-cols-4 gap-x-2 gap-y-3 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-5'
 
   const digitClass = dense
-    ? `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.78rem,2.6vw,1.5rem)] leading-none sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]`
+    ? `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine text-[clamp(0.78rem,2.6vw,1.5rem)] sm:text-[clamp(1.05rem,3.4vw,2rem)] md:text-[clamp(1.2rem,4vw,2.2rem)]'} tabular-nums leading-none`
     : `${heroReadable ? 'invite-countdown-digit' : 'letterpress-ink font-playfair font-black text-invite-wine'} tabular-nums text-[clamp(0.95rem,3.2vw,2rem)] leading-none sm:text-[clamp(1.2rem,4vw,2.2rem)]`
 
   const labelClass = dense

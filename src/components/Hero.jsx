@@ -1,10 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import InviteHeroCopy from './InviteHeroCopy.jsx'
-import {
-  desktopBackdropImageUrl,
-  mobileBackdropImageUrl,
-} from '../utils/preloadRevealAssets.js'
+import { mobileBackdropImageUrl } from '../utils/preloadRevealAssets.js'
 import { easeOutCubic, gpuLayerStyle } from '../constants/motion.js'
 
 const BACKDROP_MOUNT_DELAY_MS = 650
@@ -26,20 +23,19 @@ function HeroParchmentLayers({ backdropOn }) {
           className="pointer-events-none absolute inset-x-2 top-4 bottom-4 z-0 overflow-hidden rounded-[4px] sm:inset-x-4 sm:top-8 sm:bottom-8"
           style={gpuLayerStyle}
         >
-          <motion.picture
+          <motion.div
             className="absolute inset-0 block"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: BACKDROP_FADE_SEC, ease: easeOutCubic }}
           >
-            <source media="(max-width: 899px)" srcSet={mobileBackdropImageUrl} />
             <img
-              src={desktopBackdropImageUrl}
+              src={mobileBackdropImageUrl}
               alt=""
               decoding="async"
               className="h-full w-full object-cover object-center"
             />
-          </motion.picture>
+          </motion.div>
           <div className="hero-photo-wash absolute inset-0" />
         </motion.div>
       ) : null}
@@ -63,7 +59,7 @@ function Hero({ inviteRevealed = false, textActive = false }) {
   return (
     <section
       id="invitation"
-      className="relative flex min-h-[100svh] flex-col items-stretch justify-start overflow-x-hidden sm:items-center sm:justify-center"
+      className="invitation-hero relative flex flex-col items-stretch justify-start overflow-x-hidden sm:items-center"
       style={{ perspective: '1000px' }}
     >
       {!inviteRevealed ? (

@@ -142,7 +142,7 @@ function Timeline() {
             animate={listInView ? 'show' : 'hidden'}
           >
             {CELEBRATION_DAYS.map((day, i) => (
-              <div key={day.id} className="relative pl-10 md:pl-16">
+              <div key={day.id} className="timeline-day-entry relative pl-10 md:pl-16">
                 <div className="absolute left-3 top-8 z-[2] md:left-8">
                   <Dot />
                 </div>

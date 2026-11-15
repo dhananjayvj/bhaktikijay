@@ -90,7 +90,7 @@ export default function RSVP() {
   const [guestNames, setGuestNames] = useState('')
   const [message, setMessage] = useState('')
   const [songRequest, setSongRequest] = useState('')
-  const [selected, setSelected] = useState([])
+  const [selected, setSelected] = useState(IS_COLLEAGUE_INVITE ? ['muhurtham-reception'] : [])
 
   const [submitted, setSubmitted] = useState(false)
   const [particleTriggerId, setParticleTriggerId] = useState(0)
@@ -299,7 +299,7 @@ export default function RSVP() {
                   />
                 </motion.div>
 
-                <motion.div variants={formField} className="mt-6">
+                {!IS_COLLEAGUE_INVITE && <motion.div variants={formField} className="mt-6">
                   <div className="meta-stationery-on-dark">
                     Events you’ll join
                   </div>
@@ -335,7 +335,7 @@ export default function RSVP() {
                       )
                     })}
                   </motion.div>
-                </motion.div>
+                </motion.div>}
 
                 <motion.div variants={formField} className="mt-7">
                   {submitState === 'error' ? <p role="alert" className="mb-3 text-left font-lato text-sm text-gold-light">{submitError}</p> : null}

@@ -1,7 +1,6 @@
 import React, { memo } from 'react'
-import { motion } from 'framer-motion'
-import couplePortraitSmall from '../../images/couple-560.webp'
-import couplePortraitLarge from '../../images/couple-900.webp'
+import templePlaceholder from '../../images/gallery-temple-placeholder.webp'
+import stationeryPlaceholder from '../../images/gallery-stationery-placeholder.webp'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 
@@ -16,12 +15,12 @@ function CouplePortrait() {
       <div className="relative z-[1] mx-auto max-w-5xl text-center">
         <RevealItem>
           <p className="section-eyebrow">From us, with gratitude</p>
-          <h2 className="mt-2 font-playfair text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight tracking-tight text-primary-deep text-balance">
+          <h2 className="mt-2 font-playfair text-[clamp(1.5rem,3.5vw,2rem)] font-bold leading-tight tracking-tight text-[#63353a] text-balance">
             A message from the couple
           </h2>
         </RevealItem>
         <RevealItem className="mx-auto mt-6 max-w-xl">
-          <p className="font-cormorant text-2xl italic leading-snug text-primary-deep md:text-3xl">
+          <p className="font-cormorant text-2xl italic leading-snug text-[#63353a] md:text-3xl">
             Hand in hand, with all of you beside us.
           </p>
         </RevealItem>
@@ -33,34 +32,17 @@ function CouplePortrait() {
           </p>
         </RevealItem>
 
-        <RevealItem variant="scale" className="mx-auto mt-10 max-w-3xl">
-          <motion.figure
-            className="overflow-hidden rounded-2xl border-[3px] border-gold/55 bg-stone-100 shadow-premium ring-1 ring-gold/20"
-            whileHover={{ scale: 1.012, y: -4 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-          >
-            <div className="relative">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 pointer-events-none"
-                style={{
-                  background:
-                    'linear-gradient(165deg, rgba(28,24,20,0.25) 0%, rgba(18,16,14,0.12) 100%)',
-                }}
-              />
-              <img
-                src={couplePortraitLarge}
-                srcSet={`${couplePortraitSmall} 560w, ${couplePortraitLarge} 900w`}
-                sizes="(max-width: 640px) calc(100vw - 32px), 768px"
-                alt="Bhakti and Dhananjay"
-                width="900"
-                height="1501"
-                loading="lazy"
-                decoding="async"
-                className="w-full object-cover object-center"
-              />
-            </div>
-          </motion.figure>
+        <RevealItem className="mx-auto mt-9 max-w-3xl">
+          <p className="meta-stationery">Our photo story</p>
+          <p className="mt-2 font-cormorant text-lg italic text-stone-700">Portraits from our photoshoot are coming soon.</p>
+          <div className="photo-gallery mt-6" aria-label="Photoshoot preview gallery">
+            <figure className="gallery-photo">
+              <img src={templePlaceholder} alt="Placeholder: temple corridor and wedding flowers" width="700" height="875" loading="lazy" decoding="async" />
+            </figure>
+            <figure className="gallery-photo">
+              <img src={stationeryPlaceholder} alt="Placeholder: invitation and jasmine flowers" width="700" height="875" loading="lazy" decoding="async" />
+            </figure>
+          </div>
         </RevealItem>
 
       </div>

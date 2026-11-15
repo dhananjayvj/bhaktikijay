@@ -32,7 +32,7 @@ export default function App() {
       <RevealAssetPreloader />
       <AmbientFlute active={fluteActive} onPlaybackBlocked={handlePlaybackBlocked} />
 
-      <div className="relative min-h-dvh min-h-[100svh] w-full bg-cream">
+      <div className="invitation-shell relative min-h-dvh min-h-[100svh] bg-cream">
         <div className="site-grain" aria-hidden="true" />
         <AnimatePresence>
           {overlayOpen && (
