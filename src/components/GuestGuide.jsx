@@ -3,7 +3,9 @@ import { motion } from 'framer-motion'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import { GUEST_GUIDE } from '../constants/siteContent.js'
+import { COUNTDOWN_INTRO } from '../constants/inviteCopy.js'
 import { springGentle } from '../constants/motion.js'
+import Countdown from './Countdown.jsx'
 
 const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S']
 const MARCH_2027_DAYS = Array.from({ length: 31 }, (_, index) => index + 1)
@@ -31,6 +33,7 @@ function WeddingCalendar() {
         ))}
       </ol>
       <p className="guide-calendar-caption">14 March · Our wedding day</p>
+      <Countdown dense heroReadable className="calendar-countdown" intro={COUNTDOWN_INTRO} targetIso="2027-03-14T08:48:00+05:30" />
     </div>
   )
 }

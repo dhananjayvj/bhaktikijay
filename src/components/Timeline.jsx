@@ -101,7 +101,7 @@ function Timeline() {
       id="timeline"
       className="defer-heavy-section reveal relative overflow-hidden border-t border-border px-4 py-16 md:px-10 md:py-20"
     >
-      <SectionDoodleBackdrop variant="cream" />
+      <SectionDoodleBackdrop variant="timeline" />
 
       <div className="relative z-[1] mx-auto max-w-5xl">
         <RevealItem className="text-center">

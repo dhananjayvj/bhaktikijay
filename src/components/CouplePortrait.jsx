@@ -1,10 +1,31 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
+import { useInView, useReducedMotion } from 'framer-motion'
+import couplePortraitSmall from '../../images/couple-560.webp'
+import couplePortraitLarge from '../../images/couple-900.webp'
 import templePlaceholder from '../../images/gallery-temple-placeholder.webp'
 import stationeryPlaceholder from '../../images/gallery-stationery-placeholder.webp'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 
+const PHOTOS = [
+  { src: couplePortraitLarge, srcSet: `${couplePortraitSmall} 560w, ${couplePortraitLarge} 900w`, width: 900, height: 1501, alt: 'Bhakti and Dhananjay together', label: 'Bhakti & Dhananjay' },
+  { src: templePlaceholder, width: 700, height: 875, alt: 'Preview artwork of a temple corridor and flowers', label: 'Photoshoot preview · Melukote' },
+  { src: stationeryPlaceholder, width: 700, height: 875, alt: 'Preview artwork of an invitation and jasmine flowers', label: 'Photoshoot preview · The invitation' },
+]
+
 function CouplePortrait() {
+  const carouselRef = useRef(null)
+  const inView = useInView(carouselRef, { amount: 0.4 })
+  const reduceMotion = useReducedMotion()
+  const [active, setActive] = useState(0)
+  const [paused, setPaused] = useState(false)
+
+  useEffect(() => {
+    if (!inView || paused || reduceMotion) return undefined
+    const timer = window.setInterval(() => setActive((index) => (index + 1) % PHOTOS.length), 6000)
+    return () => window.clearInterval(timer)
+  }, [active, inView, paused, reduceMotion])
+
   return (
     <SectionReveal
       id="couple"
@@ -19,11 +40,6 @@ function CouplePortrait() {
             A message from the couple
           </h2>
         </RevealItem>
-        <RevealItem className="mx-auto mt-6 max-w-xl">
-          <p className="font-cormorant text-2xl italic leading-snug text-[#63353a] md:text-3xl">
-            Hand in hand, with all of you beside us.
-          </p>
-        </RevealItem>
         <RevealItem className="mx-auto mt-5 max-w-prose">
           <p className="font-cormorant text-base font-medium leading-[1.85] text-pretty text-stone-700 md:text-lg">
             We're so happy to share this moment with the people who mean the most to us. Your warmth and blessings
@@ -34,14 +50,44 @@ function CouplePortrait() {
 
         <RevealItem className="mx-auto mt-9 max-w-3xl">
           <p className="meta-stationery">Our photo story</p>
-          <p className="mt-2 font-cormorant text-lg italic text-stone-700">Portraits from our photoshoot are coming soon.</p>
-          <div className="photo-gallery mt-6" aria-label="Photoshoot preview gallery">
-            <figure className="gallery-photo">
-              <img src={templePlaceholder} alt="Placeholder: temple corridor and wedding flowers" width="700" height="875" loading="lazy" decoding="async" />
-            </figure>
-            <figure className="gallery-photo">
-              <img src={stationeryPlaceholder} alt="Placeholder: invitation and jasmine flowers" width="700" height="875" loading="lazy" decoding="async" />
-            </figure>
+          <p className="mt-2 font-cormorant text-lg italic text-stone-700">More portraits from our photoshoot are coming soon.</p>
+          <div
+            ref={carouselRef}
+            className="gallery-carousel mx-auto mt-6"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Bhakti and Dhananjay photo gallery"
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+            onFocusCapture={() => setPaused(true)}
+            onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false) }}
+          >
+            <div className="gallery-carousel-viewport">
+              {PHOTOS.map((photo, index) => (
+                <figure key={photo.src} className={`gallery-carousel-slide${index === active ? ' is-active' : ''}`} aria-hidden={index !== active}>
+                  <img
+                    src={photo.src}
+                    srcSet={photo.srcSet}
+                    sizes="(max-width: 640px) calc(100vw - 64px), 420px"
+                    alt={index === active ? photo.alt : ''}
+                    width={photo.width}
+                    height={photo.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              ))}
+            </div>
+            <div className="gallery-carousel-controls">
+              <button type="button" onClick={() => setActive((index) => (index + PHOTOS.length - 1) % PHOTOS.length)} aria-label="Previous photo">‹</button>
+              <span className="gallery-carousel-caption">{PHOTOS[active].label}</span>
+              <button type="button" onClick={() => setActive((index) => (index + 1) % PHOTOS.length)} aria-label="Next photo">›</button>
+            </div>
+            <div className="gallery-carousel-dots" aria-label="Choose a photo">
+              {PHOTOS.map((photo, index) => (
+                <button key={photo.src} type="button" className={index === active ? 'is-active' : ''} aria-label={`Show photo ${index + 1}: ${photo.label}`} aria-current={index === active ? 'true' : undefined} onClick={() => setActive(index)} />
+              ))}
+            </div>
           </div>
         </RevealItem>
 

@@ -292,37 +292,93 @@
     box-shadow: inset 0 0 0 6px rgba(255, 251, 235, 0.68), inset 0 0 0 7px rgba(160, 119, 70, 0.2);
   }
 
-  .gallery-photo {
+  .gallery-carousel {
+    max-width: 25rem;
+  }
+
+  .gallery-carousel-viewport {
     position: relative;
-    flex: 0 0 min(82vw, 23rem);
-    min-width: 0;
-    padding: 0.55rem;
+    aspect-ratio: 3 / 5;
+    padding: 0.6rem;
     border: 1px solid rgba(160, 119, 70, 0.52);
     background: #fbf2e2;
     box-shadow: inset 0 0 0 5px #fbf2e2, inset 0 0 0 6px rgba(160, 119, 70, 0.3);
   }
 
-  .gallery-photo img {
+  .gallery-carousel-slide {
+    position: absolute;
+    inset: 0.6rem;
+    opacity: 0;
+    transition: opacity 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .gallery-carousel-slide.is-active { opacity: 1; }
+
+  .gallery-carousel-slide img {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
   }
 
-  .photo-gallery {
+  .gallery-carousel-controls {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding: 0 0 0.6rem;
-    scroll-snap-type: x mandatory;
-    scrollbar-color: rgba(160, 119, 70, 0.55) transparent;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.7rem;
+    margin-top: 0.75rem;
   }
 
-  .photo-gallery .gallery-photo { scroll-snap-align: center; }
+  .gallery-carousel-controls button {
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border: 1px solid rgba(160, 119, 70, 0.55);
+    border-radius: 50%;
+    color: #63353a;
+    font-family: Georgia, serif;
+    font-size: 1.8rem;
+    line-height: 1;
+  }
 
-  @media (min-width: 640px) {
-    .photo-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; overflow: visible; padding: 0; }
+  .gallery-carousel-controls button:hover { background: rgba(160, 119, 70, 0.1); }
+
+  .gallery-carousel-caption {
+    color: #63353a;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    font-style: italic;
+  }
+
+  .gallery-carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.1rem;
+  }
+
+  .gallery-carousel-dots button {
+    display: grid;
+    width: 32px;
+    height: 44px;
+    place-items: center;
+  }
+
+  .gallery-carousel-dots button::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border: 1px solid #9b7454;
+    border-radius: 50%;
+  }
+
+  .gallery-carousel-dots button.is-active::before {
+    background: #63353a;
+    border-color: #63353a;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .gallery-carousel-slide { transition: none; }
   }
 
   .timeline-day-card::before {
@@ -462,6 +518,19 @@
     font-size: 1.1rem;
     text-align: center;
   }
+  .calendar-countdown {
+    margin-top: 1rem;
+    padding-top: 0.8rem;
+  }
+  .calendar-countdown > div {
+    display: grid;
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.2rem;
+  }
+  .calendar-countdown .invite-countdown-digit { font-size: clamp(1.35rem, 4vw, 1.65rem); }
+  .calendar-countdown .invite-countdown-label { font-size: 0.52rem; letter-spacing: 0.12em; }
   .guide-map { min-height: 270px; overflow: hidden; }
   .guide-map iframe { display: block; width: 100%; height: 100%; min-height: 270px; border: 0; }
 
@@ -598,6 +667,47 @@
   /* Long-scroll sections — avoid content-visibility (causes mobile scroll jank) */
   .defer-heavy-section {
     contain: layout style;
+  }
+
+  .section-heritage-backdrop {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    background: linear-gradient(155deg, #fcf7ec 0%, #fffaf0 54%, #f7eddd 100%);
+  }
+
+  .section-heritage-backdrop--mint {
+    background: linear-gradient(155deg, #fbf5e9 0%, #fffbf2 54%, #f6ecdc 100%);
+  }
+
+  .section-heritage-backdrop--dark { background: transparent; }
+  .section-heritage-backdrop--dark .section-edge-melukote { opacity: 0.27; }
+  .section-heritage-backdrop--dark .section-edge-floral { display: none; }
+  .section-heritage-backdrop--timeline .section-edge-floral,
+  .section-heritage-backdrop--hands .section-edge-melukote { display: none; }
+
+  .section-edge-melukote,
+  .section-edge-floral {
+    position: absolute;
+    bottom: -0.9rem;
+    height: auto;
+    opacity: 0.6;
+  }
+
+  .section-edge-melukote {
+    left: -0.5rem;
+    width: min(53%, 15rem);
+  }
+
+  .section-edge-floral {
+    right: -0.5rem;
+    width: min(48%, 12rem);
+  }
+
+  @media (min-width: 768px) {
+    .section-edge-melukote { width: 18rem; }
+    .section-edge-floral { width: 15rem; }
   }
 
   /* The opening is a single piece of physical stationery, not a full-screen card. */
@@ -971,12 +1081,6 @@
     @apply invite-hero-ink font-lato text-[10px] font-semibold uppercase tracking-[0.26em];
   }
 
-  .hero-countdown {
-    padding: 0.7rem 0.8rem 0.75rem;
-    border-top: 1px solid rgba(160, 119, 70, 0.38);
-    border-bottom: 1px solid rgba(160, 119, 70, 0.38);
-    background: rgba(250, 244, 231, 0.66);
-  }
 
   .invite-countdown-digit {
     @apply font-cormorant font-semibold tabular-nums;

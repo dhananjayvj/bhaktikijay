@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import ParticleCanvas from './ParticleCanvas.jsx'
+import SectionDoodleBackdrop from './SectionDoodleBackdrop.jsx'
 import SectionReveal, { RevealItem } from './SectionReveal.jsx'
 import { WEDDING_DATE_LINE } from '../constants/wedding.js'
 import { IS_COLLEAGUE_INVITE } from '../constants/audience.js'
@@ -169,16 +170,9 @@ export default function RSVP() {
       id="rsvp"
       className="defer-heavy-section reveal section-band-rsvp relative overflow-hidden border-t border-gold/30 px-4 py-16 md:px-10 md:py-20"
     >
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.12]"
-        aria-hidden="true"
-        style={{
-          backgroundImage: 'url(/doodle-pattern-rsvp.svg)',
-          backgroundSize: '420px',
-        }}
-      />
+      <SectionDoodleBackdrop variant="dark" />
 
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="relative z-[1] mx-auto max-w-3xl text-center">
         <RevealItem>
           <p className="section-eyebrow-on-dark">Let us know</p>
           <h2 className="section-display-on-dark mt-2">RSVP</h2>
