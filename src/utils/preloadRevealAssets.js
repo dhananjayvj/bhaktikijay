@@ -1,7 +1,12 @@
-import backdropUrl from '../../images/backdrop.webp'
+import mobileBackdropUrl from '../../images/melukote-heritage-mobile.webp'
+import desktopBackdropUrl from '../../images/melukote-heritage-desktop.webp'
 import fluteUrl from '../../images/flute.mp3'
 
-export { backdropUrl as backdropImageUrl }
+export { mobileBackdropUrl as mobileBackdropImageUrl, desktopBackdropUrl as desktopBackdropImageUrl }
+
+function currentBackdropUrl() {
+  return window.matchMedia('(max-width: 899px)').matches ? mobileBackdropUrl : desktopBackdropUrl
+}
 
 let started = false
 let fluteAudio = null
@@ -16,7 +21,7 @@ export function preloadRevealAssets() {
 
   const img = new Image()
   img.decoding = 'async'
-  img.src = backdropUrl
+  img.src = currentBackdropUrl()
   if (typeof img.decode === 'function') {
     img.decode().catch(() => {})
   }

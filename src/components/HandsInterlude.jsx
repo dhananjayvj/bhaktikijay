@@ -11,7 +11,7 @@ function HandsInterlude() {
           srcSet={`${holdingHandsSmall} 560w, ${holdingHandsLarge} 1000w`}
           sizes="(max-width: 480px) calc(100vw - 48px), 416px"
           width="1000"
-          height="1392"
+          height="1598"
           alt="Bhakti and Dhananjay holding hands"
           loading="lazy"
           decoding="async"
