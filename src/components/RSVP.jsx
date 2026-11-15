@@ -37,7 +37,7 @@ function selectedEventLabels(selectedKeys) {
 const DEFAULT_RSVP_ENDPOINT =
   'https://script.google.com/macros/s/AKfycbyFeYqxfN2JYEZGtwizjTIBNbwE8KDbkn7OQJYmxJMkzB1_g0RgVseq8DrOt80WOjk2/exec'
 
-function AdmissionCard({ name, guests, guestNames, eventTags, message, songRequest }) {
+function AdmissionCard({ name, guests, guestNames, eventTags, message }) {
   const eventsDisplay = eventTags.trim() || 'The full celebration schedule is above.'
   return (
     <motion.div
@@ -66,11 +66,6 @@ function AdmissionCard({ name, guests, guestNames, eventTags, message, songReque
       </p>
       <p className="mt-4 font-cinzel text-sm font-semibold tracking-wider text-terra-deep">{WEDDING_DATE_LINE}</p>
       <p className="mt-3 font-cormorant text-sm font-medium italic leading-relaxed text-stone-700">{eventsDisplay}</p>
-      {songRequest.trim() ? (
-        <p className="mt-3 font-lato text-xs font-medium text-stone-700">
-          Dance floor pick: <span className="italic">“{songRequest.trim()}”</span>
-        </p>
-      ) : null}
       {message.trim() ? (
         <p className="mt-4 rounded-xl border border-gold/35 bg-cream/50 px-3 py-2 font-lato text-xs font-medium text-stone-800">
           “{message.trim()}”
@@ -89,7 +84,6 @@ export default function RSVP() {
   const [guests, setGuests] = useState('2')
   const [guestNames, setGuestNames] = useState('')
   const [message, setMessage] = useState('')
-  const [songRequest, setSongRequest] = useState('')
   const [selected, setSelected] = useState(IS_COLLEAGUE_INVITE ? ['muhurtham-reception'] : [])
 
   const [submitted, setSubmitted] = useState(false)
@@ -135,7 +129,6 @@ export default function RSVP() {
       events: expandSelectedEvents(selected),
       eventTags: tags,
       message: message.trim(),
-      songRequest: songRequest.trim(),
       userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
     }
 
@@ -269,20 +262,6 @@ export default function RSVP() {
                 </AnimatePresence>
 
                 <motion.div variants={formField} className="mt-5">
-                  <label className="form-label-on-dark" htmlFor="rsvp-song">
-                    One song that will get you on the dance floor{' '}
-                    <span className="font-normal normal-case text-cream/75">(optional)</span>
-                  </label>
-                  <input
-                    id="rsvp-song"
-                    value={songRequest}
-                    onChange={(e) => setSongRequest(e.target.value)}
-                    placeholder={IS_COLLEAGUE_INVITE ? 'A song to celebrate with us' : 'For the sangeet playlist vibes'}
-                    className="w-full rounded-xl border border-gold/50 bg-black/15 px-4 py-3 font-lato font-medium text-cream placeholder:text-cream/70 focus:border-gold-light focus:outline-none focus:ring-2 focus:ring-gold-light/30"
-                  />
-                </motion.div>
-
-                <motion.div variants={formField} className="mt-5">
                   <label className="form-label-on-dark" htmlFor="rsvp-message">
                     Message <span className="font-normal normal-case text-cream/75">(optional)</span>
                   </label>
@@ -366,7 +345,6 @@ export default function RSVP() {
                   guestNames={guestNames}
                   eventTags={eventTags}
                   message={message}
-                  songRequest={songRequest}
                 />
                 <p className="mt-6 font-cormorant text-cream/95 text-base leading-relaxed">
                   Thank you, {name.trim()}. We can’t wait to celebrate with you.
